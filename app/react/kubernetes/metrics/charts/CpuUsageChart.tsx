@@ -1,4 +1,5 @@
 import { CpuIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { StatsLineChart } from '@/react/components/Charts/StatsLineChart';
 
@@ -13,16 +14,17 @@ type Props = {
 };
 
 export function CpuUsageChart({ chartData }: Props) {
+  const { t } = useTranslation();
   return (
     <Widget>
-      <WidgetTitle icon={CpuIcon} title="CPU usage" />
+      <WidgetTitle icon={CpuIcon} title={t('kubernetes.metrics.charts.cpuUsage')} />
       <WidgetBody>
         <StatsLineChart
           data={chartData}
           series={[
             {
               dataKey: 'cpu',
-              name: 'CPU',
+              name: t('kubernetes.metrics.charts.cpu'),
               color: SECONDARY,
               area: true,
             },

@@ -1,3 +1,5 @@
+import { useTranslation, Trans } from 'react-i18next';
+
 import { SetStateAction } from 'react';
 import { FormikErrors } from 'formik';
 
@@ -38,6 +40,7 @@ export function KubeManifestForm({
   setValues: (values: SetStateAction<KubeFormValues>) => void;
   webhookId: string;
 }) {
+  const { t } = useTranslation();
   const { method } = values;
 
   return (
@@ -45,8 +48,8 @@ export function KubeManifestForm({
       <div className="form-group">
         <div className="col-sm-12">
           <SwitchField
-            label="Use namespace(s) specified from manifest"
-            tooltip="If you have defined namespaces in your deployment file turning this on will enforce the use of those only in the deployment"
+            label={t('edge.stacks.kube.useManifestNamespaces')}
+            tooltip={t('edge.stacks.kube.useManifestNamespacesTooltip')}
             checked={values.useManifestNamespaces}
             onChange={(value) =>
               handleChange({
@@ -58,7 +61,7 @@ export function KubeManifestForm({
         </div>
       </div>
 
-      <FormSection title="Build Method">
+      <FormSection title={t('edge.stacks.buildMethod')}>
         <BoxSelector
           options={buildMethods}
           onChange={(value) => handleChange({ method: value })}
@@ -74,7 +77,7 @@ export function KubeManifestForm({
           value={values.fileContent}
           onChange={(value) => handleChange({ fileContent: value })}
           type="yaml"
-          textTip="Define or paste the content of your manifest file here"
+          textTip={t('edge.stacks.kube.manifestContentTip')}
           error={errors?.fileContent}
           data-cy="stack-creation-editor"
         >
@@ -87,7 +90,7 @@ export function KubeManifestForm({
           value={values.file}
           onChange={(file) => handleChange({ file })}
           required
-          description="You can upload a Manifest file from your computer."
+          description={t('edge.stacks.kube.uploadDescription')}
           data-cy="stack-creation-file-upload"
         >
           <KubeDeployDescription />
@@ -128,19 +131,10 @@ function KubeDeployDescription() {
   return (
     <>
       <div>
-        Templates allow deploying any kind of Kubernetes resource (Deployment,
-        Secret, ConfigMap...)
+        <Trans i18nKey="edge.stacks.kube.deployDescription" />
       </div>
       <div>
-        You can get more information about Kubernetes file format in the
-        <a
-          href="https://kubernetes.io/docs/concepts/overview/working-with-objects/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          official documentation
-        </a>
-        .
+        <Trans i18nKey="edge.stacks.kube.documentation" components={{ 1: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/" target="_blank" rel="noreferrer" /> }} />
       </div>
     </>
   );

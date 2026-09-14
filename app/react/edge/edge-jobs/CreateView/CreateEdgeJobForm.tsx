@@ -1,9 +1,12 @@
 import { Form, Formik, useFormikContext } from 'formik';
 import { useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { EdgeGroupsSelector } from '@/react/edge/edge-stacks/components/EdgeGroupsSelector';
 import { AssociatedEdgeEnvironmentsSelector } from '@/react/edge/components/AssociatedEdgeEnvironmentsSelector';
 import { notifySuccess } from '@/portainer/services/notifications';
+
+import i18n from '@/i18n';
 
 import { FormActions } from '@@/form-components/FormActions';
 import { FormSection } from '@@/form-components/FormSection';
@@ -28,6 +31,7 @@ import { FormValues } from './types';
 import { useValidation } from './useValidation';
 
 export function CreateEdgeJobForm() {
+  const { t } = useTranslation();
   const mutation = useCreateEdgeJobMutation();
   const validation = useValidation();
   const router = useRouter();
@@ -48,7 +52,7 @@ export function CreateEdgeJobForm() {
       onSubmit={(values) => {
         mutation.mutate(getPayload(values.method, values), {
           onSuccess: () => {
-            notifySuccess('Success', 'Edge job successfully created');
+            notifySuccess(t('common.success'), t('edge.jobs.notifications.created'));
             router.stateService.go('^');
           },
         });
@@ -62,6 +66,7 @@ export function CreateEdgeJobForm() {
 const buildMethods = [editor, upload];
 
 function InnerForm({ isLoading }: { isLoading: boolean }) {
+  const { t } = useTranslation();
   const { values, setFieldValue, isValid, errors } =
     useFormikContext<FormValues>();
 
@@ -71,7 +76,7 @@ function InnerForm({ isLoading }: { isLoading: boolean }) {
 
       <JobConfigurationFieldset />
 
-      <FormSection title="Job content">
+      <FormSection title={t('edge.jobs.form.jobContent')}>
         <BoxSelector
           value={values.method}
           options={buildMethods}
@@ -86,7 +91,7 @@ function InnerForm({ isLoading }: { isLoading: boolean }) {
           id="edge-job-editor"
           onChange={(value) => setFieldValue('fileContent', value)}
           value={values.fileContent}
-          textTip="Define or paste the content of your script file here"
+          textTip={t('edge.jobs.form.scriptContentTip')}
           type="shell"
           error={errors.fileContent}
         />
@@ -95,7 +100,7 @@ function InnerForm({ isLoading }: { isLoading: boolean }) {
       {values.method === 'upload' && (
         <FileUploadForm
           data-cy="edge-job-upload"
-          description="You can upload a script file from your computer."
+          description={t('edge.jobs.form.uploadScriptDescription')}
           onChange={(value) => setFieldValue('file', value)}
           value={values.file}
           required
@@ -108,7 +113,7 @@ function InnerForm({ isLoading }: { isLoading: boolean }) {
         error={errors.edgeGroupIds}
       />
 
-      <FormSection title="Target environments">
+      <FormSection title={t('edge.jobs.form.targetEnvironments')}>
         <AssociatedEdgeEnvironmentsSelector
           onChange={(value) => setFieldValue('environmentIds', value)}
           value={values.environmentIds}
@@ -116,11 +121,11 @@ function InnerForm({ isLoading }: { isLoading: boolean }) {
       </FormSection>
 
       <FormActions
-        submitLabel="Add edge job"
+        submitLabel={t('edge.jobs.add')}
         isLoading={isLoading}
         isValid={isValid}
         data-cy="edgeJobCreate-addJobButton"
-        loadingText="In progress..."
+        loadingText={t('common.inProgress')}
         errors={errors}
       />
     </Form>
@@ -134,7 +139,7 @@ function getPayload(
   switch (method) {
     case 'upload':
       if (!values.file) {
-        throw new Error('File is required');
+        throw new Error(i18n.t('validation.fileRequired'));
       }
 
       return {

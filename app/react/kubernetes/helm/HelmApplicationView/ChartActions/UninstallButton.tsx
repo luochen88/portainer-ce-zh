@@ -1,4 +1,5 @@
 import { useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import { notifySuccess } from '@/portainer/services/notifications';
@@ -18,16 +19,17 @@ export function UninstallButton({
 }) {
   const uninstallHelmAppMutation = useUninstallHelmAppMutation(environmentId);
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <DeleteButton
       size="medium"
       data-cy="k8sApp-removeHelmChartButton"
       isLoading={uninstallHelmAppMutation.isLoading}
-      confirmMessage="Do you want to remove the selected Helm chart? This will delete all resources associated with the Helm chart."
+      confirmMessage={t('kubernetes.helm.release.confirm.uninstall')}
       onConfirmed={handleUninstall}
     >
-      Uninstall
+      {t('kubernetes.helm.release.actions.uninstall')}
     </DeleteButton>
   );
 
@@ -39,7 +41,7 @@ export function UninstallButton({
           router.stateService.go('kubernetes.applications', {
             endpointId: environmentId,
           });
-          notifySuccess('Success', 'Helm chart uninstalled successfully');
+          notifySuccess(t('kubernetes.common.success'), t('kubernetes.helm.release.notifications.uninstallSuccess'));
         },
       }
     );

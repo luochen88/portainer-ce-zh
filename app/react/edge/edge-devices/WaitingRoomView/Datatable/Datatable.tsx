@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Box } from 'lucide-react';
 
 import { Datatable as GenericDatatable } from '@@/datatables';
@@ -16,6 +18,7 @@ const storageKey = 'edge-devices-waiting-room';
 const settingsStore = createPersistedStore(storageKey, 'name');
 
 export function Datatable() {
+  const { t } = useTranslation();
   const tableState = useTableState(settingsStore, storageKey);
   const {
     data: environments,
@@ -34,7 +37,7 @@ export function Datatable() {
       settingsManager={tableState}
       columns={columns}
       dataset={environments}
-      title="Edge Devices Waiting Room"
+      title={t('edge.waitingRoom.datatableTitle')}
       titleIcon={Box}
       renderTableActions={(selectedRows) => (
         <TableActions selectedRows={selectedRows} />

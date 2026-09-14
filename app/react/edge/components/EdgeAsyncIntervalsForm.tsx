@@ -1,3 +1,4 @@
+import i18n from '@/i18n';
 import { number, object, SchemaOf } from 'yup';
 
 import { FormControl } from '@@/form-components/FormControl';
@@ -14,43 +15,43 @@ export interface EdgeAsyncIntervalsValues {
 }
 
 export const options: Options = [
-  { label: 'Use default interval', value: -1, isDefault: true },
+  { label: i18n.t('edge.intervals.useDefault'), value: -1, isDefault: true },
   {
     value: 0,
-    label: 'disabled',
+    label: i18n.t('common.disabled'),
   },
   {
     value: 60,
-    label: '1 minute',
+    label: i18n.t('time.oneMinute'),
   },
   {
     value: 60 * 60,
-    label: '1 hour',
+    label: i18n.t('time.oneHour'),
   },
   {
     value: 24 * 60 * 60,
-    label: '1 day',
+    label: i18n.t('time.oneDay'),
   },
   {
     value: 7 * 24 * 60 * 60,
-    label: '1 week',
+    label: i18n.t('time.oneWeek'),
   },
 ];
 
 const defaultFieldSettings = {
   ping: {
-    label: 'Ping interval',
+    label: i18n.t('edge.intervals.ping'),
     tooltip:
-      'Interval used by this Edge agent to check in with the Portainer instance',
+      i18n.t('edge.intervals.pingTooltip'),
   },
   snapshot: {
-    label: 'Snapshot interval',
-    tooltip: 'Interval used by this Edge agent to snapshot the agent state',
+    label: i18n.t('edge.intervals.snapshot'),
+    tooltip: i18n.t('edge.intervals.snapshotTooltip'),
   },
   command: {
-    label: 'Command interval',
+    label: i18n.t('edge.intervals.command'),
     tooltip:
-      'Interval used by this Edge agent to fetch commands from the Portainer instance',
+      i18n.t('edge.intervals.commandTooltip'),
   },
 };
 
@@ -148,12 +149,12 @@ const intervals = options.map((option) => option.value);
 
 export function edgeAsyncIntervalsValidation(): SchemaOf<EdgeAsyncIntervalsValues> {
   return object({
-    PingInterval: number().required('This field is required.').oneOf(intervals),
+    PingInterval: number().required(i18n.t('validation.required')).oneOf(intervals),
     SnapshotInterval: number()
-      .required('This field is required.')
+      .required(i18n.t('validation.required'))
       .oneOf(intervals),
     CommandInterval: number()
-      .required('This field is required.')
+      .required(i18n.t('validation.required'))
       .oneOf(intervals),
   });
 }

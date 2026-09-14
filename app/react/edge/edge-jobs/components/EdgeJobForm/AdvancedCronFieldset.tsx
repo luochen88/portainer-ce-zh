@@ -1,5 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import { useField } from 'formik';
 import { string } from 'yup';
+
+import i18n from '@/i18n';
 
 import { FormControl } from '@@/form-components/FormControl';
 import { Input } from '@@/form-components/Input';
@@ -10,9 +13,10 @@ export function AdvancedCronFieldset() {
   const [{ value, onChange, name, onBlur }, { error }] =
     useField<string>('cronExpression');
 
+  const { t } = useTranslation();
   return (
     <>
-      <FormControl label="Cron rule" inputId="edge_job_cron" errors={error}>
+      <FormControl label={t('edge.jobs.cron.rule')} inputId="edge_job_cron" errors={error}>
         <Input
           data-cy="edge-job-cron-input"
           id="edge_job_cron"
@@ -36,5 +40,5 @@ const cronRegex =
 export function cronValidation() {
   return string()
     .default('')
-    .matches(cronRegex, 'This field format is invalid.');
+    .matches(cronRegex, i18n.t('validation.invalidFormat'));
 }

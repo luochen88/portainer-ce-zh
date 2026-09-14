@@ -1,5 +1,6 @@
 import { Database } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Authorized, useAuthorizations } from '@/react/hooks/useUser';
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -27,6 +28,7 @@ import { createPersistentVolumeClaimsColumns } from './persistentVolumeClaimsCol
 import { PersistentVolumeClaim } from './types';
 
 export function PersistentVolumeClaimsDatatable() {
+  const { t } = useTranslation();
   const [editResizeClaim, setEditResizeClaim] =
     useState<PersistentVolumeClaim | null>(null);
   const tableState = useTableStateWithStorage<TableSettings>(
@@ -65,7 +67,7 @@ export function PersistentVolumeClaimsDatatable() {
         dataset={claims}
         columns={columns}
         settingsManager={tableState}
-        title="Volume claims"
+        title={t('kubernetes.volumes.claims.title')}
         titleIcon={Database}
         disableSelect={!hasWriteAuth}
         isRowSelectable={({ original: claim }) =>
@@ -74,7 +76,7 @@ export function PersistentVolumeClaimsDatatable() {
         renderTableActions={(selectedItems) => (
           <Authorized authorizations="K8sVolumesW">
             <DeleteButton
-              confirmMessage="Do you want to remove the selected volume claim(s)?"
+              confirmMessage={t('kubernetes.volumes.claims.deleteConfirm')}
               onConfirmed={() => deleteClaimsMutation.mutate(selectedItems)}
               disabled={selectedItems.length === 0}
               isLoading={deleteClaimsMutation.isLoading}
@@ -99,7 +101,7 @@ export function PersistentVolumeClaimsDatatable() {
         <Modal
           onDismiss={() => setEditResizeClaim(null)}
           size="md"
-          aria-label="Resize Persistent Volume Claim"
+          aria-label={t('kubernetes.volumes.claims.resize.title')}
         >
           <ResizeClaimEditForm
             claim={editResizeClaim}

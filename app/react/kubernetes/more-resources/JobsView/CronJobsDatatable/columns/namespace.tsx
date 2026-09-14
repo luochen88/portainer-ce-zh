@@ -1,4 +1,5 @@
 import { Row } from '@tanstack/react-table';
+import i18n from '@/i18n';
 
 import { filterHOC } from '@@/datatables/Filter';
 import { Link } from '@@/Link';
@@ -8,7 +9,7 @@ import { CronJob } from '../types';
 import { columnHelper } from './helper';
 
 export const namespace = columnHelper.accessor((row) => row.Namespace, {
-  header: 'Namespace',
+  header: () => i18n.t('kubernetes.common.columns.namespace'),
   id: 'namespace',
   cell: ({ getValue, row }) => (
     <Link
@@ -23,7 +24,7 @@ export const namespace = columnHelper.accessor((row) => row.Namespace, {
     </Link>
   ),
   meta: {
-    filter: filterHOC('Filter by namespace'),
+    filter: filterHOC(i18n.t('kubernetes.common.filters.namespace') as string),
   },
   enableColumnFilter: true,
   filterFn: (row: Row<CronJob>, _columnId: string, filterValue: string[]) =>

@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useDebounce } from '@/react/hooks/useDebounce';
 
@@ -42,6 +43,7 @@ export function DiffControl({
   setIsUserSupplied,
   showUserSuppliedCheckbox,
 }: Props) {
+  const { t } = useTranslation();
   // If there is a different version to compare, show view option radio group
   const showViewOptions = latestRevisionNumber > earliestRevisionNumber;
 
@@ -50,9 +52,9 @@ export function DiffControl({
     earliestRevisionNumber >= selectedRevisionNumber;
 
   const options: Array<RadioGroupOption<DiffViewMode>> = [
-    { label: 'View', value: 'view' },
+    { label: t('kubernetes.helm.release.diff.view'), value: 'view' },
     {
-      label: 'Diff with previous',
+      label: t('kubernetes.helm.release.diff.previous'),
       value: 'previous',
       disabled: disabledPreviousOption,
     },
@@ -83,7 +85,7 @@ export function DiffControl({
       )}
       {!!showUserSuppliedCheckbox && !!setIsUserSupplied && (
         <Checkbox
-          label="User defined only"
+          label={t('kubernetes.helm.release.diff.userDefinedOnly')}
           id="values-details-user-supplied"
           checked={isUserSupplied}
           onChange={() => setIsUserSupplied(!isUserSupplied)}

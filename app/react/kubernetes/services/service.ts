@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ServiceList } from 'kubernetes-types/core/v1';
 
+import i18n from '@/i18n';
 import { withError } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
 import { EnvironmentId } from '@/react/portainer/environments/types';
@@ -35,7 +36,7 @@ export function useClusterServices<T = Service[]>(
     queryKeys.clusterServices(environmentId),
     async () => getClusterServices(environmentId, options?.withApplications),
     {
-      ...withError('Unable to get services.'),
+      ...withError(i18n.t('kubernetes.services.notifications.getFailure')),
       refetchInterval: options?.autoRefreshRate,
       select: options?.select,
     }
@@ -61,7 +62,7 @@ export function useServicesQuery<T extends Service | string = Service>(
       return services;
     },
     {
-      ...withError('Unable to retrieve services.'),
+      ...withError(i18n.t('kubernetes.services.notifications.retrieveFailure')),
       enabled: !!serviceNames?.length,
     }
   );
@@ -72,7 +73,7 @@ export function useMutationDeleteServices(environmentId: EnvironmentId) {
   return useMutation(deleteServices, {
     onSuccess: () =>
       queryClient.invalidateQueries(queryKeys.clusterServices(environmentId)),
-    ...withError('Unable to delete service(s)'),
+    ...withError(i18n.t('kubernetes.services.notifications.deleteFailure')),
   });
 }
 
@@ -93,7 +94,7 @@ export async function getServices(
     );
     return services;
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to retrieve services');
+    throw parseAxiosError(e, i18n.t('kubernetes.services.notifications.retrieveFailure'));
   }
 }
 
@@ -112,7 +113,7 @@ export async function getClusterServices(
     );
     return services;
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to retrieve services');
+    throw parseAxiosError(e, i18n.t('kubernetes.services.notifications.retrieveFailure'));
   }
 }
 
@@ -132,7 +133,7 @@ export async function getNamespaceServices(
     );
     return services.items;
   } catch (e) {
-    throw parseKubernetesAxiosError(e, 'Unable to retrieve services');
+    throw parseKubernetesAxiosError(e, i18n.t('kubernetes.services.notifications.retrieveFailure'));
   }
 }
 
@@ -153,7 +154,7 @@ async function getService<T extends Service | string = Service>(
     );
     return service;
   } catch (e) {
-    throw parseKubernetesAxiosError(e, 'Unable to retrieve service');
+    throw parseKubernetesAxiosError(e, i18n.t('kubernetes.services.notifications.retrieveOneFailure'));
   }
 }
 
@@ -170,6 +171,6 @@ export async function deleteServices({
       data
     );
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to delete service(s)');
+    throw parseAxiosError(e, i18n.t('kubernetes.services.notifications.deleteFailure'));
   }
 }

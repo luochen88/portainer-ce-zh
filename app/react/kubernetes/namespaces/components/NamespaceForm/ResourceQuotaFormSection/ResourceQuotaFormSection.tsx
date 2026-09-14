@@ -1,4 +1,5 @@
 import { FormikErrors } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 
@@ -35,20 +36,18 @@ export function ResourceQuotaFormSection({
   namespaceName,
   isEditingDisabled,
 }: Props) {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const resourceLimitsQuery = useClusterResourceLimitsQuery(environmentId);
   const cpuLimit = resourceLimitsQuery.data?.CPU ?? 0;
   const memoryLimit = resourceLimitsQuery.data?.Memory ?? 0;
 
   return (
-    <FormSection title="Resource Quota">
+    <FormSection title={t('kubernetes.namespaces.form.resourceQuota.title')}>
       {!isEditingDisabled && (
         <>
           <TextTip color="blue" className="mb-2">
-            A resource quota sets boundaries on the compute resources a
-            namespace can use. It&apos;s good practice to set a quota for a
-            namespace to manage resources effectively. Alternatively, you can
-            disable assigning a quota for unrestricted access (not recommended).
+            {t('kubernetes.namespaces.form.resourceQuota.tip')}
           </TextTip>
 
           <div className="form-group">
@@ -56,7 +55,7 @@ export function ResourceQuotaFormSection({
               <SwitchField
                 data-cy="k8sNamespaceCreate-resourceAssignmentToggle"
                 disabled={!enableResourceOverCommit}
-                label="Resource assignment"
+                label={t('kubernetes.namespaces.form.resourceQuota.assignment')}
                 labelClass="col-sm-3 col-lg-2"
                 checked={values.enabled || !enableResourceOverCommit}
                 onChange={(enabled) => onChange({ ...values, enabled })}
@@ -68,16 +67,17 @@ export function ResourceQuotaFormSection({
 
       {(values.enabled || !enableResourceOverCommit) && !isEditingDisabled && (
         <div>
-          <FormSectionTitle>Resource Limits</FormSectionTitle>
+          <FormSectionTitle>
+            {t('kubernetes.namespaces.form.resourceQuota.limitsTitle')}
+          </FormSectionTitle>
           {(!cpuLimit || !memoryLimit) && (
             <FormError>
-              Not enough resources available in the cluster to apply a resource
-              reservation.
+              {t('kubernetes.namespaces.form.resourceQuota.notEnoughResources')}
             </FormError>
           )}
 
           <FormControl
-            label="Memory limit (MB)"
+            label={t('kubernetes.namespaces.form.resourceQuota.memoryLimit')}
             inputId="memory-limit"
             className="[&>label]:mt-8"
             errors={errors?.memory}
@@ -99,7 +99,7 @@ export function ResourceQuotaFormSection({
           </FormControl>
 
           <FormControl
-            label="CPU limit"
+            label={t('kubernetes.namespaces.form.resourceQuota.cpuLimit')}
             inputId="cpu-limit"
             className="[&>label]:mt-8"
             errors={errors?.cpu}

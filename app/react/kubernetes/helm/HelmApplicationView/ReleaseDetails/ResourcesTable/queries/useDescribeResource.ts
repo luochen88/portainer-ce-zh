@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -23,7 +24,7 @@ async function getDescribeResource(
   try {
     // This should never happen, but to keep the linter happy...
     if (!name || !resourceType) {
-      throw new Error('Name and kind are required');
+      throw new Error(i18n.t('kubernetes.helm.resources.errors.nameAndKindRequired'));
     }
 
     const params: DescribeAPIParams = {
@@ -40,7 +41,7 @@ async function getDescribeResource(
     );
     return data;
   } catch (err) {
-    throw parseAxiosError(err, 'Unable to retrieve resource details');
+    throw parseAxiosError(err, i18n.t('kubernetes.helm.resources.errors.describe'));
   }
 }
 
@@ -56,7 +57,7 @@ export function useDescribeResource(
     () => getDescribeResource(environmentId, name, resourceType, namespace),
     {
       enabled: !!environmentId && !!name && !!resourceType,
-      ...withError('Enable to retrieve data for resource'),
+      ...withError(i18n.t('kubernetes.helm.resources.errors.describeQuery')),
     }
   );
 }

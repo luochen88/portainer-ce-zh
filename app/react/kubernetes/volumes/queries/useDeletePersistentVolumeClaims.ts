@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import i18n from '@/i18n';
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import axios from '@/portainer/services/axios/axios';
 import { withError } from '@/react-tools/react-query';
@@ -14,11 +15,11 @@ export function useDeletePersistentVolumeClaims(environmentId: EnvironmentId) {
     mutationFn: (claims: PersistentVolumeClaim[]) =>
       deleteClaims(claims, environmentId),
     onSuccess: () => {
-      notifySuccess('Success', 'Persistent volume claim successfully removed');
+      notifySuccess(i18n.t('kubernetes.common.notifications.success'), i18n.t('kubernetes.volumes.claims.notifications.removed'));
       queryClient.invalidateQueries(queryKeys.storages(environmentId));
       return queryClient.invalidateQueries(queryKeys.claims(environmentId));
     },
-    ...withError('Unable to remove persistent volume claims'),
+    ...withError(i18n.t('kubernetes.volumes.claims.notifications.removeFailure')),
   });
 }
 

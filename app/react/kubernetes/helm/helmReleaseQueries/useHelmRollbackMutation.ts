@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import {
@@ -54,7 +55,7 @@ export function useHelmRollbackMutation(environmentId: EnvironmentId) {
   return useMutation({
     mutationFn: ({ releaseName, params }: RollbackPayload) =>
       rollbackRelease({ releaseName, params, environmentId }),
-    ...withError('Unable to rollback Helm release'),
+    ...withError(i18n.t('kubernetes.helm.release.errors.rollback')),
     ...withInvalidate(queryClient, [
       queryKeys.releases(environmentId),
       applicationsQueryKeys.applications(environmentId),

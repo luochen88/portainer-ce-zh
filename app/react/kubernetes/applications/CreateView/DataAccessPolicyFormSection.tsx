@@ -1,4 +1,6 @@
 import { Box, Boxes } from 'lucide-react';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import { BoxSelector, BoxSelectorOption } from '@@/BoxSelector';
 import { FormSection } from '@@/form-components/FormSection';
@@ -19,12 +21,13 @@ export function DataAccessPolicyFormSection({
   value,
   onChange,
 }: Props) {
-  const options = getOptions(value, isEdit, persistedFoldersUseExistingVolumes);
+  const { t } = useTranslation();
+  const options = getOptions(value, isEdit, persistedFoldersUseExistingVolumes, t);
 
   return (
-    <FormSection title="Data access policy" titleSize="sm">
+    <FormSection title={t('kubernetes.applications.create.dataAccessPolicy.title')} titleSize="sm">
       <TextTip color="blue">
-        Specify how the data will be used across instances.
+        {t('kubernetes.applications.create.dataAccessPolicy.tip')}
       </TextTip>
       <BoxSelector
         slim
@@ -40,7 +43,8 @@ export function DataAccessPolicyFormSection({
 function getOptions(
   value: AppDataAccessPolicy,
   isEdit: boolean,
-  persistedFoldersUseExistingVolumes: boolean
+  persistedFoldersUseExistingVolumes: boolean,
+  t: TFunction
 ): ReadonlyArray<BoxSelectorOption<AppDataAccessPolicy>> {
   return [
     {
@@ -48,12 +52,12 @@ function getOptions(
       id: 'data_access_isolated',
       icon: Boxes,
       iconType: 'badge',
-      label: 'Isolated',
+      label: t('kubernetes.applications.create.dataAccessPolicy.options.isolated.label'),
       description:
-        'Application will be deployed as a StatefulSet with each instantiating their own data',
+        t('kubernetes.applications.create.dataAccessPolicy.options.isolated.description'),
       tooltip: () =>
         isEdit || persistedFoldersUseExistingVolumes
-          ? 'Changing the data access policy is not allowed'
+          ? t('kubernetes.applications.create.dataAccessPolicy.changeNotAllowed')
           : '',
       disabled: () =>
         (isEdit && value !== 'Isolated') || persistedFoldersUseExistingVolumes,
@@ -63,12 +67,12 @@ function getOptions(
       id: 'data_access_shared',
       icon: Box,
       iconType: 'badge',
-      label: 'Shared',
+      label: t('kubernetes.applications.create.dataAccessPolicy.options.shared.label'),
       description:
-        'Application will be deployed as a Deployment with a shared storage access',
+        t('kubernetes.applications.create.dataAccessPolicy.options.shared.description'),
       tooltip: () => {
         if (persistedFoldersUseExistingVolumes) {
-          return 'Changing the data access policy is not allowed';
+          return t('kubernetes.applications.create.dataAccessPolicy.changeNotAllowed');
         }
         return '';
       },

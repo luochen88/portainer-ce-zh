@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
+import i18n from '@/i18n';
+
 import { Link } from '@@/Link';
 import { TooltipWithChildren } from '@@/Tip/TooltipWithChildren';
 
@@ -67,17 +69,17 @@ function getTooltip(count: number, total: number, type: StatusType) {
 function getLabel(type: StatusType): ReactNode {
   switch (type) {
     case StatusType.Running:
-      return 'deployments running';
+      return i18n.t('edge.stacks.deployments.running');
     case StatusType.Completed:
-      return 'deployments completed';
+      return i18n.t('edge.stacks.deployments.completed');
     case StatusType.DeploymentReceived:
-      return 'deployments received';
+      return i18n.t('edge.stacks.deployments.received');
     case StatusType.Error:
-      return 'deployments failed';
+      return i18n.t('edge.stacks.deployments.failed');
     case StatusType.Acknowledged:
-      return 'deployments acknowledged';
+      return i18n.t('edge.stacks.deployments.acknowledged');
     case StatusType.ImagesPulled:
-      return 'images pre-pulled';
+      return i18n.t('edge.stacks.deployments.imagesPrePulled');
     default:
       return '';
   }

@@ -1,4 +1,5 @@
 import { CellContext } from '@tanstack/react-table';
+import { useTranslation } from 'react-i18next';
 
 import { StatusBadge } from '@@/StatusBadge';
 
@@ -15,11 +16,12 @@ function StatusCell({
   row: { original: node },
 }: CellContext<NodeRowData, string>) {
   const status = getStatus(node);
+  const { t } = useTranslation();
 
   const isDeleting =
     node.metadata?.annotations?.['portainer.io/removing-node'] === 'true';
   if (isDeleting) {
-    return <StatusBadge color="warning">Removing</StatusBadge>;
+    return <StatusBadge color="warning">{t('kubernetes.cluster.nodes.status.removing')}</StatusBadge>;
   }
 
   return (
@@ -28,7 +30,7 @@ function StatusCell({
         {status}
       </StatusBadge>
       {node.spec?.unschedulable && (
-        <StatusBadge color="warning">SchedulingDisabled</StatusBadge>
+        <StatusBadge color="warning">{t('kubernetes.cluster.nodes.status.schedulingDisabled')}</StatusBadge>
       )}
     </div>
   );

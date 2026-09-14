@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
 import { withError } from '@/react-tools/react-query';
@@ -17,7 +18,7 @@ export function useUninstallHelmAppMutation(environmentId: EnvironmentId) {
       releaseName: string;
       namespace?: string;
     }) => uninstallHelmApplication(environmentId, releaseName, namespace),
-    ...withError('Unable to uninstall helm application'),
+    ...withError(i18n.t('kubernetes.helm.release.errors.uninstall')),
     onSuccess: (_data, { releaseName, namespace }) => {
       // The release is gone. Cancel any in-flight detail/history request for it
       // (e.g. an auto-refresh poll) so it can't resolve into a cosmetic
@@ -51,6 +52,6 @@ export async function uninstallHelmApplication(
     );
   } catch (error) {
     // parseAxiosError, because it's a regular portainer api error
-    throw parseAxiosError(error, 'Unable to remove application');
+    throw parseAxiosError(error, i18n.t('kubernetes.helm.release.errors.remove'));
   }
 }

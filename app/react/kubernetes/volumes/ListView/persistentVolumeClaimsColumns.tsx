@@ -3,6 +3,7 @@ import { slugify } from 'markdown-to-jsx';
 import { Edit } from 'lucide-react';
 
 import { formatDate } from '@/portainer/filters/filters';
+import i18n from '@/i18n';
 
 import { StatusBadge, StatusBadgeType } from '@@/StatusBadge';
 import { Link } from '@@/Link';
@@ -19,7 +20,7 @@ export function createPersistentVolumeClaimsColumns(
 ) {
   return [
     helper.accessor('name', {
-      header: 'Name',
+      header: i18n.t('kubernetes.common.columns.name'),
       cell: ({ row: { original } }) => {
         return original.namespace && original.name ? (
           <Link
@@ -38,10 +39,10 @@ export function createPersistentVolumeClaimsColumns(
       },
     }),
     helper.accessor('namespace', {
-      header: 'Namespace',
+      header: i18n.t('kubernetes.common.columns.namespace'),
     }),
     helper.accessor('owningApplications', {
-      header: 'Used by',
+      header: i18n.t('kubernetes.common.columns.usedBy'),
       id: 'owningApplications',
       cell: ({ getValue }) => {
         const apps = getValue();
@@ -69,40 +70,40 @@ export function createPersistentVolumeClaimsColumns(
       },
     }),
     helper.accessor('phase', {
-      header: 'Status',
+      header: i18n.t('kubernetes.common.columns.status'),
       cell: ({ getValue }) => {
         const phase = getValue();
         return <StatusBadge color={phaseColor(phase)}>{phase}</StatusBadge>;
       },
     }),
     helper.accessor('storageRequest', {
-      header: 'Capacity',
+      header: i18n.t('kubernetes.volumes.columns.capacity'),
     }),
     helper.accessor((row) => row.humanReadableAccessModes.join(', '), {
-      header: 'Access modes',
+      header: i18n.t('kubernetes.volumes.columns.accessModes'),
       id: 'accessModes',
     }),
     helper.accessor('storageClass', {
-      header: 'Storage class',
+      header: i18n.t('kubernetes.volumes.columns.storageClass'),
     }),
     helper.accessor('volumeName', {
-      header: 'Volume',
+      header: i18n.t('kubernetes.volumes.columns.volume'),
     }),
     helper.accessor((row) => formatDate(row.creationDate), {
-      header: 'Created',
+      header: i18n.t('kubernetes.common.columns.created'),
       id: 'created',
     }),
     helper.display({
       id: 'actions',
-      header: 'Actions',
+      header: i18n.t('kubernetes.common.columns.actions'),
       cell: ({ row: { original } }) => {
         const isExpandable = original.allowVolumeExpansion;
         return (
           <TooltipWithChildren
             message={
               isExpandable
-                ? 'Resize volume claim'
-                : 'Storage class does not allow volume expansion'
+                ? i18n.t('kubernetes.volumes.claims.resize.tooltip')
+                : i18n.t('kubernetes.volumes.claims.resize.notAllowed')
             }
             position="top"
           >

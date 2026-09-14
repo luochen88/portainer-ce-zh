@@ -1,3 +1,5 @@
+import { useTranslation, Trans } from 'react-i18next';
+
 import { EdgeTypes, EnvironmentId } from '@/react/portainer/environments/types';
 import { EdgeEnvironmentsAssociationTable } from '@/react/edge/components/EdgeEnvironmentsAssociationTable';
 
@@ -16,12 +18,12 @@ export function AssociatedEdgeEnvironmentsSelector({
   value: EnvironmentId[];
   error?: ArrayError<Array<EnvironmentId>>;
 }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="col-sm-12 small text-muted">
-        You can also select environments individually by moving them to the
-        associated environments table. Simply click on any environment entry to
-        move it from one table to the other.
+        <Trans i18nKey="edge.association.selectIndividually" />
       </div>
 
       {error && (
@@ -36,7 +38,7 @@ export function AssociatedEdgeEnvironmentsSelector({
         <div className="flex">
           <div className="w-1/2">
             <EdgeEnvironmentsAssociationTable
-              title="Available environments"
+              title={t('edge.availableEnvironments')}
               query={{
                 types: EdgeTypes,
                 excludeIds: value,
@@ -51,7 +53,7 @@ export function AssociatedEdgeEnvironmentsSelector({
           </div>
           <div className="w-1/2">
             <EdgeEnvironmentsAssociationTable
-              title="Associated environments"
+              title={t('edge.associatedEnvironments')}
               query={{
                 types: EdgeTypes,
                 endpointIds: value,

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useCurrentUser } from '@/react/hooks/useUser';
 
@@ -23,6 +24,7 @@ interface Props {
 }
 
 export function HelmTemplates({ onSelectHelmChart, namespace, name }: Props) {
+  const { t } = useTranslation();
   const [selectedChart, setSelectedChart] = useState<Chart | null>(null);
   const [selectedRepo, setSelectedRepo] = useState<RepoValue | null>(null);
   const { user } = useCurrentUser();
@@ -38,7 +40,7 @@ export function HelmTemplates({ onSelectHelmChart, namespace, name }: Props) {
   return (
     <div className="row">
       <div className="col-sm-12 p-0">
-        <FormSection title="Helm chart">
+        <FormSection title={t('kubernetes.helm.templates.sectionTitle')}>
           {selectedChart ? (
             <>
               <HelmTemplatesSelectedItem

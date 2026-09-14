@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert } from '@@/Alert';
 import { InlineLoader } from '@@/InlineLoader';
 import { Modal } from '@@/modals';
@@ -20,6 +22,7 @@ export function DescribeModal({
   namespace,
   onDismiss,
 }: Props) {
+  const { t } = useTranslation();
   const title = `Describe ${resourceType}`;
 
   const { data, isLoading, isError } = useDescribeResource(
@@ -37,8 +40,8 @@ export function DescribeModal({
         ) : (
           <>
             {isError ? (
-              <Alert color="error" title="Error">
-                Error loading resource details
+              <Alert color="error" title={t('kubernetes.common.error')}>
+                {t('kubernetes.moreResources.resourceDetails.errors.loading')}
               </Alert>
             ) : (
               <CodeEditor

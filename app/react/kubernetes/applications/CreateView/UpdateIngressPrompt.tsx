@@ -1,3 +1,5 @@
+import i18n from '@/i18n';
+
 import { openSwitchPrompt } from '@@/modals/SwitchPrompt';
 import { buildConfirmButton } from '@@/modals/utils';
 
@@ -7,22 +9,33 @@ export async function confirmUpdateAppIngress(
 ) {
   const hasOneIngress = ingressesToUpdate.length === 1;
   const hasOnePort = servicePortsToUpdate.length === 1;
-  const rulePlural = !hasOneIngress ? 'rules' : 'rule';
-  const noMatchSentence = !hasOnePort
-    ? `Service ports in this application no longer match the ingress ${rulePlural}.`
-    : `A service port in this application no longer matches the ingress ${rulePlural} which may break ingress rule paths.`;
-  const inputLabel = `Update ingress ${rulePlural} to match the service port changes`;
+  const noMatchSentence = i18n.t(
+    hasOnePort
+      ? 'kubernetes.applications.create.ingressUpdatePrompt.noMatchSinglePort'
+      : 'kubernetes.applications.create.ingressUpdatePrompt.noMatchMultiplePorts',
+    { count: ingressesToUpdate.length }
+  );
+  const inputLabel = i18n.t(
+    'kubernetes.applications.create.ingressUpdatePrompt.inputLabel',
+    { count: ingressesToUpdate.length }
+  );
 
-  const result = await openSwitchPrompt('Are you sure?', inputLabel, {
-    message: (
+  const result = await openSwitchPrompt(
+    i18n.t('kubernetes.common.confirm.areYouSure'),
+    inputLabel,
+    {
+      message: (
       <ul className="ml-3">
-        <li>Updating the application may cause a service interruption.</li>
+        <li>{i18n.t('kubernetes.applications.create.ingressUpdatePrompt.serviceInterruption')}</li>
         <li>{noMatchSentence}</li>
       </ul>
     ),
-    confirmButton: buildConfirmButton('Update'),
-    'data-cy': 'kube-update-ingress-prompt-switch',
-  });
+      confirmButton: buildConfirmButton(
+      i18n.t('kubernetes.applications.create.ingressUpdatePrompt.confirmButton')
+    ),
+      'data-cy': 'kube-update-ingress-prompt-switch',
+    }
+  );
 
   return result ? { noMatch: result.value } : undefined;
 }

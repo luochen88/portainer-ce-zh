@@ -4,6 +4,7 @@ import _ from 'lodash-es';
 import { ownershipIcon } from '@/react/docker/components/datatable/createOwnershipColumn';
 import { stripProtocol } from '@/react/common/string-utils';
 import { arrayToStr, endpointTypeName, getPairKey, getPairValue, humanize, ipAddress, isoDate, isoDateFromTimestamp, labelsToStr, truncate, truncateLeftRight } from './filters';
+import './i18n';
 
 angular
   .module('portainer.app')

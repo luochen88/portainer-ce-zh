@@ -1,4 +1,5 @@
 import { useFormikContext } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import { SwitchField } from '@@/form-components/SwitchField';
 import { WebEditorForm } from '@@/WebEditorForm';
@@ -17,15 +18,16 @@ export function KubernetesForm({
   versionOptions: number[] | undefined;
 }) {
   const { errors, values, setFieldValue } = useFormikContext<FormValues>();
+  const { t } = useTranslation();
 
   return (
     <>
       <div className="form-group">
         <div className="col-sm-12">
           <SwitchField
-            label="Use namespace(s) specified from manifest"
+            label={t('edge.stacks.kube.useManifestNamespaces')}
             data-cy="use-manifest-namespaces-switch"
-            tooltip="If you have defined namespaces in your deployment file turning this on will enforce the use of those only in the deployment"
+            tooltip={t('edge.stacks.kube.useManifestNamespacesTooltip')}
             checked={values.useManifestNamespaces}
             onChange={(value) => setFieldValue('useManifestNamespaces', value)}
           />
@@ -37,7 +39,7 @@ export function KubernetesForm({
         value={values.content}
         type="yaml"
         id="kube-manifest-editor"
-        textTip="Define or paste the content of your manifest here"
+        textTip={t('edge.stacks.kube.manifestContentTip')}
         onChange={(value) =>
           handleContentChange(DeploymentType.Kubernetes, value)
         }

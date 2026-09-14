@@ -1,4 +1,6 @@
 import angular from 'angular';
+
+import i18n from '@/i18n';
 import { StateRegistry, StateService } from '@uirouter/angularjs';
 
 import { Environment } from '@/react/portainer/environments/types';
@@ -32,7 +34,7 @@ function config($stateRegistryProvider: StateRegistry) {
         try {
           await StateManager.updateEndpointState(endpoint);
         } catch (e) {
-          notifyError('Failed loading environment', e as Error);
+          notifyError(i18n.t('azure.notifications.failedLoadingEnvironment'), e as Error);
           $state.go('portainer.home', {}, { reload: true });
         }
       });

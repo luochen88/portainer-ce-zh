@@ -1,6 +1,7 @@
 import { User } from 'lucide-react';
 import { useRouter } from '@uirouter/react';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { Authorized } from '@/react/hooks/useUser';
@@ -31,6 +32,7 @@ interface TableSettings
   extends KubeTableSettings, FilteredColumnsTableSettings {}
 
 export function ServiceAccountsDatatable() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const tableState = useKubeStore<TableSettings>(
     storageKey,
@@ -56,8 +58,8 @@ export function ServiceAccountsDatatable() {
       columns={columns}
       settingsManager={tableState}
       isLoading={serviceAccountsQuery.isLoading}
-      emptyContentLabel="No service accounts found"
-      title="Service Accounts"
+      emptyContentLabel={t('kubernetes.moreResources.serviceAccounts.datatable.empty')}
+      title={t('kubernetes.moreResources.serviceAccounts.title')}
       titleIcon={User}
       getRowId={(row) => row.uid}
       isRowSelectable={(row) => !row.original.isSystem}
@@ -93,6 +95,7 @@ function TableActions({ selectedItems }: TableActionsProps) {
   const deleteServiceAccountsMutation =
     useDeleteServiceAccountsMutation(environmentId);
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <Authorized authorizations="K8sServiceAccountsW">
@@ -132,14 +135,14 @@ function TableActions({ selectedItems }: TableActionsProps) {
       {
         onSuccess: () => {
           notifySuccess(
-            'Service account(s) successfully removed',
+            t('kubernetes.moreResources.serviceAccounts.notifications.deleteSuccess'),
             serviceAccounts.map((sa) => `${sa.namespace}/${sa.name}`).join(', ')
           );
           router.stateService.reload();
         },
         onError: (error) => {
           notifyError(
-            'Unable to delete service account(s)',
+            t('kubernetes.moreResources.serviceAccounts.notifications.deleteError'),
             error as Error,
             serviceAccounts.map((sa) => `${sa.namespace}/${sa.name}`).join(', ')
           );

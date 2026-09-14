@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
 import { withError } from '@/react-tools/react-query';
@@ -30,7 +31,7 @@ export function useHelmChartValues(params: Params, isLatestVersion = false) {
     }),
     retry: 2,
     staleTime: 60 * 1000 * 20, // 60 minutes, because values are not expected to change often
-    ...withError('Unable to get Helm chart values'),
+    ...withError(i18n.t('kubernetes.helm.chart.errors.values')),
   });
 }
 
@@ -41,6 +42,6 @@ async function getHelmChartValues(params: Params) {
     });
     return response.data;
   } catch (err) {
-    throw parseAxiosError(err, 'Unable to get Helm chart values');
+    throw parseAxiosError(err, i18n.t('kubernetes.helm.chart.errors.values'));
   }
 }

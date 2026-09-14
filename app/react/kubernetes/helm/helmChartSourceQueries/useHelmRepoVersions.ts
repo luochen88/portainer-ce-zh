@@ -1,6 +1,7 @@
 import { useQueries } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { compact, flatMap } from 'lodash';
+import i18n from '@/i18n';
 
 import { withError } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -98,6 +99,6 @@ async function getSearchHelmRepo(
       })) ?? []
     );
   } catch (err) {
-    throw parseAxiosError(err, 'Unable to retrieve helm repositories for user');
+    throw parseAxiosError(err, i18n.t('kubernetes.helm.repositories.errors.getForUser'));
   }
 }

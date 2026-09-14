@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { GroupBase } from 'react-select';
 
 import {
@@ -5,6 +7,7 @@ import {
   Option,
 } from '@/react/components/form-components/PortainerSelect';
 import { useCurrentUser } from '@/react/hooks/useUser';
+import i18n from '@/i18n';
 import { RegistryTypes } from '@/react/portainer/registries/types/registry';
 
 import { FormControl } from '@@/form-components/FormControl';
@@ -34,18 +37,19 @@ export function HelmRegistrySelect({
   selectedRegistry,
   onRegistryChange,
   namespace,
-  placeholder = 'Select a repository',
+  placeholder = i18n.t('kubernetes.helm.repositories.selectRepository'),
   'data-cy': dataCy = 'helm-registry-select',
   isRepoAvailable,
   isLoading,
   isError,
   repoOptions,
 }: Props) {
+  const { t } = useTranslation();
   const { isPureAdmin } = useCurrentUser();
 
   return (
     <FormControl
-      label="Helm chart source"
+      label={t('kubernetes.helm.repositories.chartSource')}
       tooltip={<HelmChartSourceTooltip isPureAdmin={isPureAdmin} />}
     >
       <PortainerSelect<RepoValue>

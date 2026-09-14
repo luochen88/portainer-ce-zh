@@ -1,3 +1,5 @@
+import i18n from '@/i18n';
+
 import { createColumnHelper } from '@tanstack/react-table';
 import { truncate } from 'lodash';
 
@@ -12,21 +14,21 @@ const columHelper = createColumnHelper<DecoratedEnvironment>();
 
 export const columns = [
   columHelper.accessor('Name', {
-    header: 'Name',
+    header: i18n.t('common.name'),
     id: 'Name',
     cell: ({ getValue }) => (
       <span title={getValue()}>{truncate(getValue(), { length: 64 })}</span>
     ),
   }),
   columHelper.accessor('Group', {
-    header: 'Group',
+    header: i18n.t('common.group'),
     id: 'Group',
     cell: ({ getValue }) => (
       <span title={getValue()}>{truncate(getValue(), { length: 64 })}</span>
     ),
   }),
   columHelper.accessor((row) => row.Tags.join(','), {
-    header: 'Tags',
+    header: i18n.t('common.tags'),
     id: 'tags',
     enableSorting: false,
     cell: ({ getValue }) => (

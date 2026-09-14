@@ -1,5 +1,6 @@
 import { Database } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Authorized, useAuthorizations } from '@/react/hooks/useUser';
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -26,6 +27,7 @@ import { createPersistentVolumesColumns } from './persistentVolumesColumns';
 import { PersistentVolume } from './types';
 
 export function PersistentVolumesDatatable() {
+  const { t } = useTranslation();
   const [editReclaimPolicyVolume, setEditReclaimPolicyVolume] =
     useState<PersistentVolume | null>(null);
   const tableState = useTableStateWithStorage<TableSettings>(
@@ -61,7 +63,7 @@ export function PersistentVolumesDatatable() {
         dataset={volumes}
         columns={columns}
         settingsManager={tableState}
-        title="Volumes"
+        title={t('kubernetes.volumes.persistentVolumes.title')}
         titleIcon={Database}
         getRowId={(row) => `${row.name}`}
         disableSelect={!hasWriteAuth}
@@ -71,7 +73,7 @@ export function PersistentVolumesDatatable() {
         renderTableActions={(selectedItems) => (
           <Authorized authorizations="K8sVolumesW">
             <DeleteButton
-              confirmMessage="Do you want to remove the selected volume(s)?"
+              confirmMessage={t('kubernetes.volumes.persistentVolumes.deleteConfirm')}
               onConfirmed={() => deleteVolumesMutation.mutate(selectedItems)}
               disabled={selectedItems.length === 0}
               isLoading={deleteVolumesMutation.isLoading}

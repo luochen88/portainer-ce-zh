@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 
 import {
   EdgeGroupId,
@@ -25,6 +26,7 @@ export function AssociatedEdgeGroupEnvironmentsSelector({
   error?: ArrayError<Array<EnvironmentId>>;
   edgeGroupId?: EdgeGroupId;
 }) {
+  const { t } = useTranslation();
   const [associatedEnvironments, setAssociatedEnvironments] = useState<
     Environment[]
   >([]);
@@ -61,9 +63,7 @@ export function AssociatedEdgeGroupEnvironmentsSelector({
   return (
     <>
       <div className="col-sm-12 small text-muted">
-        You can select which environment should be part of this group by moving
-        them to the associated environments table. Simply click on any
-        environment entry to move it from one table to the other.
+        <Trans i18nKey="edge.association.selectForGroup" />
       </div>
 
       {error && (
@@ -78,7 +78,7 @@ export function AssociatedEdgeGroupEnvironmentsSelector({
         <div className="flex">
           <div className="w-1/2">
             <EdgeGroupAssociationTable
-              title="Available environments"
+              title={t('edge.availableEnvironments')}
               query={{
                 excludeEdgeGroupIds: edgeGroupId ? [edgeGroupId] : [],
               }}
@@ -94,7 +94,7 @@ export function AssociatedEdgeGroupEnvironmentsSelector({
           </div>
           <div className="w-1/2">
             <EdgeGroupAssociationTable
-              title="Associated environments"
+              title={t('edge.associatedEnvironments')}
               query={{
                 edgeGroupIds: edgeGroupId ? [edgeGroupId] : [],
                 endpointIds: edgeGroupId ? undefined : [], // workaround to avoid showing all environments for new edge group

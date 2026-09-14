@@ -1,4 +1,5 @@
 import { FormikErrors } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { MultiValue } from 'react-select';
 
 import { Registry } from '@/react/portainer/registries/types/registry';
@@ -25,25 +26,31 @@ export function RegistriesFormSection({
   errors,
   isEditingDisabled,
 }: Props) {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const registriesQuery = useEnvironmentRegistries(environmentId, {
     hideDefault: true,
   });
   return (
-    <FormSection title="Registries">
+    <FormSection title={t('kubernetes.namespaces.form.registries.title')}>
       {!isEditingDisabled && (
         <TextTip color="blue" className="mb-2">
-          Define which registries can be used by users who have access to this
-          namespace.
+          {t('kubernetes.namespaces.form.registries.tip')}
         </TextTip>
       )}
       <FormControl
         inputId="registries"
-        label={isEditingDisabled ? 'Selected registries' : 'Select registries'}
+        label={
+          isEditingDisabled
+            ? t('kubernetes.namespaces.form.registries.selectedLabel')
+            : t('kubernetes.namespaces.form.registries.selectLabel')
+        }
         errors={errors}
       >
         {registriesQuery.isLoading && (
-          <InlineLoader>Loading registries...</InlineLoader>
+          <InlineLoader>
+            {t('kubernetes.namespaces.form.registries.loading')}
+          </InlineLoader>
         )}
         {registriesQuery.data && (
           <RegistriesSelector

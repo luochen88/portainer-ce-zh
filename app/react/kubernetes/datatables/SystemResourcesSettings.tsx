@@ -1,4 +1,5 @@
 import { Authorized } from '@/react/hooks/useUser';
+import { useTranslation } from 'react-i18next';
 
 import { ZustandSetFunc } from '@@/datatables/types';
 import { Checkbox } from '@@/form-components/Checkbox';
@@ -10,12 +11,13 @@ export function SystemResourcesSettings({
   value: boolean;
   onChange: (value: boolean) => void;
 }) {
+  const { t } = useTranslation();
   return (
     <Authorized authorizations="K8sAccessSystemNamespaces" adminOnlyCE>
       <Checkbox
         id="show-system-resources"
         data-cy="show-system-resources"
-        label="Show system resources"
+        label={t('kubernetes.datatables.showSystemResources')}
         checked={value}
         onChange={(e) => onChange(e.target.checked)}
       />

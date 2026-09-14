@@ -1,6 +1,7 @@
 import { Trash2, UserCheck } from 'lucide-react';
 import { useRouter } from '@uirouter/react';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { useAuthorizations, Authorized } from '@/react/hooks/useUser';
@@ -29,6 +30,7 @@ const storageKey = 'clusterRoles';
 const settingsStore = createStore(storageKey);
 
 export function ClusterRolesDatatable() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const tableState = useTableState(settingsStore, storageKey);
 
@@ -67,8 +69,8 @@ export function ClusterRolesDatatable() {
       columns={columns}
       isLoading={isLoading}
       settingsManager={tableState}
-      emptyContentLabel="No supported cluster roles found"
-      title="Cluster Roles"
+      emptyContentLabel={t('kubernetes.moreResources.clusterRoles.datatable.empty')}
+      title={t('kubernetes.moreResources.clusterRoles.title')}
       titleIcon={UserCheck}
       getRowId={(row) => row.uid}
       isRowSelectable={(row) => !row.original.isSystem}
@@ -104,6 +106,7 @@ function TableActions({ selectedItems }: TableActionsProps) {
   const deleteClusterRolesMutation =
     useDeleteClusterRolesMutation(environmentId);
   const router = useRouter();
+  const { t } = useTranslation();
 
   async function handleRemoveClick(roles: SelectedRole[]) {
     const confirmed = await confirmDelete(
@@ -130,14 +133,14 @@ function TableActions({ selectedItems }: TableActionsProps) {
       {
         onSuccess: () => {
           notifySuccess(
-            'Roles successfully removed',
+            t('kubernetes.moreResources.clusterRoles.notifications.deleteSuccess'),
             roles.map((r) => `${r.name}`).join(', ')
           );
           router.stateService.reload();
         },
         onError: (error) => {
           notifyError(
-            'Unable to delete cluster roles',
+            t('kubernetes.moreResources.clusterRoles.notifications.deleteError'),
             error as Error,
             roles.map((r) => `${r.name}`).join(', ')
           );
@@ -156,10 +159,10 @@ function TableActions({ selectedItems }: TableActionsProps) {
         onClick={() => handleRemoveClick(selectedItems)}
         icon={Trash2}
         isLoading={deleteClusterRolesMutation.isLoading}
-        loadingText="Removing cluster roles..."
+        loadingText={t('kubernetes.moreResources.clusterRoles.actions.removing')}
         data-cy="k8sClusterRoles-removeRoleButton"
       >
-        Remove
+        {t('kubernetes.common.actions.remove')}
       </LoadingButton>
 
       <CreateFromManifestButton

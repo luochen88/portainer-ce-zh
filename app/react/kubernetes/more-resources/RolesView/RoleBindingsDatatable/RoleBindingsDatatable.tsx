@@ -3,6 +3,7 @@ import { useRouter } from '@uirouter/react';
 import { Row } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { useAuthorizations, Authorized } from '@/react/hooks/useUser';
@@ -33,6 +34,7 @@ interface TableSettings
   extends KubeTableSettings, FilteredColumnsTableSettings {}
 
 export function RoleBindingsDatatable() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const tableState = useKubeStore<TableSettings>(
     storageKey,
@@ -62,8 +64,8 @@ export function RoleBindingsDatatable() {
       columns={columns}
       settingsManager={tableState}
       isLoading={roleBindingsQuery.isLoading}
-      emptyContentLabel="No role bindings found"
-      title="Role Bindings"
+      emptyContentLabel={t('kubernetes.moreResources.roleBindings.datatable.empty')}
+      title={t('kubernetes.moreResources.roleBindings.title')}
       titleIcon={LinkIcon}
       getRowId={(row) => row.uid}
       isRowSelectable={(row) => !row.original.isSystem}
@@ -113,6 +115,7 @@ function TableActions({ selectedItems }: TableActionsProps) {
   const deleteRoleBindingsMutation =
     useDeleteRoleBindingsMutation(environmentId);
   const router = useRouter();
+  const { t } = useTranslation();
 
   async function handleRemoveClick(roles: SelectedRole[]) {
     const confirmed = await confirmDelete(
@@ -142,14 +145,14 @@ function TableActions({ selectedItems }: TableActionsProps) {
       {
         onSuccess: () => {
           notifySuccess(
-            'Role binding(s) successfully removed',
+            t('kubernetes.moreResources.roleBindings.notifications.deleteSuccess'),
             roles.map((r) => `${r.namespace}/${r.name}`).join(', ')
           );
           router.stateService.reload();
         },
         onError: (error) => {
           notifyError(
-            'Unable to delete role bindings(s)',
+            t('kubernetes.moreResources.roleBindings.notifications.deleteError'),
             error as Error,
             roles.map((r) => `${r.namespace}/${r.name}`).join(', ')
           );
@@ -168,10 +171,10 @@ function TableActions({ selectedItems }: TableActionsProps) {
         onClick={() => handleRemoveClick(selectedItems)}
         icon={Trash2}
         isLoading={deleteRoleBindingsMutation.isLoading}
-        loadingText="Removing role bindings..."
+        loadingText={t('kubernetes.moreResources.roleBindings.actions.removing')}
         data-cy="k8s-role-bindings-remove-button"
       >
-        Remove
+        {t('kubernetes.common.actions.remove')}
       </LoadingButton>
 
       <CreateFromManifestButton

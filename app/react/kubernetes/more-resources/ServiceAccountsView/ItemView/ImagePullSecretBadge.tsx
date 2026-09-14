@@ -1,4 +1,5 @@
 import { Secret } from 'kubernetes-types/core/v1';
+import { useTranslation } from 'react-i18next';
 
 import { useCurrentUser } from '@/react/hooks/useUser';
 import { Registry } from '@/react/portainer/registries/types/registry';
@@ -21,6 +22,7 @@ export function ImagePullSecretBadge({
   secret,
   registry,
 }: Props) {
+  const { t } = useTranslation();
   const { isPureAdmin } = useCurrentUser();
   const registryIdStr =
     secret?.metadata?.annotations?.['portainer.io/registry.id'];
@@ -60,7 +62,7 @@ export function ImagePullSecretBadge({
   );
 
   const registryNotFoundMessage =
-    'The registry associated with this secret could not be found. It may have been deleted.';
+    t('kubernetes.moreResources.serviceAccounts.imagePullSecrets.registryNotFound');
   const showRegistryNotFound = !!registryId && !registry;
 
   const secretLink = (
@@ -77,7 +79,7 @@ export function ImagePullSecretBadge({
   const missingSecretContent = (
     <>
       {secretName}
-      <Tooltip message="This secret doesn't exist in the namespace." />
+      <Tooltip message={t('kubernetes.moreResources.serviceAccounts.imagePullSecrets.secretMissing')} />
     </>
   );
 

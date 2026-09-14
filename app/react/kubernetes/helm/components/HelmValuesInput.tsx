@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { FormControl } from '@@/form-components/FormControl';
 import { CodeEditor } from '@@/CodeEditor';
 import { ShortcutsTooltip } from '@@/CodeEditor/ShortcutsTooltip';
@@ -15,10 +17,11 @@ export function HelmValuesInput({
   valuesRef,
   isValuesRefLoading,
 }: Props) {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-2 gap-4">
       <FormControl
-        label="User-defined values"
+        label={t('kubernetes.helm.values.userDefined')}
         inputId="user-values-editor"
         size="vertical"
         className="!mx-0 [&>label]:!mb-1"
@@ -47,7 +50,7 @@ export function HelmValuesInput({
           height="50vh"
           type="yaml"
           data-cy="helm-user-values-editor"
-          placeholder="Define or paste the content of your values yaml file here"
+          placeholder={t('kubernetes.helm.values.userDefinedPlaceholder')}
           showToolbar={false}
         />
       </FormControl>
@@ -61,7 +64,7 @@ export function HelmValuesInput({
         inputId="values-reference"
         size="vertical"
         isLoading={isValuesRefLoading}
-        loadingText="Loading values..."
+        loadingText={t('kubernetes.helm.values.loading')}
         className="!mx-0 [&>label]:!mb-1 [&>label]:w-full"
       >
         <CodeEditor
@@ -71,7 +74,7 @@ export function HelmValuesInput({
           type="yaml"
           readonly
           data-cy="helm-values-reference"
-          placeholder="No values reference found"
+          placeholder={t('kubernetes.helm.values.noReference')}
           showToolbar={false}
         />
       </FormControl>

@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FileCode } from 'lucide-react';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -29,6 +30,7 @@ const storageKey = 'k8sConfigMapsDatatable';
 const settingsStore = createStore(storageKey);
 
 export function ConfigMapsDatatable() {
+  const { t } = useTranslation();
   const tableState = useTableState(settingsStore, storageKey);
   const { authorized: canWrite } = useAuthorizations(['K8sConfigMapsW']);
   const readOnly = !canWrite;
@@ -62,8 +64,8 @@ export function ConfigMapsDatatable() {
       columns={columns}
       settingsManager={tableState}
       isLoading={configMapsQuery.isLoading || namespacesQuery.isLoading}
-      emptyContentLabel="No ConfigMaps found"
-      title="ConfigMaps"
+      emptyContentLabel={t('kubernetes.configs.configMaps.empty')}
+      title={t('kubernetes.configs.configMaps.title')}
       titleIcon={FileCode}
       getRowId={(row) => row.UID ?? ''}
       isRowSelectable={({ original: configmap }) =>
@@ -112,6 +114,7 @@ function TableActions({
 }: {
   selectedItems: ConfigMapRowData[];
 }) {
+  const { t } = useTranslation();
   const isAddConfigMapHidden = useIsDeploymentOptionHidden('form');
   const environmentId = useEnvironmentId();
   const deleteConfigMapMutation = useDeleteConfigMaps(environmentId);
@@ -121,10 +124,9 @@ function TableActions({
       <DeleteButton
         disabled={selectedItems.length === 0}
         onConfirmed={() => handleRemoveClick(selectedItems)}
-        confirmMessage={`Are you sure you want to remove the selected ${pluralize(
-          selectedItems.length,
-          'ConfigMap'
-        )}`}
+        confirmMessage={t('kubernetes.configs.configMaps.deleteConfirm', {
+          count: selectedItems.length,
+        })}
         data-cy="k8sConfig-removeConfigButton"
       />
 
@@ -134,7 +136,7 @@ function TableActions({
           data-cy="k8sConfig-addConfigWithFormButton"
           color="secondary"
         >
-          Add with form
+          {t('kubernetes.common.actions.addWithForm')}
         </AddButton>
       )}
 

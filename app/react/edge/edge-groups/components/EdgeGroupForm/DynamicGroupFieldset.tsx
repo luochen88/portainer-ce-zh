@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { useFormikContext } from 'formik';
 
 import { EdgeGroupAssociationTable } from '@/react/edge/components/EdgeGroupAssociationTable';
@@ -11,10 +13,11 @@ import { tagOptions } from './tag-options';
 import { FormValues } from './types';
 
 export function DynamicGroupFieldset() {
+  const { t } = useTranslation();
   const { values, setFieldValue, errors } = useFormikContext<FormValues>();
   return (
     <>
-      <FormSection title="Tags">
+      <FormSection title={t('common.tags')}>
         <BoxSelector
           slim
           value={values.partialMatch}
@@ -33,7 +36,7 @@ export function DynamicGroupFieldset() {
 
       <EdgeGroupAssociationTable
         data-cy="edgeGroupCreate-associatedEnvironmentsTable"
-        title="Associated environments by tags"
+        title={t('edge.groups.associatedByTags')}
         query={{
           types: EdgeTypes,
           tagIds: values.tagIds,

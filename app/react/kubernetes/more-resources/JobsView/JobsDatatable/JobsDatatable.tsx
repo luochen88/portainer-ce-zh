@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Trash2, CalendarCheck2 } from 'lucide-react';
 import { useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { Authorized, useAuthorizations } from '@/react/hooks/useUser';
@@ -34,6 +35,7 @@ interface TableSettings
   extends KubeTableSettings, FilteredColumnsTableSettings {}
 
 export function JobsDatatable() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const tableState = useKubeStore<TableSettings>(
     storageKey,
@@ -71,7 +73,7 @@ export function JobsDatatable() {
       columns={columns}
       settingsManager={tableState}
       isLoading={jobsQuery.isLoading}
-      title="Jobs"
+      title={t('kubernetes.moreResources.jobs.datatable.title')}
       titleIcon={CalendarCheck2}
       getRowId={(row) => row.Id}
       isRowSelectable={(row) => !row.original.IsSystem}
@@ -109,6 +111,7 @@ function TableActions({ selectedItems }: TableActionsProps) {
   const environmentId = useEnvironmentId();
   const deleteJobsMutation = useDeleteJobsMutation(environmentId);
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <Authorized authorizations="K8sCronJobsW">
@@ -119,10 +122,10 @@ function TableActions({ selectedItems }: TableActionsProps) {
         onClick={() => handleRemoveClick(selectedItems)}
         icon={Trash2}
         isLoading={deleteJobsMutation.isLoading}
-        loadingText="Removing jobs..."
+        loadingText={t('kubernetes.moreResources.jobs.actions.removing')}
         data-cy="k8s-jobs-removeJobButton"
       >
-        Remove
+        {t('kubernetes.common.actions.remove')}
       </LoadingButton>
 
       <CreateFromManifestButton
@@ -160,14 +163,14 @@ function TableActions({ selectedItems }: TableActionsProps) {
       {
         onSuccess: () => {
           notifySuccess(
-            'Jobs successfully removed',
+            t('kubernetes.moreResources.jobs.notifications.deleteSuccess'),
             jobs.map((r) => `${r.Namespace}/${r.Name}`).join(', ')
           );
           router.stateService.reload();
         },
         onError: (error) => {
           notifyError(
-            'Unable to delete jobs',
+            t('kubernetes.moreResources.jobs.notifications.deleteError'),
             error as Error,
             jobs.map((r) => `${r.Namespace}/${r.Name}`).join(', ')
           );

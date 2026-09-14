@@ -1,4 +1,5 @@
 import { components, MultiValueGenericProps } from 'react-select';
+import { useTranslation } from 'react-i18next';
 
 import { Select } from '@@/form-components/ReactSelect';
 
@@ -22,6 +23,7 @@ export function StorageAccessModeSelector({
   inputId,
   storageClassName,
 }: Props) {
+  const { t } = useTranslation();
   return (
     <Select
       isMulti
@@ -33,7 +35,7 @@ export function StorageAccessModeSelector({
       closeMenuOnSelect={false}
       onChange={(value) => onChange(value)}
       inputId={inputId}
-      placeholder="Not configured"
+      placeholder={t('kubernetes.common.notConfigured')}
       data-cy={`kubeSetup-storageAccessSelect${storageClassName}`}
       id={`kubeSetup-storageAccessSelect${storageClassName}`}
     />

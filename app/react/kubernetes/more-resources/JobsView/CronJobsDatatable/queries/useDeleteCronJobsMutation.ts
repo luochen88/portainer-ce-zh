@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { withError, withInvalidate } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -10,7 +11,7 @@ export function useDeleteCronJobsMutation(environmentId: EnvironmentId) {
   const queryClient = useQueryClient();
   return useMutation(deleteCronJob, {
     ...withInvalidate(queryClient, [queryKeys.list(environmentId)]),
-    ...withError('Unable to delete Cron Jobs'),
+    ...withError(i18n.t('kubernetes.moreResources.cronJobs.errors.delete')),
   });
 }
 
@@ -29,6 +30,6 @@ export async function deleteCronJob({
       data
     );
   } catch (e) {
-    throw parseAxiosError(e, `Unable to delete Cron Jobs`);
+    throw parseAxiosError(e, i18n.t('kubernetes.moreResources.cronJobs.errors.delete'));
   }
 }

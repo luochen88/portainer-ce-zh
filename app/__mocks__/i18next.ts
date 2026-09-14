@@ -1,3 +1,5 @@
+let currentLanguage = 'en';
+
 function replaceBetween(
   startIndex: number,
   endIndex: number,
@@ -11,25 +13,34 @@ function replaceBetween(
   return result;
 }
 
-export function mockT(i18nKey: string, args?: Record<string, string>) {
+export function mockT(i18nKey: string, args?: Record<string, unknown>) {
   let key = i18nKey;
 
   while (key.includes('{{') && args) {
     const startIndex = key.indexOf('{{');
     const endIndex = key.indexOf('}}');
 
-    const currentArg = key.substring(startIndex + 2, endIndex);
+    const currentArg = key.substring(startIndex + 2, endIndex).trim();
     const value = args[currentArg];
 
-    key = replaceBetween(startIndex, endIndex + 2, key, value);
+    key = replaceBetween(startIndex, endIndex + 2, key, String(value ?? ''));
   }
 
   return key;
 }
 
-export default {
+const i18n = {
   t: mockT,
-  language: 'en',
-  changeLanguage: () => new Promise(() => {}),
-  use: () => this,
+  get language() {
+    return currentLanguage;
+  },
+  changeLanguage: (language: string) => {
+    currentLanguage = language;
+    return Promise.resolve(language);
+  },
+  getFixedT: () => mockT,
+  use: () => i18n,
+  init: () => Promise.resolve(i18n),
 };
+
+export default i18n;

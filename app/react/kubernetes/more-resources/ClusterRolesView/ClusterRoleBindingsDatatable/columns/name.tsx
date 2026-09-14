@@ -1,5 +1,6 @@
 import { SystemBadge } from '@@/Badge/SystemBadge';
 import { Link } from '@@/Link';
+import i18n from '@/i18n';
 
 import { columnHelper } from './helper';
 
@@ -11,7 +12,7 @@ export const name = columnHelper.accessor(
     return row.name;
   },
   {
-    header: 'Name',
+    header: () => i18n.t('kubernetes.common.columns.name'),
     id: 'name',
     cell: ({ row }) => (
       <div className="flex gap-2">

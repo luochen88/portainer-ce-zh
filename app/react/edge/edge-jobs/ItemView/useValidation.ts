@@ -1,3 +1,5 @@
+import i18n from '@/i18n';
+
 import {
   SchemaOf,
   array,
@@ -35,7 +37,7 @@ export function useValidation({
         edgeGroupIds: array(number().required()),
         environmentIds: array(number().required()),
 
-        fileContent: string().required('This field is required.'),
+        fileContent: string().required(i18n.t('validation.required')),
 
         cronMethod: mixed<'basic' | 'advanced'>()
           .oneOf(['basic', 'advanced'])
@@ -45,14 +47,14 @@ export function useValidation({
           .when(['recurring', 'cronMethod'], {
             is: (recurring: boolean, cronMethod: 'basic' | 'advanced') =>
               !recurring && cronMethod === 'basic',
-            then: (schema) => schema.required('This field is required.'),
+            then: (schema) => schema.required(i18n.t('validation.required')),
           }),
         recurringOption: mixed()
           .oneOf(timeOptions.map((o) => o.value))
           .when(['recurring', 'cronMethod'], {
             is: (recurring: boolean, cronMethod: 'basic' | 'advanced') =>
               recurring && cronMethod === 'basic',
-            then: (schema) => schema.required('This field is required.'),
+            then: (schema) => schema.required(i18n.t('validation.required')),
           }),
       }),
     [nameValidation]

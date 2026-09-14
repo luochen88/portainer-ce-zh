@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { withError } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -16,7 +17,7 @@ export function useRoleBindings(
     queryKeys.list(environmentId),
     async () => getAllRoleBindings(environmentId),
     {
-      ...withError('Unable to get role bindings'),
+      ...withError(i18n.t('kubernetes.moreResources.roleBindings.errors.get')),
       refetchInterval() {
         return options?.autoRefreshRate ?? false;
       },
@@ -33,6 +34,6 @@ async function getAllRoleBindings(environmentId: EnvironmentId) {
 
     return roleBinding;
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to get role bindings');
+    throw parseAxiosError(e, i18n.t('kubernetes.moreResources.roleBindings.errors.get'));
   }
 }

@@ -8,6 +8,8 @@ import {
   PauseCircle,
 } from 'lucide-react';
 
+import i18n from '@/i18n';
+
 import { Icon, IconMode } from '@@/Icon';
 import { Tooltip } from '@@/Tip/Tooltip';
 
@@ -40,10 +42,10 @@ function getStatus(summary?: StatusSummary): {
 } {
   if (!summary) {
     return {
-      label: 'Unavailable',
+      label: i18n.t('edge.stacks.status.unavailable'),
       icon: MinusCircle,
       mode: 'secondary',
-      tooltip: 'Status summary is unavailable',
+      tooltip: i18n.t('edge.stacks.status.summaryUnavailable'),
     };
   }
   const { Status, Reason } = summary;
@@ -51,45 +53,45 @@ function getStatus(summary?: StatusSummary): {
   switch (Status) {
     case SummarizedStatus.Deploying:
       return {
-        label: 'Deploying',
+        label: i18n.t('edge.stacks.status.deploying'),
         icon: Loader2,
         spin: true,
         mode: 'primary',
       };
     case SummarizedStatus.Failed:
       return {
-        label: 'Failed',
+        label: i18n.t('edge.stacks.status.failed'),
         icon: XCircle,
         mode: 'danger',
       };
     case SummarizedStatus.Paused:
       return {
-        label: 'Paused',
+        label: i18n.t('edge.stacks.status.paused'),
         icon: PauseCircle,
         mode: 'warning',
       };
     case SummarizedStatus.PartiallyRunning:
       return {
-        label: 'Partially Running',
+        label: i18n.t('edge.stacks.status.partiallyRunning'),
         icon: AlertTriangle,
         mode: 'warning',
       };
     case SummarizedStatus.Completed:
       return {
-        label: 'Completed',
+        label: i18n.t('edge.stacks.status.completed'),
         icon: CheckCircle,
         mode: 'success',
       };
     case SummarizedStatus.Running:
       return {
-        label: 'Running',
+        label: i18n.t('edge.stacks.status.running'),
         icon: CheckCircle,
         mode: 'success',
       };
     case SummarizedStatus.Unavailable:
     default:
       return {
-        label: 'Unavailable',
+        label: i18n.t('edge.stacks.status.unavailable'),
         icon: MinusCircle,
         mode: 'secondary',
         tooltip: Reason,

@@ -1,4 +1,5 @@
 import { useFormikContext } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import { useDockerComposeSchema } from '@/react/hooks/useDockerComposeSchema/useDockerComposeSchema';
 
@@ -22,6 +23,7 @@ export function ComposeForm({
 }) {
   const { errors, values } = useFormikContext<FormValues>();
   const { data: dockerComposeSchema } = useDockerComposeSchema();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -66,7 +68,7 @@ export function ComposeForm({
         type="yaml"
         schema={dockerComposeSchema}
         id="compose-editor"
-        textTip="Define or paste the content of your docker compose file here"
+        textTip={t('edge.stacks.compose.contentTip')}
         onChange={(value) => handleContentChange(DeploymentType.Compose, value)}
         error={errors.content}
         readonly={hasKubeEndpoint}

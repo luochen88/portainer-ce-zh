@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { SwitchField } from '@@/form-components/SwitchField';
 
 import { FormValues } from './types';
@@ -9,6 +11,8 @@ export function DeploymentOptions({
   values: FormValues;
   setFieldValue: <T>(field: string, value: T) => void;
 }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="form-group">
@@ -16,8 +20,8 @@ export function DeploymentOptions({
           <SwitchField
             checked={values.prePullImage}
             name="prePullImage"
-            label="Pre-pull images"
-            tooltip="When enabled, the image will be pre-pulled before deployment is started. This is useful in scenarios where the image download may be delayed or  intermittent and would subsequently cause the deployment to fail"
+            label={t('edge.stacks.prePullImages')}
+            tooltip={t('edge.stacks.prePullTooltip')}
             labelClass="col-sm-3 col-lg-2"
             onChange={(value) => setFieldValue('prePullImage', value)}
             data-cy="pre-pull-images-switch"
@@ -30,8 +34,8 @@ export function DeploymentOptions({
           <SwitchField
             checked={values.retryDeploy}
             name="retryDeploy"
-            label="Retry deployment"
-            tooltip="When enabled, this will allow the edge agent to retry deployment if failed to deploy initially"
+            label={t('edge.stacks.retryDeployment')}
+            tooltip={t('edge.stacks.retryDeploymentTooltip')}
             labelClass="col-sm-3 col-lg-2"
             onChange={(value) => setFieldValue('retryDeploy', value)}
             data-cy="retry-deployment-switch"

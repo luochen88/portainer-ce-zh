@@ -1,5 +1,6 @@
 import { Form, useFormikContext } from 'formik';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 
@@ -35,6 +36,7 @@ export function HelmInstallInnerForm({
   isRepoAvailable,
   setPreviewIsValid,
 }: Props) {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const { values, setFieldValue, isSubmitting } =
     useFormikContext<HelmInstallFormValues>();
@@ -90,18 +92,18 @@ export function HelmInstallInnerForm({
   return (
     <Form className="form-horizontal">
       <div className="form-group !m-0">
-        <FormSection title="Configuration" className="mt-4">
+        <FormSection title={t('kubernetes.helm.install.configuration')} className="mt-4">
           <FormControl
-            label="Version"
+            label={t('kubernetes.helm.common.version')}
             inputId="version-input"
             isLoading={isVersionsLoading}
-            loadingText="Loading versions..."
+            loadingText={t('kubernetes.helm.common.loadingVersions')}
           >
             <PortainerSelect<ChartVersion>
               value={selectedVersion}
               options={versionOptions}
-              noOptionsMessage={() => 'No versions found'}
-              placeholder="Select a version"
+              noOptionsMessage={() => t('kubernetes.helm.common.noVersionsFound')}
+              placeholder={t('kubernetes.helm.common.selectVersion')}
               onChange={(version) => {
                 if (version) {
                   setFieldValue('version', version.Version);
@@ -121,19 +123,19 @@ export function HelmInstallInnerForm({
         <ManifestPreviewFormSection
           payload={payload}
           onChangePreviewValidation={setPreviewIsValid}
-          title="Manifest preview"
+          title={t('kubernetes.helm.install.manifestPreview')}
           environmentId={environmentId}
         />
       </div>
 
       <LoadingButton
         className="!ml-0 mt-5"
-        loadingText="Installing Helm chart"
+        loadingText={t('kubernetes.helm.install.actions.installing')}
         isLoading={isSubmitting}
         disabled={!namespace || !name || !isRepoAvailable}
         data-cy="helm-install"
       >
-        Install
+        {t('kubernetes.helm.install.actions.install')}
       </LoadingButton>
     </Form>
   );

@@ -1,3 +1,5 @@
+import i18n from '@/i18n';
+
 import { List, Tag } from 'lucide-react';
 
 import { BoxSelectorOption } from '@@/BoxSelector';
@@ -6,16 +8,16 @@ export const groupTypeOptions: ReadonlyArray<BoxSelectorOption<boolean>> = [
   {
     id: 'static-group',
     value: false,
-    label: 'Static',
-    description: 'Manually select Edge environments',
+    label: i18n.t('edge.groups.types.static'),
+    description: i18n.t('edge.groups.types.staticDescription'),
     icon: List,
     iconType: 'badge',
   },
   {
     id: 'dynamic-group',
     value: true,
-    label: 'Dynamic',
-    description: 'Automatically associate environments via tags',
+    label: i18n.t('edge.groups.types.dynamic'),
+    description: i18n.t('edge.groups.types.dynamicDescription'),
     icon: Tag,
     iconType: 'badge',
   },

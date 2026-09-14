@@ -1,4 +1,5 @@
 import { Code } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 
@@ -18,6 +19,7 @@ import { useColumns } from './columns';
 interface TableSettings extends BasicTableSettings, RefreshableTableSettings {}
 
 export function NamespaceAppsDatatable({ namespace }: { namespace: string }) {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const tableState = useTableStateWithStorage<TableSettings>(
     'kube-namespace-apps',
@@ -41,7 +43,7 @@ export function NamespaceAppsDatatable({ namespace }: { namespace: string }) {
       settingsManager={tableState}
       columns={columns}
       disableSelect
-      title="Applications running in this namespace"
+      title={t('kubernetes.namespaces.item.applications.title')}
       titleIcon={Code}
       isLoading={applicationsQuery.isLoading}
       renderTableSettings={() => (

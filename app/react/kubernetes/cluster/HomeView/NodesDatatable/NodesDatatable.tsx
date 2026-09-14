@@ -1,6 +1,7 @@
 import { Node, Endpoints } from 'kubernetes-types/core/v1';
 import { HardDrive } from 'lucide-react';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { createStore } from '@/react/kubernetes/datatables/default-kube-datatable-store';
@@ -24,6 +25,7 @@ const settingsStore = createStore(storageKey);
 export function NodesDatatable() {
   const tableState = useTableState(settingsStore, storageKey);
   const environmentId = useEnvironmentId();
+  const { t } = useTranslation();
   const { data: nodes, ...nodesQuery } = useNodesQuery(environmentId, {
     autoRefreshRate: tableState.autoRefreshRateMS,
   });
@@ -53,7 +55,7 @@ export function NodesDatatable() {
         kubernetesEndpointsQuery.isLoading ||
         environmentQuery.isLoading
       }
-      title="Nodes"
+      title={t('kubernetes.cluster.nodes.title')}
       titleIcon={HardDrive}
       getRowId={(row) => row.metadata?.uid ?? ''}
       renderTableSettings={() => (

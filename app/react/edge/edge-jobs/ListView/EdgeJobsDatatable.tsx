@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Clock } from 'lucide-react';
 
 import { Datatable } from '@@/datatables';
@@ -14,6 +16,7 @@ const tableKey = 'edge-jobs';
 const settingsStore = createPersistedStore(tableKey);
 
 export function EdgeJobsDatatable() {
+  const { t } = useTranslation();
   const jobsQuery = useEdgeJobs();
   const tableState = useTableState(settingsStore, tableKey);
 
@@ -23,7 +26,7 @@ export function EdgeJobsDatatable() {
       isLoading={jobsQuery.isLoading}
       dataset={jobsQuery.data || []}
       settingsManager={tableState}
-      title="Edge Jobs"
+      title={t('edge.jobs.title')}
       titleIcon={Clock}
       renderTableActions={(selectedItems) => (
         <TableActions selectedItems={selectedItems} />

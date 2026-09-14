@@ -1,4 +1,5 @@
 import { CellContext } from '@tanstack/react-table';
+import i18n from '@/i18n';
 
 import { Link } from '@@/Link';
 
@@ -10,7 +11,7 @@ import { columnHelper } from './helper';
 export const name = columnHelper.accessor(
   (row) => `${row.name.label}/${row.resourceType}`,
   {
-    header: 'Name',
+    header: () => i18n.t('kubernetes.common.columns.name'),
     cell: Cell,
     id: 'name',
   }

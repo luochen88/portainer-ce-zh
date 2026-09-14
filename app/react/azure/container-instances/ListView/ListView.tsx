@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { deleteContainerGroup } from '@/react/azure/services/container-groups.service';
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -7,12 +8,14 @@ import { EnvironmentId } from '@/react/portainer/environments/types';
 import { promiseSequence } from '@/portainer/helpers/promise-utils';
 import { useContainerGroups } from '@/react/azure/queries/useContainerGroups';
 import { useSubscriptions } from '@/react/azure/queries/useSubscriptions';
+import i18n from '@/i18n';
 
 import { PageHeader } from '@@/PageHeader';
 
 import { ContainersDatatable } from './ContainersDatatable';
 
 export function ListView() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
 
   const subscriptionsQuery = useSubscriptions(environmentId);
@@ -32,8 +35,8 @@ export function ListView() {
   return (
     <>
       <PageHeader
-        title="Container list"
-        breadcrumbs="Container instances"
+        title={t('azure.containerInstances.list.title')}
+        breadcrumbs={t('azure.containerInstances.title')}
         reload
       />
 
@@ -66,9 +69,9 @@ function useRemoveMutation(environmentId: EnvironmentId) {
       },
       onError(err) {
         notifyError(
-          'Failure',
+          i18n.t('common.failure'),
           err as Error,
-          'Unable to remove container groups'
+          i18n.t('azure.containerInstances.notifications.removeFailure')
         );
       },
     }
@@ -79,7 +82,7 @@ function useRemoveMutation(environmentId: EnvironmentId) {
   async function handleRemove(groupIds: string[]) {
     deleteMutation.mutate(groupIds, {
       onSuccess: () => {
-        notifySuccess('Success', 'Container groups successfully removed');
+        notifySuccess(i18n.t('common.success'), i18n.t('azure.containerInstances.notifications.removed'));
       },
     });
   }

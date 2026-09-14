@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import i18n from '@/i18n';
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import axios from '@/portainer/services/axios/axios';
 import { withError } from '@/react-tools/react-query';
@@ -14,11 +15,11 @@ export function useDeleteStorageClasses(environmentId: EnvironmentId) {
     mutationFn: (storageClasses: StorageClass[]) =>
       deleteStorageClasses(storageClasses, environmentId),
     onSuccess: () => {
-      notifySuccess('Success', 'Storage classes successfully removed');
+      notifySuccess(i18n.t('kubernetes.common.notifications.success'), i18n.t('kubernetes.volumes.storage.notifications.removed'));
       queryClient.invalidateQueries(queryKeys.storages(environmentId));
       return queryClient.invalidateQueries(queryKeys.volumes(environmentId));
     },
-    ...withError('Unable to remove storage classes'),
+    ...withError(i18n.t('kubernetes.volumes.storage.notifications.removeFailure')),
   });
 }
 

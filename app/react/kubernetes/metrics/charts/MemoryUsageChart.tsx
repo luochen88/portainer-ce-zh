@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { StatsLineChart } from '@/react/components/Charts/StatsLineChart';
 
 import { Widget, WidgetBody, WidgetTitle } from '@@/Widget';
@@ -14,16 +16,17 @@ type Props = {
 };
 
 export function MemoryUsageChart({ chartData, icon, yAxisDomain }: Props) {
+  const { t } = useTranslation();
   return (
     <Widget>
-      <WidgetTitle icon={icon} title="Memory usage" />
+      <WidgetTitle icon={icon} title={t('kubernetes.metrics.charts.memoryUsage')} />
       <WidgetBody>
         <StatsLineChart
           data={chartData}
           series={[
             {
               dataKey: 'memory',
-              name: 'Memory',
+              name: t('kubernetes.metrics.charts.memory'),
               color: PRIMARY,
               area: true,
             },

@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { withError } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -25,7 +26,7 @@ export function useUpdateServiceAccountImagePullSecretsMutation(
       );
       queryClient.invalidateQueries(queryKeys.base(environmentId));
     },
-    ...withError('Unable to update image pull secrets'),
+    ...withError(i18n.t('kubernetes.moreResources.serviceAccounts.imagePullSecrets.errors.update')),
   });
 }
 
@@ -41,6 +42,6 @@ async function updateServiceAccountImagePullSecrets({
       { secretNames }
     );
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to update image pull secrets');
+    throw parseAxiosError(e, i18n.t('kubernetes.moreResources.serviceAccounts.imagePullSecrets.errors.update'));
   }
 }

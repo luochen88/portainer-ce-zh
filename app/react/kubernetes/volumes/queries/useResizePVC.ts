@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import i18n from '@/i18n';
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import axios from '@/portainer/services/axios/axios';
 import { withError } from '@/react-tools/react-query';
@@ -19,10 +20,10 @@ export function useResizePVC(environmentId: EnvironmentId) {
     mutationFn: (payload: ResizePVCPayload) =>
       resizePVC(payload, environmentId),
     onSuccess: () => {
-      notifySuccess('Success', 'Persistent volume claim successfully resized');
+      notifySuccess(i18n.t('kubernetes.common.notifications.success'), i18n.t('kubernetes.volumes.claims.resize.notifications.success'));
       return queryClient.invalidateQueries(queryKeys.volumes(environmentId));
     },
-    ...withError('Unable to resize persistent volume claim'),
+    ...withError(i18n.t('kubernetes.volumes.claims.resize.notifications.failure')),
   });
 }
 

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { X } from 'lucide-react';
 
 import { Widget } from '@@/Widget';
@@ -18,6 +20,7 @@ export function HelmTemplatesSelectedItem({
   selectedChart,
   clearHelmChart,
 }: Props) {
+  const { t } = useTranslation();
   return (
     <Widget>
       <div className="flex">
@@ -47,7 +50,7 @@ export function HelmTemplatesSelectedItem({
               onClick={clearHelmChart}
               data-cy="clear-selection"
             >
-              Clear selection
+              {t('kubernetes.common.actions.clearSelection')}
               <Icon icon={X} className="ml-1" />
             </Button>
           </div>

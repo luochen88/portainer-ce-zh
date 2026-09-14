@@ -1,6 +1,7 @@
 import { ArrowUp } from 'lucide-react';
 import { useRouter } from '@uirouter/react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import { notifySuccess } from '@/portainer/services/notifications';
@@ -35,6 +36,7 @@ export function UpgradeButton({
   release?: HelmRelease;
   updateRelease: (release: HelmRelease) => void;
 }) {
+  const { t } = useTranslation();
   const router = useRouter();
   const [useCache, setUseCache] = useState(true);
   const updateHelmReleaseMutation = useUpdateHelmReleaseMutation(environmentId);
@@ -104,19 +106,19 @@ export function UpgradeButton({
           isError ||
           release?.info?.status?.startsWith('pending')
         }
-        loadingText="Upgrading..."
+        loadingText={t('kubernetes.helm.release.actions.upgrading')}
         isLoading={updateHelmReleaseMutation.isLoading}
         icon={ArrowUp}
         size="medium"
       >
-        Edit/Upgrade
+        {t('kubernetes.helm.release.actions.editUpgrade')}
       </LoadingButton>
       {isLoading && (
         <InlineLoader
           size="xs"
           className="absolute -bottom-5 left-0 right-0 whitespace-nowrap"
         >
-          Checking for new versions...
+          {t('kubernetes.helm.release.status.checkingVersions')}
         </InlineLoader>
       )}
       {!isLoading && !isError && (
@@ -124,21 +126,20 @@ export function UpgradeButton({
           {getStatusMessage(
             versions.length === 0,
             latestVersionAvailable,
-            isNewVersionAvailable
+            isNewVersionAvailable,
+            t
           )}
           {versions.length === 0 && (
             <Tooltip
               message={
                 <div>
-                  Portainer is unable to find any versions for this chart in the
-                  repositories saved. Try adding a new repository which contains
-                  the chart in the{' '}
+                  {t('kubernetes.helm.release.status.noVersionsTooltip')}{' '}
                   <Link
                     to="portainer.account"
                     params={{ '#': 'helm-repositories' }}
                     data-cy="user-settings-link"
                   >
-                    Helm repositories settings
+                    {t('kubernetes.helm.repositories.settings')}
                   </Link>
                 </div>
               }
@@ -151,7 +152,7 @@ export function UpgradeButton({
             onClick={handleRefreshVersions}
             type="button"
           >
-            Refresh
+            {t('kubernetes.common.actions.refresh')}
           </Button>
         </span>
       )}
@@ -185,14 +186,14 @@ export function UpgradeButton({
           info: {
             ...release.info,
             status: 'pending-upgrade',
-            description: 'Preparing upgrade',
+            description: t('kubernetes.helm.release.status.preparingUpgrade'),
           },
         };
         updateRelease(updatedRelease);
       }
       updateHelmReleaseMutation.mutate(payload, {
         onSuccess: () => {
-          notifySuccess('Success', 'Helm chart upgraded successfully');
+          notifySuccess(t('kubernetes.common.success'), t('kubernetes.helm.release.notifications.upgradeSuccess'));
           // set the revision url param to undefined to refresh the page at the latest revision
           router.stateService.go('kubernetes.helm', {
             namespace,
@@ -208,13 +209,16 @@ export function UpgradeButton({
 function getStatusMessage(
   hasNoAvailableVersions: boolean,
   latestVersionAvailable: string,
-  isNewVersionAvailable: boolean
+  isNewVersionAvailable: boolean,
+  t: (key: string, options?: Record<string, string>) => string
 ) {
   if (hasNoAvailableVersions) {
-    return 'No versions available ';
+    return t('kubernetes.helm.release.status.noVersionsAvailable');
   }
   if (isNewVersionAvailable) {
-    return `New version available (${latestVersionAvailable}) `;
+    return t('kubernetes.helm.release.status.newVersionAvailable', {
+      version: latestVersionAvailable,
+    });
   }
-  return 'Latest version installed';
+  return t('kubernetes.helm.release.status.latestVersionInstalled');
 }

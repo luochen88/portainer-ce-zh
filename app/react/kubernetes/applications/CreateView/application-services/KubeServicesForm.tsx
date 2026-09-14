@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FormikErrors } from 'formik';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -37,6 +38,7 @@ export function KubeServicesForm({
   isEditMode,
   namespace,
 }: Props) {
+  const { t } = useTranslation();
   const [selectedServiceType, setSelectedServiceType] =
     useState<ServiceType>('ClusterIP');
 
@@ -81,7 +83,7 @@ export function KubeServicesForm({
       value: 'ClusterIP',
       label: (
         <ServiceTabLabel
-          serviceTypeLabel="ClusterIP services"
+          serviceTypeLabel={t('kubernetes.applications.create.services.tabs.clusterIp')}
           serviceTypeCount={serviceTypeCounts.ClusterIP}
           serviceTypeHasErrors={serviceTypeHasErrors.ClusterIP}
         />
@@ -91,7 +93,7 @@ export function KubeServicesForm({
       value: 'NodePort',
       label: (
         <ServiceTabLabel
-          serviceTypeLabel="NodePort services"
+          serviceTypeLabel={t('kubernetes.applications.create.services.tabs.nodePort')}
           serviceTypeCount={serviceTypeCounts.NodePort}
           serviceTypeHasErrors={serviceTypeHasErrors.NodePort}
         />
@@ -101,7 +103,7 @@ export function KubeServicesForm({
       value: 'LoadBalancer',
       label: (
         <ServiceTabLabel
-          serviceTypeLabel="LoadBalancer services"
+          serviceTypeLabel={t('kubernetes.applications.create.services.tabs.loadBalancer')}
           serviceTypeCount={serviceTypeCounts.LoadBalancer}
           serviceTypeHasErrors={serviceTypeHasErrors.LoadBalancer}
         />
@@ -111,7 +113,7 @@ export function KubeServicesForm({
 
   return (
     <div className="flex flex-col">
-      <FormSection title="Publishing the application" />
+      <FormSection title={t('kubernetes.applications.create.services.title')} />
       <PublishingExplaination />
       <ServiceTabs
         serviceTypeOptions={serviceTypeOptions}

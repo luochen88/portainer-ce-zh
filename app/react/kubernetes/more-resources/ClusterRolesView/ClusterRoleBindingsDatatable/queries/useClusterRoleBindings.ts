@@ -1,5 +1,6 @@
 import { compact } from 'lodash';
 import { useQuery } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { withError } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -20,7 +21,7 @@ export function useClusterRoleBindings(
       return compact(cluerRoleBindings);
     },
     {
-      ...withError('Unable to get cluster role bindings'),
+      ...withError(i18n.t('kubernetes.moreResources.clusterRoleBindings.errors.get')),
       refetchInterval() {
         return options?.autoRefreshRate ?? false;
       },
@@ -36,6 +37,6 @@ async function getClusterRoleBindings(environmentId: EnvironmentId) {
 
     return roles;
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to get cluster role bindings');
+    throw parseAxiosError(e, i18n.t('kubernetes.moreResources.clusterRoleBindings.errors.get'));
   }
 }

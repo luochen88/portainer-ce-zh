@@ -1,6 +1,7 @@
 import { Pod } from 'kubernetes-types/core/v1';
 import { RotateCcw } from 'lucide-react';
 import { useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { Authorized } from '@/react/hooks/useUser';
 import { notifySuccess, notifyError } from '@/portainer/services/notifications';
@@ -37,6 +38,7 @@ export function RollbackApplicationButton({
   appName,
   app,
 }: Props) {
+  const { t } = useTranslation();
   const router = useRouter();
   const labelSelector = applicationIsKind<Pod>('Pod', app)
     ? ''
@@ -79,7 +81,7 @@ export function RollbackApplicationButton({
       data-cy="k8sAppDetail-rollbackButton"
     >
       <Icon icon={RotateCcw} className="mr-1" />
-      Rollback to previous configuration
+      {t('kubernetes.applications.details.actions.rollback.label')}
     </Button>
   );
 
@@ -87,13 +89,13 @@ export function RollbackApplicationButton({
     <Authorized authorizations="K8sApplicationDetailsW">
       <div className="flex gap-x-2">
         {isRollbackNotAvailable ? (
-          <TooltipWithChildren message="Cannot roll back to previous configuration as none currently exists">
+          <TooltipWithChildren message={t('kubernetes.applications.details.actions.rollback.unavailableTooltip')}>
             <span>{rollbackButton}</span>
           </TooltipWithChildren>
         ) : (
           rollbackButton
         )}
-        <Tooltip message="Only one level of rollback is available, i.e. if you roll back from v2 to v1, and then roll back again, you will end up back at v2. Note that service changes and autoscaler rule changes are not included in rollback functionality. This is how Kubernetes works natively." />
+        <Tooltip message={t('kubernetes.applications.details.actions.rollback.infoTooltip')} />
       </div>
     </Authorized>
   );
@@ -110,11 +112,10 @@ export function RollbackApplicationButton({
 
     // confirm the action
     const confirmed = await confirm({
-      title: 'Are you sure?',
+      title: t('kubernetes.common.confirm.areYouSure'),
       modalType: ModalType.Warn,
-      confirmButton: buildConfirmButton('Rollback'),
-      message:
-        'Rolling back the application to a previous configuration may cause service interruption. Do you wish to continue?',
+      confirmButton: buildConfirmButton(t('kubernetes.applications.details.actions.rollback.confirmButton')),
+      message: t('kubernetes.applications.details.actions.rollback.confirmMessage'),
     });
     if (!confirmed) {
       return;
@@ -133,19 +134,22 @@ export function RollbackApplicationButton({
         },
         {
           onSuccess: () => {
-            notifySuccess('Success', 'Application successfully rolled back');
+            notifySuccess(
+              t('kubernetes.common.notifications.success'),
+              t('kubernetes.applications.details.actions.rollback.notifications.success')
+            );
             router.stateService.reload();
           },
           onError: (error) =>
             notifyError(
-              'Failure',
+              t('kubernetes.common.notifications.failure'),
               error as Error,
-              'Unable to rollback the application'
+              t('kubernetes.applications.details.actions.rollback.notifications.unableToRollback')
             ),
         }
       );
     } catch (error) {
-      notifyError('Failure', error as Error);
+      notifyError(t('kubernetes.common.notifications.failure'), error as Error);
     }
   }
 }

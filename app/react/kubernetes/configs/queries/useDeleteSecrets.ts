@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
+import i18n from '@/i18n';
 import { queryClient, withError } from '@/react-tools/react-query';
 import axios from '@/portainer/services/axios/axios';
 import { EnvironmentId } from '@/react/portainer/environments/types';
@@ -34,22 +35,21 @@ export function useDeleteSecrets(environmentId: EnvironmentId) {
       return { failedSecrets, successfulSecrets };
     },
     {
-      ...withError('Unable to remove secrets'),
+      ...withError(i18n.t('kubernetes.configs.secrets.notifications.removeFailure')),
       onSuccess: ({ failedSecrets, successfulSecrets }) => {
         // show an error message for each secret that failed to delete
         failedSecrets.forEach(({ name, reason }) => {
           notifyError(
-            `Failed to remove secret '${name}'`,
+            i18n.t('kubernetes.configs.secrets.notifications.removeOneFailure', { name }),
             new Error(reason.message) as Error
           );
         });
         // show one summary message for all successful deletes
         if (successfulSecrets.length) {
           notifySuccess(
-            `${pluralize(
-              successfulSecrets.length,
-              'Secret'
-            )} successfully removed`,
+            i18n.t('kubernetes.configs.secrets.notifications.removed', {
+              count: successfulSecrets.length,
+            }),
             successfulSecrets.join(', ')
           );
         }
@@ -71,6 +71,6 @@ async function deleteSecret(
       `/endpoints/${environmentId}/kubernetes/api/v1/namespaces/${namespace}/secrets/${name}`
     );
   } catch (e) {
-    throw parseKubernetesAxiosError(e, 'Unable to remove secret');
+    throw parseKubernetesAxiosError(e, i18n.t('kubernetes.configs.secrets.notifications.removeOneGenericFailure'));
   }
 }

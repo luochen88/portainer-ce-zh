@@ -6,6 +6,7 @@ import { UseMutationResult } from '@tanstack/react-query';
 import { notifyError, notifySuccess } from '@/portainer/services/notifications';
 import { UpdateEnvironmentPayload } from '@/react/portainer/environments/queries/useUpdateEnvironmentMutation';
 import { Environment } from '@/react/portainer/environments/types';
+import i18n from '@/i18n';
 
 import { ConfigureFormValues, StorageClassFormValues } from './types';
 import { ConfigureClusterPayloads } from './useConfigureClusterMutation';
@@ -24,7 +25,7 @@ export async function handleSubmitConfigureCluster(
   environment?: Environment
 ) {
   if (!environment) {
-    notifyError('Unable to save configuration: environment not found');
+    notifyError(i18n.t('kubernetes.cluster.configure.notifications.environmentNotFound'));
     return;
   }
 
@@ -53,7 +54,10 @@ export async function handleSubmitConfigureCluster(
     },
     {
       onSuccess: () => {
-        notifySuccess('Success', 'Configuration successfully applied');
+        notifySuccess(
+          i18n.t('kubernetes.cluster.configure.notifications.successTitle'),
+          i18n.t('kubernetes.cluster.configure.notifications.successMessage')
+        );
         resetForm();
       },
     }

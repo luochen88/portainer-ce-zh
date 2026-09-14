@@ -1,4 +1,5 @@
 import { HardDrive } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { Authorized, useAuthorizations } from '@/react/hooks/useUser';
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -24,6 +25,7 @@ import { StorageClass } from './types';
 interface TableSettings extends BasicTableSettings, RefreshableTableSettings {}
 
 export function StorageClassesDatatable() {
+  const { t } = useTranslation();
   const tableState = useTableStateWithStorage<TableSettings>(
     'kube-volumes-sc',
     'name',
@@ -57,14 +59,14 @@ export function StorageClassesDatatable() {
       dataset={storageClasses}
       columns={columns}
       settingsManager={tableState}
-      title="Storage"
+      title={t('kubernetes.volumes.storage.title')}
       titleIcon={HardDrive}
       getRowId={(row) => `${row.name}`}
       disableSelect={!hasWriteAuth}
       renderTableActions={(selectedItems) => (
         <Authorized authorizations="K8sVolumesW">
           <DeleteButton
-            confirmMessage="Do you want to remove the selected storage class(es)?"
+            confirmMessage={t('kubernetes.volumes.storage.deleteConfirm')}
             onConfirmed={() =>
               deleteStorageClassesMutation.mutate(selectedItems)
             }

@@ -10,13 +10,12 @@ interface Props {
 }
 
 export function StorageQuotaFormSection({ storageClasses }: Props) {
+  const { t } = useTranslation();
+
   return (
-    <FormSection title="Storage">
+    <FormSection title={t('kubernetes.volumes.storage.title')}>
       <TextTip color="blue">
-        Quotas can be set on each storage option to prevent users from exceeding
-        a specific threshold when deploying applications. You can set a quota to
-        0 to effectively prevent the usage of a specific storage option inside
-        this namespace.
+        {t('kubernetes.namespaces.form.storage.tip')}
       </TextTip>
 
       {storageClasses.map((storageClass) => (

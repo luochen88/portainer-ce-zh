@@ -1,4 +1,5 @@
 import { Authorized } from '@/react/hooks/useUser';
+import { useTranslation } from 'react-i18next';
 
 import { TextTip } from '@@/Tip/TextTip';
 
@@ -7,10 +8,12 @@ interface Props {
 }
 
 export function SystemResourceDescription({ showSystemResources }: Props) {
+  const { t } = useTranslation();
+
   return showSystemResources === false ? (
     <Authorized authorizations="K8sAccessSystemNamespaces" adminOnlyCE>
       <TextTip color="blue" className="!mb-0">
-        System resources are hidden, this can be changed in the table settings
+        {t('kubernetes.datatables.systemResourcesHidden')}
       </TextTip>
     </Authorized>
   ) : null;

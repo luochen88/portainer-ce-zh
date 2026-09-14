@@ -2,6 +2,7 @@ import { UserPlusIcon } from 'lucide-react';
 import { Formik } from 'formik';
 import { useMemo } from 'react';
 import { useCurrentStateAndParams } from '@uirouter/react';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { useIsRBACEnabled } from '@/react/kubernetes/cluster/useIsRBACEnabled';
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -27,6 +28,7 @@ import { CreateAccessInnerForm } from './CreateAccessInnerForm';
 import { validationSchema } from './createAccess.validation';
 
 export function CreateAccessWidget() {
+  const { t } = useTranslation();
   const {
     params: { id: namespaceName },
   } = useCurrentStateAndParams();
@@ -65,13 +67,12 @@ export function CreateAccessWidget() {
   return (
     <div className="row">
       <div className="col-sm-12">
-        <Widget aria-label="Create access">
-          <WidgetTitle icon={UserPlusIcon} title="Create access" />
+        <Widget aria-label={t('kubernetes.namespaces.access.create.title')}>
+          <WidgetTitle icon={UserPlusIcon} title={t('kubernetes.namespaces.access.create.title')} />
           <WidgetBody>
             {isRBACEnabledQuery.data === false && <RBACAlert />}
             <TextTip className="mb-2" childrenWrapperClassName="text-warning">
-              Adding user access will require the affected user(s) to logout and
-              login for the changes to be taken into account.
+              <Trans i18nKey="kubernetes.namespaces.access.create.tip" />
             </TextTip>
             {isRBACEnabledQuery.data !== false && (
               <Formik<CreateAccessValues>
@@ -115,10 +116,10 @@ export function CreateAccessWidget() {
         configMap: configMapPayload,
         configMapName: PortainerNamespaceAccessesConfigMap.configMapName,
       });
-      notifySuccess('Success', 'Namespace access updated');
+      notifySuccess(t('kubernetes.common.notifications.success'), t('kubernetes.namespaces.access.updated'));
       resetForm();
     } catch (error) {
-      notifyError('Failed to update namespace access', error as Error);
+      notifyError(t('kubernetes.namespaces.access.updateFailure'), error as Error);
     }
   }
 }

@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { withError } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -11,7 +12,7 @@ export function useDeleteClusterRolesMutation(environmentId: EnvironmentId) {
   return useMutation(deleteClusterRoles, {
     onSuccess: () =>
       queryClient.invalidateQueries(queryKeys.list(environmentId)),
-    ...withError('Unable to delete cluster roles'),
+    ...withError(i18n.t('kubernetes.moreResources.clusterRoles.errors.delete')),
   });
 }
 
@@ -28,6 +29,6 @@ export async function deleteClusterRoles({
       data
     );
   } catch (e) {
-    throw parseAxiosError(e, `Unable to delete cluster roles`);
+    throw parseAxiosError(e, i18n.t('kubernetes.moreResources.clusterRoles.errors.delete'));
   }
 }

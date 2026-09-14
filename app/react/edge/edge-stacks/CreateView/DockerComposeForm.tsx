@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { FormikErrors, useFormikContext } from 'formik';
 import { SetStateAction, useCallback } from 'react';
 
@@ -34,6 +36,7 @@ interface Props {
 }
 
 export function DockerComposeForm({ webhookId, onChangeTemplate }: Props) {
+  const { t } = useTranslation();
   const { errors, values, setValues } = useFormikContext<DockerFormValues>();
   const { method } = values;
 
@@ -56,7 +59,7 @@ export function DockerComposeForm({ webhookId, onChangeTemplate }: Props) {
 
   return (
     <>
-      <FormSection title="Build Method">
+      <FormSection title={t('edge.stacks.buildMethod')}>
         <BoxSelector
           options={buildMethods}
           onChange={(value) => handleChange({ method: value })}
@@ -118,7 +121,7 @@ export function DockerComposeForm({ webhookId, onChangeTemplate }: Props) {
           value={values.file}
           onChange={(File) => handleChange({ file: File })}
           required
-          description="You can upload a Compose file from your computer."
+          description={t('edge.stacks.compose.uploadDescription')}
           data-cy="stack-creation-file-upload"
         />
       )}
@@ -143,7 +146,7 @@ export function DockerComposeForm({ webhookId, onChangeTemplate }: Props) {
           />
 
           {isBE && (
-            <FormSection title="Advanced configurations">
+            <FormSection title={t('edge.stacks.advancedConfigurations')}>
               <RelativePathFieldset
                 values={values.relativePath}
                 errors={errors.relativePath}

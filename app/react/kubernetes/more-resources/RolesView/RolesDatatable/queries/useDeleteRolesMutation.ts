@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { withError, withInvalidate } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -10,7 +11,7 @@ export function useDeleteRolesMutation(environmentId: EnvironmentId) {
   const queryClient = useQueryClient();
   return useMutation(deleteRole, {
     ...withInvalidate(queryClient, [queryKeys.list(environmentId)]),
-    ...withError('Unable to delete roles'),
+    ...withError(i18n.t('kubernetes.moreResources.roles.errors.delete')),
   });
 }
 
@@ -24,6 +25,6 @@ export async function deleteRole({
   try {
     return await axios.post(`kubernetes/${environmentId}/roles/delete`, data);
   } catch (e) {
-    throw parseAxiosError(e, `Unable to delete roles`);
+    throw parseAxiosError(e, i18n.t('kubernetes.moreResources.roles.errors.delete'));
   }
 }

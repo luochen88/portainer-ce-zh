@@ -1,6 +1,7 @@
 import { CellContext } from '@tanstack/react-table';
 import { HelpCircle } from 'lucide-react';
 import clsx from 'clsx';
+import i18n from '@/i18n';
 
 import { TooltipWithChildren } from '@@/Tip/TooltipWithChildren';
 
@@ -10,7 +11,7 @@ import { columnHelper } from './helper';
 import styles from './status.module.css';
 
 export const status = columnHelper.accessor((row) => row.Status, {
-  header: 'Status',
+  header: () => i18n.t('kubernetes.common.columns.status'),
   id: 'status',
   cell: Cell,
 });

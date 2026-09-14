@@ -1,5 +1,6 @@
 import { CellContext } from '@tanstack/react-table';
 import { BarChart } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { Link } from '@@/Link';
 import { Icon } from '@@/Icon';
@@ -30,6 +31,7 @@ function ActionsCell({
   metricsEnabled: boolean;
 }) {
   const nodeName = node.metadata?.name;
+  const { t } = useTranslation();
 
   return (
     <div className="flex gap-1.5">
@@ -40,7 +42,7 @@ function ActionsCell({
           className="flex items-center p-1"
           data-cy="nodeStatsButton"
         >
-          <TooltipWithChildren message="Stats" position="top">
+          <TooltipWithChildren message={t('kubernetes.cluster.nodes.columns.stats')} position="top">
             <Icon icon={BarChart} />
           </TooltipWithChildren>
         </Link>

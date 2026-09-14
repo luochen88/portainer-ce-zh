@@ -1,4 +1,5 @@
 import { AccessControlFormData } from '../../../../portainer/components/accessControlForm/porAccessControlFormModel';
+import i18n from '@/i18n';
 import { VolumesNFSFormData } from '../../../components/volumesNFSForm/volumesNFSFormModel';
 import { VolumesCIFSFormData } from '../../../components/volumesCIFSForm/volumesCifsFormModel';
 
@@ -132,11 +133,11 @@ angular.module('portainer.docker').controller('CreateVolumeController', [
           return ResourceControlService.applyResourceControl(userId, accessControlData, resourceControl);
         })
         .then(function success() {
-          Notifications.success('Success', 'Volume successfully created');
+          Notifications.success('Success', i18n.t('docker.volumes.create.volumeCreatedSuccess'));
           $state.go('docker.volumes', {}, { reload: true });
         })
         .catch(function error(err) {
-          Notifications.error('Failure', err, 'An error occurred during volume creation');
+          Notifications.error('Failure', err, i18n.t('docker.volumes.create.errorDuringCreation'));
         })
         .finally(function final() {
           $scope.state.actionInProgress = false;
@@ -151,7 +152,7 @@ angular.module('portainer.docker').controller('CreateVolumeController', [
           $scope.availableVolumeDrivers = data;
         })
         .catch(function error(err) {
-          Notifications.error('Failure', err, 'Unable to retrieve volume drivers');
+          Notifications.error('Failure', err, i18n.t('docker.volumes.create.unableToRetrieveDrivers'));
         });
     }
 

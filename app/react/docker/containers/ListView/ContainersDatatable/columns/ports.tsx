@@ -3,6 +3,7 @@ import { CellContext } from '@tanstack/react-table';
 
 import { PublishedPortLink } from '@/react/docker/components/ImageStatus/PublishedPortLink';
 import type { ContainerListViewModel } from '@/react/docker/containers/types';
+import i18n from '@/i18n';
 
 import { Badge } from '@@/Badge';
 import { TooltipWithChildren } from '@@/Tip/TooltipWithChildren';
@@ -19,7 +20,7 @@ export const ports = columnHelper.accessor(
       .map((port) => `${port.public}:${port.private}`)
       .join(','),
   {
-    header: 'Published Ports',
+    header: i18n.t('common.published_ports') as string,
     id: 'ports',
     cell: Cell,
   }

@@ -1,5 +1,6 @@
 import { Field, useFormikContext } from 'formik';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CheckCircle, XCircle } from 'lucide-react';
 
 import { useGetMetricsMutation } from '@/react/kubernetes/queries/useGetMetricsMutation';
@@ -20,39 +21,15 @@ type Props = {
 export function EnableMetricsInput({ value, error, environmentId }: Props) {
   const { setFieldValue } = useFormikContext<ConfigureFormValues>();
   const [metricsFound, setMetricsFound] = useState<boolean>();
+  const { t } = useTranslation();
   const getMetricsMutation = useGetMetricsMutation();
   return (
     <div className="mb-4">
       <TextTip color="blue">
-        <p>
-          Enabling the metrics feature allows users to use horizontal pod
-          autoscaling and to see container and node resource usage. This
-          requires{' '}
-          <a
-            href="https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-server"
-            target="_blank"
-            rel="noreferrer"
-          >
-            metrics server
-          </a>{' '}
-          or{' '}
-          <a
-            href="https://github.com/kubernetes-sigs/prometheus-adapter"
-            target="_blank"
-            rel="noreferrer"
-          >
-            prometheus
-          </a>{' '}
-          to be running in your cluster.
-        </p>
-        <p>
-          On any subsequent disabling of the feature, existing deployed
-          applications with autoscaling will still autoscale (you would have to
-          remove their autoscaler definitions to stop this).
-        </p>
+        <p>{t('kubernetes.cluster.configure.metrics.description')}</p>
       </TextTip>
       <FormControl
-        label="Enable features using the metrics API"
+        label={t('kubernetes.cluster.configure.metrics.enable')}
         className="mb-0"
         size="large"
         errors={error}
@@ -84,19 +61,18 @@ export function EnableMetricsInput({ value, error, environmentId }: Props) {
         />
       </FormControl>
       {getMetricsMutation.isLoading && (
-        <InlineLoader size="sm">Checking metrics API...</InlineLoader>
+        <InlineLoader size="sm">{t('kubernetes.cluster.configure.metrics.checking')}</InlineLoader>
       )}
       {!getMetricsMutation.isLoading && (
         <>
           {metricsFound === false && (
             <TextTip color="red" icon={XCircle}>
-              Unable to reach metrics API, make sure metrics server is properly
-              deployed inside that cluster.
+              {t('kubernetes.cluster.configure.metrics.unreachable')}
             </TextTip>
           )}
           {metricsFound === true && (
             <TextTip color="green" icon={CheckCircle}>
-              Successfully reached metrics API
+              {t('kubernetes.cluster.configure.metrics.reachable')}
             </TextTip>
           )}
         </>

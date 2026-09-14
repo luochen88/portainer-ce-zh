@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { PortainerSelect } from '@/react/components/form-components/PortainerSelect';
 
@@ -23,6 +24,7 @@ export function HelmTemplatesList({
   selectAction,
   selectedRegistry,
 }: Props) {
+  const { t } = useTranslation();
   const [textFilter, setTextFilter] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -37,23 +39,23 @@ export function HelmTemplatesList({
     !isLoadingCharts && charts.length === 0 && selectedRegistry;
 
   return (
-    <section className="datatable" aria-label="Helm charts">
+    <section className="datatable" aria-label={t('kubernetes.helm.templates.list.ariaLabel')}>
       <div className="toolBar vertical-center relative w-full !gap-x-5 !gap-y-1 overflow-auto !px-0">
         <div className="toolBarTitle vertical-center whitespace-nowrap">
-          Select a helm chart from {selectedRegistry?.name}
+          {t('kubernetes.helm.templates.list.selectFrom', { registry: selectedRegistry?.name })}
         </div>
 
         <SearchBar
           value={textFilter}
           onChange={(value) => setTextFilter(value)}
-          placeholder="Search..."
+          placeholder={t('kubernetes.common.search')}
           data-cy="helm-templates-search"
           className="!mr-0 h-9"
         />
 
         <div className="w-full flex-none sm:w-1/4">
           <PortainerSelect
-            placeholder="Select a category"
+            placeholder={t('kubernetes.helm.templates.list.selectCategory')}
             value={selectedCategory}
             options={categories}
             onChange={setSelectedCategory}
@@ -74,17 +76,17 @@ export function HelmTemplatesList({
         ))}
 
         {filteredCharts.length === 0 && textFilter && !isLoadingCharts && (
-          <div className="text-muted small mt-4">No Helm charts found</div>
+          <div className="text-muted small mt-4">{t('kubernetes.helm.templates.list.noResults')}</div>
         )}
 
         {isLoadingCharts && (
           <div className="flex flex-col">
             <InlineLoader className="justify-center">
-              Loading helm charts...
+              {t('kubernetes.helm.templates.list.loading')}
             </InlineLoader>
             {charts.length === 0 && (
               <div className="text-muted text-center">
-                Initial download of Helm charts can take a few minutes
+                {t('kubernetes.helm.templates.list.initialDownload')}
               </div>
             )}
           </div>
@@ -92,13 +94,13 @@ export function HelmTemplatesList({
 
         {isSelectedRegistryEmpty && (
           <div className="text-muted text-center">
-            No helm charts available in this repository.
+            {t('kubernetes.helm.templates.list.emptyRepository')}
           </div>
         )}
 
         {!selectedRegistry && (
           <div className="text-muted text-center">
-            Please select a repository to view available Helm charts.
+            {t('kubernetes.helm.templates.list.selectRepository')}
           </div>
         )}
       </div>

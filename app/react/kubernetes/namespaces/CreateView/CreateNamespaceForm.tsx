@@ -1,5 +1,6 @@
 import { Formik } from 'formik';
 import { useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { notifySuccess } from '@/portainer/services/notifications';
@@ -23,6 +24,7 @@ import {
 } from '../types';
 
 export function CreateNamespaceForm() {
+  const { t } = useTranslation();
   const router = useRouter();
   const environmentId = useEnvironmentId();
   const { data: environment, ...environmentQuery } = useCurrentEnvironment();
@@ -110,8 +112,8 @@ export function CreateNamespaceForm() {
       {
         onSuccess: () => {
           notifySuccess(
-            'Success',
-            `Namespace '${values.name}' created successfully`
+            t('kubernetes.common.notifications.success'),
+            t('kubernetes.namespaces.notifications.created', { name: values.name })
           );
           router.stateService.go('kubernetes.resourcePools');
         },

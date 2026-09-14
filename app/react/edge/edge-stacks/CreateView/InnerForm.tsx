@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Form, useFormikContext } from 'formik';
 
 import { applySetStateAction } from '@/react-tools/apply-set-state-action';
@@ -36,6 +38,7 @@ export function InnerForm({
     templateId: number | undefined;
   }) => void;
 }) {
+  const { t } = useTranslation();
   const { values, setFieldValue, errors, setValues, setFieldError, isValid } =
     useFormikContext<FormValues>();
   const { hasType } = useEdgeGroupHasType(values.groupIds);
@@ -44,10 +47,7 @@ export function InnerForm({
   const hasDockerEndpoint = hasType(EnvironmentType.EdgeAgentOnDocker);
   const hasMultipleTypes = hasKubeEndpoint && hasDockerEndpoint;
   const multipleTypesError = hasMultipleTypes
-    ? `There are no available deployment types when there is more than one
-          type of environment in your edge group selection (e.g. Kubernetes and
-          Docker environments). Please select edge groups that have environments
-          of the same type.`
+    ? t('edge.stacks.validation.mixedEnvironmentTypes')
     : undefined;
 
   return (
@@ -138,8 +138,8 @@ export function InnerForm({
 
       <FormActions
         data-cy="edgeStackCreate-createStackButton"
-        submitLabel="Deploy the stack"
-        loadingText="Deployment in progress..."
+        submitLabel={t('edge.stacks.deploy')}
+        loadingText={t('edge.stacks.deploymentInProgress')}
         isValid={isValid}
         isLoading={isLoading}
       />

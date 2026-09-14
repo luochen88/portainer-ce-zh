@@ -1,7 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 import { useRouter } from '@uirouter/react';
 
 import { TemplateViewModel } from '@/react/portainer/templates/app-templates/view-model';
 import { CustomTemplate } from '@/react/portainer/templates/custom-templates/types';
+import i18n from '@/i18n';
+
 import { notifySuccess } from '@/portainer/services/notifications';
 import { transformAutoUpdateViewModel } from '@/react/portainer/gitops/AutoUpdateFieldset/utils';
 
@@ -22,6 +26,7 @@ export function useCreate({
   template: TemplateViewModel | CustomTemplate | undefined;
   templateType: 'app' | 'custom' | undefined;
 }) {
+  const { t } = useTranslation();
   const router = useRouter();
   const mutation = useCreateEdgeStack();
 
@@ -38,7 +43,7 @@ export function useCreate({
 
     mutation.mutate(getPayload(method, values), {
       onSuccess: () => {
-        notifySuccess('Success', 'Edge stack created');
+        notifySuccess(t('common.success'), t('edge.stacks.notifications.created'));
         router.stateService.go('^');
       },
     });
@@ -50,7 +55,7 @@ export function useCreate({
       switch (method) {
         case 'file':
           if (!values.file) {
-            throw new Error('File is required');
+            throw new Error(i18n.t('validation.fileRequired'));
           }
 
           return {

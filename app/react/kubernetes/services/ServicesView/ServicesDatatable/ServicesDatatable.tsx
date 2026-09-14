@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Shuffle } from 'lucide-react';
 import { useRouter } from '@uirouter/react';
 import clsx from 'clsx';
@@ -32,6 +33,7 @@ const storageKey = 'k8sServicesDatatable';
 const settingsStore = createStore(storageKey);
 
 export function ServicesDatatable() {
+  const { t } = useTranslation();
   const tableState = useTableState(settingsStore, storageKey);
   const environmentId = useEnvironmentId();
   const { data: namespaces, ...namespacesQuery } = useNamespacesQuery(
@@ -75,8 +77,8 @@ export function ServicesDatatable() {
       isLoading={
         servicesQuery.isInitialLoading || namespacesQuery.isInitialLoading
       }
-      emptyContentLabel="No services found"
-      title="Services"
+      emptyContentLabel={t('kubernetes.services.list.empty')}
+      title={t('kubernetes.services.list.datatableTitle')}
       titleIcon={Shuffle}
       getRowId={(row) => row.UID}
       isRowSelectable={(row) => !namespaces?.[row.original.Namespace]?.IsSystem}
@@ -148,6 +150,7 @@ function TableActions({ selectedItems }: TableActionsProps) {
   const environmentId = useEnvironmentId();
   const deleteServicesMutation = useMutationDeleteServices(environmentId);
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <Authorized authorizations="K8sServicesW">
@@ -156,10 +159,7 @@ function TableActions({ selectedItems }: TableActionsProps) {
         onConfirmed={() => handleRemoveClick(selectedItems)}
         confirmMessage={
           <>
-            <p>{`Are you sure you want to remove the selected ${pluralize(
-              selectedItems.length,
-              'service'
-            )}?`}</p>
+            <p>{t('kubernetes.services.deleteConfirm', { count: selectedItems.length })}</p>
             <ul className="pl-6">
               {selectedItems.map((s, index) => (
                 <li key={index}>
@@ -188,14 +188,14 @@ function TableActions({ selectedItems }: TableActionsProps) {
       {
         onSuccess: () => {
           notifySuccess(
-            'Services successfully removed',
+            t('kubernetes.services.notifications.removed'),
             services.map((s) => `${s.Namespace}/${s.Name}`).join(', ')
           );
           router.stateService.reload();
         },
         onError: (error) => {
           notifyError(
-            'Unable to delete service(s)',
+            t('kubernetes.services.notifications.deleteFailure'),
             error as Error,
             services.map((s) => `${s.Namespace}/${s.Name}`).join(', ')
           );

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useCurrentStateAndParams } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 import { Terminal as TerminalIcon } from 'lucide-react';
 
 import { baseHref } from '@/portainer/helpers/pathHelper';
@@ -18,6 +19,7 @@ import {
 import type { ShellState } from '@@/Terminal/Terminal';
 
 export function ConsoleView() {
+  const { t } = useTranslation();
   const {
     params: {
       endpointId: environmentId,
@@ -33,29 +35,29 @@ export function ConsoleView() {
   const [shellState, setShellState] = useState<ShellState>('idle');
 
   const breadcrumbs = [
-    { label: 'Namespaces', link: 'kubernetes.resourcePools' },
+    { label: t('kubernetes.common.namespaces'), link: 'kubernetes.resourcePools' },
     {
       label: namespace,
       link: 'kubernetes.resourcePools.resourcePool',
       linkParams: { id: namespace },
     },
-    { label: 'Applications', link: 'kubernetes.applications' },
+    { label: t('kubernetes.common.applications'), link: 'kubernetes.applications' },
     {
       label: appName,
       link: 'kubernetes.applications.application',
       linkParams: { name: appName, namespace },
     },
-    'Pods',
+    t('kubernetes.common.pods'),
     podID,
-    'Containers',
+    t('kubernetes.common.containers'),
     container,
-    'Console',
+    t('kubernetes.applications.console.breadcrumb'),
   ];
 
   return (
     <>
       <PageHeader
-        title="Application console"
+        title={t('kubernetes.applications.console.title')}
         breadcrumbs={breadcrumbs}
         reload
       />
@@ -64,14 +66,14 @@ export function ConsoleView() {
           <Widget>
             <WidgetBody>
               <div className="row">
-                <div className="col-sm-12 form-section-title">Console</div>
+                <div className="col-sm-12 form-section-title">{t('kubernetes.applications.console.sectionTitle')}</div>
               </div>
               <div className="form-row flex">
                 <label
                   htmlFor="consoleCommand"
                   className="col-sm-3 col-lg-2 control-label m-0 p-0 text-left"
                 >
-                  Command
+                  {t('kubernetes.applications.console.commandLabel')}
                   <TerminalTooltip />
                 </label>
                 <div className="col-sm-8 input-group p-0">
@@ -99,11 +101,11 @@ export function ConsoleView() {
                   onClick={connect ? handleDisconnect : handleConnect}
                   disabled={shellState === 'connecting'}
                 >
-                  {shellState === 'connected' && 'Disconnect'}
-                  {shellState === 'connecting' && 'Connecting'}
+                  {shellState === 'connected' && t('kubernetes.applications.console.disconnect')}
+                  {shellState === 'connecting' && t('kubernetes.applications.console.connecting')}
                   {shellState !== 'connecting' &&
                     shellState !== 'connected' &&
-                    'Connect'}
+                    t('kubernetes.applications.console.connect')}
                 </Button>
               </div>
             </WidgetBody>

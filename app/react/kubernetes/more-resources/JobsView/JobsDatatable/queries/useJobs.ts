@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { withError } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -16,7 +17,7 @@ export function useJobs(
     queryKeys.list(environmentId),
     async () => getAllJobs(environmentId),
     {
-      ...withError('Unable to get Jobs'),
+      ...withError(i18n.t('kubernetes.moreResources.jobs.errors.get')),
       refetchInterval() {
         return options?.refetchInterval ?? false;
       },
@@ -33,6 +34,6 @@ async function getAllJobs(environmentId: EnvironmentId) {
 
     return jobs;
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to get Jobs');
+    throw parseAxiosError(e, i18n.t('kubernetes.moreResources.jobs.errors.get'));
   }
 }

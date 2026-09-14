@@ -3,6 +3,7 @@ import { Star } from 'lucide-react';
 import { slugify } from 'markdown-to-jsx';
 
 import { formatDate } from '@/portainer/filters/filters';
+import i18n from '@/i18n';
 
 import { Badge } from '@@/Badge';
 import { Link } from '@@/Link';
@@ -19,7 +20,7 @@ export function createStorageClassesColumns(
 ) {
   return [
     helper.accessor('name', {
-      header: 'Name',
+      header: i18n.t('kubernetes.common.columns.name'),
       cell: ({ row, getValue }) => {
         const name = getValue();
         return (
@@ -31,33 +32,35 @@ export function createStorageClassesColumns(
             >
               {name}
             </Link>
-            {row.original.isDefault && <Badge type="success">Default</Badge>}
+            {row.original.isDefault && <Badge type="success">{i18n.t('kubernetes.common.default')}</Badge>}
           </div>
         );
       },
     }),
     helper.accessor('provisioner', {
-      header: 'Provisioner',
+      header: i18n.t('kubernetes.volumes.columns.provisioner'),
     }),
     helper.accessor('reclaimPolicy', {
-      header: 'Reclaim policy',
+      header: i18n.t('kubernetes.volumes.columns.reclaimPolicy'),
       cell: ({ getValue }) => getValue() ?? '-',
     }),
     helper.accessor('allowVolumeExpansion', {
-      header: 'Volume expansion',
-      cell: ({ getValue }) => (getValue() ? 'Allowed' : 'Disallowed'),
+      header: i18n.t('kubernetes.volumes.columns.volumeExpansion'),
+      cell: ({ getValue }) => (getValue() ? i18n.t('kubernetes.common.allowed') : i18n.t('kubernetes.common.disallowed')),
     }),
     helper.accessor((row) => formatDate(row.creationDate), {
-      header: 'Created',
+      header: i18n.t('kubernetes.common.columns.created'),
       id: 'created',
     }),
     helper.display({
       id: 'actions',
-      header: 'Actions',
+      header: i18n.t('kubernetes.common.columns.actions'),
       cell: ({ row: { original } }) => (
         <TooltipWithChildren
           message={
-            original.isDefault ? 'Already the default' : 'Set as default'
+            original.isDefault
+              ? i18n.t('kubernetes.volumes.storage.alreadyDefault')
+              : i18n.t('kubernetes.volumes.storage.setDefault')
           }
           position="top"
         >

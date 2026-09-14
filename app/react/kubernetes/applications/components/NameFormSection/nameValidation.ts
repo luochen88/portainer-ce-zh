@@ -1,5 +1,7 @@
 import { SchemaOf, string as yupString } from 'yup';
 
+import i18n from '@/i18n';
+
 type ValidationData = {
   existingNames: string[];
   isEdit: boolean;
@@ -10,10 +12,10 @@ export function appNameValidation(
   validationData?: ValidationData
 ): SchemaOf<string> {
   return yupString()
-    .required('This field is required.')
+    .required(i18n.t('kubernetes.common.validation.required'))
     .test(
       'is-unique',
-      'An application with the same name already exists inside the selected namespace.',
+      i18n.t('kubernetes.applications.form.name.validation.duplicate'),
       (appName) => {
         if (!validationData || !appName) {
           return true;
@@ -32,7 +34,7 @@ export function appNameValidation(
     )
     .test(
       'is-valid',
-      "This field must consist of lower case alphanumeric characters or '-', contain at most 63 characters, start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name', or 'abc-123').",
+      i18n.t('kubernetes.applications.form.name.validation.invalid'),
       (appName) => {
         if (!appName) {
           return true;

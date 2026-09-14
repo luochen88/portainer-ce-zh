@@ -1,4 +1,5 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import PortainerError from '@/portainer/error';
@@ -21,7 +22,7 @@ export function useHelmDryRun(
         payload,
         { dryRun: true },
         {
-          errorMessage: 'Unable to get Helm manifest preview',
+          errorMessage: i18n.t('kubernetes.helm.release.errors.manifestPreview'),
         }
       ),
     // don't display error toast, handle it within the component

@@ -1,6 +1,7 @@
 import { Trash2, UserCheck } from 'lucide-react';
 import { useRouter } from '@uirouter/react';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { Authorized } from '@/react/hooks/useUser';
@@ -34,6 +35,7 @@ interface TableSettings
   extends KubeTableSettings, FilteredColumnsTableSettings {}
 
 export function RolesDatatable() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const tableState = useKubeStore<TableSettings>(
     storageKey,
@@ -64,8 +66,8 @@ export function RolesDatatable() {
       columns={columns}
       settingsManager={tableState}
       isLoading={rolesQuery.isLoading || roleBindingsQuery.isLoading}
-      emptyContentLabel="No roles found"
-      title="Roles"
+      emptyContentLabel={t('kubernetes.moreResources.roles.datatable.empty')}
+      title={t('kubernetes.moreResources.roles.title')}
       titleIcon={UserCheck}
       getRowId={(row) => row.uid}
       isRowSelectable={(row) => !row.original.isSystem}
@@ -100,6 +102,7 @@ function TableActions({ selectedItems }: TableActionsProps) {
   const environmentId = useEnvironmentId();
   const deleteRolesMutation = useDeleteRolesMutation(environmentId);
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <Authorized authorizations="K8sRolesW">
@@ -110,10 +113,10 @@ function TableActions({ selectedItems }: TableActionsProps) {
         onClick={() => handleRemoveClick(selectedItems)}
         icon={Trash2}
         isLoading={deleteRolesMutation.isLoading}
-        loadingText="Removing roles..."
+        loadingText={t('kubernetes.moreResources.roles.actions.removing')}
         data-cy="k8s-roles-removeRoleButton"
       >
-        Remove
+        {t('kubernetes.common.actions.remove')}
       </LoadingButton>
 
       <CreateFromManifestButton
@@ -151,14 +154,14 @@ function TableActions({ selectedItems }: TableActionsProps) {
       {
         onSuccess: () => {
           notifySuccess(
-            'Roles successfully removed',
+            t('kubernetes.moreResources.roles.notifications.deleteSuccess'),
             roles.map((r) => `${r.namespace}/${r.name}`).join(', ')
           );
           router.stateService.reload();
         },
         onError: (error) => {
           notifyError(
-            'Unable to delete roles',
+            t('kubernetes.moreResources.roles.notifications.deleteError'),
             error as Error,
             roles.map((r) => `${r.namespace}/${r.name}`).join(', ')
           );

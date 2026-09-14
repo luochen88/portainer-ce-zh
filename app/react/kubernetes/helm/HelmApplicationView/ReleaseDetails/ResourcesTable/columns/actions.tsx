@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CellContext } from '@tanstack/react-table';
 import { FileText } from 'lucide-react';
+import i18n from '@/i18n';
 
 import { Button } from '@@/buttons';
 import { Icon } from '@@/Icon';
@@ -11,7 +12,7 @@ import { DescribeModal } from '../DescribeModal';
 import { columnHelper } from './helper';
 
 export const actions = columnHelper.accessor((row) => row.status.label, {
-  header: 'Actions',
+  header: () => i18n.t('kubernetes.common.columns.actions'),
   id: 'actions',
   cell: Cell,
   enableSorting: false,

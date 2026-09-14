@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { withError, withInvalidate } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -10,7 +11,7 @@ export function useDeleteJobsMutation(environmentId: EnvironmentId) {
   const queryClient = useQueryClient();
   return useMutation(deleteJob, {
     ...withInvalidate(queryClient, [queryKeys.list(environmentId)]),
-    ...withError('Unable to delete Jobs'),
+    ...withError(i18n.t('kubernetes.moreResources.jobs.errors.delete')),
   });
 }
 
@@ -26,6 +27,6 @@ export async function deleteJob({
   try {
     return await axios.post(`kubernetes/${environmentId}/jobs/delete`, data);
   } catch (e) {
-    throw parseAxiosError(e, `Unable to delete Jobs`);
+    throw parseAxiosError(e, i18n.t('kubernetes.moreResources.jobs.errors.delete'));
   }
 }

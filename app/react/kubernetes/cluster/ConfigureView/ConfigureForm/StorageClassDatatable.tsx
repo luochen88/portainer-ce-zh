@@ -1,4 +1,5 @@
 import { useFormikContext } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import { TextTip } from '@@/Tip/TextTip';
 import { Switch } from '@@/form-components/SwitchField/Switch';
@@ -13,15 +14,16 @@ type Props = {
 
 export function StorageClassDatatable({ storageClassValues }: Props) {
   const { setFieldValue } = useFormikContext<ConfigureFormValues>();
+  const { t } = useTranslation();
   return (
     <div className="form-group">
       <div className="col-sm-12 mt-2.5">
         <table className="table table-fixed">
           <tbody>
             <tr className="text-muted">
-              <td>Storage</td>
-              <td>Shared access policy</td>
-              <td>Volume expansion</td>
+              <td>{t('kubernetes.cluster.configure.storage.table.storage')}</td>
+              <td>{t('kubernetes.cluster.configure.storage.table.sharedAccessPolicy')}</td>
+              <td>{t('kubernetes.cluster.configure.storage.table.volumeExpansion')}</td>
             </tr>
             {storageClassValues.map((storageClassValue, index) => (
               <tr

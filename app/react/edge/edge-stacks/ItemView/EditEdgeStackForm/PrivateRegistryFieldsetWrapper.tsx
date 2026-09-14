@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+import i18n from '@/i18n';
+
 import { notifyError } from '@/portainer/services/notifications';
 import {
   PrivateRegistryFieldset,
@@ -78,11 +80,11 @@ export function PrivateRegistryFieldsetWrapper({
       } else {
         onChange(undefined);
         onFieldError(
-          'Images need to be from a single registry, please edit and reload'
+          i18n.t('edge.stacks.registry.singleRegistryRequired')
         );
       }
     } catch (err) {
-      notifyError('Failure', err as Error, 'Unable to retrieve registries');
+      notifyError(i18n.t('common.failure'), err as Error, i18n.t('edge.stacks.registry.retrieveFailure'));
     }
   }
 

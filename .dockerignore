@@ -2,4 +2,6 @@
 !dist
 !build
 !metadata.json
+!LICENSE
+!ATTRIBUTIONS.md
 !docker-extension/build

@@ -1,4 +1,6 @@
 import React, { ReactNode, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import type { TFunction } from 'i18next';
 
 import {
   Environment,
@@ -44,53 +46,43 @@ interface Props {
   onClickBrowse(environment: Environment): void;
 }
 
-const SORT_OPTIONS: SortOption<SortType>[] = [
-  {
-    key: 'Id',
-    label: 'Age',
-    descendingLabel: 'Newest',
-    ascendingLabel: 'Oldest',
-  },
-  { key: 'Group', label: 'Group', grouped: true },
-  { key: 'PlatformType', label: 'Platform', grouped: true },
-  { key: 'Health', label: 'Health', grouped: true },
-];
+
 
 const platformDetails: Record<
   string,
-  { type: PlatformType; description: string }
+  { type: PlatformType; descriptionKey: string }
 > = {
   Docker: {
     type: PlatformType.Docker,
-    description: 'Docker hosts and Swarm clusters',
+    descriptionKey: 'home.platform_docker_description',
   },
   Kubernetes: {
     type: PlatformType.Kubernetes,
-    description: 'Kubernetes clusters and nodes',
+    descriptionKey: 'home.platform_kubernetes_description',
   },
-  Azure: { type: PlatformType.Azure, description: 'Azure Container Instances' },
-  Podman: { type: PlatformType.Podman, description: 'Podman Containers' },
+  Azure: { type: PlatformType.Azure, descriptionKey: 'home.platform_azure_description' },
+  Podman: { type: PlatformType.Podman, descriptionKey: 'home.platform_podman_description' },
 };
 
 const healthDetails: Record<
   string,
-  { type: EnvironmentHealth; description: string }
+  { type: EnvironmentHealth; descriptionKey: string }
 > = {
   Up: {
     type: EnvironmentHealth.Up,
-    description: 'Environments online and up-to-date',
+    descriptionKey: 'home.health_up_description',
   },
   Down: {
     type: EnvironmentHealth.Down,
-    description: 'Environments currently offline or unreachable',
+    descriptionKey: 'home.health_down_description',
   },
   Outdated: {
     type: EnvironmentHealth.Outdated,
-    description: 'Environments with agents that can be upgraded',
+    descriptionKey: 'home.health_outdated_description',
   },
   Heartbeat: {
     type: EnvironmentHealth.Heartbeat,
-    description: 'Edge environments with active heartbeat',
+    descriptionKey: 'home.health_heartbeat_description',
   },
 };
 
@@ -102,6 +94,22 @@ const GROUP_FIELD: Partial<Record<SortType, (item: EnvironmentRow) => string>> =
   };
 
 export function EnvironmentList({ onClickBrowse }: Props) {
+  const { t } = useTranslation();
+
+  const sortOptions = useMemo<SortOption<SortType>[]>(
+    () => [
+      {
+        key: 'Id',
+        label: t('home.sort.age'),
+        descendingLabel: t('home.sort.newest'),
+        ascendingLabel: t('home.sort.oldest'),
+      },
+      { key: 'Group', label: t('home.sort.group'), grouped: true },
+      { key: 'PlatformType', label: t('home.sort.platform'), grouped: true },
+      { key: 'Health', label: t('home.sort.health'), grouped: true },
+    ],
+    [t]
+  );
   const isPureAdmin = useIsPureAdmin();
   const summaryQuery = useEnvironmentSummaryCounts();
 
@@ -167,9 +175,10 @@ export function EnvironmentList({ onClickBrowse }: Props) {
         environmentRows,
         tableState.groupKey,
         availableGroupsBySort,
-        groupDetails
+        groupDetails,
+        t
       ),
-    [environmentRows, tableState.groupKey, availableGroupsBySort, groupDetails]
+    [environmentRows, tableState.groupKey, availableGroupsBySort, groupDetails, t]
   );
 
   const headerButtons = [
@@ -196,12 +205,12 @@ export function EnvironmentList({ onClickBrowse }: Props) {
           />
         )}
         tableState={tableState}
-        sortOptions={SORT_OPTIONS}
+        sortOptions={sortOptions}
         groupOptions={availableGroupsBySort}
         totalCount={totalCount}
         groups={environmentGroups}
-        searchPlaceholder="Search environments..."
-        emptyMessage="No environments available."
+        searchPlaceholder={t('home.search_placeholder')}
+        emptyMessage={t('home.no_environments')}
         headerButtons={headerButtons}
         data-cy="home-endpointList"
         showGroupHeaders
@@ -253,13 +262,14 @@ function buildGroups(
   items: EnvironmentRow[],
   sortBy: SortType,
   groupOptions: Record<string, DropdownOption[]>,
-  groupDetails: Record<string, { name: string; description: string }>
+  groupDetails: Record<string, { name: string; description: string }>,
+  t: TFunction
 ): SortableGroup<EnvironmentRow>[] {
   if (!items?.length) return [];
   const options = groupOptions[sortBy];
   const getField = GROUP_FIELD[sortBy];
   if (!options?.length || !getField) {
-    return [{ key: 'all', label: 'All', items }];
+    return [{ key: 'all', label: t('common.all'), items }];
   }
   const itemsByKey = new Map<string, EnvironmentRow[]>();
   for (const item of items) {
@@ -282,10 +292,10 @@ function buildGroups(
 
     if (sortBy === 'PlatformType' && platformDetails[key]) {
       icon = getPlatformIconByPlatform(platformDetails[key].type, 'md');
-      description = platformDetails[key].description;
+      description = t(platformDetails[key].descriptionKey);
     } else if (sortBy === 'Health' && healthDetails[key]) {
       icon = getHealthIcon(healthDetails[key].type, 'md');
-      description = healthDetails[key].description;
+      description = t(healthDetails[key].descriptionKey);
     } else if (sortBy === 'Group') {
       icon = getGroupIcon('md');
       description = groupDetails[key]?.description;

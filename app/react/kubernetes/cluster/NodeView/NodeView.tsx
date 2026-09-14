@@ -1,6 +1,8 @@
 import { useCurrentStateAndParams } from '@uirouter/react';
 import { AlertTriangle, Code, History, HardDrive } from 'lucide-react';
 import { useMemo } from 'react';
+import type { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 
@@ -21,6 +23,7 @@ import { NodeYamlInspector } from './NodeYamlInspector';
 export function NodeView() {
   const stateAndParams = useCurrentStateAndParams();
   const environmentId = useEnvironmentId();
+  const { t } = useTranslation();
   const {
     params: { nodeName },
   } = stateAndParams;
@@ -44,7 +47,8 @@ export function NodeView() {
         nodeIdQuery.isInitialLoading,
         nodeName,
         environmentId,
-        nodeIdQuery.data
+        nodeIdQuery.data,
+        t
       ),
     [
       eventWarningCount,
@@ -52,6 +56,7 @@ export function NodeView() {
       nodeIdQuery.data,
       nodeName,
       environmentId,
+      t,
     ]
   );
   const currentTabIndex = useCurrentTabIndex(tabs);
@@ -59,9 +64,9 @@ export function NodeView() {
   return (
     <>
       <PageHeader
-        title="Node details"
+        title={t('kubernetes.cluster.nodes.details.title')}
         breadcrumbs={[
-          { label: 'Cluster', link: 'kubernetes.cluster' },
+          { label: t('kubernetes.cluster.title'), link: 'kubernetes.cluster' },
           nodeName,
         ]}
         reload
@@ -80,11 +85,12 @@ function buildTabs(
   isLoading: boolean,
   nodeName: string,
   environmentId: number,
-  nodeId?: string
+  nodeId?: string,
+  t?: TFunction
 ): Tab[] {
   return [
     {
-      name: 'Node',
+      name: t?.('kubernetes.cluster.nodes.details.tabs.node') ?? 'Node',
       icon: HardDrive,
       widget: (
         <div className="row">
@@ -105,7 +111,7 @@ function buildTabs(
     {
       name: (
         <div className="flex items-center gap-x-2">
-          Events
+          {t?.('kubernetes.cluster.nodes.details.tabs.events') ?? 'Events'}
           {eventWarningCount >= 1 && (
             <Badge type="warnSecondary">
               <Icon icon={AlertTriangle} className="!mr-1" />
@@ -126,7 +132,7 @@ function buildTabs(
       selectedTabParam: 'events',
     },
     {
-      name: 'YAML',
+      name: t?.('kubernetes.common.yaml') ?? 'YAML',
       icon: Code,
       widget: (
         <NodeYamlInspector environmentId={environmentId} nodeName={nodeName} />

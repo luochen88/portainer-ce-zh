@@ -1,6 +1,7 @@
 import { Form, FormikProps } from 'formik';
 import { Plus } from 'lucide-react';
 import { useMemo } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { useEnvironment } from '@/react/portainer/environments/queries';
 import { useGroup } from '@/react/portainer/environments/environment-groups/queries/useGroup';
@@ -33,6 +34,7 @@ export function CreateAccessInnerForm({
 }: FormikProps<CreateAccessValues> & {
   namespaceAccessesGranted: NamespaceAccess[];
 }) {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const environmentQuery = useEnvironment(environmentId);
   const groupQuery = useGroup(environmentQuery.data?.GroupId);
@@ -50,7 +52,7 @@ export function CreateAccessInnerForm({
   const isAdminQuery = useIsEdgeAdmin();
   return (
     <Form className="form-horizontal" onSubmit={handleSubmit} noValidate>
-      <FormControl label="Select user(s) and/or team(s)">
+      <FormControl label={t('kubernetes.namespaces.access.create.selectUsersLabel')}>
         {availableTeamOrUserOptions.length > 0 ||
         values.selectedUsersAndTeams.length > 0 ? (
           <NamespaceAccessUsersSelector
@@ -62,20 +64,21 @@ export function CreateAccessInnerForm({
           />
         ) : (
           <span className="small text-muted pt-2">
-            No user or team access has been set on the environment.
-            {isAdminQuery.isAdmin && (
-              <>
-                {' '}
-                Head over to the{' '}
-                <Link
-                  to="portainer.endpoints"
-                  data-cy="namespaceAccess-environmentsLink"
-                >
-                  Environments view
-                </Link>{' '}
-                to manage them.
-              </>
-            )}
+            <Trans
+              i18nKey={
+                isAdminQuery.isAdmin
+                  ? 'kubernetes.namespaces.access.create.noAccessAdmin'
+                  : 'kubernetes.namespaces.access.create.noAccessUser'
+              }
+              components={{
+                environmentsLink: (
+                  <Link
+                    to="portainer.endpoints"
+                    data-cy="namespaceAccess-environmentsLink"
+                  />
+                ),
+              }}
+            />
           </span>
         )}
       </FormControl>
@@ -85,11 +88,11 @@ export function CreateAccessInnerForm({
             disabled={!isValid || !dirty}
             data-cy="namespaceAccess-createAccessButton"
             isLoading={isSubmitting}
-            loadingText="Creating access..."
+            loadingText={t('kubernetes.namespaces.access.create.loading')}
             icon={Plus}
             className="!ml-0"
           >
-            Create access
+            {t('kubernetes.namespaces.access.create.submit')}
           </LoadingButton>
         </div>
       </div>

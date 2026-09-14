@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import { withError } from '@/react-tools/react-query';
@@ -18,7 +19,7 @@ export function useHelmHistory(
     () => getHelmHistory(environmentId, name, namespace),
     {
       enabled: !!environmentId && !!name && !!namespace,
-      ...withError('Unable to retrieve helm application history'),
+      ...withError(i18n.t('kubernetes.helm.release.errors.history')),
       retry: 3,
       // occasionally the application shows before the release is created, take some more time to refetch
       retryDelay: 2000,
@@ -41,6 +42,6 @@ async function getHelmHistory(
 
     return response.data;
   } catch (error) {
-    throw parseAxiosError(error, 'Unable to retrieve helm application history');
+    throw parseAxiosError(error, i18n.t('kubernetes.helm.release.errors.history'));
   }
 }

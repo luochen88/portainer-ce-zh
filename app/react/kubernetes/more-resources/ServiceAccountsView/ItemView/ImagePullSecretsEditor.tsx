@@ -7,6 +7,7 @@ import {
   preserveProtectedValues,
 } from '@@/form-components/DisabledMultiValue';
 import { MultiSelect } from '@@/form-components/PortainerSelect';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   selectedNames: string[];
@@ -27,6 +28,7 @@ export function ImagePullSecretsEditor({
   onSave,
   onCancel,
 }: Props) {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-wrap items-center gap-2">
       <MultiSelect<string>
@@ -37,7 +39,7 @@ export function ImagePullSecretsEditor({
           // editor keeps them selected even if the user clears the field.
           onChange(preserveProtectedValues(names, protectedSecretNames))
         }
-        placeholder="Select secrets..."
+        placeholder={t('kubernetes.moreResources.serviceAccounts.imagePullSecrets.selectPlaceholder')}
         disabled={isSaving}
         data-cy="k8sSADetail-imagePullSecrets-select"
         components={{
@@ -49,12 +51,12 @@ export function ImagePullSecretsEditor({
         <LoadingButton
           size="small"
           isLoading={isSaving}
-          loadingText="Saving..."
+          loadingText={t('kubernetes.common.actions.saving')}
           onClick={onSave}
           data-cy="k8sSADetail-imagePullSecrets-save"
           className="h-[34px]"
         >
-          Save
+          {t('kubernetes.common.actions.save')}
         </LoadingButton>
         <Button
           size="small"
@@ -64,7 +66,7 @@ export function ImagePullSecretsEditor({
           data-cy="k8sSADetail-imagePullSecrets-cancel"
           className="h-[34px]"
         >
-          Cancel
+          {t('kubernetes.common.actions.cancel')}
         </Button>
       </div>
     </div>

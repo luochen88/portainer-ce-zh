@@ -1,5 +1,6 @@
 import { useCurrentStateAndParams } from '@uirouter/react';
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { AccessControlPanel } from '@/react/portainer/access-control/AccessControlPanel/AccessControlPanel';
@@ -23,6 +24,7 @@ import { FormControl } from '@@/form-components/FormControl';
 import { PortsMappingField } from '../CreateView/PortsMappingField';
 
 export function ItemView() {
+  const { t } = useTranslation();
   const {
     params: { id },
   } = useCurrentStateAndParams();
@@ -63,9 +65,9 @@ export function ItemView() {
   return (
     <>
       <PageHeader
-        title="Container Instance"
+        title={t('azure.containerInstances.item.title')}
         breadcrumbs={[
-          { link: 'azure.containerinstances', label: 'Container instances' },
+          { link: 'azure.containerinstances', label: t('azure.containerInstances.title') },
           { label: container.name },
         ]}
         reload
@@ -75,8 +77,8 @@ export function ItemView() {
         <div className="col-sm-12">
           <Widget>
             <WidgetBody className="form-horizontal">
-              <FormSectionTitle>Azure settings</FormSectionTitle>
-              <FormControl label="Subscription" inputId="subscription-input">
+              <FormSectionTitle>{t('azure.containerInstances.sections.azureSettings')}</FormSectionTitle>
+              <FormControl label={t('azure.containerInstances.fields.subscription')} inputId="subscription-input">
                 <Input
                   name="subscription"
                   id="subscription-input"
@@ -86,7 +88,7 @@ export function ItemView() {
                 />
               </FormControl>
 
-              <FormControl label="Resource group" inputId="resourceGroup-input">
+              <FormControl label={t('azure.containerInstances.fields.resourceGroup')} inputId="resourceGroup-input">
                 <Input
                   name="resourceGroup"
                   id="resourceGroup-input"
@@ -96,7 +98,7 @@ export function ItemView() {
                 />
               </FormControl>
 
-              <FormControl label="Location" inputId="location-input">
+              <FormControl label={t('azure.containerInstances.fields.location')} inputId="location-input">
                 <Input
                   name="location"
                   id="location-input"
@@ -106,9 +108,9 @@ export function ItemView() {
                 />
               </FormControl>
 
-              <FormSectionTitle>Container configuration</FormSectionTitle>
+              <FormSectionTitle>{t('azure.containerInstances.sections.containerConfiguration')}</FormSectionTitle>
 
-              <FormControl label="Name" inputId="name-input">
+              <FormControl label={t('azure.containerInstances.fields.name')} inputId="name-input">
                 <Input
                   name="name"
                   id="name-input"
@@ -118,7 +120,7 @@ export function ItemView() {
                 />
               </FormControl>
 
-              <FormControl label="Image" inputId="image-input">
+              <FormControl label={t('azure.containerInstances.fields.image')} inputId="image-input">
                 <Input
                   name="image"
                   id="image-input"
@@ -128,7 +130,7 @@ export function ItemView() {
                 />
               </FormControl>
 
-              <FormControl label="OS" inputId="os-input">
+              <FormControl label={t('azure.containerInstances.fields.os')} inputId="os-input">
                 <Input
                   name="os"
                   id="os-input"
@@ -140,7 +142,7 @@ export function ItemView() {
 
               <PortsMappingField value={container.ports} readOnly />
 
-              <FormControl label="Public IP" inputId="public-ip">
+              <FormControl label={t('azure.containerInstances.fields.publicIp')} inputId="public-ip">
                 <Input
                   name="public-ip"
                   id="public-ip"
@@ -150,9 +152,9 @@ export function ItemView() {
                 />
               </FormControl>
 
-              <FormSectionTitle>Container Resources</FormSectionTitle>
+              <FormSectionTitle>{t('azure.containerInstances.sections.containerResources')}</FormSectionTitle>
 
-              <FormControl label="CPU" inputId="cpu-input">
+              <FormControl label={t('azure.containerInstances.fields.cpu')} inputId="cpu-input">
                 <Input
                   name="cpu"
                   id="cpu-input"
@@ -164,7 +166,7 @@ export function ItemView() {
                 />
               </FormControl>
 
-              <FormControl label="Memory" inputId="cpu-input">
+              <FormControl label={t('azure.containerInstances.fields.memory')} inputId="cpu-input">
                 <Input
                   name="memory"
                   id="memory-input"
@@ -178,9 +180,9 @@ export function ItemView() {
               {container.environmentVariables &&
                 container.environmentVariables.length > 0 && (
                   <>
-                    <FormSectionTitle>Environment Variables</FormSectionTitle>
+                    <FormSectionTitle>{t('azure.containerInstances.sections.environmentVariables')}</FormSectionTitle>
                     <FormControl
-                      label="Environment variables"
+                      label={t('azure.containerInstances.fields.environmentVariables')}
                       inputId="env-vars-input"
                     >
                       <div data-cy="aci-container-env-vars-input">

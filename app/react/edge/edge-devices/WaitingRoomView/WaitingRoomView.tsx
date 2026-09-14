@@ -1,3 +1,5 @@
+import { Trans, useTranslation } from 'react-i18next';
+
 import { withLimitToBE } from '@/react/hooks/useLimitToBE';
 
 import { InformationPanel } from '@@/InformationPanel';
@@ -12,13 +14,14 @@ import { useLicenseOverused, useUntrustedCount } from './queries';
 export default withLimitToBE(WaitingRoomView);
 
 function WaitingRoomView() {
+  const { t } = useTranslation();
   const untrustedCount = useUntrustedCount();
   const licenseOverused = useLicenseOverused(untrustedCount);
   return (
     <>
       <PageHeader
-        title="Waiting Room"
-        breadcrumbs={[{ label: 'Waiting Room' }]}
+        title={t('edge.waitingRoom.title')}
+        breadcrumbs={[{ label: t('edge.waitingRoom.title') }]}
         reload
       />
 
@@ -26,15 +29,7 @@ function WaitingRoomView() {
         <div className="col-sm-12">
           <InformationPanel>
             <TextTip color="blue">
-              Only environments generated from the{' '}
-              <Link
-                to="portainer.endpoints.edgeAutoCreateScript"
-                data-cy="waitingRoom-edgeAutoCreateScriptLink"
-              >
-                auto onboarding
-              </Link>{' '}
-              script will appear here, manually added environments and edge
-              devices will bypass the waiting room.
+              <Trans i18nKey="edge.waitingRoom.autoOnboardingNotice" components={{ 1: <Link to="portainer.endpoints.edgeAutoCreateScript" data-cy="waitingRoom-edgeAutoCreateScriptLink" /> }} />
             </TextTip>
           </InformationPanel>
         </div>
@@ -44,15 +39,7 @@ function WaitingRoomView() {
         <div className="row">
           <div className="col-sm-12">
             <Alert color="warn">
-              Associating all nodes in waiting room will exceed the node limit
-              of your current license. Go to{' '}
-              <Link
-                to="portainer.licenses"
-                data-cy="waitingRoom-portainerLicensesLink"
-              >
-                Licenses
-              </Link>{' '}
-              page to view the current usage.
+              <Trans i18nKey="edge.waitingRoom.licenseOverusedNotice" components={{ 1: <Link to="portainer.licenses" data-cy="waitingRoom-portainerLicensesLink" /> }} />
             </Alert>
           </div>
         </div>

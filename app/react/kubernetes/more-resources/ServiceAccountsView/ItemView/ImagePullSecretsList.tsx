@@ -1,5 +1,6 @@
 import { PencilIcon } from 'lucide-react';
 import { Secret } from 'kubernetes-types/core/v1';
+import { useTranslation } from 'react-i18next';
 
 import { Registry } from '@/react/portainer/registries/types/registry';
 
@@ -34,6 +35,7 @@ export function ImagePullSecretsList({
   isSystem,
   onEdit,
 }: Props) {
+  const { t } = useTranslation();
   const visibleSecrets = imagePullSecrets.slice(0, MAX_VISIBLE_SECRETS);
   const hiddenSecrets = imagePullSecrets.slice(MAX_VISIBLE_SECRETS);
 
@@ -76,7 +78,7 @@ export function ImagePullSecretsList({
           data-cy="k8sSADetail-imagePullSecrets-edit"
           className="h-[34px]"
         >
-          Edit
+          {t('kubernetes.common.actions.edit')}
         </Button>
       )}
     </div>

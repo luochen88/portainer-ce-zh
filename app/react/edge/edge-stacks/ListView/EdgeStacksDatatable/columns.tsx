@@ -1,4 +1,6 @@
 import { createColumnHelper } from '@tanstack/react-table';
+import i18n from '@/i18n';
+
 import _ from 'lodash';
 
 import { isoDateFromTimestamp } from '@/portainer/filters/filters';
@@ -32,7 +34,7 @@ export const columns = _.compact([
     (item) =>
       item.StatusSummary?.AggregatedStatus?.[StatusType.Acknowledged] || 0,
     {
-      header: 'Acknowledged',
+      header: i18n.t('edge.stacks.columns.acknowledged'),
       enableSorting: false,
       enableHiding: false,
       cell: ({ getValue, row }) => (
@@ -52,7 +54,7 @@ export const columns = _.compact([
       (item) =>
         item.StatusSummary?.AggregatedStatus?.[StatusType.ImagesPulled] || 0,
       {
-        header: 'Images pre-pulled',
+        header: i18n.t('edge.stacks.columns.imagesPrePulled'),
         cell: ({ getValue, row: { original: item } }) => {
           if (!item.PrePullImage) {
             return <div className="text-center">-</div>;
@@ -78,7 +80,7 @@ export const columns = _.compact([
       item.StatusSummary?.AggregatedStatus?.[StatusType.DeploymentReceived] ||
       0,
     {
-      header: 'Deployments received',
+      header: i18n.t('edge.stacks.columns.deploymentsReceived'),
       cell: ({ getValue, row }) => (
         <DeploymentCounter
           count={getValue()}
@@ -96,7 +98,7 @@ export const columns = _.compact([
   columnHelper.accessor(
     (item) => item.StatusSummary?.AggregatedStatus?.[StatusType.Error] || 0,
     {
-      header: 'Deployments failed',
+      header: i18n.t('edge.stacks.columns.deploymentsFailed'),
       cell: ({ getValue, row }) => {
         const count = getValue();
 
@@ -147,7 +149,7 @@ export const columns = _.compact([
     },
   }),
   columnHelper.accessor('CreationDate', {
-    header: 'Creation Date',
+    header: i18n.t('common.creationDate'),
     cell: ({ getValue }) => isoDateFromTimestamp(getValue()),
     enableHiding: false,
   }),
@@ -156,7 +158,7 @@ export const columns = _.compact([
       (item) =>
         item.GitConfig ? item.GitConfig.ConfigHash : item.StackFileVersion,
       {
-        header: 'Target Version',
+        header: i18n.t('edge.stacks.columns.targetVersion'),
         enableSorting: false,
         cell: ({ row: { original: item } }) => {
           if (item.GitConfig) {

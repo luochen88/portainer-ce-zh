@@ -1,4 +1,5 @@
 import { useCurrentEnvironment } from '@/react/hooks/useCurrentEnvironment';
+import { useTranslation } from 'react-i18next';
 import { useUnauthorizedRedirect } from '@/react/hooks/useUnauthorizedRedirect';
 
 import { PageHeader } from '@@/PageHeader';
@@ -21,19 +22,20 @@ export function ConfigureView() {
       to: 'kubernetes.dashboard',
     }
   );
+  const { t } = useTranslation();
 
   return (
     <>
       <PageHeader
-        title="Kubernetes features configuration"
+        title={t('kubernetes.cluster.configure.title')}
         breadcrumbs={[
-          { label: 'Environments', link: 'portainer.endpoints' },
+          { label: t('kubernetes.common.breadcrumbs.environments'), link: 'portainer.endpoints' },
           {
             label: environment?.Name || '',
             link: 'portainer.endpoints.endpoint',
             linkParams: { id: environment?.Id },
           },
-          'Kubernetes configuration',
+          t('kubernetes.cluster.configure.breadcrumb'),
         ]}
         reload
       />

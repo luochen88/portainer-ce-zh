@@ -2,6 +2,7 @@ import { Formik, Form, FormikProps, FormikHelpers } from 'formik';
 import { useCallback, useEffect, useMemo } from 'react';
 import _ from 'lodash';
 import { useTransitionHook } from '@uirouter/react';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { useCurrentEnvironment } from '@/react/hooks/useCurrentEnvironment';
 import { IngressClassDatatable } from '@/react/kubernetes/cluster/ingressClass/IngressClassDatatable';
@@ -97,6 +98,7 @@ function InnerForm({
   isIngressClassesLoading: boolean;
   environmentId: EnvironmentId;
 }) {
+  const { t } = useTranslation();
   const { data: isRBACEnabled, ...isRBACEnabledQuery } =
     useIsRBACEnabled(environmentId);
 
@@ -138,21 +140,18 @@ function InnerForm({
   return (
     <Form className="form-horizontal">
       <div className="flex flex-col">
-        <FormSection title="Networking - Services">
+        <FormSection title={t('kubernetes.cluster.configure.networking.services.title')}>
           <div className="form-group">
             <div className="col-sm-12">
               <TextTip color="blue" inline={false}>
-                Enabling the load balancer feature will allow users to expose
-                applications they deploy over an external IP address assigned by
-                the cloud provider.
+                {t('kubernetes.cluster.configure.networking.services.loadBalancerInfo')}
               </TextTip>
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
               <TextTip color="orange" inline={false}>
-                If you want to use this feature, ensure your cloud provider
-                allows you to create load balancers. This may incur costs.
+                {t('kubernetes.cluster.configure.networking.services.loadBalancerCostWarning')}
               </TextTip>
             </div>
           </div>
@@ -161,7 +160,7 @@ function InnerForm({
               <SwitchField
                 name="useLoadBalancer"
                 data-cy="kubeSetup-loadBalancerToggle"
-                label="Allow users to use external load balancers"
+                label={t('kubernetes.cluster.configure.networking.services.allowLoadBalancers')}
                 labelClass="col-sm-5 col-lg-4"
                 checked={values.useLoadBalancer}
                 onChange={(checked) =>
@@ -171,23 +170,23 @@ function InnerForm({
             </div>
           </div>
         </FormSection>
-        <FormSection title="Networking - Ingresses">
+        <FormSection title={t('kubernetes.cluster.configure.networking.ingresses.title')}>
           <IngressClassDatatable
             onChange={onChangeControllers}
-            description="Enabling ingress controllers in your cluster allows them to be available in the Portainer UI for users to publish applications over HTTP/HTTPS. A controller must have a class name for it to be included here."
+            description={t('kubernetes.cluster.configure.networking.ingresses.description')}
             values={values.ingressClasses}
             initialValues={initialValues.ingressClasses}
             isLoading={isIngressClassesLoading}
             view="cluster"
-            noIngressControllerLabel="No supported ingress controllers found."
+            noIngressControllerLabel={t('kubernetes.cluster.configure.networking.ingresses.noSupportedControllers')}
           />
           <div className="form-group">
             <div className="col-sm-12">
               <SwitchField
                 name="allowNoneIngressClass"
                 data-cy="kubeSetup-allowNoneIngressClass"
-                label='Allow ingress class to be set to "none"'
-                tooltip='This allows users setting up ingresses to select "none" as the ingress class.'
+                label={t('kubernetes.cluster.configure.networking.ingresses.allowNoneClass')}
+                tooltip={t('kubernetes.cluster.configure.networking.ingresses.allowNoneClassTooltip')}
                 labelClass="col-sm-5 col-lg-4"
                 checked={values.allowNoneIngressClass}
                 onChange={(checked) => {
@@ -211,8 +210,8 @@ function InnerForm({
               <SwitchField
                 name="ingressAvailabilityPerNamespace"
                 data-cy="kubeSetup-ingressAvailabilityPerNamespace"
-                label="Configure ingress controller availability per namespace"
-                tooltip="This allows an administrator to configure, in each namespace, which ingress controllers will be available for users to select when setting up ingresses for applications."
+                label={t('kubernetes.cluster.configure.networking.ingresses.availabilityPerNamespace')}
+                tooltip={t('kubernetes.cluster.configure.networking.ingresses.availabilityPerNamespaceTooltip')}
                 labelClass="col-sm-5 col-lg-4"
                 checked={values.ingressAvailabilityPerNamespace}
                 onChange={(checked) =>
@@ -226,9 +225,9 @@ function InnerForm({
               <SwitchField
                 name="restrictStandardUserIngressW"
                 data-cy="kubeSetup-restrictStandardUserIngressWToggle"
-                label="Only allow admins to deploy ingresses"
+                label={t('kubernetes.cluster.configure.networking.ingresses.onlyAdminsDeploy')}
                 featureId={FeatureId.K8S_ADM_ONLY_USR_INGRESS_DEPLY}
-                tooltip="Enforces only allowing admins to deploy ingresses (and disallows standard users from doing so)."
+                tooltip={t('kubernetes.cluster.configure.networking.ingresses.onlyAdminsDeployTooltip')}
                 labelClass="col-sm-5 col-lg-4"
                 checked={values.restrictStandardUserIngressW}
                 onChange={(checked) =>
@@ -240,21 +239,19 @@ function InnerForm({
           <div className="form-group">
             <div className="col-sm-12">
               <TextTip color="blue" inline={false}>
-                You may set up ingress defaults (hostnames and annotations) via
-                Create/Edit ingress. Users may then select them via the hostname
-                dropdown in Create/Edit application.
+                {t('kubernetes.cluster.configure.networking.ingresses.defaultsInfo')}
               </TextTip>
             </div>
           </div>
         </FormSection>
-        <FormSection title="Change Window Settings">
+        <FormSection title={t('kubernetes.cluster.configure.changeWindow.title')}>
           <div className="form-group">
             <div className="col-sm-12">
               <SwitchField
                 name="changeWindow.Enabled"
                 data-cy="kubeSetup-changeWindowEnabledToggle"
-                label="Enable Change Window"
-                tooltip="GitOps updates to stacks or applications outside the defined change window will not occur."
+                label={t('kubernetes.cluster.configure.changeWindow.enable')}
+                tooltip={t('kubernetes.cluster.configure.changeWindow.tooltip')}
                 labelClass="col-sm-5 col-lg-4"
                 checked={false}
                 featureId={FeatureId.HIDE_AUTO_UPDATE_WINDOW}
@@ -263,7 +260,7 @@ function InnerForm({
             </div>
           </div>
         </FormSection>
-        <FormSection title="Security">
+        <FormSection title={t('kubernetes.cluster.configure.security.title')}>
           <div className="form-group">
             <div className="col-sm-12">
               {!isRBACEnabled && isRBACEnabledQuery.isSuccess && <RBACAlert />}
@@ -272,11 +269,7 @@ function InnerForm({
           <div className="form-group">
             <div className="col-sm-12">
               <TextTip color="blue" inline={false}>
-                <p>
-                  By default, all the users have access to the default
-                  namespace. Enable this option to set accesses on the default
-                  namespace.
-                </p>
+                <p>{t('kubernetes.cluster.configure.security.defaultNamespaceInfo')}</p>
               </TextTip>
             </div>
           </div>
@@ -285,7 +278,7 @@ function InnerForm({
               <SwitchField
                 name="restrictDefaultNamespace"
                 data-cy="kubeSetup-restrictDefaultNsToggle"
-                label="Restrict access to the default namespace"
+                label={t('kubernetes.cluster.configure.security.restrictDefaultNamespace')}
                 labelClass="col-sm-5 col-lg-4"
                 checked={values.restrictDefaultNamespace}
                 onChange={(checked) =>
@@ -299,8 +292,8 @@ function InnerForm({
               <SwitchField
                 name="restrictSecrets"
                 data-cy="kubeSetup-restrictSecretsToggle"
-                label="Restrict secret contents access for non-admins (UI only)"
-                tooltip="This hides the ability to view or edit in the UI the contents of secrets that a non-admin user did not create themselves but does not prevent it via the command line."
+                label={t('kubernetes.cluster.configure.security.restrictSecrets')}
+                tooltip={t('kubernetes.cluster.configure.security.restrictSecretsTooltip')}
                 labelClass="col-sm-5 col-lg-4"
                 checked={false}
                 featureId={FeatureId.K8S_ADM_ONLY_SECRETS}
@@ -309,41 +302,31 @@ function InnerForm({
             </div>
           </div>
         </FormSection>
-        <FormSection title="Resources and Metrics">
+        <FormSection title={t('kubernetes.cluster.configure.resources.title')}>
           <InsightsBox
             insightCloseId="resourceOverCommit"
             className="mb-4"
-            header="Allow resource over-commit - UI-only change in 2.20"
-            content="Resource over-commit has always been ENABLED in Portainer CE. However, the toggle was incorrectly shown as OFF. This has now been corrected but please note that no functionality has been removed."
+            header={t('kubernetes.cluster.configure.resources.overCommitInsightHeader')}
+            content={t('kubernetes.cluster.configure.resources.overCommitInsightContent')}
           />
           <div className="form-group">
             <div className="col-sm-12">
               <TextTip color="blue" inline={false}>
-                <p>
-                  By DISABLING resource over-commit (highly recommended), you
-                  can ONLY assign namespaces CPU and memory resources that are
-                  less (in aggregate) than the cluster total minus any system
-                  resource reservation.
-                </p>
+                <p>{t('kubernetes.cluster.configure.resources.disableOverCommitInfo')}</p>
               </TextTip>
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
               <TextTip color="orange" inline={false}>
-                <p>
-                  By ENABLING resource over-commit, you can assign namespaces
-                  more resources than are physically available in the cluster.
-                  This may lead to unexpected deployment failures if there are
-                  insufficient resources to service demand.
-                </p>
+                <p>{t('kubernetes.cluster.configure.resources.enableOverCommitWarning')}</p>
               </TextTip>
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
               <SwitchField
-                label="Allow resource over-commit"
+                label={t('kubernetes.cluster.configure.resources.allowOverCommit')}
                 labelClass="col-sm-5 col-lg-4"
                 name="resourceOverCommitPercentage"
                 checked
@@ -365,14 +348,12 @@ function InnerForm({
             value={values.useServerMetrics}
           />
         </FormSection>
-        <FormSection title="Available storage options">
+        <FormSection title={t('kubernetes.cluster.configure.storage.title')}>
           {initialValues.storageClasses.length === 0 && (
             <div className="form-group">
               <div className="col-sm-12">
                 <TextTip color="orange" inline={false}>
-                  Unable to detect any storage class available to persist data.
-                  Users won&apos;t be able to persist application data inside
-                  this cluster.
+                  {t('kubernetes.cluster.configure.storage.noStorageClassWarning')}
                 </TextTip>
               </div>
             </div>
@@ -382,23 +363,20 @@ function InnerForm({
               <div className="form-group">
                 <div className="col-sm-12">
                   <TextTip color="blue" inline={false}>
+                    <p>{t('kubernetes.cluster.configure.storage.description')}</p>
                     <p>
-                      Select which storage options will be available for use
-                      when deploying applications. Have a look at your storage
-                      driver documentation to figure out which access policy to
-                      configure and if the volume expansion capability is
-                      supported.
-                    </p>
-                    <p>
-                      You can find more information about access modes{' '}
-                      <a
-                        href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        in the official Kubernetes documentation
-                      </a>
-                      .
+                      <Trans
+                        i18nKey="kubernetes.cluster.configure.storage.accessModesDocumentation"
+                        components={{
+                          docsLink: (
+                            <a
+                              href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes"
+                              target="_blank"
+                              rel="noreferrer"
+                            />
+                          ),
+                        }}
+                      />
                     </p>
                   </TextTip>
                 </div>
@@ -410,8 +388,8 @@ function InnerForm({
           )}
         </FormSection>
         <FormActions
-          submitLabel="Save configuration"
-          loadingText="Saving configuration"
+          submitLabel={t('kubernetes.cluster.configure.formActions.submit')}
+          loadingText={t('kubernetes.cluster.configure.formActions.loading')}
           isLoading={isSubmitting}
           isValid={
             isValid &&

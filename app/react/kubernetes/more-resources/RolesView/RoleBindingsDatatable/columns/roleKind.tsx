@@ -1,9 +1,10 @@
 import { Link } from '@@/Link';
+import i18n from '@/i18n';
 
 import { columnHelper } from './helper';
 
 export const roleKind = columnHelper.accessor('roleRef.kind', {
-  header: 'Role Kind',
+  header: () => i18n.t('kubernetes.moreResources.common.columns.roleKind'),
   id: 'roleKind',
   cell: ({ row }) => {
     const to =

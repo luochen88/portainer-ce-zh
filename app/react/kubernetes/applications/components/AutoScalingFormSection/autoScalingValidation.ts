@@ -1,5 +1,7 @@
 import { SchemaOf, boolean, number, object } from 'yup';
 
+import i18n from '@/i18n';
+
 import { nanNumberSchema } from '@/react-tools/yup-schemas';
 
 import { AutoScalingFormValues } from './types';
@@ -16,12 +18,12 @@ export function autoScalingValidation(
     isUsed: boolean().required(),
     minReplicas: number().when('isUsed', (isUsed: boolean) =>
       isUsed
-        ? nanNumberSchema('Minimum instances is required.')
-            .required('Minimum instances is required.')
-            .min(1, 'Minimum instances must be greater than 0.')
+        ? nanNumberSchema(i18n.t('kubernetes.applications.form.autoscaling.validation.minInstancesRequired'))
+            .required(i18n.t('kubernetes.applications.form.autoscaling.validation.minInstancesRequired'))
+            .min(1, i18n.t('kubernetes.applications.form.autoscaling.validation.minInstancesGreaterThanZero'))
             .test(
               'maxReplicas',
-              'Minimum instances must be less than maximum instances.',
+              i18n.t('kubernetes.applications.form.autoscaling.validation.minLessThanMax'),
               // eslint-disable-next-line func-names
               function (this, value?: number): boolean {
                 if (!value) {
@@ -35,11 +37,11 @@ export function autoScalingValidation(
     ),
     maxReplicas: number().when('isUsed', (isUsed: boolean) =>
       isUsed
-        ? nanNumberSchema('Maximum instances is required.')
-            .required('Maximum instances is required.')
+        ? nanNumberSchema(i18n.t('kubernetes.applications.form.autoscaling.validation.maxInstancesRequired'))
+            .required(i18n.t('kubernetes.applications.form.autoscaling.validation.maxInstancesRequired'))
             .test(
               'minReplicas',
-              'Maximum instances must be greater than minimum instances.',
+              i18n.t('kubernetes.applications.form.autoscaling.validation.maxGreaterThanMin'),
               // eslint-disable-next-line func-names
               function (this, value?: number): boolean {
                 if (!value) {
@@ -51,7 +53,7 @@ export function autoScalingValidation(
             )
             .test(
               'overflow',
-              'This application would exceed available resources. Please reduce the maximum instances or the resource reservations.',
+              i18n.t('kubernetes.applications.form.autoscaling.validation.resourceOverflow'),
               () => !autoScalerOverflow
             )
         : number()
@@ -60,10 +62,10 @@ export function autoScalingValidation(
       'isUsed',
       (isUsed: boolean) =>
         isUsed
-          ? nanNumberSchema('Target CPU utilization percentage is required.')
-              .min(0, 'Target CPU usage must be greater than 0.')
-              .max(100, 'Target CPU usage must be smaller than 100.')
-              .required('Target CPU utilization percentage is required.')
+          ? nanNumberSchema(i18n.t('kubernetes.applications.form.autoscaling.validation.targetCpuRequired'))
+              .min(0, i18n.t('kubernetes.applications.form.autoscaling.validation.targetCpuGreaterThanZero'))
+              .max(100, i18n.t('kubernetes.applications.form.autoscaling.validation.targetCpuSmallerThan100'))
+              .required(i18n.t('kubernetes.applications.form.autoscaling.validation.targetCpuRequired'))
           : number()
     ),
   });

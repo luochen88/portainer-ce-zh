@@ -1,4 +1,5 @@
 import { isEqual } from 'lodash';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { FormSection } from '@@/form-components/FormSection';
 import { TextTip } from '@@/Tip/TextTip';

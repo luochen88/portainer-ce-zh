@@ -1,4 +1,6 @@
 import { TextTip } from '@@/Tip/TextTip';
+import { useTranslation } from 'react-i18next';
+
 import { SwitchField } from '@@/form-components/SwitchField';
 
 export function WebhookSwitch({
@@ -8,23 +10,22 @@ export function WebhookSwitch({
   value: boolean;
   onChange: (value: boolean) => void;
 }) {
+  const { t } = useTranslation();
   return (
     <div>
-      <div className="form-section-title"> Webhooks </div>
+      <div className="form-section-title">{t('edge.stacks.webhook.title')}</div>
       <SwitchField
-        label="Create an Edge stack webhook"
+        label={t('edge.stacks.webhook.create')}
         checked={value}
         onChange={onChange}
-        tooltip="Create a webhook (or callback URI) to automate the update of this stack. Sending a POST request to this callback URI (without requiring any authentication) will pull the most up-to-date version of the associated image and re-deploy this stack."
+        tooltip={t('edge.stacks.webhook.tooltip')}
         labelClass="col-sm-3 col-lg-2"
         data-cy="webhook-switch"
       />
 
       {value && (
         <TextTip>
-          Sending environment variables to the webhook is updating the stack
-          with the new values. New variables names will be added to the stack
-          and existing variables will be updated.
+          {t('edge.stacks.webhook.envVarsNotice')}
         </TextTip>
       )}
     </div>

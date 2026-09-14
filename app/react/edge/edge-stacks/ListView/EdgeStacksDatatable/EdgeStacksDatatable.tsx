@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Layers } from 'lucide-react';
 
 import { Datatable } from '@@/datatables';
@@ -17,6 +19,7 @@ const tableKey = 'edge-stacks';
 const settingsStore = createStore(tableKey);
 
 export function EdgeStacksDatatable() {
+  const { t } = useTranslation();
   const tableState = useTableState(settingsStore, tableKey);
   const edgeStacksQuery = useEdgeStacks<Array<DecoratedEdgeStack>>({
     params: { summarizeStatuses: true },
@@ -25,7 +28,7 @@ export function EdgeStacksDatatable() {
 
   return (
     <Datatable
-      title="Edge Stacks"
+      title={t('edge.stacks.title')}
       titleIcon={Layers}
       columns={columns}
       dataset={edgeStacksQuery.data || []}

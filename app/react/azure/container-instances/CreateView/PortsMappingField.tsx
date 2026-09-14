@@ -1,5 +1,6 @@
 import { FormikErrors } from 'formik';
 import { ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { ButtonSelector } from '@@/form-components/ButtonSelector/ButtonSelector';
 import { FormError } from '@@/form-components/FormError';
@@ -33,13 +34,15 @@ export function PortsMappingField({
   disabled,
   readOnly,
 }: Props) {
+  const { t } = useTranslation();
+
   return (
     <>
       <InputList<PortMapping>
-        label="Port mapping"
+        label={t('azure.containerInstances.ports.portMapping')}
         value={value}
         onChange={onChange}
-        addLabel="map additional port"
+        addLabel={t('azure.containerInstances.ports.mapAdditionalPort')}
         itemBuilder={() => ({
           host: 0,
           container: 0,
@@ -68,11 +71,12 @@ function Item({
   readOnly,
   index,
 }: ItemProps<PortMapping>) {
+  const { t } = useTranslation();
   return (
     <div className={styles.item}>
       <div className="flex items-center gap-2">
         <InputGroup size="small">
-          <InputGroup.Addon>host</InputGroup.Addon>
+          <InputGroup.Addon>{t('azure.containerInstances.ports.host')}</InputGroup.Addon>
           <InputGroup.Input
             placeholder="e.g. 80"
             value={item.host}
@@ -91,7 +95,7 @@ function Item({
         </span>
 
         <InputGroup size="small">
-          <InputGroup.Addon>container</InputGroup.Addon>
+          <InputGroup.Addon>{t('azure.containerInstances.ports.container')}</InputGroup.Addon>
           <InputGroup.Input
             placeholder="e.g. 80"
             value={item.container}

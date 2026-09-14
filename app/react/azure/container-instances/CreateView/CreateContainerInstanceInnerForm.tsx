@@ -1,4 +1,5 @@
 import { Field, Form, FormikProps } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
 
 import {
@@ -39,11 +40,13 @@ export function CreateContainerInstanceInnerForm({
   resourceGroups,
   providers,
 }: Props) {
+  const { t } = useTranslation();
+
   return (
     <Form className="form-horizontal" onSubmit={handleSubmit} noValidate>
-      <FormSectionTitle>Azure settings</FormSectionTitle>
+      <FormSectionTitle>{t('azure.containerInstances.sections.azureSettings')}</FormSectionTitle>
       <FormControl
-        label="Subscription"
+        label={t('azure.containerInstances.fields.subscription')}
         inputId="subscription-input"
         errors={errors.subscription}
       >
@@ -56,7 +59,7 @@ export function CreateContainerInstanceInnerForm({
       </FormControl>
 
       <FormControl
-        label="Resource group"
+        label={t('azure.containerInstances.fields.resourceGroup')}
         inputId="resourceGroup-input"
         errors={errors.resourceGroup}
       >
@@ -72,7 +75,7 @@ export function CreateContainerInstanceInnerForm({
       </FormControl>
 
       <FormControl
-        label="Location"
+        label={t('azure.containerInstances.fields.location')}
         inputId="location-input"
         errors={errors.location}
       >
@@ -84,9 +87,9 @@ export function CreateContainerInstanceInnerForm({
         />
       </FormControl>
 
-      <FormSectionTitle>Container configuration</FormSectionTitle>
+      <FormSectionTitle>{t('azure.containerInstances.sections.containerConfiguration')}</FormSectionTitle>
 
-      <FormControl label="Name" inputId="name-input" errors={errors.name}>
+      <FormControl label={t('azure.containerInstances.fields.name')} inputId="name-input" errors={errors.name}>
         <Field
           name="name"
           as={Input}
@@ -95,7 +98,7 @@ export function CreateContainerInstanceInnerForm({
         />
       </FormControl>
 
-      <FormControl label="Image" inputId="image-input" errors={errors.image}>
+      <FormControl label={t('azure.containerInstances.fields.image')} inputId="image-input" errors={errors.image}>
         <Field
           name="image"
           as={Input}
@@ -104,14 +107,14 @@ export function CreateContainerInstanceInnerForm({
         />
       </FormControl>
 
-      <FormControl label="OS" inputId="os-input" errors={errors.os}>
+      <FormControl label={t('azure.containerInstances.fields.os')} inputId="os-input" errors={errors.os}>
         <Field
           name="os"
           as={Select}
           id="os-input"
           options={[
-            { label: 'Linux', value: 'Linux' },
-            { label: 'Windows', value: 'Windows' },
+            { label: t('azure.containerInstances.os.linux'), value: 'Linux' },
+            { label: t('azure.containerInstances.os.windows'), value: 'Windows' },
           ]}
         />
       </FormControl>
@@ -130,13 +133,13 @@ export function CreateContainerInstanceInnerForm({
 
       <div className="form-group">
         <div className="col-sm-12 small text-muted">
-          This will automatically deploy a container with a public IP address
+          {t('azure.containerInstances.publicIpNotice')}
         </div>
       </div>
 
-      <FormSectionTitle>Container Resources</FormSectionTitle>
+      <FormSectionTitle>{t('azure.containerInstances.sections.containerResources')}</FormSectionTitle>
 
-      <FormControl label="CPU" inputId="cpu-input" errors={errors.cpu}>
+      <FormControl label={t('azure.containerInstances.fields.cpu')} inputId="cpu-input" errors={errors.cpu}>
         <Field
           name="cpu"
           as={Input}
@@ -146,7 +149,7 @@ export function CreateContainerInstanceInnerForm({
         />
       </FormControl>
 
-      <FormControl label="Memory" inputId="cpu-input" errors={errors.memory}>
+      <FormControl label={t('azure.containerInstances.fields.memory')} inputId="cpu-input" errors={errors.memory}>
         <Field
           name="memory"
           as={Input}
@@ -169,11 +172,11 @@ export function CreateContainerInstanceInnerForm({
           <LoadingButton
             disabled={!isValid}
             isLoading={isSubmitting}
-            loadingText="Deployment in progress..."
+            loadingText={t('azure.containerInstances.deploymentInProgress')}
             icon={Plus}
             data-cy="aci-create-button"
           >
-            Deploy the container
+            {t('azure.containerInstances.deployContainer')}
           </LoadingButton>
         </div>
       </div>

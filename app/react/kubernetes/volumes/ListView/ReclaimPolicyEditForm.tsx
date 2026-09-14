@@ -1,4 +1,5 @@
 import { Form, Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { mixed, object, SchemaOf } from 'yup';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -23,6 +24,7 @@ interface Props {
 }
 
 export function ReclaimPolicyEditForm({ volume, onDismiss }: Props) {
+  const { t } = useTranslation();
   const envId = useEnvironmentId();
   const updateMutation = useUpdatePVReclaimPolicy(envId);
 
@@ -32,7 +34,7 @@ export function ReclaimPolicyEditForm({ volume, onDismiss }: Props) {
 
   return (
     <>
-      <Modal.Header title="Edit Persistent Volume Reclaim Policy" />
+      <Modal.Header title={t('kubernetes.volumes.reclaimPolicy.title')} />
 
       <Formik<ReclaimPolicyEditFormValues>
         initialValues={initialValues}
@@ -45,7 +47,7 @@ export function ReclaimPolicyEditForm({ volume, onDismiss }: Props) {
             <Modal.Body>
               <Form className="form-vertical" onSubmit={handleSubmit}>
                 <FormControl
-                  label="Reclaim Policy"
+                  label={t('kubernetes.volumes.reclaimPolicy.label')}
                   inputId="reclaimPolicy-input"
                   errors={errors.reclaimPolicy}
                   size="vertical"
@@ -71,12 +73,12 @@ export function ReclaimPolicyEditForm({ volume, onDismiss }: Props) {
 
             <Modal.Footer>
               <LoadingButton
-                loadingText="Updating..."
+                loadingText={t('kubernetes.common.actions.updating')}
                 isLoading={isSubmitting}
                 onClick={() => handleSubmit()}
                 data-cy="kubernetes-pv-reclaim-edit-submit"
               >
-                Save
+                {t('kubernetes.common.actions.save')}
               </LoadingButton>
             </Modal.Footer>
           </>

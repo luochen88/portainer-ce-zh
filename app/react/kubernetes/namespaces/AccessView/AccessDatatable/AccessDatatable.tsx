@@ -1,6 +1,7 @@
 import { UserX } from 'lucide-react';
 import { useMemo } from 'react';
 import { useCurrentStateAndParams, useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { useUsers } from '@/portainer/users/queries';
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -27,6 +28,7 @@ const columns = [name, entityType];
 const store = createPersistedStore(tableKey);
 
 export function AccessDatatable() {
+  const { t } = useTranslation();
   const {
     params: { id: namespaceName },
   } = useCurrentStateAndParams();
@@ -60,7 +62,7 @@ export function AccessDatatable() {
   return (
     <Datatable
       data-cy="access-datatable"
-      title="Namespace access"
+      title={t('kubernetes.namespaces.access.datatable.title')}
       titleIcon={UserX}
       dataset={namespaceAccesses}
       isLoading={accessConfigMapQuery.isLoading}
@@ -71,8 +73,8 @@ export function AccessDatatable() {
       renderTableActions={(selectedItems) => (
         <DeleteButton
           isLoading={updateConfigMapMutation.isLoading}
-          loadingText="Removing..."
-          confirmMessage="Are you sure you want to unauthorized the selected users or teams?"
+          loadingText={t('kubernetes.common.actions.removing')}
+          confirmMessage={t('kubernetes.namespaces.access.datatable.removeConfirm')}
           onConfirmed={() => handleUpdate(selectedItems)}
           disabled={
             selectedItems.length === 0 ||
@@ -98,10 +100,10 @@ export function AccessDatatable() {
         configMap: configMapPayload,
         configMapName: PortainerNamespaceAccessesConfigMap.configMapName,
       });
-      notifySuccess('Success', 'Namespace access updated');
+      notifySuccess(t('kubernetes.common.notifications.success'), t('kubernetes.namespaces.access.updated'));
       router.stateService.reload();
     } catch (error) {
-      notifyError('Failed to update namespace access', error as Error);
+      notifyError(t('kubernetes.namespaces.access.updateFailure'), error as Error);
     }
   }
 }

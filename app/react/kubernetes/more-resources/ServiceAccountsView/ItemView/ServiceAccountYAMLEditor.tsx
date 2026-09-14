@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useCurrentStateAndParams } from '@uirouter/react';
+import i18n from '@/i18n';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import axios from '@/portainer/services/axios/axios';
@@ -58,7 +59,7 @@ async function getServiceAccountYAML(
   } catch (e) {
     throw parseKubernetesAxiosError(
       e,
-      'Unable to retrieve service account YAML'
+      i18n.t('kubernetes.moreResources.serviceAccounts.details.errors.yaml')
     );
   }
 }

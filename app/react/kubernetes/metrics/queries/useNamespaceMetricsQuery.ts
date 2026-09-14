@@ -1,4 +1,5 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
 import { EnvironmentId } from '@/react/portainer/environments/types';
@@ -29,6 +30,6 @@ export async function getMetricsForNamespace(
     );
     return pods;
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to retrieve metrics for all pods');
+    throw parseAxiosError(e, i18n.t('kubernetes.metrics.errors.allPods'));
   }
 }

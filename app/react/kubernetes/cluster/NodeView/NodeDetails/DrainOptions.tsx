@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert } from '@@/Alert';
 import { SwitchField } from '@@/form-components/SwitchField';
 import { FormControl } from '@@/form-components/FormControl';
@@ -13,15 +15,16 @@ interface Props {
 }
 
 export function DrainOptions({ values, onChange, hasNodeWriteAccess }: Props) {
+  const { t } = useTranslation();
   return (
     <>
-      <FormSectionTitle titleSize="sm">Drain options</FormSectionTitle>
+      <FormSectionTitle titleSize="sm">{t('kubernetes.cluster.nodes.drainOptions.title')}</FormSectionTitle>
       <div className="form-group">
         <div className="col-sm-12">
           <SwitchField
-            label="Ignore DaemonSets"
+            label={t('kubernetes.cluster.nodes.drainOptions.ignoreDaemonSets')}
             labelClass="col-sm-5 col-lg-4"
-            tooltip="Ignore DaemonSet-managed pods. These are skipped because they are recreated by their controller and would otherwise block the drain."
+            tooltip={t('kubernetes.cluster.nodes.drainOptions.ignoreDaemonSetsTooltip')}
             checked={values.ignoreDaemonSets}
             disabled={!hasNodeWriteAccess}
             onChange={(checked) =>
@@ -31,7 +34,7 @@ export function DrainOptions({ values, onChange, hasNodeWriteAccess }: Props) {
           />
         </div>
       </div>
-      <FormControl label="Timeout (seconds)" size="large">
+      <FormControl label={t('kubernetes.cluster.nodes.drainOptions.timeout')} size="large">
         <Input
           type="number"
           min="0"
@@ -44,7 +47,7 @@ export function DrainOptions({ values, onChange, hasNodeWriteAccess }: Props) {
           data-cy="node-drain-timeout-input"
         />
       </FormControl>
-      <FormControl label="Grace period (seconds)" size="large">
+      <FormControl label={t('kubernetes.cluster.nodes.drainOptions.gracePeriod')} size="large">
         <Input
           type="number"
           min="-1"
@@ -63,9 +66,9 @@ export function DrainOptions({ values, onChange, hasNodeWriteAccess }: Props) {
       <div className="form-group">
         <div className="col-sm-12">
           <SwitchField
-            label="Force"
+            label={t('kubernetes.cluster.nodes.drainOptions.force')}
             labelClass="col-sm-5 col-lg-4"
-            tooltip="Continue even if there are pods not managed by a ReplicationController, ReplicaSet, Job, DaemonSet, or StatefulSet. Deleted pods are not recreated."
+            tooltip={t('kubernetes.cluster.nodes.drainOptions.forceTooltip')}
             checked={values.force}
             disabled={!hasNodeWriteAccess}
             onChange={(checked) => onChange({ ...values, force: checked })}
@@ -77,8 +80,7 @@ export function DrainOptions({ values, onChange, hasNodeWriteAccess }: Props) {
         <div className="form-group">
           <div className="col-sm-12">
             <Alert color="warn">
-              Force draining deletes standalone pods that are not managed by a
-              controller. Those pods will not be recreated.
+              {t('kubernetes.cluster.nodes.drainOptions.forceWarning')}
             </Alert>
           </div>
         </div>
@@ -86,9 +88,9 @@ export function DrainOptions({ values, onChange, hasNodeWriteAccess }: Props) {
       <div className="form-group">
         <div className="col-sm-12">
           <SwitchField
-            label="Delete emptyDir data"
+            label={t('kubernetes.cluster.nodes.drainOptions.deleteEmptyDirData')}
             labelClass="col-sm-5 col-lg-4"
-            tooltip="Continue even if there are pods using emptyDir volumes."
+            tooltip={t('kubernetes.cluster.nodes.drainOptions.deleteEmptyDirDataTooltip')}
             checked={values.deleteEmptyDirData}
             disabled={!hasNodeWriteAccess}
             onChange={(checked) =>
@@ -102,7 +104,7 @@ export function DrainOptions({ values, onChange, hasNodeWriteAccess }: Props) {
         <div className="form-group">
           <div className="col-sm-12">
             <Alert color="warn">
-              Data in those volumes is deleted when the node is drained.
+              {t('kubernetes.cluster.nodes.drainOptions.deleteEmptyDirDataWarning')}
             </Alert>
           </div>
         </div>
@@ -110,9 +112,9 @@ export function DrainOptions({ values, onChange, hasNodeWriteAccess }: Props) {
       <div className="form-group">
         <div className="col-sm-12">
           <SwitchField
-            label="Disable eviction"
+            label={t('kubernetes.cluster.nodes.drainOptions.disableEviction')}
             labelClass="col-sm-5 col-lg-4"
-            tooltip="Force drain to use delete rather than evict. This bypasses checking PodDisruptionBudgets."
+            tooltip={t('kubernetes.cluster.nodes.drainOptions.disableEvictionTooltip')}
             checked={values.disableEviction}
             disabled={!hasNodeWriteAccess}
             onChange={(checked) =>
@@ -126,8 +128,7 @@ export function DrainOptions({ values, onChange, hasNodeWriteAccess }: Props) {
         <div className="form-group">
           <div className="col-sm-12">
             <Alert color="warn">
-              Pods will be deleted directly, ignoring any PodDisruptionBudgets
-              that would otherwise protect application availability.
+              {t('kubernetes.cluster.nodes.drainOptions.disableEvictionWarning')}
             </Alert>
           </div>
         </div>

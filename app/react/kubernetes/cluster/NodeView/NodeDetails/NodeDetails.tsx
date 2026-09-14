@@ -1,11 +1,13 @@
 import { Node } from 'kubernetes-types/core/v1';
 import { Form, Formik, useFormikContext } from 'formik';
 import { useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { KubernetesEndpoint } from '@/kubernetes/endpoint/models';
 import { useAuthorizations } from '@/react/hooks/useUser';
 import { notifySuccess } from '@/portainer/services/notifications';
 import { useApplications } from '@/react/kubernetes/applications/queries/useApplications';
+import i18n from '@/i18n';
 
 import { Loading } from '@@/Widget';
 import { Alert } from '@@/Alert';
@@ -36,6 +38,7 @@ type Props = {
 
 export function NodeDetails({ nodeName, environmentId }: Props) {
   const router = useRouter();
+  const { t } = useTranslation();
   const nodeQuery = useNodeQuery(environmentId, nodeName);
   const nodesAvailabilityQuery = useNodesQuery(environmentId, {
     select: (nodes) =>
@@ -57,18 +60,18 @@ export function NodeDetails({ nodeName, environmentId }: Props) {
   }
 
   if (nodeQuery.isError) {
-    return <Alert color="error">Error loading node details</Alert>;
+    return <Alert color="error">{t('kubernetes.cluster.nodes.details.errors.nodeDetails')}</Alert>;
   }
   if (applicationsQuery.isError) {
-    return <Alert color="error">Error loading applications</Alert>;
+    return <Alert color="error">{t('kubernetes.cluster.nodes.details.errors.applications')}</Alert>;
   }
   if (nodesAvailabilityQuery.isError) {
-    return <Alert color="error">Error loading nodes availability</Alert>;
+    return <Alert color="error">{t('kubernetes.cluster.nodes.details.errors.nodesAvailability')}</Alert>;
   }
   // continue even if endpointsQuery is error, because it's not critical for the node details page
 
   if (!nodeQuery.data) {
-    return <Alert color="error">Node not found</Alert>;
+    return <Alert color="error">{t('kubernetes.cluster.nodes.details.errors.notFound')}</Alert>;
   }
 
   const nodeFormValues = getNodeFormValues(nodeQuery.data);
@@ -139,7 +142,10 @@ export function NodeDetails({ nodeName, environmentId }: Props) {
     if (values.availability === 'Drain') {
       await drainNodeMutation.mutateAsync(values.drainOptions);
     }
-    notifySuccess('Success', 'Node updated successfully');
+    notifySuccess(
+      i18n.t('kubernetes.cluster.nodes.details.notifications.successTitle'),
+      i18n.t('kubernetes.cluster.nodes.details.notifications.successMessage')
+    );
 
     router.stateService.reload();
   }
@@ -167,6 +173,7 @@ function NodeDetailsForm({
   } = useFormikContext<NodeFormValues>();
   const { authorized: hasNodeWriteAccess } =
     useAuthorizations('K8sClusterNodeW');
+  const { t } = useTranslation();
   const labelErrors = isArrayErrorType(errors.labels)
     ? errors.labels
     : undefined;
@@ -209,8 +216,8 @@ function NodeDetailsForm({
       />
       {hasNodeWriteAccess && (
         <FormActions
-          submitLabel="Update node"
-          loadingText="Updating node..."
+          submitLabel={t('kubernetes.cluster.nodes.details.formActions.submit')}
+          loadingText={t('kubernetes.cluster.nodes.details.formActions.loading')}
           isLoading={isSubmitting}
           isValid={isValid && !isSubmitting}
           data-cy="node-saveButton"
@@ -221,7 +228,7 @@ function NodeDetailsForm({
             onClick={() => resetForm()}
             data-cy="node-update-cancel"
           >
-            Cancel
+            {t('kubernetes.common.cancel')}
           </Button>
         </FormActions>
       )}

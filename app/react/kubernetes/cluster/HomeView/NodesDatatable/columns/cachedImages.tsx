@@ -1,9 +1,10 @@
 import { CellContext, createColumnHelper } from '@tanstack/react-table';
 import { Layers } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import type { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import { humanize } from '@/portainer/filters/filters';
-import { pluralize } from '@/portainer/helpers/strings';
 
 import { Button } from '@@/buttons';
 import { Datatable } from '@@/datatables';
@@ -29,53 +30,57 @@ type NodeImage = NonNullable<
 
 const imageColumnHelper = createColumnHelper<CachedImageRow>();
 
-const columns = [
-  imageColumnHelper.accessor('image', {
-    id: 'image',
-    header: 'Image',
-    meta: {
-      width: '70%',
-    },
-    cell: ({ getValue }) => {
-      const imageName = getValue();
-      return (
-        <span className="block truncate text-sm font-medium" title={imageName}>
-          {imageName}
-        </span>
-      );
-    },
-  }),
-  imageColumnHelper.accessor('aliases', {
-    id: 'aliases',
-    header: 'Aliases',
-    sortingFn: (left, right) =>
-      left.original.aliasesCount - right.original.aliasesCount,
-    meta: {
-      width: '15%',
-      className: 'whitespace-nowrap',
-    },
-    cell: ({ row }) => {
-      const { aliasesCount } = row.original;
-      return (
-        <span className="text-muted text-sm">
-          {aliasesCount} alias{aliasesCount !== 1 ? 'es' : ''}
-        </span>
-      );
-    },
-  }),
-  imageColumnHelper.accessor('sizeBytes', {
-    id: 'sizeBytes',
-    header: 'Size',
-    sortingFn: 'alphanumeric',
-    meta: {
-      width: '15%',
-      className: 'whitespace-nowrap',
-    },
-    cell: ({ getValue }) => (
-      <span className="text-sm">{humanize(getValue() ?? 0)}</span>
-    ),
-  }),
-];
+function getCachedImageColumns(t: TFunction) {
+  return [
+    imageColumnHelper.accessor('image', {
+      id: 'image',
+      header: t('kubernetes.cluster.nodes.cachedImages.columns.image'),
+      meta: {
+        width: '70%',
+      },
+      cell: ({ getValue }) => {
+        const imageName = getValue();
+        return (
+          <span className="block truncate text-sm font-medium" title={imageName}>
+            {imageName}
+          </span>
+        );
+      },
+    }),
+    imageColumnHelper.accessor('aliases', {
+      id: 'aliases',
+      header: t('kubernetes.cluster.nodes.cachedImages.columns.aliases'),
+      sortingFn: (left, right) =>
+        left.original.aliasesCount - right.original.aliasesCount,
+      meta: {
+        width: '15%',
+        className: 'whitespace-nowrap',
+      },
+      cell: ({ row }) => {
+        const { aliasesCount } = row.original;
+        return (
+          <span className="text-muted text-sm">
+            {t('kubernetes.cluster.nodes.cachedImages.aliasesCount', {
+              count: aliasesCount,
+            })}
+          </span>
+        );
+      },
+    }),
+    imageColumnHelper.accessor('sizeBytes', {
+      id: 'sizeBytes',
+      header: t('kubernetes.cluster.nodes.cachedImages.columns.size'),
+      sortingFn: 'alphanumeric',
+      meta: {
+        width: '15%',
+        className: 'whitespace-nowrap',
+      },
+      cell: ({ getValue }) => (
+        <span className="text-sm">{humanize(getValue() ?? 0)}</span>
+      ),
+    }),
+  ];
+}
 
 export const cachedImages = columnHelper.accessor(
   (node) => node.status?.images?.length ?? 0,
@@ -131,6 +136,7 @@ function CachedImagesModal({
   onDismiss: () => void;
 }) {
   const tableState = useTableStateWithoutStorage('sizeBytes', true);
+  const { t } = useTranslation();
 
   const rows = useMemo(
     () =>
@@ -159,27 +165,28 @@ function CachedImagesModal({
   return (
     <Modal
       onDismiss={onDismiss}
-      aria-label={`Cached images on ${nodeName}`}
+      aria-label={t('kubernetes.cluster.nodes.cachedImages.ariaLabel', { nodeName })}
       dialogClassName="w-[min(1320px,calc(100vw-2rem))]"
       className="pr-10 pt-7"
     >
       <ModalBody>
         {images.length === 0 && (
           <div className="text-muted">
-            No cached images reported on this node.
+            {t('kubernetes.cluster.nodes.cachedImages.empty')}
           </div>
         )}
         {images.length > 0 && (
           <Datatable<CachedImageRow>
             disableSelect
             dataset={rows}
-            columns={columns}
+            columns={getCachedImageColumns(t)}
             settingsManager={tableState}
-            title={`Cached Images on ${nodeName}`}
+            title={t('kubernetes.cluster.nodes.cachedImages.title', { nodeName })}
             titleIcon={Layers}
-            description={`${pluralize(rows.length, 'image')}, ${humanize(
-              totalSizeBytes
-            )} total`}
+            description={t('kubernetes.cluster.nodes.cachedImages.description', {
+              count: rows.length,
+              totalSize: humanize(totalSizeBytes),
+            })}
             getRowId={(row) => row.id}
             data-cy="cached-images-datatable"
           />

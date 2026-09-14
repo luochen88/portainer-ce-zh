@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import i18n from '@/i18n';
+
 angular.module('portainer.edge').factory('EdgeStackService', function EdgeStackServiceFactory(EdgeStacks, FileUploadService) {
   var service = {};
 
@@ -20,7 +22,7 @@ angular.module('portainer.edge').factory('EdgeStackService', function EdgeStackS
       const { StackFileContent } = await EdgeStacks.file({ id }).$promise;
       return StackFileContent;
     } catch (err) {
-      throw { msg: 'Unable to retrieve stack content', err };
+      throw { msg: i18n.t('edge.stacks.errors.retrieveContent'), err };
     }
   };
 
@@ -32,7 +34,7 @@ angular.module('portainer.edge').factory('EdgeStackService', function EdgeStackS
     try {
       return await EdgeStacks.create({}, { method: 'string', ...payload }).$promise;
     } catch (err) {
-      throw { msg: 'Unable to create the stack', err };
+      throw { msg: i18n.t('edge.stacks.errors.createStack'), err };
     }
   };
 
@@ -40,7 +42,7 @@ angular.module('portainer.edge').factory('EdgeStackService', function EdgeStackS
     try {
       return await FileUploadService.createEdgeStack(payload, file);
     } catch (err) {
-      throw { msg: 'Unable to create the stack', err };
+      throw { msg: i18n.t('edge.stacks.errors.createStack'), err };
     }
   };
 
@@ -61,7 +63,7 @@ angular.module('portainer.edge').factory('EdgeStackService', function EdgeStackS
         }
       ).$promise;
     } catch (err) {
-      throw { msg: 'Unable to create the stack', err };
+      throw { msg: i18n.t('edge.stacks.errors.createStack'), err };
     }
   };
 

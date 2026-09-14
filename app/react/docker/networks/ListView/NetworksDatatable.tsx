@@ -1,4 +1,5 @@
 import { Network } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { Authorized } from '@/react/hooks/useUser';
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -49,13 +50,14 @@ export function NetworksDatatable({ onRemove }: Props) {
 
   const datasetQuery = useNetworksData(settings.autoRefreshRateMS);
   const columns = useColumns(isSwarm);
+  const { t } = useTranslation();
 
   const dataset = datasetQuery.data;
 
   return (
     <ExpandableDatatable<DecoratedNetwork>
       settingsManager={settings}
-      title="Networks"
+      title={t('docker.networks.table_title')}
       titleIcon={Network}
       dataset={dataset || []}
       columns={columns}
@@ -83,7 +85,7 @@ export function NetworksDatatable({ onRemove }: Props) {
             <DeleteButton
               disabled={selectedRows.length === 0}
               data-cy="network-removeNetworkButton"
-              confirmMessage="Do you want to remove the selected network(s)?"
+              confirmMessage={t('docker.networks.confirm_remove')}
               onConfirmed={() =>
                 onRemove(
                   selectedRows.map((n) => ({
@@ -97,7 +99,7 @@ export function NetworksDatatable({ onRemove }: Props) {
           </Authorized>
           <Authorized authorizations="DockerNetworkCreate">
             <AddButton data-cy="network-addNetworkButton">
-              Add network
+              {t('docker.networks.add_network')}
             </AddButton>
           </Authorized>
         </div>

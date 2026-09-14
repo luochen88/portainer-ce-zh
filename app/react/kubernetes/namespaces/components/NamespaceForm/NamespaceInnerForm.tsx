@@ -1,4 +1,5 @@
 import { Field, Form, FormikProps } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { MultiValue } from 'react-select';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -42,6 +43,7 @@ export function NamespaceInnerForm({
   isEdit?: boolean;
   isUpdating: boolean;
 }) {
+  const { t } = useTranslation();
   const { authorized: hasNamespaceWriteAuth } = useAuthorizations(
     namespaceWriteAuth,
     undefined,
@@ -78,7 +80,7 @@ export function NamespaceInnerForm({
     <Form className="form-horizontal">
       <FormControl
         inputId="namespace"
-        label="Name"
+        label={t('kubernetes.common.columns.name')}
         required={!isEdit}
         errors={errors.name}
       >
@@ -93,7 +95,7 @@ export function NamespaceInnerForm({
             id="namespace"
             name="name"
             disabled={isEdit}
-            placeholder="e.g. my-namespace"
+            placeholder={t('kubernetes.namespaces.form.name.placeholder')}
             data-cy="k8sNamespaceCreate-namespaceNameInput"
           />
         )}
@@ -115,12 +117,12 @@ export function NamespaceInnerForm({
       {useLoadBalancer && <LoadBalancerFormSection />}
       {enableIngressControllersPerNamespace && (
         <Authorized authorizations={[namespaceWriteAuth]}>
-          <FormSection title="Networking">
+          <FormSection title={t('kubernetes.namespaces.form.networking.title')}>
             <IngressClassDatatable
               onChange={(classes) => setFieldValue('ingressClasses', classes)}
               values={values.ingressClasses}
-              description="Enable the ingress controllers that users can select when publishing applications in this namespace."
-              noIngressControllerLabel="No ingress controllers available in the cluster. Go to the cluster setup view to configure and allow the use of ingress controllers in the cluster."
+              description={t('kubernetes.namespaces.form.networking.description')}
+              noIngressControllerLabel={t('kubernetes.namespaces.form.networking.noIngressControllers')}
               view="namespace"
               isLoading={ingressClassesQuery.isLoading}
               initialValues={initialValues.ingressClasses}
@@ -146,8 +148,16 @@ export function NamespaceInnerForm({
           isValid={isValid}
         />
         <FormActions
-          submitLabel={isEdit ? 'Update namespace' : 'Create namespace'}
-          loadingText={isEdit ? 'Updating namespace' : 'Creating namespace'}
+          submitLabel={
+            isEdit
+              ? t('kubernetes.namespaces.form.actions.update')
+              : t('kubernetes.namespaces.form.actions.create')
+          }
+          loadingText={
+            isEdit
+              ? t('kubernetes.namespaces.form.actions.updating')
+              : t('kubernetes.namespaces.form.actions.creating')
+          }
           isLoading={isUpdating}
           isValid={isValid && dirty}
           data-cy="k8sNamespaceCreate-submitButton"

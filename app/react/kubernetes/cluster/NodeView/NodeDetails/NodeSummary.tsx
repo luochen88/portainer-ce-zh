@@ -1,5 +1,7 @@
 import { Node, Endpoints } from 'kubernetes-types/core/v1';
 import { useMemo } from 'react';
+import type { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import { formatDate } from '@/portainer/filters/filters';
 import {
@@ -32,20 +34,22 @@ type Props = {
   hasNodeWriteAccess: boolean;
 };
 
-const availabilityOptions: Option<NodeAvailability>[] = [
-  {
-    label: 'Active',
-    value: 'Active',
-  },
-  {
-    label: 'Pause',
-    value: 'Pause',
-  },
-  {
-    label: 'Drain',
-    value: 'Drain',
-  },
-];
+function getAvailabilityOptions(t: TFunction): Option<NodeAvailability>[] {
+  return [
+    {
+      label: t('kubernetes.cluster.nodes.availability.active'),
+      value: 'Active',
+    },
+    {
+      label: t('kubernetes.cluster.nodes.availability.pause'),
+      value: 'Pause',
+    },
+    {
+      label: t('kubernetes.cluster.nodes.availability.drain'),
+      value: 'Drain',
+    },
+  ];
+}
 
 export function NodeSummary({
   node,
@@ -57,6 +61,8 @@ export function NodeSummary({
   hasNodeWriteAccess,
   error,
 }: Props) {
+  const { t } = useTranslation();
+  const availabilityOptions = getAvailabilityOptions(t);
   const parsedNode = useMemo(
     () => parseNodeValues(node, endpoints),
     [node, endpoints]
@@ -65,36 +71,36 @@ export function NodeSummary({
   return (
     <DetailsTable dataCy="node-summary">
       <tr>
-        <td className="col-sm-3">Hostname</td>
+        <td className="col-sm-3">{t('kubernetes.cluster.nodes.details.summary.hostname')}</td>
         <td>
           {parsedNode.name}
           {parsedNode.isApi && (
             <Badge type="info" className="ml-2">
-              api
+              {t('kubernetes.cluster.nodes.badges.api')}
             </Badge>
           )}
         </td>
       </tr>
       {parsedNode.isApi && (
         <tr>
-          <td>Kubernetes API</td>
+          <td>{t('kubernetes.cluster.nodes.details.summary.kubernetesApi')}</td>
           <td>{`${parsedNode.ipAddress}:${parsedNode.apiPort}`}</td>
         </tr>
       )}
       <tr>
-        <td>Role</td>
+        <td>{t('kubernetes.cluster.nodes.details.summary.role')}</td>
         <td>{parsedNode.role}</td>
       </tr>
       <tr>
-        <td>Kubelet version</td>
+        <td>{t('kubernetes.cluster.nodes.details.summary.kubeletVersion')}</td>
         <td>{parsedNode.version || '-'}</td>
       </tr>
       <tr>
-        <td>Creation date</td>
+        <td>{t('kubernetes.cluster.nodes.details.summary.creationDate')}</td>
         <td>{parsedNode.creationDate || '-'}</td>
       </tr>
       <tr>
-        <td>Status</td>
+        <td>{t('kubernetes.cluster.nodes.details.summary.status')}</td>
         <td>
           <div className="flex items-center">
             <StatusBadge color={parsedNode.statusType}>
@@ -109,7 +115,7 @@ export function NodeSummary({
         </td>
       </tr>
       <tr>
-        <td>Availability</td>
+        <td>{t('kubernetes.cluster.nodes.details.summary.availability')}</td>
         <td>
           {hasNodeWriteAccess ? (
             <>
@@ -123,7 +129,7 @@ export function NodeSummary({
                 }}
                 data-cy="node-availability-select"
                 inputId="node-availability-select"
-                aria-label="Availability"
+                aria-label={t('kubernetes.cluster.nodes.details.summary.availability')}
               />
               <FormError>{error}</FormError>
             </>

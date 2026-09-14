@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import { Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { FormError } from '@@/form-components/FormError';
 import { Button } from '@@/buttons';
@@ -26,6 +27,7 @@ export function AnnotationsForm({
   errors,
   placeholder,
 }: Props) {
+  const { t } = useTranslation();
   const annotationErrors = isArrayErrorType<Annotation>(errors)
     ? errors
     : undefined;
@@ -36,7 +38,7 @@ export function AnnotationsForm({
         <div className="row" key={annotation.id}>
           <div className="form-group col-sm-4 !m-0 !pl-0">
             <div className="input-group input-group-sm">
-              <span className="input-group-addon required">Key</span>
+              <span className="input-group-addon required">{t('kubernetes.annotations.form.key.label')}</span>
               <input
                 name={`annotation_key_${i}`}
                 type="text"
@@ -57,7 +59,7 @@ export function AnnotationsForm({
           </div>
           <div className="form-group col-sm-4 !m-0 !pl-0">
             <div className="input-group input-group-sm">
-              <span className="input-group-addon required">Value</span>
+              <span className="input-group-addon required">{t('kubernetes.annotations.form.value.label')}</span>
               <input
                 name={`annotation_value_${i}`}
                 type="text"

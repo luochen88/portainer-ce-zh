@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Formik, FormikProps } from 'formik';
 import { useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { notifySuccess } from '@/portainer/services/notifications';
 import { useCanExit } from '@/react/hooks/useCanExit';
@@ -32,6 +33,7 @@ export function HelmInstallForm({
   name,
   isRepoAvailable,
 }: Props) {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const [previewIsValid, setPreviewIsValid] = useState(false);
   const router = useRouter();
@@ -90,9 +92,9 @@ export function HelmInstallForm({
 
     if (!previewIsValid) {
       const confirmed = await confirm({
-        title: 'Chart validation failed',
+        title: t('kubernetes.helm.common.chartValidationFailed'),
         message:
-          'The Helm manifest preview validation failed, which may indicate configuration issues. This can be normal when creating new resources. Do you want to proceed with the installation?',
+          t('kubernetes.helm.install.confirm.validationFailed'),
       });
       if (!confirmed) {
         return;
@@ -110,7 +112,7 @@ export function HelmInstallForm({
       },
       {
         onSuccess() {
-          notifySuccess('Success', 'Helm chart successfully installed');
+          notifySuccess(t('kubernetes.common.success'), t('kubernetes.helm.install.notifications.success'));
 
           // Reset the form so page can be navigated away from without getting "Are you sure?"
           formikRef.current?.resetForm();

@@ -1,4 +1,5 @@
 import { useStore } from 'zustand';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { TextTip } from '@@/Tip/TextTip';
 import { FormSection } from '@@/form-components/FormSection';
@@ -24,6 +25,7 @@ export function KubernetesSummaryView({
   memoryLimit,
 }: Props) {
   const { isExpanded, setIsExpanded } = useStore(summaryStore);
+  const { t } = useTranslation();
 
   if (actions.length === 0) {
     return null;
@@ -31,13 +33,13 @@ export function KubernetesSummaryView({
 
   return (
     <FormSection
-      title="Summary"
+      title={t('kubernetes.summary.title')}
       isFoldable
       defaultFolded={!isExpanded}
       setIsDefaultFolded={(isFolded) => setIsExpanded(!isFolded)}
     >
       <TextTip color="blue">
-        Portainer will execute the following Kubernetes actions.
+        {t('kubernetes.summary.actionsIntro')}
       </TextTip>
       <ul className="small text-muted ml-5 w-full">
         {actions.map((action, idx) => {
@@ -46,28 +48,42 @@ export function KubernetesSummaryView({
           }
           return (
             <li key={`${idx}-${action.kind}-${action.name}`}>
-              {`${action.action} ${getArticle(action.action)} `}
-              <span className="bold">{action.kind}</span>
-              {' named '}
-              <code>{action.name}</code>
+              <Trans
+                i18nKey="kubernetes.summary.actionItem"
+                values={{
+                  action: action.action,
+                  article: getArticle(action.action),
+                  kind: action.kind,
+                  name: action.name,
+                }}
+                components={{ kind: <span className="bold" />, name: <code /> }}
+              />
               {!!action.type && (
-                <span>
-                  {' of type '}
-                  <code>{action.type}</code>
-                </span>
+                <Trans
+                  i18nKey="kubernetes.summary.actionType"
+                  values={{ type: action.type }}
+                  components={{ type: <code /> }}
+                />
               )}
             </li>
           );
         })}
         {!!memoryLimit && (
           <li>
-            Set the memory resources limits and requests to{' '}
-            <code>{memoryLimit}M</code>
+            <Trans
+              i18nKey="kubernetes.summary.memoryLimit"
+              values={{ memoryLimit: `${memoryLimit}M` }}
+              components={{ limit: <code /> }}
+            />
           </li>
         )}
         {!!cpuLimit && (
           <li>
-            Set the CPU resources limits and requests to <code>{cpuLimit}</code>
+            <Trans
+              i18nKey="kubernetes.summary.cpuLimit"
+              values={{ cpuLimit }}
+              components={{ limit: <code /> }}
+            />
           </li>
         )}
       </ul>

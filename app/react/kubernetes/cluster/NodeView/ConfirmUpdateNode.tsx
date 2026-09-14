@@ -1,3 +1,5 @@
+import i18n from '@/i18n';
+
 import { ModalType } from '@@/modals';
 import { confirm } from '@@/modals/confirm';
 import { buildConfirmButton } from '@@/modals/utils';
@@ -10,37 +12,27 @@ export function confirmUpdateNode(
 ) {
   let message;
   if (taintsWarning && !labelsWarning) {
-    message =
-      'Changes to taints will immediately deschedule applications running on this node without the corresponding tolerations. Do you wish to continue?';
+    message = i18n.t('kubernetes.cluster.nodes.confirm.taintsMessage');
   } else if (!taintsWarning && labelsWarning) {
-    message =
-      'Removing or changing a label that is used might prevent applications from being scheduled on this node in the future. Do you wish to continue?';
+    message = i18n.t('kubernetes.cluster.nodes.confirm.labelsMessage');
   } else if (taintsWarning && labelsWarning) {
     message = (
       <>
-        <p>
-          Changes to taints will immediately deschedule applications running on
-          this node without the corresponding tolerations.
-        </p>
-        <p>
-          Removing or changing a label that is used might prevent applications
-          from scheduling on this node in the future.
-        </p>
-        <p>Do you wish to continue?</p>
+        <p>{i18n.t('kubernetes.cluster.nodes.confirm.taintsStatement')}</p>
+        <p>{i18n.t('kubernetes.cluster.nodes.confirm.labelsStatement')}</p>
+        <p>{i18n.t('kubernetes.cluster.nodes.confirm.continueQuestion')}</p>
       </>
     );
   } else if (cordonWarning) {
-    message =
-      'Marking this node as unschedulable will effectively cordon the node and prevent any new workload from being scheduled on that node. Are you sure?';
+    message = i18n.t('kubernetes.cluster.nodes.confirm.cordonMessage');
   } else if (drainWarning) {
-    message =
-      'Draining this node will cause all workloads to be evicted from that node. This might lead to some service interruption. Are you sure?';
+    message = i18n.t('kubernetes.cluster.nodes.confirm.drainMessage');
   }
 
   return confirm({
-    title: 'Are you sure?',
+    title: i18n.t('kubernetes.cluster.nodes.confirm.title'),
     modalType: ModalType.Warn,
     message,
-    confirmButton: buildConfirmButton('Update', 'primary'),
+    confirmButton: buildConfirmButton(i18n.t('kubernetes.cluster.nodes.confirm.update'), 'primary'),
   });
 }

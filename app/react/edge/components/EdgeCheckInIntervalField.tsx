@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { FormControl, Size } from '@@/form-components/FormControl';
 import { Select } from '@@/form-components/Input';
 
@@ -41,6 +43,13 @@ export function EdgeCheckinIntervalField({
   tooltip = 'Interval used by this Edge agent to check in with the Portainer instance. Affects Edge environment management and Edge compute features.',
   size = 'small',
 }: Props) {
+  const { t } = useTranslation();
+  const translatedLabel = label === 'Poll frequency' ? t('edge.checkIn.pollFrequency') : label;
+  const translatedTooltip =
+    tooltip ===
+    'Interval used by this Edge agent to check in with the Portainer instance. Affects Edge environment management and Edge compute features.'
+      ? t('edge.checkIn.pollFrequencyTooltip')
+      : tooltip;
   const options = useIntervalOptions(
     'EdgeAgentCheckinInterval',
     checkinIntervalOptions,
@@ -50,8 +59,8 @@ export function EdgeCheckinIntervalField({
   return (
     <FormControl
       inputId="edge_checkin"
-      label={label}
-      tooltip={tooltip}
+      label={translatedLabel}
+      tooltip={translatedTooltip}
       size={size}
     >
       <Select

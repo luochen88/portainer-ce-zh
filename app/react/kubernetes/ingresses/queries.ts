@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
+import i18n from '@/i18n';
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import {
   mutationOptions,
@@ -48,7 +49,7 @@ export function useIngress(
       return ing;
     },
     {
-      ...withError('Unable to get ingress'),
+      ...withError(i18n.t('kubernetes.ingresses.notifications.getOneFailure')),
     }
   );
 }
@@ -67,7 +68,7 @@ export function useIngresses(
     [...queryKeys.clusterIngresses(environmentId), params],
     async () => getIngresses(environmentId, params),
     {
-      ...withError('Unable to get ingresses'),
+      ...withError(i18n.t('kubernetes.ingresses.notifications.getFailure')),
       refetchInterval: autoRefreshRate,
       enabled,
     }
@@ -85,7 +86,7 @@ export function useCreateIngress() {
       ingress: Ingress;
     }) => createIngress(environmentId, ingress),
     mutationOptions(
-      withError('Unable to create ingress controller'),
+      withError(i18n.t('kubernetes.ingresses.notifications.createFailure')),
       withInvalidate(queryClient, [queryKeys.base])
     )
   );
@@ -102,7 +103,7 @@ export function useUpdateIngress() {
       ingress: Ingress;
     }) => updateIngress(environmentId, ingress),
     mutationOptions(
-      withError('Unable to update ingress controller'),
+      withError(i18n.t('kubernetes.ingresses.notifications.updateFailure')),
       withInvalidate(queryClient, [queryKeys.base])
     )
   );
@@ -119,7 +120,7 @@ export function useDeleteIngresses() {
       data: DeleteIngressesRequest;
     }) => deleteIngresses(environmentId, data),
     mutationOptions(
-      withError('Unable to update ingress controller'),
+      withError(i18n.t('kubernetes.ingresses.notifications.updateFailure')),
       withInvalidate(queryClient, [queryKeys.base])
     )
   );
@@ -141,7 +142,7 @@ export function useIngressControllers(
         : [],
     {
       enabled: !!namespace,
-      ...withError('Unable to get ingress controllers'),
+      ...withError(i18n.t('kubernetes.ingresses.notifications.getControllersFailure')),
     }
   );
 }

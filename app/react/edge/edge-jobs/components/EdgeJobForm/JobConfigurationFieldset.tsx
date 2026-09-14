@@ -1,3 +1,6 @@
+import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
+
 import { useFormikContext } from 'formik';
 import { Calendar, Edit } from 'lucide-react';
 
@@ -15,25 +18,26 @@ export const cronMethodOptions: ReadonlyArray<BoxSelectorOption<string>> = [
     value: 'basic',
     icon: Calendar,
     iconType: 'badge',
-    label: 'Basic configuration',
-    description: 'Select date from calendar',
+    label: i18n.t('edge.jobs.configuration.basic'),
+    description: i18n.t('edge.jobs.configuration.basicDescription'),
   },
   {
     id: 'config_advanced',
     value: 'advanced',
     icon: Edit,
     iconType: 'badge',
-    label: 'Advanced configuration',
-    description: 'Write your own cron rule',
+    label: i18n.t('edge.jobs.configuration.advanced'),
+    description: i18n.t('edge.jobs.configuration.advancedDescription'),
   },
 ] as const;
 
 export function JobConfigurationFieldset() {
+  const { t } = useTranslation();
   const { values, setFieldValue } = useFormikContext<FormValues>();
 
   return (
     <>
-      <FormSection title="Edge job configuration">
+      <FormSection title={t('edge.jobs.configuration.title')}>
         <BoxSelector
           slim
           radioName="configuration"

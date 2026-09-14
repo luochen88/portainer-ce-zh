@@ -4,6 +4,7 @@ import { getEnvironments } from '@/react/portainer/environments/environment.serv
 import { dispatchCacheRefreshEvent } from '@/portainer/services/http-request.helper';
 import { isSameDocumentUrl, isValidReturnUrl } from '@/portainer/helpers/url-utils';
 import { storeReturnUrl, getReturnUrl, cleanReturnUrl } from '@/react/portainer/helpers/returnUrl';
+import i18n from '@/i18n';
 
 class AuthenticationController {
   /* @ngInject */
@@ -37,6 +38,7 @@ class AuthenticationController {
     this.URLHelper = URLHelper;
     this.LocalStorage = LocalStorage;
     this.StatusService = StatusService;
+    this.t = i18n.t.bind(i18n);
 
     this.logo = this.StateManager.getState().application.logo;
     this.formValues = {

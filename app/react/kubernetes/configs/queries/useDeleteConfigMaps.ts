@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
+import i18n from '@/i18n';
 import { queryClient, withError } from '@/react-tools/react-query';
 import axios from '@/portainer/services/axios/axios';
 import { EnvironmentId } from '@/react/portainer/environments/types';
@@ -34,23 +35,22 @@ export function useDeleteConfigMaps(environmentId: EnvironmentId) {
       return { failedConfigMaps, successfulConfigMaps };
     },
     {
-      ...withError('Unable to remove ConfigMaps'),
+      ...withError(i18n.t('kubernetes.configs.configMaps.notifications.removeFailure')),
       onSuccess: ({ failedConfigMaps, successfulConfigMaps }) => {
         // Promise.allSettled can also resolve with errors, so check for errors here
         // show an error message for each configmap that failed to delete
         failedConfigMaps.forEach(({ name, reason }) => {
           notifyError(
-            `Failed to remove ConfigMap '${name}'`,
+            i18n.t('kubernetes.configs.configMaps.notifications.removeOneFailure', { name }),
             new Error(reason.message) as Error
           );
         });
         // show one summary message for all successful deletes
         if (successfulConfigMaps.length) {
           notifySuccess(
-            `${pluralize(
-              successfulConfigMaps.length,
-              'ConfigMap'
-            )} successfully removed`,
+            i18n.t('kubernetes.configs.configMaps.notifications.removed', {
+              count: successfulConfigMaps.length,
+            }),
             successfulConfigMaps.join(', ')
           );
         }
@@ -72,6 +72,6 @@ async function deleteConfigMap(
       `/endpoints/${environmentId}/kubernetes/api/v1/namespaces/${namespace}/configmaps/${name}`
     );
   } catch (e) {
-    throw parseKubernetesAxiosError(e, 'Unable to remove ConfigMap');
+    throw parseKubernetesAxiosError(e, i18n.t('kubernetes.configs.configMaps.notifications.removeOneGenericFailure'));
   }
 }

@@ -1,4 +1,5 @@
 import { useCurrentStateAndParams } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { useUnauthorizedRedirect } from '@/react/hooks/useUnauthorizedRedirect';
 
@@ -9,6 +10,7 @@ import { AccessDatatable } from './AccessDatatable/AccessDatatable';
 import { CreateAccessWidget } from './CreateAccessWidget/CreateAccessWidget';
 
 export function AccessView() {
+  const { t } = useTranslation();
   const {
     params: { id: namespaceName },
   } = useCurrentStateAndParams();
@@ -19,15 +21,15 @@ export function AccessView() {
   return (
     <>
       <PageHeader
-        title="Namespace access management"
+        title={t('kubernetes.namespaces.access.title')}
         breadcrumbs={[
-          { label: 'Namespaces', link: 'kubernetes.resourcePools' },
+          { label: t('kubernetes.namespaces.list.breadcrumb'), link: 'kubernetes.resourcePools' },
           {
             label: namespaceName,
             link: 'kubernetes.resourcePools.resourcePool',
             linkParams: { id: namespaceName },
           },
-          'Access management',
+          t('kubernetes.namespaces.access.breadcrumb'),
         ]}
         reload
       />

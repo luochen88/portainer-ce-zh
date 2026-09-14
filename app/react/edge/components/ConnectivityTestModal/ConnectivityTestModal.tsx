@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 
 import { useAgentDetails } from '@/react/portainer/environments/queries/useAgentDetails';
 
@@ -38,6 +39,7 @@ export function ConnectivityTestModal({
   tunnelServerAddr,
   environment,
 }: Props) {
+  const { t } = useTranslation();
   const environments = environment ? [environment] : ALL_ENVIRONMENTS;
   const [selectedTab, setSelectedTab] = useState<ConnectivityEnvironment>(
     environments[0]
@@ -66,7 +68,7 @@ export function ConnectivityTestModal({
               copyText={command}
               data-cy="copy-connectivity-test-command-button"
             >
-              Copy command
+              {t('edge.connectivity.copyCommand')}
             </CopyButton>
           </div>
         </>
@@ -75,23 +77,19 @@ export function ConnectivityTestModal({
   });
 
   return (
-    <Modal onDismiss={onDismiss} aria-label="Test connectivity" size="lg">
-      <Modal.Header title="Test connectivity" />
+    <Modal onDismiss={onDismiss} aria-label={t('edge.connectivity.title')} size="lg">
+      <Modal.Header title={t('edge.connectivity.title')} />
       <Modal.Body>
         <p className="mb-4">
-          Run the command in the environment where the Edge Agent will be
-          deployed to verify it can reach the Portainer server. Each target is
-          announced before it is probed and its result printed as it completes.
-          Allow up to 30 seconds to finish, as an unreachable host has to time
-          out rather than fail outright.
+          <Trans i18nKey="edge.connectivity.description" />
         </p>
         <div className="mb-4">
           <SwitchField
             checked={insecurePoll}
             onChange={setInsecurePoll}
-            label="Allow self-signed certificates"
+            label={t('edge.connectivity.allowSelfSigned')}
             labelClass="col-sm-4 col-lg-3"
-            tooltip="Include EDGE_INSECURE_POLL=1 in the script. Enable this if your Portainer instance uses a self-signed or untrusted certificate."
+            tooltip={t('edge.connectivity.allowSelfSignedTooltip')}
             data-cy="connectivity-insecure-poll-switch"
           />
         </div>
@@ -109,7 +107,7 @@ export function ConnectivityTestModal({
           color="default"
           data-cy="close-connectivity-test-modal-button"
         >
-          Close
+          {t('common.close')}
         </Button>
       </Modal.Footer>
     </Modal>

@@ -1,4 +1,5 @@
 import { Gauge } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { stripProtocol } from '@/react/common/string-utils';
 import { useTagsForEnvironment } from '@/portainer/tags/queries';
@@ -8,6 +9,7 @@ import { useEnvironment } from '@/react/portainer/environments/queries';
 import { Widget, WidgetTitle, WidgetBody } from '@@/Widget';
 
 export function EnvironmentInfo() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const { data: environmentData, ...environmentQuery } =
     useEnvironment(environmentId);
@@ -16,14 +18,14 @@ export function EnvironmentInfo() {
 
   return (
     <Widget>
-      <WidgetTitle icon={Gauge} title="Environment info" />
+      <WidgetTitle icon={Gauge} title={t('kubernetes.dashboard.environmentInfo.title')} />
       <WidgetBody loading={environmentQuery.isLoading}>
-        {environmentQuery.isError && <div>Failed to load environment</div>}
+        {environmentQuery.isError && <div>{t('kubernetes.dashboard.environmentInfo.error')}</div>}
         {environmentData && (
           <table className="table">
             <tbody>
               <tr>
-                <td className="!border-none">Environment</td>
+                <td className="!border-none">{t('kubernetes.dashboard.environmentInfo.environment')}</td>
                 <td
                   className="!border-none"
                   data-cy="dashboard-environmentName"
@@ -32,13 +34,13 @@ export function EnvironmentInfo() {
                 </td>
               </tr>
               <tr>
-                <td className="!border-t">URL</td>
+                <td className="!border-t">{t('kubernetes.dashboard.environmentInfo.url')}</td>
                 <td className="!border-t" data-cy="dashboard-environmenturl">
                   {stripProtocol(environmentData.URL) || '-'}
                 </td>
               </tr>
               <tr>
-                <td>Tags</td>
+                <td>{t('kubernetes.dashboard.environmentInfo.tags')}</td>
                 <td data-cy="dashboard-environmentTags">{tagNames}</td>
               </tr>
             </tbody>

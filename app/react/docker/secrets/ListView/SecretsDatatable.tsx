@@ -1,5 +1,6 @@
 import { createColumnHelper } from '@tanstack/react-table';
 import { Lock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { SecretViewModel } from '@/docker/models/secret';
 import { isoDate } from '@/portainer/filters/filters';
@@ -53,6 +54,7 @@ export function SecretsDatatable({
 }) {
   const tableState = useTableState(store, storageKey);
   useRepeater(tableState.autoRefreshRateMS, onRefresh);
+  const { t } = useTranslation();
 
   const hasWriteAccessQuery = useAuthorizations([
     'DockerSecretCreate',
@@ -61,7 +63,7 @@ export function SecretsDatatable({
 
   return (
     <Datatable
-      title="Secrets"
+      title={t('docker.secrets.table_title')}
       titleIcon={Lock}
       columns={columns}
       dataset={dataset || []}
@@ -93,19 +95,22 @@ function TableActions({
   selectedItems: Array<SecretViewModel>;
   onRemove(items: Array<SecretViewModel>): void;
 }) {
+  const { t } = useTranslation();
   return (
     <div className="flex items-center gap-2">
       <Authorized authorizations="DockerSecretDelete">
         <DeleteButton
           disabled={selectedItems.length === 0}
           onConfirmed={() => onRemove(selectedItems)}
-          confirmMessage="Do you want to remove the selected secret(s)?"
+          confirmMessage={t('docker.secrets.confirm_remove')}
           data-cy="secret-removeSecretButton"
         />
       </Authorized>
 
       <Authorized authorizations="DockerSecretCreate">
-        <AddButton data-cy="secret-addSecretButton">Add secret</AddButton>
+        <AddButton data-cy="secret-addSecretButton">
+          {t('docker.secrets.add_secret')}
+        </AddButton>
       </Authorized>
     </div>
   );

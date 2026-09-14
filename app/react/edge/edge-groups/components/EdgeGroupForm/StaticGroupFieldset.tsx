@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { useFormikContext } from 'formik';
 
 import { AssociatedEdgeGroupEnvironmentsSelector } from '@/react/edge/components/AssociatedEdgeGroupEnvironmentsSelector';
@@ -9,10 +11,11 @@ import { buildConfirmButton } from '@@/modals/utils';
 import { FormValues } from './types';
 
 export function StaticGroupFieldset({ isEdit }: { isEdit?: boolean }) {
+  const { t } = useTranslation();
   const { values, setFieldValue, errors } = useFormikContext<FormValues>();
 
   return (
-    <FormSection title="Associated environments">
+    <FormSection title={t('edge.associatedEnvironments')}>
       <div className="form-group">
         <AssociatedEdgeGroupEnvironmentsSelector
           value={values.environmentIds}
@@ -20,10 +23,10 @@ export function StaticGroupFieldset({ isEdit }: { isEdit?: boolean }) {
           onChange={async (environmentIds, meta) => {
             if (meta.type === 'remove' && isEdit) {
               const confirmed = await confirmDestructive({
-                title: 'Confirm action',
+                title: t('common.confirmAction'),
                 message:
-                  'Removing the environment from this group will remove its corresponding edge stacks',
-                confirmButton: buildConfirmButton('Confirm'),
+                  t('edge.groups.confirmRemoveEnvironment'),
+                confirmButton: buildConfirmButton(t('common.confirm')),
               });
 
               if (!confirmed) {

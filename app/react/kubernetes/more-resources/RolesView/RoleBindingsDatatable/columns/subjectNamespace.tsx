@@ -1,5 +1,6 @@
 import { Link } from '@@/Link';
 import { filterHOC } from '@@/datatables/Filter';
+import i18n from '@/i18n';
 
 import {
   filterFn,
@@ -11,7 +12,7 @@ import { columnHelper } from './helper';
 export const subjectNamespace = columnHelper.accessor(
   (row) => row.subjects?.flatMap((sub) => sub.namespace || '-') || [],
   {
-    header: 'Subject Namespace',
+    header: () => i18n.t('kubernetes.moreResources.common.columns.subjectNamespace'),
     id: 'subjectNamespace',
     cell: ({ row }) =>
       row.original.subjects?.map((sub, index) => (

@@ -1,5 +1,6 @@
 import { Server } from 'lucide-react';
 import { useCurrentStateAndParams } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { Pod } from 'kubernetes-types/core/v1';
 
@@ -29,6 +30,7 @@ const storageKey = 'k8sContainersDatatable';
 const settingsStore = createStore(storageKey);
 
 export function ApplicationContainersDatatable() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const useServerMetricsQuery = useEnvironment(
     environmentId,
@@ -65,13 +67,14 @@ export function ApplicationContainersDatatable() {
   );
   const podRows = useContainersRowData(podsQuery.data);
   const containerColumns = useMemo(
-    () => getContainerColumns(!!useServerMetricsQuery.data),
-    [useServerMetricsQuery.data]
+    () => getContainerColumns(!!useServerMetricsQuery.data, t),
+    [useServerMetricsQuery.data, t]
   );
   const podColumns = useMemo(
     () =>
       getPodColumns({
         supportsRestartStrategy: !!versionQuery.data?.supportsPodRestart,
+        t,
         isDeleting: deletePodMutation.isLoading,
         isLoading: versionQuery.isLoading,
         onDelete: (podName) => {
@@ -79,18 +82,21 @@ export function ApplicationContainersDatatable() {
             { podName },
             {
               onSuccess: () =>
-                notifySuccess('Success', `Pod '${podName}' deleted`),
+                notifySuccess(
+                  t('kubernetes.common.notifications.success'),
+                  t('kubernetes.applications.details.containers.notifications.podDeleted', { podName })
+                ),
               onError: (error) =>
                 notifyError(
-                  'Failure',
+                  t('kubernetes.common.notifications.failure'),
                   error as Error,
-                  `Unable to delete pod '${podName}'`
+                  t('kubernetes.applications.details.containers.notifications.unableToDeletePod', { podName })
                 ),
             }
           );
         },
       }),
-    [versionQuery, deletePodMutation]
+    [versionQuery, deletePodMutation, t]
   );
 
   return (
@@ -105,7 +111,7 @@ export function ApplicationContainersDatatable() {
             podsQuery.isLoading ||
             useServerMetricsQuery.isLoading
           }
-          title="Application pods"
+          title={t('kubernetes.applications.details.containers.title')}
           titleIcon={Server}
           getRowId={(row) => row.podName}
           disableSelect

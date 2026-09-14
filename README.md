@@ -1,3 +1,53 @@
+# 非官方 Portainer CE 简体中文修改版
+
+这是社区维护的非官方 Portainer CE 简体中文修改版，与 Portainer.io 无隶属关系，也不由其提供支持；Portainer 原始软件版权归 Portainer.io 及原贡献者；本仓库只对修改和中文翻译负责。源码已被修改，本 fork 和镜像不得表示为官方原版。相关许可和来源请参阅 [LICENSE](LICENSE)、[ATTRIBUTIONS.md](ATTRIBUTIONS.md) 以及 [Portainer 上游仓库](https://github.com/portainer/portainer)。
+
+中文主要由 AI 生成/辅助翻译，可能存在错译且未承诺经过人工全面校对，请以英文界面和官方文档为准。Kubernetes、Swarm、Edge Agent 等技术专名保持原文。
+
+## 中文版使用说明
+
+本版本默认使用简体中文，可在“用户设置”中切换 English；语言偏好仅保存在当前浏览器的 `localStorage`。GHCR 镜像提供 `linux/amd64` 与 `linux/arm64` 架构，镜像名为 `ghcr.io/luochen88/portainer-ce-zh`。`zh-cn` 是跟随分支更新的可变标签；生产部署请固定不可变标签 `zh-cn-2.45.0-<short-sha>`。
+
+```bash
+docker volume create portainer_data
+docker run -d --name portainer --restart=always \
+  -p 8000:8000 -p 9443:9443 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v portainer_data:/data \
+  ghcr.io/luochen88/portainer-ce-zh:zh-cn
+```
+
+等价的 Compose 配置：
+
+```yaml
+services:
+  portainer:
+    image: ghcr.io/luochen88/portainer-ce-zh:zh-cn
+    restart: always
+    ports:
+      - "8000:8000"
+      - "9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+volumes:
+  portainer_data:
+```
+
+本地 production 构建：
+
+```bash
+pnpm install --frozen-lockfile
+make ENV=production build-client
+touch dist/storybook
+make ENV=production PLATFORM=linux ARCH=amd64 SKIP_GO_GET=true CONTAINER_IMAGE_TAG=zh-cn-local build-all
+docker buildx build --load -t portainer-ce-zh:local -f build/linux/Dockerfile .
+```
+
+本 fork 的问题反馈地址为 <https://github.com/luochen88/portainer-ce-zh/issues>；上游 Portainer 产品问题请通过 [官方问题渠道](https://github.com/portainer/portainer/issues) 反馈。
+
+---
+
 <p align="center">
   <img title="portainer" src='https://github.com/portainer/portainer/blob/develop/app/assets/images/portainer-github-banner.png?raw=true' />
 </p>
@@ -52,23 +102,7 @@ The frontend consumes a TypeScript API client (SDK functions and request/respons
 make generate-api
 ```
 
-This runs the following pipeline:
-
-```
-Go Swagger annotations
-  → dist/docs/swagger.yaml       (make docs-build, via swaggo/swag)
-  → dist/docs/openapi.yaml       (swagger2openapi + validation)
-  → app/react/portainer/generated-api/portainer/   (hey-api/openapi-ts)
-```
-
-The generator is configured in [`openapi-ts.config.ts`](./openapi-ts.config.ts), which controls the output path, plugins, and tag filters (for example, `deprecated` endpoints and `edge_agent`-tagged routes are excluded).
-
-The generated files live in `app/react/portainer/generated-api/portainer/` and must **not** be edited by hand — your changes would be overwritten on the next run. Import the generated SDK functions and types instead of writing direct HTTP calls:
-
-- `@api/sdk.gen` — SDK functions
-- `@api/types.gen` — request/response types
-
-See [Adding api docs](./CONTRIBUTING.md#adding-api-docs) for how to annotate handlers so they are picked up by the generator.
+See [`openapi-ts.config.ts`](./openapi-ts.config.ts) for generator configuration and [`CONTRIBUTING.md`](./CONTRIBUTING.md#adding-api-docs) for API documentation guidance.
 
 ## Security
 
@@ -76,13 +110,11 @@ For information about reporting security vulnerabilities, please see our [Securi
 
 ## Work for us
 
-If you are a developer, and our code in this repo makes sense to you, we would love to hear from you. We are always on the hunt for awesome devs, either freelance or employed. Drop us a line to success@portainer.io with your details and/or visit our [careers page](https://apply.workable.com/portainer/).
+If you are a developer, please see the Portainer careers page at <https://apply.workable.com/portainer/>.
 
 ## Privacy
 
-**To make sure we focus our development effort in the right places we need to know which features get used most often. To give us this information we use [Matomo Analytics](https://matomo.org/), which is hosted in Germany and is fully GDPR compliant.**
-
-When Portainer first starts, you are given the option to DISABLE analytics. If you **don't** choose to disable it, we collect anonymous usage as per [our privacy policy](https://www.portainer.io/legal/privacy-policy). **Please note**, there is no personally identifiable information sent or stored at any time and we only use the data to help us improve Portainer.
+Please see [Portainer's privacy policy](https://www.portainer.io/legal/privacy-policy).
 
 ## Limitations
 

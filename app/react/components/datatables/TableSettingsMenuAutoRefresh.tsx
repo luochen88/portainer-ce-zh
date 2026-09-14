@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 import { Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { Checkbox } from '@@/form-components/Checkbox';
 import { Icon } from '@@/Icon';
@@ -16,6 +17,7 @@ const SECOND_MS = 1000;
 const DEFAULT_REFRESH_RATE_MS = 10 * SECOND_MS;
 
 export function TableSettingsMenuAutoRefresh({ onChange, value }: Props) {
+  const { t } = useTranslation();
   const [isCheckVisible, setIsCheckVisible] = useState(false);
 
   const isEnabled = value > 0;
@@ -25,7 +27,7 @@ export function TableSettingsMenuAutoRefresh({ onChange, value }: Props) {
       <Checkbox
         id="settings-auto-refresh"
         data-cy="settings-auto-refresh"
-        label="Auto refresh"
+        label={t('common.auto_refresh')}
         checked={isEnabled}
         onChange={(e) =>
           onChange(e.target.checked ? DEFAULT_REFRESH_RATE_MS : 0)
@@ -34,7 +36,7 @@ export function TableSettingsMenuAutoRefresh({ onChange, value }: Props) {
 
       {isEnabled && (
         <div>
-          <label htmlFor="settings_refresh_rate">Refresh rate</label>
+          <label htmlFor="settings_refresh_rate">{t('common.refresh_rate')}</label>
           <select
             data-cy="settings-refresh-rate"
             id="settings_refresh_rate"

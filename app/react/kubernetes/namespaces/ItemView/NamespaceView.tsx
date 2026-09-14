@@ -1,4 +1,5 @@
 import { useCurrentStateAndParams } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 import { AlertTriangle, Code, Layers, History } from 'lucide-react';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -17,6 +18,7 @@ import { UpdateNamespaceForm } from './UpdateNamespaceForm';
 import { NamespaceAppsDatatable } from './NamespaceAppsDatatable';
 
 export function NamespaceView() {
+  const { t } = useTranslation();
   const stateAndParams = useCurrentStateAndParams();
   const {
     params: { id: namespace },
@@ -30,7 +32,7 @@ export function NamespaceView() {
 
   const tabs: Tab[] = [
     {
-      name: 'Namespace',
+      name: t('kubernetes.namespaces.common.namespace'),
       icon: Layers,
       widget: <UpdateNamespaceForm />,
       selectedTabParam: 'namespace',
@@ -38,7 +40,7 @@ export function NamespaceView() {
     {
       name: (
         <div className="flex items-center gap-x-2">
-          Events
+          {t('kubernetes.namespaces.item.tabs.events')}
           {eventWarningCount >= 1 && (
             <Badge type="warnSecondary">
               <Icon icon={AlertTriangle} className="!mr-1" />
@@ -58,7 +60,7 @@ export function NamespaceView() {
       selectedTabParam: 'events',
     },
     {
-      name: 'YAML',
+      name: t('kubernetes.common.yaml'),
       icon: Code,
       widget: <NamespaceYAMLEditor />,
       selectedTabParam: 'YAML',
@@ -69,9 +71,9 @@ export function NamespaceView() {
   return (
     <>
       <PageHeader
-        title="Namespace details"
+        title={t('kubernetes.namespaces.item.title')}
         breadcrumbs={[
-          { label: 'Namespaces', link: 'kubernetes.resourcePools' },
+          { label: t('kubernetes.namespaces.list.breadcrumb'), link: 'kubernetes.resourcePools' },
           namespace,
         ]}
         reload

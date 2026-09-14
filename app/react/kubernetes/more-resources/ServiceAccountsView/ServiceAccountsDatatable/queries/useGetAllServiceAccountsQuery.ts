@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { withError } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -19,7 +20,7 @@ export function useGetAllServiceAccountsQuery(
     queryKeys.list(environmentId),
     async () => getAllServiceAccounts(environmentId),
     {
-      ...withError('Unable to get service accounts'),
+      ...withError(i18n.t('kubernetes.moreResources.serviceAccounts.errors.get')),
       ...options,
     }
   );
@@ -33,6 +34,6 @@ async function getAllServiceAccounts(environmentId: EnvironmentId) {
 
     return services;
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to get service accounts');
+    throw parseAxiosError(e, i18n.t('kubernetes.moreResources.serviceAccounts.errors.get'));
   }
 }

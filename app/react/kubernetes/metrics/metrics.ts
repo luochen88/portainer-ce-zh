@@ -1,5 +1,6 @@
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
 import { EnvironmentId } from '@/react/portainer/environments/types';
+import i18n from '@/i18n';
 
 import { NodeMetrics } from './types';
 
@@ -10,6 +11,6 @@ export async function getMetricsForAllNodes(environmentId: EnvironmentId) {
     );
     return nodes;
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to retrieve metrics for all nodes');
+    throw parseAxiosError(e, i18n.t('kubernetes.metrics.errors.allNodes'));
   }
 }

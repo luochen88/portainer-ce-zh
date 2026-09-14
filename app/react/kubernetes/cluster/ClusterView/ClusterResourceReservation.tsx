@@ -1,9 +1,11 @@
 import { Widget, WidgetBody } from '@/react/components/Widget';
+import { useTranslation } from 'react-i18next';
 import { ResourceReservation } from '@/react/kubernetes/components/ResourceReservation';
 
 import { useClusterResourceReservationData } from './useClusterResourceReservationData';
 
 export function ClusterResourceReservation() {
+  const { t } = useTranslation();
   // Load all data required for this component
   const {
     cpuLimit,
@@ -28,9 +30,9 @@ export function ClusterResourceReservation() {
               cpuLimit={cpuLimit}
               memoryLimit={memoryLimit}
               memoryUnit="MiB"
-              description="Resource reservation represents the total amount of resource assigned to all the applications inside the cluster."
+              description={t('kubernetes.cluster.resourceReservation.description')}
               displayWarning={displayWarning}
-              warningMessage="Resource usage is not currently available as Metrics Server is not responding. If you've recently upgraded, Metrics Server may take a while to restart, so please check back shortly."
+              warningMessage={t('kubernetes.cluster.resourceReservation.metricsWarning')}
             />
           </WidgetBody>
         </Widget>

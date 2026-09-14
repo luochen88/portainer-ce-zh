@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import { withError } from '@/react-tools/react-query';
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
@@ -19,7 +20,7 @@ export function useRoles(
     queryKeys.list(environmentId),
     async () => getAllRoles(environmentId),
     {
-      ...withError('Unable to get roles'),
+      ...withError(i18n.t('kubernetes.moreResources.roles.errors.get')),
       refetchInterval() {
         return options?.autoRefreshRate ?? false;
       },
@@ -36,6 +37,6 @@ async function getAllRoles(environmentId: EnvironmentId) {
 
     return roles;
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to get roles');
+    throw parseAxiosError(e, i18n.t('kubernetes.moreResources.roles.errors.get'));
   }
 }

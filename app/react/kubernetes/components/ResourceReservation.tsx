@@ -1,5 +1,6 @@
 import { round } from 'lodash';
 import { AlertTriangle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { FormSectionTitle } from '@/react/components/form-components/FormSectionTitle';
 import { TextTip } from '@/react/components/Tip/TextTip';
@@ -34,12 +35,14 @@ export function ResourceReservation({
   cpuLimit,
   memoryLimit,
   description,
-  title = 'Resource reservation',
+  title,
   isLoading = false,
   displayWarning = false,
   warningMessage = '',
   memoryUnit = 'MB',
 }: Props) {
+  const { t } = useTranslation();
+  const resolvedTitle = title ?? t('kubernetes.common.resourceReservation.title');
   const memoryReservationAnnotation = `${getSafeValue(
     resourceReservation.memory
   )} / ${memoryLimit} ${memoryUnit} ${getPercentageString(
@@ -72,7 +75,7 @@ export function ResourceReservation({
 
   return (
     <>
-      <FormSectionTitle>{title}</FormSectionTitle>
+      <FormSectionTitle>{resolvedTitle}</FormSectionTitle>
       <TextTip color="blue" className="mb-2">
         {description}
       </TextTip>
@@ -81,7 +84,7 @@ export function ResourceReservation({
           <ResourceUsageItem
             value={resourceReservation.memory}
             total={memoryLimit}
-            label="Memory reservation"
+            label={t('kubernetes.common.resourceReservation.memoryReservation')}
             annotation={memoryReservationAnnotation}
             isLoading={isLoading}
             dataCy="memory-reservation"
@@ -91,7 +94,7 @@ export function ResourceReservation({
           <ResourceUsageItem
             value={resourceUsage.memory}
             total={memoryLimit}
-            label="Memory usage"
+            label={t('kubernetes.common.resourceReservation.memoryUsage')}
             annotation={memoryUsageAnnotation}
             isLoading={isLoading}
             dataCy="memory-usage"
@@ -101,7 +104,7 @@ export function ResourceReservation({
           <ResourceUsageItem
             value={resourceReservation.cpu}
             total={cpuLimit}
-            label="CPU reservation"
+            label={t('kubernetes.common.resourceReservation.cpuReservation')}
             annotation={cpuReservationAnnotation}
             isLoading={isLoading}
             dataCy="cpu-reservation"
@@ -111,7 +114,7 @@ export function ResourceReservation({
           <ResourceUsageItem
             value={resourceUsage.cpu}
             total={cpuLimit}
-            label="CPU usage"
+            label={t('kubernetes.common.resourceReservation.cpuUsage')}
             annotation={cpuUsageAnnotation}
             isLoading={isLoading}
             dataCy="cpu-usage"

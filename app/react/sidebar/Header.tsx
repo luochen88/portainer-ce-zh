@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 import { isBE } from '@/react/portainer/feature-flags/feature-flags.service';
 
@@ -16,6 +17,7 @@ interface Props {
 
 export function Header({ logo: customLogo }: Props) {
   const { isOpen } = useSidebarState();
+  const { t } = useTranslation();
 
   return (
     <div
@@ -38,10 +40,10 @@ export function Header({ logo: customLogo }: Props) {
             'th-dark:text-gray-warm-6'
           )}
         >
-          <span className="font-medium">Powered by</span>
+          <span className="font-medium">{t('sidebar.powered_by')}</span>
           <span className="font-semibold">
             {isBE ? (
-              'portainer business'
+              t('sidebar.portainer_business')
             ) : (
               <a
                 href="https://www.portainer.io/install"
@@ -51,7 +53,7 @@ export function Header({ logo: customLogo }: Props) {
                   'th-dark:text-blue-7 th-dark:hover:text-blue-9'
                 )}
               >
-                portainer community
+                {t('sidebar.portainer_community')}
               </a>
             )}
           </span>

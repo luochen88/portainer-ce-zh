@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Trash2, CalendarSync } from 'lucide-react';
 import { useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { Authorized, useAuthorizations } from '@/react/hooks/useUser';
@@ -42,6 +43,7 @@ interface CronJobsExecutionsProps {
 }
 
 export function CronJobsDatatable() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const tableState = useKubeStore<TableSettings>(
     storageKey,
@@ -77,7 +79,7 @@ export function CronJobsDatatable() {
       columns={columns}
       settingsManager={tableState}
       isLoading={cronJobsQuery.isLoading}
-      title="Cron Jobs"
+      title={t('kubernetes.moreResources.cronJobs.title')}
       titleIcon={CalendarSync}
       getRowId={(row) => row.Id}
       isRowSelectable={(row) => !row.original.IsSystem}
@@ -121,6 +123,7 @@ function TableActions({ selectedItems }: TableActionsProps) {
   const environmentId = useEnvironmentId();
   const deleteCronJobsMutation = useDeleteCronJobsMutation(environmentId);
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <Authorized authorizations="K8sCronJobsW">
@@ -131,10 +134,10 @@ function TableActions({ selectedItems }: TableActionsProps) {
         onClick={() => handleRemoveClick(selectedItems)}
         icon={Trash2}
         isLoading={deleteCronJobsMutation.isLoading}
-        loadingText="Removing Cron Jobs..."
+        loadingText={t('kubernetes.moreResources.cronJobs.actions.removing')}
         data-cy="k8s-cronJobs-removeCronJobButton"
       >
-        Remove
+        {t('kubernetes.common.actions.remove')}
       </LoadingButton>
 
       <CreateFromManifestButton
@@ -172,14 +175,14 @@ function TableActions({ selectedItems }: TableActionsProps) {
       {
         onSuccess: () => {
           notifySuccess(
-            'Cron Jobs successfully removed',
+            t('kubernetes.moreResources.cronJobs.notifications.deleteSuccess'),
             cronJobs.map((r) => `${r.Namespace}/${r.Name}`).join(', ')
           );
           router.stateService.reload();
         },
         onError: (error) => {
           notifyError(
-            'Unable to delete Cron Jobs',
+            t('kubernetes.moreResources.cronJobs.notifications.deleteError'),
             error as Error,
             cronJobs.map((r) => `${r.Namespace}/${r.Name}`).join(', ')
           );

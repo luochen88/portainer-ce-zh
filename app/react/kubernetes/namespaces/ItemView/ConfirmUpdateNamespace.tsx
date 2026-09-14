@@ -1,3 +1,7 @@
+import { Trans } from 'react-i18next';
+
+import i18n from '@/i18n';
+
 import { ModalType } from '@@/modals';
 import { confirm } from '@@/modals/confirm';
 import { buildConfirmButton } from '@@/modals/utils';
@@ -13,33 +17,30 @@ export function confirmUpdateNamespace(warnings: Warnings) {
     <>
       {warnings.quota && (
         <p>
-          Reducing the quota assigned to an &quot;in-use&quot; namespace may
-          have unintended consequences, including preventing running
-          applications from functioning correctly and potentially even blocking
-          them from running at all.
+          <Trans i18nKey="kubernetes.namespaces.updateConfirm.quotaWarning" />
         </p>
       )}
       {warnings.ingress && (
         <p>
-          Deactivating ingresses may cause applications to be unaccessible. All
-          ingress configurations from affected applications will be removed.
+          <Trans i18nKey="kubernetes.namespaces.updateConfirm.ingressWarning" />
         </p>
       )}
       {warnings.registries && (
         <p>
-          Some registries you removed might be used by one or more applications
-          inside this environment. Removing the registries access could lead to
-          a service interruption for these applications.
+          <Trans i18nKey="kubernetes.namespaces.updateConfirm.registriesWarning" />
         </p>
       )}
-      <p>Are you sure you want to continue?</p>
+      <p>{i18n.t('kubernetes.common.confirm.continue')}</p>
     </>
   );
 
   return confirm({
-    title: 'Are you sure?',
+    title: i18n.t('kubernetes.common.confirm.title'),
     modalType: ModalType.Warn,
     message,
-    confirmButton: buildConfirmButton('Update', 'primary'),
+    confirmButton: buildConfirmButton(
+      i18n.t('kubernetes.common.actions.update'),
+      'primary'
+    ),
   });
 }

@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
 import { EnvironmentId } from '@/react/portainer/environments/types';
@@ -43,6 +44,6 @@ export async function getMetricsForNode(
 
     return node;
   } catch (e) {
-    throw parseAxiosError(e, 'Unable to retrieve metrics for node');
+    throw parseAxiosError(e, i18n.t('kubernetes.metrics.errors.node'));
   }
 }

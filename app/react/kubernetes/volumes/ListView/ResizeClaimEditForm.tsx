@@ -1,4 +1,5 @@
 import { Field, Form, Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { object, SchemaOf, string } from 'yup';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
@@ -21,6 +22,7 @@ interface Props {
 }
 
 export function ResizeClaimEditForm({ claim, onDismiss }: Props) {
+  const { t } = useTranslation();
   const envId = useEnvironmentId();
   const resizeMutation = useResizePVC(envId);
 
@@ -30,7 +32,7 @@ export function ResizeClaimEditForm({ claim, onDismiss }: Props) {
 
   return (
     <>
-      <Modal.Header title="Resize Persistent Volume Claim" />
+      <Modal.Header title={t('kubernetes.volumes.claims.resize.title')} />
 
       <Formik<ResizeClaimEditFormValues>
         initialValues={initialValues}
@@ -43,7 +45,7 @@ export function ResizeClaimEditForm({ claim, onDismiss }: Props) {
             <Modal.Body>
               <Form className="form-vertical" onSubmit={handleSubmit}>
                 <FormControl
-                  label="New size"
+                  label={t('kubernetes.volumes.claims.resize.newSizeLabel')}
                   inputId="newSize-input"
                   errors={errors.newSize}
                   size="vertical"
@@ -52,7 +54,7 @@ export function ResizeClaimEditForm({ claim, onDismiss }: Props) {
                     as={Input}
                     id="newSize-input"
                     name="newSize"
-                    placeholder="e.g. 10Gi"
+                    placeholder={t('kubernetes.volumes.claims.resize.placeholder')}
                     data-cy="kubernetes-pvc-resize-size-input"
                   />
                 </FormControl>
@@ -61,12 +63,12 @@ export function ResizeClaimEditForm({ claim, onDismiss }: Props) {
 
             <Modal.Footer>
               <LoadingButton
-                loadingText="Resizing..."
+                loadingText={t('kubernetes.volumes.claims.resize.loading')}
                 isLoading={isSubmitting}
                 onClick={() => handleSubmit()}
                 data-cy="kubernetes-pvc-resize-submit"
               >
-                Resize
+                {t('kubernetes.volumes.claims.resize.submit')}
               </LoadingButton>
             </Modal.Footer>
           </>

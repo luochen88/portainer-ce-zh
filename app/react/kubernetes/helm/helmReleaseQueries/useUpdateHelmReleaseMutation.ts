@@ -1,4 +1,5 @@
 import { useQueryClient, useMutation } from '@tanstack/react-query';
+import i18n from '@/i18n';
 
 import axios, { parseAxiosError } from '@/portainer/services/axios/axios';
 import { withError, withInvalidate } from '@/react-tools/react-query';
@@ -18,7 +19,7 @@ export function useUpdateHelmReleaseMutation(environmentId: EnvironmentId) {
       queryKeys.releases(environmentId),
       applicationsQueryKeys.applications(environmentId),
     ]),
-    ...withError('Unable to update Helm release'),
+    ...withError(i18n.t('kubernetes.helm.release.errors.update')),
   });
 }
 
@@ -48,7 +49,7 @@ export async function updateHelmRelease(
   } catch (err) {
     throw parseAxiosError(
       err,
-      options.errorMessage ?? 'Unable to update helm release'
+      options.errorMessage ?? i18n.t('kubernetes.helm.release.errors.update')
     );
   }
 }

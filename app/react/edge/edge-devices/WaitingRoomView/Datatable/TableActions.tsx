@@ -1,3 +1,5 @@
+import { Trans, useTranslation } from 'react-i18next';
+
 import { Check, CheckCircle } from 'lucide-react';
 
 import { notifySuccess } from '@/portainer/services/notifications';
@@ -16,18 +18,16 @@ import { WaitingRoomEnvironment } from '../types';
 
 import { AssignmentDialog } from './AssignmentDialog/AssignmentDialog';
 
-const overusedTooltip = (
-  <>
-    Associating devices is disabled as your node count exceeds your license
-    limit
-  </>
-);
+function OverusedTooltip() {
+  return <Trans i18nKey="edge.waitingRoom.tooltips.overused" />;
+}
 
 export function TableActions({
   selectedRows,
 }: {
   selectedRows: WaitingRoomEnvironment[];
 }) {
+  const { t } = useTranslation();
   const isPureAdmin = useIsPureAdmin();
   const associateMutation = useAssociateDeviceMutation();
   const removeMutation = useDeleteEnvironmentsMutation();
@@ -39,19 +39,18 @@ export function TableActions({
         onConfirmed={() => handleRemoveDevice(selectedRows)}
         disabled={selectedRows.length === 0}
         data-cy="remove-device-button"
-        confirmMessage="You're about to remove edge device(s) from waiting room, which will not be shown until next agent startup."
+        confirmMessage={t('edge.waitingRoom.confirmRemove')}
       >
-        Remove Device
+        {t('edge.waitingRoom.removeDevice')}
       </DeleteButton>
 
       <TooltipWithChildren
         message={
           licenseOverused ? (
-            overusedTooltip
+            <OverusedTooltip />
           ) : (
             <>
-              Associate device(s) and assigning edge groups, group and tags with
-              overriding options
+              <Trans i18nKey="edge.waitingRoom.tooltips.associateAndAssign" />
             </>
           )
         }
@@ -66,7 +65,7 @@ export function TableActions({
             color="secondary"
             icon={CheckCircle}
           >
-            Associate and assignment
+            {t('edge.waitingRoom.associateAndAssignment')}
           </Button>
         </span>
       </TooltipWithChildren>
@@ -74,11 +73,10 @@ export function TableActions({
       <TooltipWithChildren
         message={
           licenseOverused ? (
-            overusedTooltip
+            <OverusedTooltip />
           ) : (
             <>
-              Associate device(s) based on their pre-assigned edge groups, group
-              and tags
+              <Trans i18nKey="edge.waitingRoom.tooltips.associateDevice" />
             </>
           )
         }
@@ -90,7 +88,7 @@ export function TableActions({
             disabled={selectedRows.length === 0 || licenseOverused}
             icon={Check}
           >
-            Associate Device
+            {t('edge.waitingRoom.associateDevice')}
           </Button>
         </span>
       </TooltipWithChildren>
@@ -116,7 +114,7 @@ export function TableActions({
       devices.map((d) => d.Id),
       {
         onSuccess() {
-          notifySuccess('Success', 'Edge devices associated successfully');
+          notifySuccess(t('common.success'), t('edge.waitingRoom.notifications.associated'));
         },
       }
     );
@@ -127,7 +125,7 @@ export function TableActions({
       devices.map((d) => ({ id: d.Id, name: d.Name })),
       {
         onSuccess() {
-          notifySuccess('Success', 'Edge devices were hidden successfully');
+          notifySuccess(t('common.success'), t('edge.waitingRoom.notifications.hidden'));
         },
       }
     );

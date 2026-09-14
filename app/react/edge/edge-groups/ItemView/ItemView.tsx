@@ -1,4 +1,5 @@
 import { useCurrentStateAndParams, useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { notifySuccess } from '@/portainer/services/notifications';
 
@@ -11,6 +12,7 @@ import { EdgeGroupForm } from '../components/EdgeGroupForm/EdgeGroupForm';
 import { useEdgeGroup } from '../queries/useEdgeGroup';
 
 export function ItemView() {
+  const { t } = useTranslation();
   const {
     params: { groupId: id },
   } = useCurrentStateAndParams();
@@ -30,9 +32,9 @@ export function ItemView() {
   return (
     <>
       <PageHeader
-        title="Edit edge group"
+        title={t('edge.groups.edit.title')}
         breadcrumbs={[
-          { label: 'Edge groups', link: 'edge.groups' },
+          { label: t('edge.groups.title'), link: 'edge.groups' },
           group.Name,
         ]}
       />
@@ -53,8 +55,8 @@ export function ItemView() {
                     {
                       onSuccess: () => {
                         notifySuccess(
-                          'Success',
-                          'Edge group successfully updated'
+                          t('common.success'),
+                          t('edge.groups.notifications.updated')
                         );
                         router.stateService.go('^');
                       },

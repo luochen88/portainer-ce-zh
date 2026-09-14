@@ -1,4 +1,5 @@
 import { CellContext, Row } from '@tanstack/react-table';
+import i18n from '@/i18n';
 
 import { StatusBadge } from '@@/StatusBadge';
 import { filterHOC } from '@@/datatables/Filter';
@@ -8,7 +9,7 @@ import { ResourceRow } from '../types';
 import { columnHelper } from './helper';
 
 export const status = columnHelper.accessor((row) => row.status.label, {
-  header: 'Status',
+  header: () => i18n.t('kubernetes.common.columns.status'),
   id: 'status',
   cell: Cell,
   meta: {

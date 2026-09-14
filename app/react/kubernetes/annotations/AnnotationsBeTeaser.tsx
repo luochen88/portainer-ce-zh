@@ -1,9 +1,11 @@
 import { FeatureId } from '@/react/portainer/feature-flags/enums';
+import { useTranslation } from 'react-i18next';
 
 import { BETeaserButton } from '@@/BETeaserButton';
 import { Tooltip } from '@@/Tip/Tooltip';
 
 export function AnnotationsBeTeaser() {
+  const { t } = useTranslation();
   return (
     <div className="col-sm-12 text-muted mb-2 block px-0">
       <div className="control-label !mb-2 text-left font-medium">
@@ -35,9 +37,9 @@ export function AnnotationsBeTeaser() {
       <div className="block">
         <BETeaserButton
           className="!p-0"
-          heading="Add annotation"
-          buttonText="Add annotation"
-          message="Allows specifying of annotations on this resource."
+          heading={t('kubernetes.annotations.teaser.heading')}
+          buttonText={t('kubernetes.annotations.teaser.button')}
+          message={t('kubernetes.annotations.teaser.message')}
           featureId={FeatureId.K8S_ANNOTATIONS}
           buttonClassName="!ml-0"
           data-cy="annotations-be-teaser"

@@ -1,19 +1,22 @@
+import { Trans, useTranslation } from 'react-i18next';
+
 import { InformationPanel } from '@@/InformationPanel';
 import { PageHeader } from '@@/PageHeader';
 
 import { EdgeJobsDatatable } from './EdgeJobsDatatable';
 
 export function ListView() {
+  const { t } = useTranslation();
+
   return (
     <>
-      <PageHeader title="Edge Jobs" breadcrumbs="Edge Jobs" reload />
+      <PageHeader title={t('edge.jobs.title')} breadcrumbs={t('edge.jobs.title')} reload />
 
       <div className="row">
         <div className="col-sm-12">
-          <InformationPanel title="Information">
+          <InformationPanel title={t('common.information')}>
             <p className="small text-muted">
-              Edge Jobs requires Docker Standalone and a cron implementation
-              that reads jobs from <code>/etc/cron.d</code>
+              <Trans i18nKey="edge.jobs.requiresCron" components={{ 1: <code /> }} />
             </p>
           </InformationPanel>
         </div>

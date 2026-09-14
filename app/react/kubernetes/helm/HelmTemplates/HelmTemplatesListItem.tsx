@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { FallbackImage } from '@/react/components/FallbackImage';
 
@@ -14,6 +15,7 @@ interface HelmTemplatesListItemProps {
 
 export function HelmTemplatesListItem(props: HelmTemplatesListItemProps) {
   const { model, onSelect, actions } = props;
+  const { t } = useTranslation();
 
   function handleSelect() {
     onSelect(model);
@@ -32,7 +34,7 @@ export function HelmTemplatesListItem(props: HelmTemplatesListItemProps) {
             src={model.icon}
             fallbackIcon={HelmIcon}
             className="blocklist-item-logo h-16 w-auto"
-            alt="Helm chart icon"
+            alt={t('kubernetes.helm.templates.iconAlt')}
           />
         </span>
 

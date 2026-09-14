@@ -3,6 +3,7 @@ import { Edit } from 'lucide-react';
 import { slugify } from 'markdown-to-jsx';
 
 import { formatDate } from '@/portainer/filters/filters';
+import i18n from '@/i18n';
 
 import { StatusBadge, StatusBadgeType } from '@@/StatusBadge';
 import { Link } from '@@/Link';
@@ -19,7 +20,7 @@ export function createPersistentVolumesColumns(
 ) {
   return [
     helper.accessor('name', {
-      header: 'Name',
+      header: i18n.t('kubernetes.common.columns.name'),
       cell: ({ getValue }) => {
         const name = getValue();
         return (
@@ -34,28 +35,28 @@ export function createPersistentVolumesColumns(
       },
     }),
     helper.accessor('status', {
-      header: 'Status',
+      header: i18n.t('kubernetes.common.columns.status'),
       cell: ({ getValue }) => {
         const status = getValue();
         return <StatusBadge color={statusColor(status)}>{status}</StatusBadge>;
       },
     }),
     helper.accessor((row) => row.capacity?.storage, {
-      header: 'Capacity',
+      header: i18n.t('kubernetes.volumes.columns.capacity'),
       id: 'capacity',
     }),
     helper.accessor((row) => row.humanReadableAccessModes.join(', '), {
-      header: 'Access modes',
+      header: i18n.t('kubernetes.volumes.columns.accessModes'),
       id: 'accessModes',
     }),
     helper.accessor('persistentVolumeReclaimPolicy', {
-      header: 'Reclaim policy',
+      header: i18n.t('kubernetes.volumes.columns.reclaimPolicy'),
     }),
     helper.accessor('storageClassName', {
-      header: 'Storage class',
+      header: i18n.t('kubernetes.volumes.columns.storageClass'),
     }),
     helper.accessor('claimRef', {
-      header: 'Claim',
+      header: i18n.t('kubernetes.volumes.columns.claim'),
       id: 'claim',
       cell: ({ row: { original } }) =>
         original.claimRef ? (
@@ -74,15 +75,15 @@ export function createPersistentVolumesColumns(
         ),
     }),
     helper.accessor((row) => formatDate(row.creationDate), {
-      header: 'Created',
+      header: i18n.t('kubernetes.common.columns.created'),
       id: 'created',
     }),
     helper.display({
       id: 'actions',
-      header: 'Actions',
+      header: i18n.t('kubernetes.common.columns.actions'),
       cell: ({ row: { original } }) => {
         return (
-          <TooltipWithChildren message="Edit reclaim policy" position="top">
+          <TooltipWithChildren message={i18n.t('kubernetes.volumes.reclaimPolicy.tooltip')} position="top">
             <Button
               color="light"
               className="!ml-0"

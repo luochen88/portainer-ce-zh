@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowUp } from 'lucide-react';
 
 import { withReactQuery } from '@/react-tools/withReactQuery';
@@ -39,6 +40,7 @@ export function UpgradeHelmModal({
   chartName,
   environmentId,
 }: Props) {
+  const { t } = useTranslation();
   const versionOptions: Option<ChartVersion>[] = versions.map((version) => {
     const repo =
       helmReleaseInitialValues.repo === version.Repo ? version.Repo : '';
@@ -47,7 +49,7 @@ export function UpgradeHelmModal({
       version.Version === helmReleaseInitialValues.version;
 
     const label = `${repo}@${version.Version}${
-      isCurrentVersion ? ' (current)' : ''
+      isCurrentVersion ? t('kubernetes.helm.common.currentSuffix') : ''
     }`;
 
     return {
@@ -109,7 +111,7 @@ export function UpgradeHelmModal({
         <Modal.Body>
           <div className="form-horizontal">
             <FormControl
-              label="Release name"
+              label={t('kubernetes.helm.common.releaseName')}
               inputId="release-name-input"
               size="medium"
             >
@@ -122,7 +124,7 @@ export function UpgradeHelmModal({
               />
             </FormControl>
             <FormControl
-              label="Namespace"
+              label={t('kubernetes.common.columns.namespace')}
               inputId="namespace-input"
               size="medium"
             >
@@ -140,7 +142,7 @@ export function UpgradeHelmModal({
                 data-cy="helm-namespace-input"
               />
             </FormControl>
-            <FormControl label="Version" inputId="version-input" size="medium">
+            <FormControl label={t('kubernetes.helm.common.version')} inputId="version-input" size="medium">
               <PortainerSelect<ChartVersion>
                 value={version}
                 options={versionOptions}
@@ -153,8 +155,8 @@ export function UpgradeHelmModal({
               />
             </FormControl>
             <FormControl
-              label="Rollback on failure"
-              tooltip="Enables automatic rollback on failure. It may increase the time to upgrade."
+              label={t('kubernetes.helm.upgrade.rollbackOnFailure.label')}
+              tooltip={t('kubernetes.helm.upgrade.rollbackOnFailure.tooltip')}
               inputId="atomic-input"
               size="medium"
             >
@@ -175,7 +177,7 @@ export function UpgradeHelmModal({
               <ManifestPreviewFormSection
                 payload={submitPayload}
                 onChangePreviewValidation={setPreviewIsValid}
-                title="Manifest changes"
+                title={t('kubernetes.helm.upgrade.manifestChanges')}
                 currentManifest={releaseManifest}
                 environmentId={environmentId}
               />
@@ -192,15 +194,15 @@ export function UpgradeHelmModal({
             size="medium"
             data-cy="cancel-button-cy"
           >
-            Cancel
+            {t('kubernetes.common.actions.cancel')}
           </Button>
           <Button
             onClick={async () => {
               if (!previewIsValid) {
                 const confirmed = await confirm({
-                  title: 'Chart validation failed',
+                  title: t('kubernetes.helm.common.chartValidationFailed'),
                   message:
-                    'The Helm manifest preview validation failed, which may indicate configuration issues. This can be normal when creating new resources. Do you want to proceed with the upgrade?',
+                    t('kubernetes.helm.upgrade.confirm.validationFailed'),
                 });
                 if (!confirmed) {
                   return;
@@ -213,7 +215,7 @@ export function UpgradeHelmModal({
             size="medium"
             data-cy="update-button-cy"
           >
-            Upgrade
+            {t('kubernetes.helm.release.actions.upgrade')}
           </Button>
         </Modal.Footer>
       </div>

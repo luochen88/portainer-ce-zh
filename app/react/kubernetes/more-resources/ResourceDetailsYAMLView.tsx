@@ -1,5 +1,8 @@
 import { useMemo } from 'react';
 import { useCurrentStateAndParams } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
+
+import i18n from '@/i18n';
 import { Code, FileText } from 'lucide-react';
 
 import { useDescribeResource } from '@/react/kubernetes/helm/HelmApplicationView/ReleaseDetails/ResourcesTable/queries/useDescribeResource';
@@ -28,9 +31,14 @@ type ResourceConfig = {
 };
 
 const fallbackTabs: Tab[] = [
-  { name: 'YAML', icon: Code, widget: null, selectedTabParam: 'yaml' },
   {
-    name: 'Describe',
+    name: i18n.t('kubernetes.moreResources.resourceDetails.tabs.yaml'),
+    icon: Code,
+    widget: null,
+    selectedTabParam: 'yaml',
+  },
+  {
+    name: i18n.t('kubernetes.moreResources.resourceDetails.tabs.describe'),
     icon: FileText,
     widget: null,
     selectedTabParam: 'describe',
@@ -40,13 +48,14 @@ const fallbackTabs: Tab[] = [
 export function ResourceDetailsYAMLView() {
   const { state, params } = useCurrentStateAndParams();
   const config = state.data?.resourceConfig as ResourceConfig | undefined;
+  const { t } = useTranslation();
 
   const tabs = useMemo(
     () =>
       config && params.name
-        ? buildTabs(config, params.name, params.namespace, params.endpointId)
+        ? buildTabs(config, params.name, params.namespace, params.endpointId, t)
         : fallbackTabs,
-    [config, params.name, params.namespace, params.endpointId]
+    [config, params.name, params.namespace, params.endpointId, t]
   );
 
   const currentTabIndex = useCurrentTabIndex(tabs);
@@ -84,13 +93,14 @@ function buildTabs(
   config: ResourceConfig,
   name: string,
   namespace: string | undefined,
-  endpointId: number
+  endpointId: number,
+  t: (key: string) => string
 ): Tab[] {
   const resourcePath = buildResourcePath(config, namespace, name);
 
   return [
     {
-      name: 'YAML',
+      name: t('kubernetes.moreResources.resourceDetails.tabs.yaml'),
       icon: Code,
       widget: (
         <YamlTabContent
@@ -102,7 +112,7 @@ function buildTabs(
       selectedTabParam: 'yaml',
     },
     {
-      name: 'Describe',
+      name: t('kubernetes.moreResources.resourceDetails.tabs.describe'),
       icon: FileText,
       widget: (
         <DescribeTabContent
@@ -160,6 +170,7 @@ function DescribeTabContent({
   resourceType: string;
   namespace?: string;
 }) {
+  const { t } = useTranslation();
   const { data, isLoading, isError } = useDescribeResource(
     name,
     resourceType,
@@ -171,10 +182,10 @@ function DescribeTabContent({
       <div className="col-sm-12">
         <Widget>
           <WidgetBody>
-            {isLoading && <InlineLoader>Loading...</InlineLoader>}
+            {isLoading && <InlineLoader>{t('kubernetes.common.loading')}</InlineLoader>}
             {isError && (
-              <Alert color="error" title="Error">
-                Error loading resource details
+              <Alert color="error" title={t('kubernetes.common.error')}>
+                {t('kubernetes.moreResources.resourceDetails.errors.loading')}
               </Alert>
             )}
             {!isLoading && !isError && (

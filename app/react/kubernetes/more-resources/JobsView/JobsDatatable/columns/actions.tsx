@@ -1,4 +1,5 @@
 import { FileText } from 'lucide-react';
+import i18n from '@/i18n';
 
 import { Link } from '@@/Link';
 import { Icon } from '@@/Icon';
@@ -6,7 +7,7 @@ import { Icon } from '@@/Icon';
 import { columnHelper } from './helper';
 
 export const actions = columnHelper.accessor(() => '', {
-  header: 'Actions',
+  header: () => i18n.t('kubernetes.common.columns.actions'),
   id: 'actions',
   enableSorting: false,
   cell: ({ row: { original: job } }) => (

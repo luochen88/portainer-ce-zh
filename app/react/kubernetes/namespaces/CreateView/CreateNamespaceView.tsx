@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { isBE } from '@/react/portainer/feature-flags/feature-flags.service';
 import { useUnauthorizedRedirect } from '@/react/hooks/useUnauthorizedRedirect';
@@ -7,6 +9,7 @@ import { PageHeader } from '@@/PageHeader';
 import { CreateNamespaceForm } from './CreateNamespaceForm';
 
 export function CreateNamespaceView() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
 
   useUnauthorizedRedirect(
@@ -25,10 +28,10 @@ export function CreateNamespaceView() {
   return (
     <div className="form-horizontal">
       <PageHeader
-        title="Create a namespace"
+        title={t('kubernetes.namespaces.create.title')}
         breadcrumbs={[
-          { label: 'Namespaces', link: 'kubernetes.resourcePools' },
-          'Create a namespace',
+          { label: t('kubernetes.namespaces.list.breadcrumb'), link: 'kubernetes.resourcePools' },
+          t('kubernetes.namespaces.create.title'),
         ]}
         reload
       />

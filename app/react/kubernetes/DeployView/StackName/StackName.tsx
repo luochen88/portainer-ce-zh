@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { useIsEdgeAdmin } from '@/react/hooks/useUser';
 
@@ -22,9 +23,10 @@ export function StackName({
   setStackName,
   stacks = [],
   inputClassName,
-  textTip = "Enter or select a 'stack' name to group multiple deployments together, or else leave empty to ignore.",
+  textTip,
   error = '',
 }: Props) {
+  const { t } = useTranslation();
   const isAdminQuery = useIsEdgeAdmin();
   const stackResults = useMemo(
     () => stacks.filter((stack) => stack.includes(stackName ?? '')),
@@ -32,24 +34,30 @@ export function StackName({
   );
 
   const { isAdmin } = isAdminQuery;
+  const stackTextTip = textTip ?? t('kubernetes.deploy.stackName.textTip');
 
   const tooltip = (
     <>
-      You may specify a stack name to label resources that you want to group.
-      This includes Deployments, DaemonSets, StatefulSets and Pods.
+      <Trans i18nKey="kubernetes.deploy.stackName.tooltip.description">
+        You may specify a stack name to label resources that you want to group.
+        This includes Deployments, DaemonSets, StatefulSets and Pods.
+      </Trans>
       {isAdmin && (
         <>
           <br />
-          You can leave the stack name empty, or even turn off Kubernetes Stacks
-          functionality entirely via{' '}
-          <Link
-            to="portainer.settings"
-            target="_blank"
-            data-cy="k8s-deploy-stack-input-settings-link"
-          >
-            Kubernetes Settings
-          </Link>
-          .
+          <Trans
+            i18nKey="kubernetes.deploy.stackName.tooltip.admin"
+            components={{
+              1: (
+                <Link
+                  to="portainer.settings"
+                  target="_blank"
+                  data-cy="k8s-deploy-stack-input-settings-link"
+                />
+              ),
+            }}
+            defaultValue="You can leave the stack name empty, or even turn off Kubernetes Stacks functionality entirely via <1>Kubernetes Settings</1>."
+          />
         </>
       )}
     </>
@@ -57,9 +65,9 @@ export function StackName({
 
   return (
     <>
-      {textTip ? (
+      {stackTextTip ? (
         <TextTip className="mb-4" color="blue">
-          {textTip}
+          {stackTextTip}
         </TextTip>
       ) : null}
       <div className="form-group">
@@ -67,7 +75,7 @@ export function StackName({
           htmlFor="stack_name"
           className="col-lg-2 col-sm-3 control-label text-left"
         >
-          Stack
+          {t('kubernetes.deploy.stackName.label')}
           <Tooltip message={tooltip} setHtmlMessage />
         </label>
         <div className={inputClassName || 'col-sm-9 col-lg-10'}>
@@ -78,7 +86,7 @@ export function StackName({
             }))}
             value={stackName ?? ''}
             onChange={setStackName}
-            placeholder="e.g. myStack"
+            placeholder={t('kubernetes.deploy.stackName.placeholder')}
             inputId="stack_name"
             data-cy="k8s-deploy-stack-input"
           />

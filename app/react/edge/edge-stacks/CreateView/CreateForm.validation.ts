@@ -1,3 +1,4 @@
+
 import {
   SchemaOf,
   array,
@@ -11,6 +12,7 @@ import {
 import { useMemo } from 'react';
 import Lazy from 'yup/lib/Lazy';
 
+import i18n from '@/i18n';
 import { buildGitValidationSchema } from '@/react/portainer/gitops/GitForm';
 import { relativePathValidation } from '@/react/portainer/gitops/RelativePathFieldset/validation';
 import { CustomTemplate } from '@/react/portainer/templates/custom-templates/types';
@@ -22,13 +24,16 @@ import {
 } from '@/react/portainer/gitops/types';
 import { EnvironmentType } from '@/react/portainer/environments/types';
 
+
 import { envVarValidation } from '@@/form-components/EnvironmentVariablesFieldset';
 import { file } from '@@/form-components/yup-file-validation';
+
 
 import { DeploymentType } from '../types';
 import { staggerConfigValidation } from '../components/StaggerFieldset';
 import { createHasEnvironmentTypeFunction } from '../ItemView/EditEdgeStackForm/useEdgeGroupHasType';
 import { useEdgeGroups } from '../../edge-groups/queries/useEdgeGroups';
+
 
 import { FormValues, Method } from './types';
 import { templateFieldsetValidation } from './TemplateFieldset/validation';
@@ -55,13 +60,13 @@ export function useValidation({
           name: nameValidation(values.groupIds),
           groupIds: array(number().required())
             .required()
-            .min(1, 'At least one Edge group is required'),
+            .min(1, i18n.t('edge.stacks.validation.atLeastOneEdgeGroup')),
           deploymentType: mixed<DeploymentType>()
             .oneOf([DeploymentType.Compose, DeploymentType.Kubernetes])
             .required()
             .test(
               'kubernetes-deployment-type-validation',
-              'Kubernetes deployment type is not compatible with the selected edge group(s), which contain Docker environments',
+              i18n.t('edge.stacks.validation.kubernetesIncompatibleWithDocker'),
               (value) => {
                 if (value !== DeploymentType.Kubernetes) {
                   return true;
@@ -81,7 +86,7 @@ export function useValidation({
             )
             .test(
               'compose-deployment-type-validation',
-              'Compose deployment type is not compatible with the selected edge group(s), which contain Kubernetes environments',
+              i18n.t('edge.stacks.validation.composeIncompatibleWithKubernetes'),
               (value) => {
                 if (value !== DeploymentType.Compose) {
                   return true;
@@ -109,7 +114,7 @@ export function useValidation({
             .default('')
             .when('method', {
               is: 'editor',
-              then: (schema) => schema.required('Config file is required'),
+              then: (schema) => schema.required(i18n.t('edge.stacks.validation.configFileRequired')),
             }),
           file: file().when('method', {
             is: 'upload',

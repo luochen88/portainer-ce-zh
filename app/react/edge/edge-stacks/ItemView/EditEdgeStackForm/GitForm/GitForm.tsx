@@ -1,3 +1,5 @@
+import { useTranslation, Trans } from 'react-i18next';
+
 import { useState } from 'react';
 import { Form, Formik, useFormikContext } from 'formik';
 import { useRouter } from '@uirouter/react';
@@ -22,6 +24,8 @@ import { EdgeGroup } from '@/react/edge/edge-groups/types';
 import { DeploymentType, EdgeStack } from '@/react/edge/edge-stacks/types';
 import { EdgeGroupsSelector } from '@/react/edge/edge-stacks/components/EdgeGroupsSelector';
 import { EdgeStackDeploymentTypeSelector } from '@/react/edge/edge-stacks/components/EdgeStackDeploymentTypeSelector';
+import i18n from '@/i18n';
+
 import { notifySuccess } from '@/portainer/services/notifications';
 import { EnvironmentType } from '@/react/portainer/environments/types';
 import { Registry } from '@/react/portainer/registries/types/registry';
@@ -58,6 +62,7 @@ interface FormValues {
 }
 
 export function GitForm({ stack }: { stack: EdgeStack }) {
+  const { t } = useTranslation();
   const router = useRouter();
   const updateStackMutation = useUpdateEdgeStackGitMutation();
 
@@ -102,7 +107,7 @@ export function GitForm({ stack }: { stack: EdgeStack }) {
 
           updateStackMutation.mutate(getPayload(values, false), {
             onSuccess() {
-              notifySuccess('Success', 'Stack updated successfully');
+              notifySuccess(t('common.success'), t('edge.stacks.notifications.updated'));
               router.stateService.reload();
             },
           });
@@ -114,7 +119,7 @@ export function GitForm({ stack }: { stack: EdgeStack }) {
   async function handleSubmit(values: FormValues) {
     updateStackMutation.mutate(getPayload(values, true), {
       onSuccess() {
-        notifySuccess('Success', 'Stack updated successfully');
+        notifySuccess(t('common.success'), t('edge.stacks.notifications.updated'));
         router.stateService.reload();
       },
     });
@@ -150,6 +155,7 @@ function InnerForm({
   webhookId: string;
   stack: EdgeStack;
 }) {
+  const { t } = useTranslation();
   const registriesQuery = useRegistries();
   const { values, setFieldValue, isValid, handleSubmit, errors, dirty } =
     useFormikContext<FormValues>();
@@ -173,18 +179,13 @@ function InnerForm({
 
       {hasKubeEndpoint && hasDockerEndpoint && (
         <TextTip>
-          There are no available deployment types when there is more than one
-          type of environment in your edge group selection (e.g. Kubernetes and
-          Docker environments). Please select edge groups that have environments
-          of the same type.
+          {t('edge.stacks.validation.mixedEnvironmentTypes')}
         </TextTip>
       )}
 
       {values.deploymentType === DeploymentType.Compose && hasKubeEndpoint && (
         <FormError>
-          Edge groups with kubernetes environments no longer support compose
-          deployment types in Portainer. Please select edge groups that only
-          have docker environments when using compose deployment types.
+          {t('edge.stacks.validation.composeNoLongerSupportsKube')}
         </FormError>
       )}
       <EdgeStackDeploymentTypeSelector
@@ -203,7 +204,7 @@ function InnerForm({
         sourceId={stack.GitSourceId}
       />
 
-      <FormSection title="Update from git repository">
+      <FormSection title={t('edge.stacks.git.updateFromRepository')}>
         <AutoUpdateFieldset
           webhookId={webhookId}
           value={values.autoUpdate}
@@ -217,7 +218,7 @@ function InnerForm({
         />
       </FormSection>
 
-      <FormSection title="Advanced configuration" isFoldable>
+      <FormSection title={t('edge.stacks.advancedConfiguration')} isFoldable>
         <RefField
           value={values.refName}
           onChange={(value) => setFieldValue('refName', value)}
@@ -227,14 +228,7 @@ function InnerForm({
 
         <GitSourceSelector value={stack.GitSourceId} readOnly />
         <TextTip>
-          Credentials are managed by the source.{' '}
-          <Link
-            to="portainer.gitops.sources.item"
-            params={{ sourceId: stack.GitSourceId }}
-            data-cy="source-item-link"
-          >
-            Edit source
-          </Link>
+          <Trans i18nKey="edge.stacks.git.credentialsManagedBySource" components={{ 1: <Link to="portainer.gitops.sources.item" params={{ sourceId: stack.GitSourceId }} data-cy="source-item-link" /> }} />
         </TextTip>
 
         {isBE && (
@@ -261,26 +255,26 @@ function InnerForm({
         errorMessage={errors.privateRegistryId}
       />
 
-      <FormSection title="Actions">
+      <FormSection title={t('common.actions')}>
         <div className="flex items-center gap-2">
           <LoadingButton
             disabled={dirty || !isValid || isLoading}
             data-cy="pull-and-update-stack-button"
             isLoading={isUpdateVersion && isLoading}
-            loadingText="updating stack..."
+            loadingText={t('edge.stacks.updatingStack')}
           >
-            Pull and update stack
+            {t('edge.stacks.git.pullAndUpdate')}
           </LoadingButton>
 
           <LoadingButton
             type="button"
             disabled={!dirty || !isValid || isLoading}
             isLoading={!isUpdateVersion && isLoading}
-            loadingText="updating settings..."
+            loadingText={t('edge.stacks.updatingSettings')}
             onClick={onUpdateSettingsClick}
             data-cy="edge-stack-update-settings-button"
           >
-            Update settings
+            {t('edge.stacks.git.updateSettings')}
           </LoadingButton>
         </div>
       </FormSection>
@@ -293,6 +287,6 @@ function formValidation() {
     groupIds: array()
       .of(number().required())
       .required()
-      .min(1, 'At least one edge group is required'),
+      .min(1, i18n.t('edge.stacks.validation.atLeastOneEdgeGroup')),
   });
 }

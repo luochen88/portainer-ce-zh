@@ -1,0 +1,3813 @@
+{
+  "reactExample": {
+    "registries": {
+      "link": "镜像仓库 <strong>Link</strong>",
+      "useSref": "镜像仓库 useSref"
+    }
+  },
+  "users": {
+    "access-tokens": {
+      "create": {
+        "add-button": "添加访问令牌",
+        "description-field-label": "描述",
+        "done-button": "完成",
+        "form": {
+          "description-field": {
+            "error": {
+              "required": "此字段为必填项"
+            },
+            "label": "描述"
+          }
+        },
+        "new-access-token": {
+          "copy-button": "复制访问令牌",
+          "explanation": "请复制新的访问令牌。你将无法再次查看该令牌。",
+          "title": "新的访问令牌"
+        }
+      }
+    },
+    "title": "用户",
+    "breadcrumbs": "用户",
+    "remove_confirm": "确定要移除所选用户吗？",
+    "remove_success": "用户移除成功",
+    "remove_error": "无法移除用户",
+    "add_user": "添加新用户",
+    "user_created": "用户创建成功",
+    "col_name": "名称",
+    "col_role": "角色",
+    "col_auth": "认证",
+    "team_leader_suffix": " - 团队负责人"
+  },
+  "sidebar": {
+    "home": "首页",
+    "administration": "管理",
+    "user_related": "用户相关",
+    "users": "用户",
+    "teams": "团队",
+    "roles": "角色",
+    "environment_related": "环境相关",
+    "environments": "环境",
+    "groups": "分组",
+    "tags": "标签",
+    "registries": "镜像仓库",
+    "logs": "日志",
+    "authentication_logs": "认证日志",
+    "activity_logs": "活动日志",
+    "notifications": "通知",
+    "settings": "设置",
+    "general": "常规",
+    "authentication_settings": "认证设置",
+    "edge_compute": "边缘计算",
+    "get_help": "获取帮助",
+    "environment": "环境",
+    "none_selected": "未选择",
+    "clear_environment": "清除环境",
+    "licenses": "许可证",
+    "shared_credentials": "共享凭据",
+    "update_rollback": "更新与回滚",
+    "powered_by": "技术支持",
+    "portainer_business": "Portainer 商业版",
+    "portainer_community": "Portainer 社区版",
+    "toggle_sidebar": "切换侧边栏",
+    "about_portainer": "关于 Portainer",
+    "build_info": {
+      "server_version": "服务器版本：",
+      "database_version": "数据库版本：",
+      "ci_build_number": "CI 构建号：",
+      "image_tag": "镜像标签：",
+      "git_commit": "Git 提交：",
+      "compilation_tools": "编译工具：",
+      "dependencies": "依赖项：",
+      "environment_variables": "环境变量",
+      "ok": "确定"
+    },
+    "update": {
+      "new_version_available": "有新版本可用",
+      "dismiss": "忽略",
+      "see_whats_new": "查看更新内容"
+    },
+    "kubectl_shell": "kubectl 终端"
+  },
+  "common": {
+    "dashboard": "仪表盘",
+    "volumes": "卷",
+    "loading": "正在加载...",
+    "no_items_available": "没有可用项。",
+    "search": "搜索...",
+    "search_input_label": "搜索输入框",
+    "items_selected_one": "已选择 {{count}} 项",
+    "items_selected_other": "已选择 {{count}} 项",
+    "items_hidden_by_filters": "（{{count}} 项被过滤器隐藏）",
+    "refresh": "刷新",
+    "group": "分组：",
+    "loading_tags": "正在加载标签...",
+    "no_tags": "无标签",
+    "last_snapshot_time": "上次快照时间",
+    "name": "名称",
+    "image": "镜像",
+    "created": "创建时间",
+    "stack": "堆栈",
+    "published_ports": "已发布端口",
+    "ip_address": "IP 地址",
+    "actions": "操作",
+    "quick_actions": "快捷操作",
+    "settings": "设置",
+    "table_settings": "表格设置",
+    "show_hide_columns": "显示/隐藏列",
+    "filter": "筛选",
+    "auto_refresh": "自动刷新",
+    "refresh_rate": "刷新频率",
+    "items_per_page": "每页项目数",
+    "all": "全部",
+    "be_feature": "商业版功能",
+    "success": "成功",
+    "failure": "失败",
+    "confirm": "确认",
+    "yes": "是",
+    "retry": "重试",
+    "information": "信息",
+    "save": "保存",
+    "dismiss": "忽略",
+    "error": "错误",
+    "fileUpload": {
+      "select_a_file": "选择文件",
+      "upload": "上传"
+    },
+    "imageConfig": {
+      "registry": "镜像仓库",
+      "image": "镜像",
+      "search_on_docker_hub": "在 Docker Hub 上搜索镜像",
+      "search": "搜索"
+    },
+    "webEditor": {
+      "web_editor": "Web 编辑器",
+      "unsaved_confirm_title": "确定吗？",
+      "unsaved_confirm_message": "文本编辑器中有未保存的更改。确定要离开吗？",
+      "yes": "是"
+    },
+    "columns": {
+      "ownership": "所有权",
+      "name": "名称",
+      "actions": "操作"
+    },
+    "copy_value": "复制值",
+    "documentation": "文档",
+    "refresh_page": "刷新页面",
+    "cancel": "取消",
+    "stop": "停止",
+    "delete": "删除",
+    "update": "更新",
+    "detach": "分离",
+    "are_you_sure": "确定吗？",
+    "remove": "移除",
+    "add": "添加",
+    "edit": "编辑",
+    "close": "关闭",
+    "col_name": "名称",
+    "col_actions": "操作",
+    "confirmAction": "确认操作",
+    "creationDate": "创建日期",
+    "disabled": "已禁用",
+    "inProgress": "进行中",
+    "tags": "标签"
+  },
+  "notifications": {
+    "title": "通知",
+    "clear_all": "全部清除",
+    "view_all": "查看所有通知",
+    "no_notifications": "暂无通知。",
+    "hours_ago": "{{count}} 小时前",
+    "min_ago": "{{count}} 分钟前",
+    "just_now": "刚刚",
+    "remove_confirm": "确定要移除所选通知吗？",
+    "col_type": "类型",
+    "col_title": "标题",
+    "col_time": "时间",
+    "col_details": "详情"
+  },
+  "home": {
+    "environments": "环境",
+    "environments_description": "点击环境进行管理",
+    "search_placeholder": "按名称、分组、标签、状态、URL 搜索...",
+    "no_environments": "没有可用环境。",
+    "no_environment_admin_prefix": "没有可管理的环境。请前往",
+    "environment_wizard_link": "环境向导",
+    "no_environment_admin_suffix": "添加环境。",
+    "no_environment_user": "你无权访问任何环境。请联系管理员。",
+    "title": "首页",
+    "breadcrumbs_environments": "环境",
+    "snapshot_success": "快照创建成功",
+    "snapshot_error": "创建快照失败",
+    "snapshot_confirm_title": "为环境创建快照？",
+    "snapshot_confirm_message": "这将更新环境状态。是否继续？",
+    "failed_connecting": "连接 {{name}} 失败",
+    "edge_tunnel_retry_message": "通过隧道连接边缘代理时出现问题。点击下方“重试”立即重试，或等待 10 秒自动重试。",
+    "license_exceeded": {
+      "title": "许可证节点额度已超限",
+      "message": "节点数量已超过许可证允许范围。请联系管理员。"
+    }
+  },
+  "wizard": {
+    "quick_setup": "快速设置",
+    "environment_wizard": "环境向导",
+    "welcome": "欢迎使用 Portainer",
+    "local_connected": "已将本地 {{type}} 环境连接到 Portainer。",
+    "local_error": "无法将本地环境连接到 Portainer。",
+    "local_error_help": "请确保环境已正确暴露。如需安装帮助，请访问",
+    "get_started_hint": "使用运行 Portainer 的本地环境开始，或连接更多容器环境。",
+    "get_started": "开始使用",
+    "get_started_description": "继续使用 Portainer 所在的本地环境",
+    "add_environments": "添加环境",
+    "add_environments_description": "连接到其他环境",
+    "new_environments": "新环境"
+  },
+  "docker": {
+    "templates": "模板",
+    "app_templates": "应用模板",
+    "custom_templates": "自定义模板",
+    "stacks": {
+      "label": "堆栈",
+      "create": {
+        "title": "创建堆栈",
+        "breadcrumb": "堆栈创建"
+      },
+      "item": {
+        "title": "堆栈详情",
+        "breadcrumb": "堆栈",
+        "invalidType": "URL 参数类型无效。"
+      },
+      "duplication": {
+        "tip": "此功能可用于复制或迁移此堆栈。",
+        "renameTip": "要重命名堆栈，请在迁移时选择相同环境。",
+        "namePlaceholder": "堆栈名称（迁移时可选）",
+        "nameLabel": "堆栈名称",
+        "renamingInProgress": "正在重命名...",
+        "migrationInProgress": "正在迁移...",
+        "renameButton": "重命名",
+        "migrateButton": "迁移",
+        "duplicationInProgress": "正在复制...",
+        "duplicateButton": "复制"
+      },
+      "table_title": "堆栈",
+      "stop_stack": "停止此堆栈",
+      "start_stack": "启动此堆栈",
+      "delete_stack": "删除此堆栈",
+      "create_template": "从堆栈创建模板",
+      "detach_git": "从 Git 分离",
+      "detaching": "正在分离...",
+      "confirm_stop": {
+        "title": "确定吗？",
+        "message": "确定要停止此堆栈吗？"
+      },
+      "confirm_delete": "是否移除此堆栈？关联服务也将被移除。",
+      "confirm_detach": {
+        "title": "确定吗？",
+        "message": "是否将此堆栈从 Git 分离？"
+      },
+      "notifications": {
+        "started": "启动成功",
+        "unable_start": "无法启动堆栈",
+        "stopped": "停止成功",
+        "unable_stop": "无法停止堆栈",
+        "removed": "堆栈移除成功",
+        "unable_remove": "无法移除堆栈"
+      },
+      "confirm_remove_list": "是否移除所选堆栈？关联服务也将被移除。",
+      "columns": {
+        "name": "名称",
+        "control": "控制"
+      },
+      "info": {
+        "stack_details": "堆栈详情",
+        "information": "信息"
+      },
+      "webhooks": "Webhook",
+      "stack_duplication": "堆栈复制/迁移"
+    },
+    "services": {
+      "table_title": "服务",
+      "confirm_remove": "是否移除所选服务？与所选服务关联的所有容器也将被移除。",
+      "confirm_force_update": "是否强制更新所选服务？与所选服务关联的所有任务都将重新创建。",
+      "notifications": {
+        "updated": "服务更新成功",
+        "removed": "服务移除成功"
+      },
+      "columns": {
+        "scheduling_mode": "调度模式",
+        "published_ports": "已发布端口"
+      },
+      "tasks": {
+        "table_title": "任务",
+        "columns": {
+          "task": "任务",
+          "id": "ID",
+          "status": "状态",
+          "slot": "槽位",
+          "node": "节点",
+          "actions": "操作",
+          "last_update": "最后更新"
+        }
+      },
+      "quick_actions": {
+        "logs": "日志",
+        "inspect": "检查"
+      },
+      "published_ports": "已发布端口",
+      "label": "服务"
+    },
+    "containers": {
+      "label": "容器",
+      "create": {
+        "title": "创建容器",
+        "addContainer": "添加容器",
+        "caution": "注意",
+        "cautionMessage": "如果镜像已更改，且旧容器的设置与新镜像不兼容，新容器可能无法启动。常见原因包括镜像设置的 entrypoint、cmd 或其他配置。",
+        "otherSettings": "其他设置",
+        "confirmTitle": "确定吗？",
+        "confirmMessage": "已存在同名容器。Portainer 可以自动移除它并重新创建一个。是否替换？",
+        "confirmReplace": "替换",
+        "successMessage": "容器创建成功",
+        "imageConfiguration": "镜像配置",
+        "alwaysPull": "始终拉取镜像",
+        "alwaysPullTooltip": "启用后，Portainer 会在创建容器前自动尝试拉取指定镜像。",
+        "webhook": "Webhook",
+        "createWebhook": "创建容器 Webhook",
+        "createWebhookTooltip": "创建 Webhook（或回调 URI）以自动重新创建此容器。向此回调 URI 发送 POST 请求（无需认证）会拉取关联镜像的最新版本并重新创建此容器。",
+        "networkPorts": "网络端口配置",
+        "publishAllPorts": "将所有暴露端口发布到随机主机端口",
+        "publishAllPortsTooltip": "启用后，Portainer 会让 Docker 自动将 Dockerfile 中定义的每个端口映射到主机上的随机端口。",
+        "deployment": "部署",
+        "autoRemove": "自动移除",
+        "autoRemoveTooltip": "启用后，Portainer 会在容器退出时自动移除该容器。适用于只想一次性使用容器的场景。",
+        "deployContainer": "部署容器",
+        "deploymentInProgress": "正在部署...",
+        "commands_logging": "命令和日志",
+        "volumes": "卷",
+        "network": "网络",
+        "env": "环境变量",
+        "labels": "标签",
+        "restart_policy": "重启策略",
+        "runtime_resources": "运行时与资源",
+        "capabilities": "功能权限",
+        "advanced_settings": "高级容器设置"
+      },
+      "item": {
+        "title": "容器详情",
+        "containerName": "容器名称",
+        "cancelNameEdit": "取消编辑容器名称",
+        "cancel": "取消",
+        "rename": "重命名",
+        "renameContainer": "重命名容器",
+        "nameRequired": "容器名称为必填项",
+        "nameEmpty": "容器名称不能为空",
+        "renameSuccess": "容器已成功重命名为 {{name}}"
+      },
+      "health": {
+        "title": "容器健康状态",
+        "status": "状态",
+        "failure_count": "失败次数",
+        "last_output": "最后输出",
+        "no_health_status": "无健康状态"
+      },
+      "recreate": {
+        "title": "确定吗？",
+        "message": "你即将重新创建此容器，所有未持久化的数据都将丢失。此容器将被移除，并使用相同配置创建另一个容器。",
+        "repull_image": "重新拉取镜像",
+        "cannot_repull": "无法重新拉取，因为镜像不可访问：镜像可能已不存在，或标签/名称不再正确。",
+        "cancel": "取消",
+        "confirm": "重新创建"
+      },
+      "details": {
+        "title": "容器详情"
+      },
+      "status": {
+        "title": "容器状态"
+      },
+      "actions": {
+        "title": "操作"
+      },
+      "create_image": {
+        "title": "创建镜像"
+      },
+      "volumes": {
+        "title": "卷"
+      },
+      "inspect": {
+        "title": "容器检查",
+        "tree": "树状视图",
+        "text": "文本"
+      },
+      "columns": {
+        "state": "状态",
+        "host": "主机",
+        "gpus": "GPU"
+      },
+      "notifications": {
+        "removed": "容器移除成功",
+        "recreated": "容器重新创建成功",
+        "restart_policy_updated": "重启策略已更新",
+        "image_created": "镜像已创建",
+        "limits_updated": "资源限制已更新",
+        "webhook_created": "Webhook 创建成功",
+        "webhook_deleted": "Webhook 删除成功"
+      },
+      "network_details": {
+        "network": "网络",
+        "ip_address": "IP 地址",
+        "gateway": "网关",
+        "mac_address": "MAC 地址"
+      },
+      "restart_policy": {
+        "never": "从不",
+        "always": "始终",
+        "on_failure": "失败时",
+        "unless_stopped": "除非手动停止"
+      },
+      "processes": {
+        "title": "进程"
+      },
+      "form": {
+        "resources": "资源",
+        "runtime": "运行时",
+        "container_capabilities": "容器功能权限",
+        "logging": "日志记录"
+      }
+    },
+    "images": {
+      "import": {
+        "unableToTagImage": "无法 tag image",
+        "unableToUploadImage": "无法 upload image",
+        "imagesUploadedSuccess": "镜像 已成功 uploaded",
+        "failure": "失败",
+        "success": "成功",
+        "multipleImagesIgnoredTag": "The uploaded tar file contained multiple images. The provided tag therefore has been ignored."
+      },
+      "label": "镜像",
+      "list": {
+        "title": "镜像 list",
+        "breadcrumb": "镜像"
+      },
+      "pull": {
+        "title": "Pull image",
+        "successMessage": "镜像 已成功 pulled"
+      },
+      "table_title": "镜像",
+      "columns": {
+        "tags": "标签",
+        "size": "Size",
+        "id": "Id",
+        "host": "主机",
+        "created": "创建时间"
+      },
+      "notification": {
+        "removed": "镜像 已成功 removed"
+      }
+    },
+    "networks": {
+      "label": "网络",
+      "table_title": "网络",
+      "add_network": "添加 network",
+      "confirm_remove": "Do you want to remove the 已选择 network(s)?",
+      "columns": {
+        "name": "名称"
+      }
+    },
+    "configs": {
+      "label": "Configs",
+      "list": {
+        "title": "Configs list",
+        "breadcrumb": "Configs"
+      },
+      "table_title": "Configs",
+      "columns": {
+        "creation_date": "创建 Date"
+      },
+      "confirm_remove": "Do you want to remove the 已选择 config(s)?",
+      "successfully_removed": "{{count}} Config(s) 已成功 removed",
+      "unable_to_remove": "无法 remove configs"
+    },
+    "secrets": {
+      "table_title": "Secret",
+      "columns": {
+        "creation_date": "创建 Date"
+      },
+      "confirm_remove": "Do you want to remove the 已选择 secret(s)?",
+      "label": "Secret",
+      "add_secret": "Add secret"
+    },
+    "events": {
+      "title": "Event list",
+      "breadcrumbs": "Events",
+      "table_title": "Events",
+      "date": "Date",
+      "type": "类型",
+      "details": "详情",
+      "label": "Events"
+    },
+    "swarm": {
+      "columns": {
+        "availability": "Availability",
+        "name": "名称"
+      },
+      "label": "Swarm"
+    },
+    "host": {
+      "unableToRetrieveEngineDetails": "无法 retrieve engine details",
+      "label": "主机"
+    },
+    "details": "详情",
+    "setup": "Setup",
+    "registries": "镜像仓库",
+    "gpus": {
+      "label": "GPUs",
+      "tooltip": "You may optionally set up the GPUs that will be selectable against containers, although 'All GPUs' will always be available.",
+      "add_gpu": "添加 GPU",
+      "gpu_name": "GPU 名称",
+      "gpu_name_placeholder": "my-gpu",
+      "index_or_uuid": "Index or UUID",
+      "index_or_uuid_placeholder": "0 or GPU-6e2c7185-c3d3-ae22-da43-bc5267b89061"
+    },
+    "volumes": {
+      "create": {
+        "volumeCreatedSuccess": "卷 已成功 created",
+        "errorDuringCreation": "An error occurred during volume creation",
+        "unableToRetrieveDrivers": "无法 retrieve volume drivers"
+      },
+      "edit": {
+        "confirmRemove": "Do you want to remove this volume?",
+        "volumeRemovedSuccess": "卷 已成功 removed",
+        "unableToRemove": "无法 remove volume",
+        "unableToRetrieveDetails": "无法 retrieve volume details"
+      },
+      "table_title_list": "卷",
+      "confirm_remove": "Do you want to remove the 已选择 volume(s)?",
+      "columns": {
+        "name": "名称"
+      }
+    },
+    "dashboard": {
+      "title": "仪表盘",
+      "environmentSummary": "环境 summary",
+      "stack": "Stack",
+      "service": "服务",
+      "container": "容器",
+      "image": "镜像",
+      "volume": "卷",
+      "network": "网络",
+      "gpu": "GPU",
+      "cluster_info": "集群 information",
+      "environment_info": "环境 info",
+      "non_agent_info": "信息"
+    }
+  },
+  "kubernetes": {
+    "custom_templates": "Custom Templates",
+    "namespaces": {
+      "_label": "命名空间",
+      "list": {
+        "title": "命名空间 list",
+        "breadcrumbs": "命名空间",
+        "breadcrumb": "Breadcrumb"
+      },
+      "notifications": {
+        "access_updated": "命名空间 access updated",
+        "updated": "命名空间 updated",
+        "created": "已创建",
+        "updatedGeneric": "Updated Generic"
+      },
+      "confirm_remove": "Do you want to remove the 已选择 namespace(s)?",
+      "access": {
+        "breadcrumb": "Breadcrumb",
+        "create": {
+          "loading": "Loading",
+          "selectUsersLabel": "Select Users Label",
+          "submit": "Submit",
+          "title": "标题"
+        },
+        "datatable": {
+          "removeConfirm": "Remove Confirm",
+          "title": "标题"
+        },
+        "title": "标题",
+        "updateFailure": "Update Failure",
+        "updated": "Updated"
+      },
+      "common": {
+        "namespace": "Namespace"
+      },
+      "create": {
+        "title": "标题"
+      },
+      "form": {
+        "actions": {
+          "create": "创建",
+          "creating": "Creating",
+          "update": "Update",
+          "updating": "Updating"
+        },
+        "loadBalancers": {
+          "quotaLabel": "Quota Label",
+          "tip": "Tip",
+          "title": "标题"
+        },
+        "name": {
+          "placeholder": "Placeholder"
+        },
+        "networking": {
+          "description": "Description",
+          "noIngressControllers": "No Ingress Controllers",
+          "title": "标题"
+        },
+        "registries": {
+          "loading": "Loading",
+          "noRegistriesUser": "No Registries User",
+          "placeholder": "Placeholder",
+          "selectLabel": "Select Label",
+          "selectedLabel": "Selected Label",
+          "tip": "Tip",
+          "title": "标题"
+        },
+        "resourceQuota": {
+          "assignment": "Assignment",
+          "cpuLimit": "Cpu Limit",
+          "limitsTitle": "Limits Title",
+          "memoryLimit": "Memory Limit",
+          "notEnoughResources": "Not Enough Resources",
+          "tip": "Tip",
+          "title": "标题"
+        },
+        "storage": {
+          "tip": "Tip"
+        },
+        "system": {
+          "mark": "Mark",
+          "markConfirm": "Mark Confirm",
+          "marking": "Marking",
+          "unmark": "Unmark",
+          "unmarkConfirm": "Unmark Confirm",
+          "unmarking": "Unmarking"
+        }
+      },
+      "item": {
+        "applications": {
+          "title": "标题"
+        },
+        "loadingError": "Loading Error",
+        "noData": "No Data",
+        "tabs": {
+          "events": "Events"
+        },
+        "title": "标题"
+      },
+      "yaml": {
+        "loading": "Loading"
+      }
+    },
+    "applications": {
+      "_label": "应用",
+      "update": {
+        "areYouSure": "确定吗？",
+        "serviceInterruption": "Updating the application may cause a service interruption.",
+        "portsNoMatchPlural": "服务 ports in this application no longer match the ingress {{rulePlural}}.",
+        "portsNoMatchSingular": "A service port in this application no longer matches the ingress {{rulePlural}} which may break ingress rule paths.",
+        "updateIngressRules": "更新 ingress {{rulePlural}} to match the service port changes",
+        "updateButton": "更新"
+      },
+      "services": {
+        "publishingApplication": "Publishing the application",
+        "clusterIpServices": "集群IP services",
+        "nodePortServices": "节点端口 services",
+        "loadBalancerServices": "LoadBalancer services"
+      },
+      "title": "应用 list",
+      "breadcrumbs": "应用",
+      "confirm_remove": "Do you want to remove the 已选择 application(s)?",
+      "confirm_remove_stacks": "Are you sure that you want to remove the 已选择 stack(s)? This will remove all the applications associated to the stack(s).",
+      "notifications": {
+        "updated": "应用 已成功 updated",
+        "redeployed": "应用 已成功 redeployed",
+        "rolled_back": "应用 已成功 rolled back"
+      },
+      "redeploy": "Redeploy",
+      "rollback": "Rollback to previous configuration",
+      "console": {
+        "breadcrumb": "Breadcrumb",
+        "commandLabel": "Command Label",
+        "connect": "Connect",
+        "connecting": "Connecting",
+        "disconnect": "Disconnect",
+        "sectionTitle": "Section Title",
+        "title": "标题"
+      },
+      "create": {
+        "dataAccessPolicy": {
+          "changeNotAllowed": "Change Not Allowed",
+          "options": {
+            "isolated": {
+              "description": "Description",
+              "label": "Label"
+            },
+            "shared": {
+              "description": "Description",
+              "label": "Label"
+            }
+          },
+          "tip": "Tip",
+          "title": "标题"
+        },
+        "ingressUpdatePrompt": {
+          "confirmButton": "Confirm Button",
+          "serviceInterruption": "Service Interruption"
+        },
+        "services": {
+          "explanation": {
+            "imageAlt": "Image Alt",
+            "title": "标题"
+          },
+          "tabs": {
+            "clusterIp": "Cluster Ip",
+            "loadBalancer": "Load Balancer",
+            "nodePort": "Node Port"
+          },
+          "title": "标题",
+          "validation": {
+            "containerPortRange": "Container Port Range",
+            "containerPortRequired": "Container Port Required",
+            "ingressHostnameRequired": "Ingress Hostname Required",
+            "ingressPathInUse": "Ingress Path In Use",
+            "ingressPathRequired": "Ingress Path Required",
+            "nodePortRange": "Node Port Range",
+            "nodePortUsed": "Node Port Used",
+            "nodePortUsedInService": "Node Port Used In Service",
+            "servicePortRange": "Service Port Range",
+            "servicePortRequired": "Service Port Required",
+            "servicePortUnique": "Service Port Unique"
+          }
+        }
+      },
+      "details": {
+        "actions": {
+          "redeploy": {
+            "confirmButton": "Confirm Button",
+            "confirmMessage": "Confirm Message",
+            "errors": {
+              "noMatchLabels": "No Match Labels"
+            },
+            "label": "Label",
+            "notifications": {
+              "success": "Success"
+            }
+          },
+          "rollback": {
+            "confirmButton": "Confirm Button",
+            "confirmMessage": "Confirm Message",
+            "infoTooltip": "Info Tooltip",
+            "label": "Label",
+            "notifications": {
+              "success": "Success",
+              "unableToRollback": "Unable To Rollback"
+            },
+            "unavailableTooltip": "Unavailable Tooltip"
+          }
+        },
+        "containers": {
+          "actions": {
+            "confirmDeletePod": "Confirm Delete Pod",
+            "deletePodAria": "Delete Pod Aria",
+            "deletePodTooltip": "Delete Pod Tooltip",
+            "deleteRestartStrategyTooltip": "Delete Restart Strategy Tooltip",
+            "openConsole": "Open Console",
+            "viewLogs": "View Logs",
+            "viewStatistics": "View Statistics"
+          },
+          "badges": {
+            "init": "Init",
+            "initLink": "Init Link",
+            "sidecar": "Sidecar",
+            "sidecarLink": "Sidecar Link"
+          },
+          "notifications": {
+            "podDeleted": "Pod Deleted",
+            "unableToDeletePod": "Unable To Delete Pod"
+          },
+          "title": "标题"
+        }
+      },
+      "form": {
+        "autoscaling": {
+          "validation": {
+            "maxGreaterThanMin": "Max Greater Than Min",
+            "maxInstancesRequired": "Max Instances Required",
+            "minInstancesGreaterThanZero": "Min Instances Greater Than Zero",
+            "minInstancesRequired": "Min Instances Required",
+            "minLessThanMax": "Min Less Than Max",
+            "resourceOverflow": "Resource Overflow",
+            "targetCpuGreaterThanZero": "Target Cpu Greater Than Zero",
+            "targetCpuRequired": "Target Cpu Required",
+            "targetCpuSmallerThan100": "Target Cpu Smaller Than100"
+          }
+        },
+        "name": {
+          "validation": {
+            "duplicate": "Duplicate",
+            "invalid": "Invalid"
+          }
+        }
+      }
+    },
+    "networking": "网络ing",
+    "services": {
+      "title": "服务 list",
+      "breadcrumbs": "服务",
+      "_label": "服务",
+      "deleteConfirm": "Delete Confirm",
+      "list": {
+        "breadcrumb": "Breadcrumb",
+        "datatableTitle": "Datatable Title",
+        "empty": "Empty",
+        "title": "标题"
+      },
+      "notifications": {
+        "deleteFailure": "Delete Failure",
+        "getFailure": "Get Failure",
+        "removed": "已移除",
+        "retrieveFailure": "Retrieve Failure",
+        "retrieveOneFailure": "Retrieve One Failure"
+      }
+    },
+    "ingresses": {
+      "confirm_remove": "确定要 delete the 已选择 ingresses?",
+      "notifications": {
+        "created": "Ingress created 已成功",
+        "updated": "Ingress updated 已成功",
+        "createFailure": "创建失败",
+        "getControllersFailure": "Get Controllers Failure",
+        "getFailure": "Get Failure",
+        "getOneFailure": "Get One Failure",
+        "updateFailure": "Update Failure"
+      },
+      "_label": "Ingress"
+    },
+    "configurations": "ConfigMap & Secret",
+    "more_resources": "More 资源",
+    "cron_jobs": "Cron Jobs & Jobs",
+    "service_accounts": {
+      "breadcrumbs": "服务 Accounts",
+      "_label": "服务 Accounts"
+    },
+    "cluster_roles": {
+      "breadcrumbs": "集群 角色s",
+      "_label": "集群 角色s"
+    },
+    "roles": {
+      "title": "角色 list",
+      "breadcrumbs": "角色s",
+      "_label": "角色s"
+    },
+    "cluster": {
+      "_label": "集群",
+      "configure": {
+        "networkingServices": "网络ing - 服务",
+        "loadBalancerTip": "Enabling the load balancer feature will allow users to expose applications they deploy over an external IP address assigned by the cloud provider.",
+        "loadBalancerCostWarning": "If you want to use this feature, ensure your cloud provider allows you to create load balancers. This may incur costs.",
+        "allowExternalLoadBalancers": "Allow users to use external load balancers",
+        "networkingIngresses": "网络ing - Ingress",
+        "ingressControllerDescription": "Enabling ingress controllers in your cluster allows them to be available in the 端口ainer UI for users to publish applications over HTTP/HTTPS. A controller must have a class name for it to be included here.",
+        "noIngressControllerLabel": "否 supported ingress controllers found.",
+        "allowNoneIngressClass": "Allow ingress class to be set to \"none\"",
+        "allowNoneIngressClassTooltip": "This allows users setting up ingresses to select \"none\" as the ingress class.",
+        "ingressAvailabilityPerNamespace": "Configure ingress controller availability per namespace",
+        "ingressAvailabilityPerNamespaceTooltip": "This allows an administrator to configure, in each namespace, which ingress controllers will be available for users to select when setting up ingresses for applications.",
+        "onlyAdminsDeployIngresses": "Only allow admins to deploy ingresses",
+        "onlyAdminsDeployIngressesTooltip": "Enforces only allowing admins to deploy ingresses (and disallows standard users from doing so).",
+        "ingressDefaultsTip": "You may set up ingress defaults (hostnames and annotations) via 创建/编辑 ingress. 用户 may then select them via the hostname dropdown in 创建/编辑 application.",
+        "changeWindowSettings": "Change Window 设置",
+        "enableChangeWindow": "启用 Change Window",
+        "enableChangeWindowTooltip": "GitOps updates to stacks or applications outside the defined change window will not occur.",
+        "security": "安全",
+        "defaultNamespaceAccessTip": "By default, all the users have access to the default namespace. 启用 this option to set accesses on the default namespace.",
+        "restrictDefaultNamespace": "Restrict access to the default namespace",
+        "restrictSecrets": "Restrict secret contents access for non-admins (UI only)",
+        "restrictSecretsTooltip": "This hides the ability to view or edit in the UI the contents of secrets that a non-admin user did not create themselves but does not prevent it via the command line.",
+        "resourcesAndMetrics": "资源 and Metrics",
+        "resourceOverCommitHeader": "Allow resource over-commit - UI-only change in 2.20",
+        "resourceOverCommitContent": "资源 over-commit has always been ENABLED in 端口ainer CE. However, the toggle was incorrectly shown as OFF. This has now been corrected but please note that no functionality has been removed.",
+        "disableOverCommitTip": "By DISABLING resource over-commit (highly recommended), you can ONLY assign namespaces CPU and memory resources that are less (in aggregate) than the cluster total minus any system resource reservation.",
+        "enableOverCommitTip": "By ENABLING resource over-commit, you can assign namespaces more resources than are physically available in the cluster. This may lead to unexpected deployment failures if there are insufficient resources to service demand.",
+        "allowResourceOverCommit": "Allow resource over-commit",
+        "availableStorageOptions": "Available storage options",
+        "noStorageClassTip": "无法 detect any storage class available to persist data. 用户 won't be able to persist application data inside this cluster.",
+        "storageOptionsTip": "Select which storage options will be available for use when deploying applications. Have a look at your storage driver documentation to figure out which access policy to configure and if the volume expansion capability is supported.",
+        "accessModesInfo": "You can find more information about access modes",
+        "accessModesDocLink": "in the official Kubernetes documentation",
+        "saveConfiguration": "保存 configuration",
+        "savingConfiguration": "Saving configuration",
+        "unsavedChangesTitle": "确定吗？",
+        "unsavedChangesMessage": "You currently have unsaved changes in the cluster setup view. 确定要 leave?",
+        "unsavedChangesConfirm": "是",
+        "storageColumn": "Storage",
+        "sharedAccessPolicy": "Shared access policy",
+        "volumeExpansion": "卷 expansion",
+        "sharedAccessPolicyRequired": "Shared access policy configuration 必填.",
+        "breadcrumb": "Breadcrumb",
+        "changeWindow": {
+          "enable": "Enable",
+          "title": "标题",
+          "tooltip": "Tooltip"
+        },
+        "formActions": {
+          "loading": "Loading",
+          "submit": "Submit"
+        },
+        "metrics": {
+          "checking": "Checking",
+          "description": "Description",
+          "enable": "Enable",
+          "reachable": "Reachable",
+          "unreachable": "Unreachable"
+        },
+        "networking": {
+          "ingresses": {
+            "allowNoneClass": "Allow None Class",
+            "allowNoneClassTooltip": "Allow None Class Tooltip",
+            "availabilityPerNamespace": "Availability Per Namespace",
+            "availabilityPerNamespaceTooltip": "Availability Per Namespace Tooltip",
+            "defaultsInfo": "Defaults Info",
+            "description": "Description",
+            "noSupportedControllers": "No Supported Controllers",
+            "onlyAdminsDeploy": "Only Admins Deploy",
+            "onlyAdminsDeployTooltip": "Only Admins Deploy Tooltip",
+            "title": "标题"
+          },
+          "services": {
+            "allowLoadBalancers": "Allow Load Balancers",
+            "loadBalancerCostWarning": "Load Balancer Cost Warning",
+            "loadBalancerInfo": "Load Balancer Info",
+            "title": "标题"
+          }
+        },
+        "notifications": {
+          "environmentNotFound": "Environment Not Found",
+          "successMessage": "Success Message",
+          "successTitle": "Success Title"
+        },
+        "rbacAlert": {
+          "description": "Description",
+          "notEnabled": "Not Enabled"
+        },
+        "resources": {
+          "allowOverCommit": "Allow Over Commit",
+          "disableOverCommitInfo": "Disable Over Commit Info",
+          "enableOverCommitWarning": "Enable Over Commit Warning",
+          "overCommitInsightContent": "Over Commit Insight Content",
+          "overCommitInsightHeader": "Over Commit Insight Header",
+          "title": "标题"
+        },
+        "storage": {
+          "description": "Description",
+          "noStorageClassWarning": "No Storage Class Warning",
+          "table": {
+            "sharedAccessPolicy": "Shared Access Policy",
+            "storage": "Storage",
+            "volumeExpansion": "Volume Expansion"
+          },
+          "title": "标题"
+        },
+        "title": "标题"
+      },
+      "informationBreadcrumb": "Information Breadcrumb",
+      "ingressClasses": {
+        "allowSelected": "Allow Selected",
+        "confirmDisallowEffect": "Confirm Disallow Effect",
+        "confirmDisallowMessage": "Confirm Disallow Message",
+        "confirmDisallowTitle": "Confirm Disallow Title",
+        "disallow": "Disallow",
+        "disallowSelected": "Disallow Selected",
+        "title": "标题"
+      },
+      "nodes": {
+        "availability": {
+          "active": "Active",
+          "drain": "Drain",
+          "pause": "Pause"
+        },
+        "badges": {
+          "api": "Api",
+          "environmentIp": "Environment Ip"
+        },
+        "cachedImages": {
+          "aliasesCount": "Aliases Count",
+          "ariaLabel": "Aria Label",
+          "columns": {
+            "aliases": "Aliases",
+            "image": "镜像",
+            "size": "Size"
+          },
+          "description": "Description",
+          "empty": "Empty",
+          "title": "标题"
+        },
+        "columns": {
+          "stats": "Stats"
+        },
+        "confirm": {
+          "continueQuestion": "Continue Question",
+          "cordonMessage": "Cordon Message",
+          "drainMessage": "Drain Message",
+          "labelsMessage": "Labels Message",
+          "labelsStatement": "Labels Statement",
+          "taintsMessage": "Taints Message",
+          "taintsStatement": "Taints Statement",
+          "title": "标题",
+          "update": "Update"
+        },
+        "details": {
+          "errors": {
+            "applications": "Applications",
+            "nodeDetails": "Node Details",
+            "nodesAvailability": "Nodes Availability",
+            "notFound": "Not Found"
+          },
+          "formActions": {
+            "loading": "Loading",
+            "submit": "Submit"
+          },
+          "notifications": {
+            "successMessage": "Success Message",
+            "successTitle": "Success Title"
+          },
+          "summary": {
+            "availability": "Availability",
+            "creationDate": "Creation Date",
+            "hostname": "Hostname",
+            "kubeletVersion": "Kubelet Version",
+            "kubernetesApi": "Kubernetes Api",
+            "role": "Role",
+            "status": "Status"
+          },
+          "title": "标题"
+        },
+        "drainOptions": {
+          "deleteEmptyDirData": "Delete Empty Dir Data",
+          "deleteEmptyDirDataTooltip": "Delete Empty Dir Data Tooltip",
+          "deleteEmptyDirDataWarning": "Delete Empty Dir Data Warning",
+          "disableEviction": "Disable Eviction",
+          "disableEvictionTooltip": "Disable Eviction Tooltip",
+          "disableEvictionWarning": "Disable Eviction Warning",
+          "force": "Force",
+          "forceTooltip": "Force Tooltip",
+          "forceWarning": "Force Warning",
+          "gracePeriod": "Grace Period",
+          "ignoreDaemonSets": "Ignore Daemon Sets",
+          "ignoreDaemonSetsTooltip": "Ignore Daemon Sets Tooltip",
+          "timeout": "Timeout",
+          "title": "标题"
+        },
+        "status": {
+          "removing": "Removing",
+          "schedulingDisabled": "Scheduling Disabled"
+        },
+        "title": "标题"
+      },
+      "resourceReservation": {
+        "description": "Description",
+        "metricsWarning": "Metrics Warning"
+      },
+      "title": "标题"
+    },
+    "details": "详情",
+    "setup": "Setup",
+    "security_constraints": "安全 constraints",
+    "registries": "镜像仓库",
+    "registries_select_placeholder": "Select one or more registries",
+    "helm": {
+      "install": {
+        "title": "Helm install",
+        "deployTo": "Deploy to",
+        "namespace": "命名空间",
+        "releaseName": "Release name",
+        "releaseNamePlaceholder": "e.g. my-app",
+        "configuration": "配置",
+        "version": "Version",
+        "loadingVersions": "Loading versions...",
+        "noVersionsFound": "否 versions found",
+        "selectVersion": "Select a version",
+        "manifestPreview": "Manifest preview",
+        "installingHelmChart": "Installing Helm chart",
+        "installButton": "Install",
+        "actions": {
+          "install": "Install",
+          "installing": "Installing"
+        },
+        "confirm": {
+          "validationFailed": "Validation Failed"
+        },
+        "notifications": {
+          "success": "Success"
+        }
+      },
+      "details": {
+        "title": "Helm details",
+        "applications": "应用",
+        "failedToLoad": "Failed to load Helm application details",
+        "noDetailsFound": "否 Helm application details found"
+      },
+      "notifications": {
+        "installed": "Helm chart 已成功 installed",
+        "upgraded": "Helm chart upgraded 已成功",
+        "uninstalled": "Helm chart uninstalled 已成功"
+      },
+      "confirm_rollback": {
+        "title": "确定吗？",
+        "message": "Rolling back will restore the chart to a previous revision. Any changes made since then will be lost."
+      },
+      "confirm_uninstall": "Do you want to remove the 已选择 Helm chart? This will delete all resources associated with the Helm chart.",
+      "chart": {
+        "errors": {
+          "values": "Values"
+        }
+      },
+      "common": {
+        "applications": "Applications",
+        "chartValidationFailed": "Chart Validation Failed",
+        "currentSuffix": "Current Suffix",
+        "loadingVersions": "Loading Versions",
+        "noVersionsFound": "No Versions Found",
+        "releaseName": "Release Name",
+        "selectVersion": "Select Version",
+        "version": "Version"
+      },
+      "manifestPreview": {
+        "configurationError": "Configuration Error",
+        "empty": "Empty",
+        "generating": "Generating",
+        "generationError": "Generation Error"
+      },
+      "release": {
+        "actions": {
+          "editUpgrade": "Edit Upgrade",
+          "rollback": "Rollback",
+          "rollingBack": "Rolling Back",
+          "uninstall": "Uninstall",
+          "upgrade": "Upgrade",
+          "upgrading": "Upgrading"
+        },
+        "confirm": {
+          "rollback": "Rollback",
+          "uninstall": "Uninstall"
+        },
+        "diff": {
+          "previous": "Previous",
+          "userDefinedOnly": "User Defined Only",
+          "view": "View"
+        },
+        "errors": {
+          "get": "Get",
+          "history": "History",
+          "loadDetails": "Load Details",
+          "manifestPreview": "Manifest Preview",
+          "noDetails": "No Details",
+          "remove": "Remove",
+          "rollback": "Rollback",
+          "uninstall": "Uninstall",
+          "update": "Update"
+        },
+        "notifications": {
+          "rollbackSuccess": "Rollback Success",
+          "uninstallSuccess": "Uninstall Success",
+          "upgradeSuccess": "Upgrade Success"
+        },
+        "status": {
+          "checkingVersions": "Checking Versions",
+          "latestVersionInstalled": "Latest Version Installed",
+          "newVersionAvailable": "New Version Available",
+          "noVersionsAvailable": "No Versions Available",
+          "noVersionsTooltip": "No Versions Tooltip",
+          "preparingUpgrade": "Preparing Upgrade"
+        },
+        "title": "标题"
+      },
+      "repositories": {
+        "chartSource": "Chart Source",
+        "errors": {
+          "getForUser": "Get For User",
+          "getRegistries": "Get Registries"
+        },
+        "selectRepository": "Select Repository",
+        "settings": "Settings"
+      },
+      "resources": {
+        "columns": {
+          "resourceType": "Resource Type"
+        },
+        "empty": "Empty",
+        "errors": {
+          "describe": "Describe",
+          "describeQuery": "Describe Query",
+          "nameAndKindRequired": "Name And Kind Required"
+        },
+        "filters": {
+          "resourceType": "Resource Type"
+        },
+        "onlyClusterResourcesDisplayed": "Only Cluster Resources Displayed"
+      },
+      "templates": {
+        "iconAlt": "Icon Alt",
+        "list": {
+          "ariaLabel": "Aria Label",
+          "emptyRepository": "Empty Repository",
+          "initialDownload": "Initial Download",
+          "loading": "Loading",
+          "noResults": "No Results",
+          "selectCategory": "Select Category",
+          "selectFrom": "Select From",
+          "selectRepository": "Select Repository"
+        },
+        "sectionTitle": "Section Title"
+      },
+      "upgrade": {
+        "confirm": {
+          "validationFailed": "Validation Failed"
+        },
+        "manifestChanges": "Manifest Changes",
+        "rollbackOnFailure": {
+          "label": "Label",
+          "tooltip": "Tooltip"
+        }
+      },
+      "values": {
+        "loading": "Loading",
+        "noReference": "No Reference",
+        "userDefined": "User Defined",
+        "userDefinedPlaceholder": "User Defined Placeholder"
+      }
+    },
+    "dashboard": {
+      "title": "仪表盘",
+      "environmentSummary": "环境 summary",
+      "namespace": "命名空间",
+      "application": "应用",
+      "service": "服务",
+      "ingress": "Ingress",
+      "ingressPlural": "Ingress",
+      "configMap": "ConfigMap",
+      "secret": "Secret",
+      "volume": "卷",
+      "environmentInfo": {
+        "environment": "Environment",
+        "error": "Error",
+        "tags": "标签",
+        "title": "标题",
+        "url": "Url"
+      }
+    },
+    "validation": {
+      "servicePortRequired": "服务 port number is 必填.",
+      "servicePortRange": "服务 port number must be inside the range 1-65535.",
+      "servicePortUnique": "服务 port number must be unique.",
+      "containerPortRequired": "容器 port number is 必填.",
+      "containerPortRange": "容器 port number must be inside the range 1-65535.",
+      "nodePortUniqueInService": "节点 port is already used in this service.",
+      "nodePortUniqueInCluster": "节点 port is already used.",
+      "nodePortRange": "节点port number must be inside the range 30000-32767 or blank for system allocated.",
+      "ingressHostnameRequired": "Ingress hostname is 必填.",
+      "ingressPathRequired": "Ingress path is 必填.",
+      "ingressPathUnique": "Ingress path is already in use for this hostname."
+    },
+    "volumes": {
+      "title": "卷 list",
+      "breadcrumbs": "卷",
+      "confirm_remove": "Do you want to remove the 已选择 volume(s)?",
+      "claims": {
+        "deleteConfirm": "Delete Confirm",
+        "notifications": {
+          "removeFailure": "移除失败",
+          "removed": "已移除"
+        },
+        "resize": {
+          "loading": "Loading",
+          "newSizeLabel": "New Size Label",
+          "notAllowed": "Not Allowed",
+          "notifications": {
+            "failure": "Failure",
+            "success": "Success"
+          },
+          "placeholder": "Placeholder",
+          "submit": "Submit",
+          "title": "标题",
+          "tooltip": "Tooltip"
+        },
+        "title": "标题"
+      },
+      "columns": {
+        "accessModes": "Access Modes",
+        "capacity": "Capacity",
+        "claim": "Claim",
+        "provisioner": "Provisioner",
+        "reclaimPolicy": "Reclaim Policy",
+        "storageClass": "Storage Class",
+        "volume": "Volume",
+        "volumeExpansion": "Volume Expansion"
+      },
+      "list": {
+        "breadcrumb": "Breadcrumb",
+        "title": "标题"
+      },
+      "persistentVolumes": {
+        "deleteConfirm": "Delete Confirm",
+        "notifications": {
+          "removeFailure": "移除失败",
+          "removed": "已移除"
+        },
+        "title": "标题"
+      },
+      "reclaimPolicy": {
+        "label": "Label",
+        "notifications": {
+          "failure": "Failure",
+          "success": "Success"
+        },
+        "title": "标题",
+        "tooltip": "Tooltip"
+      },
+      "storage": {
+        "alreadyDefault": "Already Default",
+        "deleteConfirm": "Delete Confirm",
+        "notifications": {
+          "removeFailure": "移除失败",
+          "removed": "已移除"
+        },
+        "setDefault": "Set Default",
+        "title": "标题"
+      },
+      "tabs": {
+        "persistentVolumeClaims": "Persistent Volume Claims",
+        "persistentVolumes": "Persistent Volumes",
+        "storageClasses": "Storage Classes"
+      }
+    },
+    "node": {
+      "notifications": {
+        "updated": "节点 updated 已成功"
+      },
+      "updating": "Updating node..."
+    },
+    "configmaps": {
+      "breadcrumbs": "ConfigMap & Secret"
+    },
+    "jobs": {
+      "breadcrumbs": "Cron Jobs & Jobs"
+    },
+    "yaml_inspector": {
+      "error": "错误 loading YAML"
+    },
+    "console": {
+      "disconnected": "控制台 disconnected"
+    },
+    "loading": {
+      "removing": "Removing...",
+      "rolling_back": "Rolling back...",
+      "upgrading": "Upgrading...",
+      "creating_access": "Creating access..."
+    },
+    "annotations": {
+      "form": {
+        "key": {
+          "label": "Label"
+        },
+        "value": {
+          "label": "Label"
+        }
+      },
+      "teaser": {
+        "button": "Button",
+        "heading": "Heading",
+        "message": "Message"
+      }
+    },
+    "common": {
+      "actions": "Actions",
+      "allowed": "Allowed",
+      "applications": "Applications",
+      "areYouSure": "Are You Sure",
+      "breadcrumbs": {
+        "environments": "Environments"
+      },
+      "cancel": "Cancel",
+      "columns": {
+        "actions": "Actions",
+        "command": "Command",
+        "created": "已创建",
+        "name": "名称",
+        "namespace": "Namespace",
+        "status": "Status",
+        "statusMessage": "Status Message",
+        "usedBy": "Used By"
+      },
+      "confirm": {
+        "areYouSure": "Are You Sure",
+        "continue": "Continue",
+        "title": "标题"
+      },
+      "containers": "容器",
+      "createFromManifest": {
+        "createFromCode": "Create From Code",
+        "createFromHelmChart": "Create From Helm Chart",
+        "createFromManifest": "Create From Manifest",
+        "helmChart": "Helm Chart",
+        "manifest": "Manifest"
+      },
+      "creationDate": "Creation Date",
+      "default": "Default",
+      "disabled": "已禁用",
+      "disallowed": "Disallowed",
+      "enabled": "Enabled",
+      "error": "Error",
+      "filters": {
+        "namespace": "Namespace"
+      },
+      "loading": "Loading",
+      "namespaces": "Namespaces",
+      "none": "None",
+      "notConfigured": "Not Configured",
+      "notifications": {
+        "error": "Error",
+        "failure": "Failure",
+        "success": "Success",
+        "warning": "Warning"
+      },
+      "pods": "Pods",
+      "resourceReservation": {
+        "cpuReservation": "Cpu Reservation",
+        "cpuUsage": "Cpu Usage",
+        "memoryReservation": "Memory Reservation",
+        "memoryUsage": "Memory Usage",
+        "title": "标题"
+      },
+      "resourceTypes": {
+        "application": "Application",
+        "configMap": "Config Map",
+        "ingress": "Ingress",
+        "ingresses": "Ingresses",
+        "namespace": "Namespace",
+        "secret": "Secret",
+        "service": "Service",
+        "volume": "Volume"
+      },
+      "search": "Search",
+      "success": "Success",
+      "unsavedChanges": "Unsaved Changes",
+      "validation": {
+        "required": "必填"
+      },
+      "yaml": "Yaml"
+    },
+    "configs": {
+      "configMaps": {
+        "deleteConfirm": "Delete Confirm",
+        "empty": "Empty",
+        "notifications": {
+          "removeFailure": "移除失败",
+          "removeOneFailure": "Remove One Failure",
+          "removeOneGenericFailure": "Remove One Generic Failure",
+          "removed": "已移除"
+        },
+        "title": "标题"
+      },
+      "list": {
+        "breadcrumb": "Breadcrumb",
+        "title": "标题"
+      },
+      "secrets": {
+        "deleteConfirm": "Delete Confirm",
+        "empty": "Empty",
+        "notifications": {
+          "removeFailure": "移除失败",
+          "removeOneFailure": "Remove One Failure",
+          "removeOneGenericFailure": "Remove One Generic Failure",
+          "removed": "已移除"
+        },
+        "restricted": "Restricted",
+        "restrictedTooltip": "Restricted Tooltip",
+        "title": "标题"
+      }
+    },
+    "datatables": {
+      "showSystemResources": "Show System Resources",
+      "systemResourcesHidden": "System Resources Hidden"
+    },
+    "deploy": {
+      "stackName": {
+        "label": "Label",
+        "placeholder": "Placeholder",
+        "textTip": "Text Tip"
+      }
+    },
+    "metrics": {
+      "about": {
+        "title": "标题"
+      },
+      "charts": {
+        "cpu": "CPU",
+        "cpuUsage": "Cpu Usage",
+        "memory": "内存",
+        "memoryUsage": "Memory Usage"
+      },
+      "errors": {
+        "allNodes": "All Nodes",
+        "allPods": "All Pods",
+        "node": "Node",
+        "totalApplications": "Total Applications"
+      }
+    },
+    "moreResources": {
+      "clusterRoleBindings": {
+        "actions": {
+          "removing": "Removing"
+        },
+        "datatable": {
+          "empty": "Empty"
+        },
+        "errors": {
+          "delete": "Delete",
+          "get": "Get"
+        },
+        "notifications": {
+          "deleteError": "Delete Error",
+          "deleteSuccess": "Delete Success"
+        },
+        "title": "标题"
+      },
+      "clusterRoles": {
+        "actions": {
+          "removing": "Removing"
+        },
+        "datatable": {
+          "empty": "Empty"
+        },
+        "errors": {
+          "delete": "Delete",
+          "get": "Get"
+        },
+        "list": {
+          "title": "标题"
+        },
+        "notifications": {
+          "deleteError": "Delete Error",
+          "deleteSuccess": "Delete Success"
+        },
+        "tabs": {
+          "clusterRoleBindings": "Cluster Role Bindings",
+          "clusterRoles": "Cluster Roles"
+        },
+        "title": "标题"
+      },
+      "common": {
+        "columns": {
+          "roleKind": "Role Kind",
+          "roleName": "Role Name",
+          "subjectKind": "Subject Kind",
+          "subjectName": "Subject Name",
+          "subjectNamespace": "Subject Namespace"
+        }
+      },
+      "cronJobs": {
+        "actions": {
+          "removing": "Removing"
+        },
+        "columns": {
+          "schedule": "Schedule",
+          "suspend": "Suspend",
+          "timezone": "Timezone"
+        },
+        "errors": {
+          "delete": "Delete",
+          "get": "Get"
+        },
+        "notifications": {
+          "deleteError": "Delete Error",
+          "deleteSuccess": "Delete Success"
+        },
+        "title": "标题"
+      },
+      "jobs": {
+        "actions": {
+          "removing": "Removing"
+        },
+        "columns": {
+          "duration": "Duration",
+          "finished": "Finished",
+          "started": "Started"
+        },
+        "datatable": {
+          "title": "标题"
+        },
+        "errors": {
+          "delete": "Delete",
+          "get": "Get"
+        },
+        "list": {
+          "title": "标题"
+        },
+        "notifications": {
+          "deleteError": "Delete Error",
+          "deleteSuccess": "Delete Success"
+        },
+        "tabs": {
+          "cronJobs": "Cron Jobs",
+          "jobs": "Jobs"
+        },
+        "title": "标题"
+      },
+      "resourceDetails": {
+        "errors": {
+          "loading": "Loading"
+        },
+        "tabs": {
+          "describe": "Describe",
+          "yaml": "Yaml"
+        }
+      },
+      "roleBindings": {
+        "actions": {
+          "removing": "Removing"
+        },
+        "datatable": {
+          "empty": "Empty"
+        },
+        "errors": {
+          "delete": "Delete",
+          "get": "Get"
+        },
+        "notifications": {
+          "deleteError": "Delete Error",
+          "deleteSuccess": "Delete Success"
+        },
+        "title": "标题"
+      },
+      "roles": {
+        "actions": {
+          "removing": "Removing"
+        },
+        "datatable": {
+          "empty": "Empty"
+        },
+        "errors": {
+          "delete": "Delete",
+          "get": "Get"
+        },
+        "list": {
+          "title": "标题"
+        },
+        "notifications": {
+          "deleteError": "Delete Error",
+          "deleteSuccess": "Delete Success"
+        },
+        "tabs": {
+          "roleBindings": "Role Bindings",
+          "roles": "Roles"
+        },
+        "title": "标题"
+      },
+      "serviceAccounts": {
+        "datatable": {
+          "empty": "Empty"
+        },
+        "details": {
+          "automountToken": {
+            "label": "Label",
+            "tooltip": "Tooltip"
+          },
+          "errors": {
+            "get": "Get",
+            "yaml": "Yaml"
+          },
+          "tab": "Tab",
+          "title": "标题"
+        },
+        "errors": {
+          "delete": "Delete",
+          "get": "Get"
+        },
+        "imagePullSecrets": {
+          "errors": {
+            "update": "Update"
+          },
+          "registryNotFound": "Registry Not Found",
+          "secretMissing": "Secret Missing",
+          "selectPlaceholder": "Select Placeholder"
+        },
+        "list": {
+          "title": "标题"
+        },
+        "notifications": {
+          "deleteError": "Delete Error",
+          "deleteSuccess": "Delete Success"
+        },
+        "title": "标题"
+      }
+    },
+    "summary": {
+      "actionsIntro": "Actions Intro",
+      "title": "标题"
+    }
+  },
+  "azure": {
+    "container_instances": "容器 instances",
+    "containerInstances": {
+      "addContainer": "添加容器",
+      "confirmDeleteSelected": "确定删除所选项？",
+      "containers": "容器",
+      "create": {
+        "title": "标题"
+      },
+      "deployContainer": "部署容器",
+      "deploymentInProgress": "正在部署",
+      "fields": {
+        "cpu": "CPU",
+        "environmentVariables": "环境变量",
+        "image": "镜像",
+        "location": "位置",
+        "memory": "内存",
+        "name": "名称",
+        "os": "Os",
+        "publicIp": "公网 IP",
+        "resourceGroup": "资源组",
+        "subscription": "订阅"
+      },
+      "item": {
+        "title": "标题"
+      },
+      "list": {
+        "title": "标题"
+      },
+      "notifications": {
+        "createFailure": "创建失败",
+        "created": "已创建",
+        "removeFailure": "移除失败",
+        "removed": "已移除"
+      },
+      "os": {
+        "linux": "Linux",
+        "windows": "Windows"
+      },
+      "ports": {
+        "container": "容器",
+        "host": "主机",
+        "mapAdditionalPort": "Map Additional Port",
+        "portMapping": "端口映射",
+        "validation": {
+          "atLeastOne": "At Least One",
+          "containerRequired": "Container Required",
+          "hostRequired": "Host Required"
+        }
+      },
+      "publicIpNotice": "Public Ip Notice",
+      "sections": {
+        "azureSettings": "Azure Settings",
+        "containerConfiguration": "Container Configuration",
+        "containerResources": "Container Resources",
+        "environmentVariables": "环境变量"
+      },
+      "title": "标题",
+      "validation": {
+        "envAlreadyDefined": "Env Already Defined",
+        "envNameRequired": "Env Name Required",
+        "envValueRequired": "Env Value Required",
+        "imageRequired": "Image Required",
+        "locationRequired": "Location Required",
+        "nameRequired": "Name Required",
+        "resourceGroupRequired": "Resource Group Required",
+        "subscriptionRequired": "Subscription Required"
+      }
+    },
+    "dashboard": {
+      "dashboard": "仪表盘",
+      "home": "首页",
+      "resourceGroup": "资源组",
+      "subscription": "订阅"
+    },
+    "notifications": {
+      "failedLoadingEnvironment": "加载环境失败"
+    }
+  },
+  "edge": {
+    "compute": "Edge compute",
+    "groups": {
+      "title": "Edge 分组s",
+      "add": "添加 Edge group",
+      "confirm_remove": "Do you want to remove the 已选择 Edge 分组(s)?",
+      "notifications": {
+        "removed": "Edge 分组(s) removed",
+        "created": "已创建",
+        "updated": "Updated"
+      },
+      "columns": {
+        "name": "名称",
+        "env_count": "环境 Count",
+        "group_type": "分组 类型",
+        "environmentsCount": "Environments Count",
+        "groupType": "分组类型"
+      },
+      "in_use": "in use",
+      "label": "Edge 分组s",
+      "associatedByTags": "Associated By Tags",
+      "confirmRemoveEnvironment": "Confirm Remove Environment",
+      "confirmRemoveSelected": "Confirm Remove Selected",
+      "create": {
+        "title": "标题"
+      },
+      "edit": {
+        "title": "标题"
+      },
+      "form": {
+        "groupType": "分组类型"
+      },
+      "save": "保存",
+      "tags": {
+        "fullMatch": "Full Match",
+        "fullMatchDescription": "Full Match Description",
+        "partialMatch": "Partial Match",
+        "partialMatchDescription": "Partial Match Description"
+      },
+      "types": {
+        "dynamic": "动态",
+        "dynamicDescription": "Dynamic Description",
+        "static": "静态",
+        "staticDescription": "Static Description"
+      },
+      "validation": {
+        "tagsRequired": "Tags Required"
+      }
+    },
+    "stacks": {
+      "list": {
+        "title": "Edge Stack list",
+        "breadcrumbs": "Edge Stack"
+      },
+      "create": {
+        "title": "创建 Edge Stack",
+        "breadcrumbs_label": "Edge Stack",
+        "breadcrumbs_create": "创建 Edge Stack",
+        "deploy_button": "Deploy the stack",
+        "deploying": "Deployment in progress...",
+        "multiple_types_error": "There are no available deployment types when there is more than one type of environment in your edge group selection (e.g. Kubernetes and Docker environments). 请 select edge groups that have environments of the same type.",
+        "name_placeholder": "e.g. my-stack"
+      },
+      "edit": {
+        "update_from_git": "更新 from git repository",
+        "advanced_configuration": "高级 configuration",
+        "actions": "操作",
+        "pull_and_update": "Pull and update stack",
+        "updating_stack": "updating stack...",
+        "update_settings": "更新 settings",
+        "updating_settings": "updating settings...",
+        "compose_no_kube": "Edge groups with kubernetes environments no longer support compose deployment types in 端口ainer. 请 select edge groups that only have docker environments when using compose deployment types.",
+        "update_success": "Stack updated 已成功",
+        "stack_deployed_success": "Stack 已成功 deployed",
+        "update_the_stack": "更新 the stack",
+        "update_in_progress": "更新 in progress...",
+        "concurrent_updates": "Concurrent updates in progress, stack update temporarily unavailable",
+        "force_update_confirm": "Do you want to force an update of the stack?",
+        "webhooks": "Webhooks",
+        "webhook_switch_label": "创建 an Edge stack webhook",
+        "webhook_tooltip": "创建 a webhook (or callback URI) to automate the update of this stack. Sending a POST request to this callback URI (without requiring any authentication) will pull the most up-to-date version of the associated image and re-deploy this stack.",
+        "webhook_env_vars_tip": "Sending environment variables to the webhook is updating the stack with the new values. New variables names will be added to the stack and existing variables will be updated.",
+        "content_required": "Content is 必填",
+        "deployment_type_required": "Deployment type is 必填",
+        "edge_group_required": "At least one edge group is 必填",
+        "title": "标题"
+      },
+      "label": "Edge Stack",
+      "add": "添加 stack",
+      "confirm_remove": "确定要 remove the 已选择 Edge stack(s)?",
+      "notifications": {
+        "created": "Edge stack created",
+        "removed": "Edge stack(s) removed",
+        "deployed": "Deployed",
+        "updated": "Updated"
+      },
+      "columns": {
+        "acknowledged": "Acknowledged",
+        "deployments_received": "Deployments received",
+        "deployments_failed": "Deployments failed",
+        "creation_date": "创建 Date",
+        "target_version": "Target Version",
+        "images_pre_pulled": "镜像 pre-pulled",
+        "deploymentsFailed": "Deployments Failed",
+        "deploymentsReceived": "Deployments Received",
+        "imagesPrePulled": "Images Pre Pulled",
+        "targetVersion": "Target Version"
+      },
+      "env": {
+        "columns": {
+          "name": "名称",
+          "status": "状态",
+          "time": "Time",
+          "target_version": "Target version",
+          "deployed_version": "Deployed version",
+          "error": "错误",
+          "actions": "操作",
+          "action_status": "操作 状态"
+        }
+      },
+      "status": {
+        "pending": "Pending",
+        "acknowledged": "Acknowledged",
+        "images_pre_pulled": "镜像 pre-pulled",
+        "deployed": "Deployed",
+        "failed": "Failed",
+        "paused": "已暂停",
+        "rolling_back": "Rolling Back",
+        "rolled_back": "Rolled Back",
+        "completed": "Completed",
+        "deploying": "Deploying",
+        "partiallyRunning": "Partially Running",
+        "running": "Running",
+        "summaryUnavailable": "Summary Unavailable",
+        "unavailable": "Unavailable"
+      },
+      "logs": {
+        "retrieve": "Retrieve logs",
+        "download": "下载 logs",
+        "delete": "删除 logs",
+        "notifications": {
+          "collection_started": "日志 Collection started",
+          "deleted": "日志 删除d"
+        }
+      },
+      "advancedConfiguration": "Advanced Configuration",
+      "advancedConfigurations": "Advanced Configurations",
+      "buildMethod": "Build Method",
+      "compose": {
+        "contentTip": "Content Tip",
+        "uploadDescription": "Upload Description"
+      },
+      "concurrentUpdatesUnavailable": "Concurrent Updates Unavailable",
+      "confirmForceUpdate": "Confirm Force Update",
+      "confirmRemoveSelected": "Confirm Remove Selected",
+      "deploy": "Deploy",
+      "deploymentInProgress": "正在部署",
+      "deployments": {
+        "acknowledged": "Acknowledged",
+        "completed": "Completed",
+        "failed": "Failed",
+        "imagesPrePulled": "Images Pre Pulled",
+        "received": "Received",
+        "running": "Running"
+      },
+      "errors": {
+        "createStack": "Create Stack",
+        "loading": "Loading",
+        "retrieveContent": "Retrieve Content"
+      },
+      "git": {
+        "pullAndUpdate": "Pull And Update",
+        "updateFromRepository": "Update From Repository",
+        "updateSettings": "Update Settings"
+      },
+      "kube": {
+        "manifestContentTip": "Manifest Content Tip",
+        "uploadDescription": "Upload Description",
+        "useManifestNamespaces": "Use Manifest Namespaces",
+        "useManifestNamespacesTooltip": "Use Manifest Namespaces Tooltip"
+      },
+      "loadingContent": "Loading Content",
+      "prePullImages": "Pre Pull Images",
+      "prePullTooltip": "Pre Pull Tooltip",
+      "registry": {
+        "retrieveFailure": "Retrieve Failure",
+        "singleRegistryRequired": "Single Registry Required"
+      },
+      "retryDeployment": "Retry Deployment",
+      "retryDeploymentTooltip": "Retry Deployment Tooltip",
+      "tabs": {
+        "environments": "Environments",
+        "stack": "Stack"
+      },
+      "title": "标题",
+      "update": "Update",
+      "updateInProgress": "Update In Progress",
+      "updatingSettings": "Updating Settings",
+      "updatingStack": "Updating Stack",
+      "validation": {
+        "atLeastOneEdgeGroup": "At Least One Edge Group",
+        "composeIncompatibleWithKubernetes": "Compose Incompatible With Kubernetes",
+        "composeNoLongerSupportsKube": "Compose No Longer Supports Kube",
+        "configFileRequired": "Config File Required",
+        "deploymentTypeRequired": "Deployment Type Required",
+        "kubernetesIncompatibleWithDocker": "Kubernetes Incompatible With Docker",
+        "mixedEnvironmentTypes": "Mixed Environment Types",
+        "nameFormat": "Name Format"
+      },
+      "webhook": {
+        "create": "创建",
+        "envVarsNotice": "Env Vars Notice",
+        "title": "标题",
+        "tooltip": "Tooltip"
+      }
+    },
+    "jobs": {
+      "list": {
+        "title": "Edge Jobs",
+        "breadcrumbs": "Edge Jobs",
+        "information_title": "信息",
+        "information_message": "Edge Jobs requires Docker Standalone and a cron implementation that reads jobs from /etc/cron.d"
+      },
+      "create": {
+        "job_content": "Job content",
+        "editor_tip": "Define or paste the content of your script file here",
+        "upload_description": "You can upload a script file from your computer.",
+        "target_environments": "Target environments",
+        "submit_label": "添加 edge job",
+        "loading_text": "In progress...",
+        "success": "Edge job 已成功 created",
+        "title": "标题"
+      },
+      "label": "Edge Jobs",
+      "add": "添加 Edge job",
+      "confirm_remove": "Do you want to remove the 已选择 Edge Job(s)?",
+      "notifications": {
+        "removed": "Edge Job(s) removed",
+        "updated": "Edge job 已成功 updated",
+        "created": "已创建"
+      },
+      "columns": {
+        "cron_expression": "Cron Expression",
+        "created": "创建时间",
+        "environment": "环境",
+        "actions": "操作",
+        "cronExpression": "Cron Expression"
+      },
+      "results": {
+        "download_logs": "下载 logs",
+        "clear_logs": "Clear logs",
+        "retrieve_logs": "Retrieve logs",
+        "logs_pending": "日志 marked for collection, please wait until the logs are available."
+      },
+      "configuration": {
+        "advanced": "Advanced",
+        "advancedDescription": "Advanced Description",
+        "basic": "基础",
+        "basicDescription": "Basic Description",
+        "title": "标题"
+      },
+      "confirmRemoveSelected": "Confirm Remove Selected",
+      "cron": {
+        "rule": "Rule"
+      },
+      "form": {
+        "jobContent": "Job Content",
+        "scriptContentTip": "Script Content Tip",
+        "targetEnvironments": "Target Environments",
+        "uploadScriptDescription": "Upload Script Description"
+      },
+      "recurring": {
+        "every2Hours": "Every2Hours",
+        "everyDay": "Every Day",
+        "everyHour": "Every Hour",
+        "label": "Label",
+        "time": "Time"
+      },
+      "scheduledDate": "Scheduled Date",
+      "title": "标题"
+    },
+    "configurations": "Edge 配置s",
+    "waiting_room": "Waiting Room",
+    "templates": "Edge Templates",
+    "app_templates": "应用",
+    "custom_templates": "Custom",
+    "use_default_interval": "Use default interval",
+    "disabled": "disabled",
+    "1_minute": "1 minute",
+    "1_hour": "1 hour",
+    "1_day": "1 day",
+    "1_week": "1 week",
+    "5_seconds": "5 seconds",
+    "10_seconds": "10 seconds",
+    "30_seconds": "30 seconds",
+    "5_minutes": "5 minutes",
+    "ping_interval": "Ping interval",
+    "ping_interval_tooltip": "Interval used by this Edge agent to check in with the 端口ainer instance",
+    "snapshot_interval": "Snapshot interval",
+    "snapshot_interval_tooltip": "Interval used by this Edge agent to snapshot the agent state",
+    "command_interval": "Command interval",
+    "command_interval_tooltip": "Interval used by this Edge agent to fetch commands from the 端口ainer instance",
+    "required": "This field is 必填.",
+    "poll_frequency": "Poll frequency",
+    "poll_frequency_tooltip": "Interval used by this Edge agent to check in with the 端口ainer instance. Affects Edge environment management and Edge compute features.",
+    "waiting_room_info_prefix": "Only environments generated from the",
+    "waiting_room_info_link": "auto onboarding",
+    "waiting_room_info_suffix": "script will appear here, manually added environments and edge devices will bypass the waiting room.",
+    "waiting_room_license_prefix": "Associating all nodes in waiting room will exceed the node limit of your current license. Go to",
+    "waiting_room_license_link": "Licenses",
+    "waiting_room_license_suffix": "page to view the current usage.",
+    "devices": {
+      "columns": {
+        "name": "名称",
+        "edge_id": "Edge ID",
+        "edge_groups": "Edge 分组s",
+        "group": "分组",
+        "tags": "标签",
+        "last_checkin": "Last Check-in"
+      },
+      "remove_device": "移除 Device",
+      "associate_device": "Associate Device",
+      "associate_and_assign": "Associate and assignment",
+      "notifications": {
+        "associated": "Edge devices associated 已成功",
+        "hidden": "Edge devices were hidden 已成功"
+      },
+      "filter": {
+        "all_time": "Show all time",
+        "past_hour": "Show past hour",
+        "past_day": "Show past day",
+        "past_week": "Show past week",
+        "past_14_days": "Show past 14 days"
+      }
+    },
+    "components": {
+      "columns": {
+        "name": "名称",
+        "group": "分组",
+        "tags": "标签"
+      }
+    },
+    "groups_title": "Edge 分组s",
+    "groups_create": "创建 edge group",
+    "groups_add": "添加 edge group",
+    "groups_edit": "编辑 edge group",
+    "groups_created": "Edge group 已成功 created",
+    "groups_updated": "Edge group 已成功 updated",
+    "groups_remove_confirm": "确定要 remove the 已选择 edge group(s)?",
+    "groups_removed": "Edge group(s) removed",
+    "stacks_title": "Edge Stack",
+    "stacks_edit": "编辑 Edge stack",
+    "stacks_tab_stack": "Stack",
+    "stacks_tab_envs": "环境",
+    "stacks_col_status": "状态",
+    "stacks_status_tooltip1": "The status feature for the Edge stack is only available for Edge Agent versions 2.19.0 and above.",
+    "stacks_status_tooltip2": "To access the status of your edge stack, it is essential to upgrade your Edge Agent to a corresponding version that is compatible with your 端口ainer server.",
+    "stacks_remove_confirm": "确定要 remove the 已选择 edge stack(s)?",
+    "stacks_removed": "Edge stack(s) removed",
+    "jobs_title": "Edge Jobs",
+    "jobs_create": "创建 edge job",
+    "jobs_details": "Edge job details",
+    "jobs_tab_config": "配置",
+    "jobs_tab_results": "Results",
+    "jobs_remove_confirm": "确定要 remove the 已选择 edge job(s)?",
+    "jobs_removed": "Edge job(s) removed",
+    "custom_templates_title": "Custom Templates",
+    "custom_templates_add": "添加 Custom Template",
+    "custom_templates_empty": "否 templates available.",
+    "custom_templates_created": "Template created",
+    "custom_templates_updated": "Template updated 已成功",
+    "associatedEnvironments": "关联的环境",
+    "availableEnvironments": "可用环境",
+    "checkIn": {
+      "pollFrequency": "轮询频率",
+      "pollFrequencyTooltip": "Poll Frequency Tooltip"
+    },
+    "connectivity": {
+      "allowSelfSigned": "Allow Self Signed",
+      "allowSelfSignedTooltip": "Allow Self Signed Tooltip",
+      "copyCommand": "Copy Command",
+      "title": "标题"
+    },
+    "intervals": {
+      "command": "Command",
+      "commandTooltip": "Command Tooltip",
+      "ping": "Ping",
+      "pingTooltip": "Ping Tooltip",
+      "snapshot": "Snapshot",
+      "snapshotTooltip": "Snapshot Tooltip",
+      "useDefault": "Use Default"
+    },
+    "waitingRoom": {
+      "associateAndAssignment": "Associate And Assignment",
+      "associateDevice": "Associate Device",
+      "columns": {
+        "edgeId": "Edge Id",
+        "lastCheckIn": "Last Check In"
+      },
+      "confirmRemove": "Confirm Remove",
+      "datatableTitle": "Datatable Title",
+      "filters": {
+        "allTime": "All Time",
+        "past14Days": "Past14Days",
+        "pastDay": "Past Day",
+        "pastHour": "Past Hour",
+        "pastWeek": "Past Week"
+      },
+      "notifications": {
+        "associated": "Associated",
+        "hidden": "Hidden"
+      },
+      "removeDevice": "Remove Device",
+      "title": "标题"
+    }
+  },
+  "footer": {
+    "community_edition": "端口ainer Community 编辑ion",
+    "business_edition": "端口ainer Business 编辑ion"
+  },
+  "user_menu": {
+    "my_account": "My account",
+    "log_out": "Log out",
+    "toggle_label": "User menu toggle",
+    "menu_label": "User Menu"
+  },
+  "teams": {
+    "add_new_team": "添加 a new team",
+    "name": "名称",
+    "creating_team": "Creating team...",
+    "create_team": "创建 team",
+    "name_placeholder": "e.g. development",
+    "select_leaders_label": "Select team leader(s)",
+    "leaders_tooltip": "You can assign one or more leaders to this team. Team leaders can manage their teams users and resources.",
+    "select_leaders_placeholder": "Select one or more team leaders",
+    "team_sync_tip": "The team leader feature is disabled as external authentication is currently enabled with team sync.",
+    "detail_widget_title": "Team details",
+    "delete_confirm": "Do you want to delete this team? 用户 in this team will not be deleted.",
+    "delete_button": "删除 this team",
+    "leaders": "Leaders",
+    "total_users": "Total users in team",
+    "detail_page_title": "Team details",
+    "breadcrumb_teams": "团队",
+    "members_title": "Team members",
+    "remove_all": "移除 all users",
+    "remove_all_success": "All users 已成功 removed",
+    "users_list_title": "用户",
+    "add_all": "添加 all users",
+    "add_all_success": "All users 已成功 added",
+    "title": "团队",
+    "breadcrumbs": "团队",
+    "remove_confirm": "确定要 remove the 已选择 team(s)?",
+    "remove_success": "Team(s) removed 已成功",
+    "add_success": "Team 已成功 added",
+    "remove_error": "无法 remove team"
+  },
+  "access_control": {
+    "title": "访问控制",
+    "change_ownership": "Change ownership",
+    "ownership_label": "所有权",
+    "authorized_users_label": "Authorized users",
+    "authorized_teams_label": "Authorized teams",
+    "ownership_tooltip_private": "Management of this resource is restricted to a single user.",
+    "ownership_tooltip_restricted": "This resource can be managed by a restricted set of users and/or teams.",
+    "ownership_tooltip_public": "This resource can be managed by any user with access to this environment.",
+    "ownership_tooltip_admin": "This resource can only be managed by administrators.",
+    "inheritance_service_msg": "访问控制 on this resource is inherited from the following service:",
+    "inheritance_service_tooltip": "访问控制 applied on a service is also applied on each container of that service.",
+    "inheritance_container_msg": "访问控制 on this resource is inherited from the following container:",
+    "inheritance_container_tooltip": "访问控制 applied on a container created using a template is also applied on each volume associated to the container.",
+    "inheritance_stack_msg": "访问控制 on this resource is inherited from the following stack:",
+    "inheritance_stack_tooltip": "访问控制 applied on a stack is also applied on each resource in the stack.",
+    "teams_not_part_of_one": "{{count}} team you are not part of",
+    "teams_not_part_of_other": "{{count}} teams you are not part of",
+    "users_count_one": "{{count}} user",
+    "users_count_other": "{{count}} users",
+    "teams_field_label": "Authorized teams",
+    "teams_field_tooltip": "You can select which team(s) will be able to manage this resource.",
+    "teams_field_multi_tooltip": "As you are a member of multiple teams, you can select which teams(s) will be able to manage this resource.",
+    "no_teams_prefix": "You have not yet created any teams. Head over to the",
+    "no_teams_link": "团队 view",
+    "no_teams_suffix": "to manage teams.",
+    "users_field_label": "Authorized users",
+    "users_field_tooltip": "You can select which user(s) will be able to manage this resource.",
+    "no_users_prefix": "You have not yet created any users. Head over to the",
+    "no_users_link": "用户 view",
+    "no_users_suffix": "to manage users.",
+    "cancel": "取消",
+    "updating_ownership": "Updating 所有权",
+    "update_ownership": "更新 所有权",
+    "update_failure": "无法 update access control",
+    "update_success": "访问控制 已成功 updated",
+    "confirm_title": "确定吗？",
+    "confirm_message": "Changing the ownership of this resource will potentially restrict its management to some users.",
+    "confirm_button": "Change ownership"
+  },
+  "docker_containers": {
+    "title": "容器",
+    "container_list": "容器 list",
+    "start": "启动",
+    "stop": "停止",
+    "kill": "终止",
+    "restart": "重启",
+    "pause": "暂停",
+    "resume": "恢复",
+    "remove": "移除",
+    "add_container": "添加 container",
+    "state_header": "状态",
+    "filter_by_state": "Filter by state",
+    "health_check_tooltip": "This container has a health check",
+    "truncate_name": "Truncate container name",
+    "start_success": "容器 已成功 started",
+    "start_error": "无法 start container",
+    "stop_success": "容器 已成功 stopped",
+    "stop_error": "无法 stop container",
+    "restart_success": "容器 已成功 restarted",
+    "restart_error": "无法 restart container",
+    "kill_success": "容器 已成功 killed",
+    "kill_error": "无法 kill container",
+    "pause_success": "容器 已成功 paused",
+    "pause_error": "无法 pause container",
+    "resume_success": "容器 已成功 resumed",
+    "resume_error": "无法 resume container",
+    "remove_success": "容器 已成功 removed",
+    "remove_error": "无法 remove container",
+    "remove_confirm_running": "You are about to remove one or more running containers.",
+    "remove_confirm": "You are about to remove one or more containers.",
+    "quick_action_logs": "日志",
+    "quick_action_inspect": "Inspect",
+    "quick_action_stats": "Stats",
+    "quick_action_exec": "Exec 控制台",
+    "quick_action_attach": "Attach 控制台",
+    "failed_starting": "Failed starting container",
+    "failed_stopping": "Failed stopping container",
+    "failed_recreating": "Failed recreating container",
+    "failed_restarting": "Failed restarting container",
+    "failed_killing": "Failed killing container",
+    "failed_pausing": "Failed pausing container",
+    "failed_resuming": "Failed resuming container",
+    "failed_renaming": "Failed renaming container",
+    "failed_removing": "无法 remove container",
+    "failed_getting_logs": "无法 get container logs",
+    "console_title": "容器 console",
+    "console": "控制台",
+    "attach": "Attach",
+    "interactive_flag_warning": "The interactive-flag is not set. You might not be able to use the console properly.",
+    "tty_flag_warning": "The TTY-flag is not set. You might not be able to use the console properly.",
+    "container_not_running": "The container is not running.",
+    "attach_to_container": "Attach to 容器",
+    "detach": "Detach",
+    "attaching": "Attaching...",
+    "execute": "Execute",
+    "command": "Command",
+    "use_custom_command": "Use custom command",
+    "user": "User",
+    "user_format_tooltip": "Format is one of: user, user:group, uid or uid:gid",
+    "connect": "Connect",
+    "exec_as_user": "Exec into container as",
+    "default_user": "default user",
+    "using_command": "using command",
+    "disconnect": "Disconnect",
+    "connecting": "Connecting...",
+    "logs_title": "容器 logs",
+    "logs": "日志",
+    "stats_title": "容器 statistics",
+    "stats": "Stats",
+    "about_statistics": "About statistics",
+    "stats_description": "This view displays real-time statistics about the container {{name}} as well as a list of the running processes inside this container.",
+    "network_stats_unavailable": "网络 stats are unavailable for this container.",
+    "io_stats_unavailable": "I/O stats are unavailable for this container.",
+    "memory_usage": "内存 usage",
+    "cpu_usage": "CPU usage",
+    "network_usage": "网络 usage (aggregate)",
+    "io_usage": "I/O usage (aggregate)"
+  },
+  "docker_networks": {
+    "detail_title": "网络 details",
+    "breadcrumb": "网络",
+    "name_label": "名称",
+    "id_label": "Id",
+    "driver_label": "Driver",
+    "scope_label": "Scope",
+    "attachable_label": "Attachable",
+    "internal_label": "Internal",
+    "delete_confirm": "Do you want to delete the network?",
+    "delete_button": "删除 this network",
+    "remove_success": "网络 已成功 removed",
+    "containers_title": "容器 in network",
+    "container_name": "容器 名称",
+    "ipv4": "IPv4 添加ress",
+    "ipv6": "IPv6 添加ress",
+    "mac": "Mac添加ress",
+    "actions": "操作",
+    "leave_network": "Leave 网络",
+    "options_title": "网络 options",
+    "list_title": "网络 list",
+    "create_title": "创建 network",
+    "add_network_breadcrumb": "添加 network",
+    "driver_config_section": "Driver configuration",
+    "select_a_driver": "Select a driver",
+    "driver_options": "Driver options",
+    "driver_options_tooltip": "Driver options are specific to the 已选择 driver. 请 refer to the 已选择 driver documentation.",
+    "add_driver_option": "添加 driver option",
+    "ipv4_config_section": "IPV4 网络 configuration",
+    "subnet": "Subnet",
+    "gateway": "Gateway",
+    "ip_range": "IP range",
+    "exclude_ip": "Exclude IP",
+    "exclude_ip_gateway_error": "Exclude ip cannot be the same as gateway.",
+    "add_excluded_ip": "添加 excluded IP",
+    "ipv6_config_section": "IPV6 网络 configuration",
+    "advanced_config_section": "高级 configuration",
+    "add_label": "添加 label",
+    "isolated_network": "Isolated network",
+    "isolated_network_tooltip": "An isolated network has no inbound or outbound communications.",
+    "enable_manual_attachment": "启用 manual container attachment",
+    "deployment_section": "Deployment",
+    "actions_section": "操作",
+    "create_the_network": "创建 the network",
+    "creating_network": "Creating network...",
+    "ipv4_subnet": "IPV4 Subnet",
+    "ipv4_gateway": "IPV4 Gateway",
+    "ipv4_ip_range": "IPV4 IP Range",
+    "ipv4_excluded_ips": "IPV4 Excluded IPs",
+    "ipv6_subnet": "IPV6 Subnet",
+    "ipv6_gateway": "IPV6 Gateway",
+    "ipv6_ip_range": "IPV6 IP Range",
+    "ipv6_excluded_ips": "IPV6 Excluded IPs"
+  },
+  "settings": {
+    "save_settings": "保存 settings",
+    "saving_settings": "Saving settings...",
+    "saving": "正在保存...",
+    "edge_compute_title": "Edge Compute settings",
+    "edge_enable_label": "启用 Edge Compute features",
+    "edge_enable_tip": "启用 this setting to use 端口ainer Edge Compute capabilities.",
+    "edge_enforce_id_label": "Enforce use of 端口ainer generated Edge ID",
+    "edge_enforce_id_tooltip": "This setting only applies to manually created environments.",
+    "openamt_title": "Intel OpenAMT",
+    "openamt_deprecated": "OpenAMT support is deprecated and will be removed in a future version of 端口ainer. 请 plan to migrate to alternative device management solutions.",
+    "openamt_enable_label": "启用 OpenAMT",
+    "openamt_enable_tip": "When enabled, this will allow 端口ainer to interact with an OpenAMT MPS API.",
+    "mps_server_label": "MPS Server",
+    "mps_server_placeholder": "Enter the MPS Server",
+    "mps_user_label": "MPS User",
+    "mps_user_placeholder": "Enter the MPS User",
+    "mps_password_label": "MPS 密码",
+    "mps_password_placeholder": "Enter the MPS 密码",
+    "mps_password_tooltip": "Needs to be 8-32 characters including one uppercase, one lowercase letters, one base-10 digit and one special character.",
+    "domain_name_label": "Domain 名称",
+    "domain_name_placeholder": "Enter the Domain 名称",
+    "domain_name_tooltip": "Enter the FQDN that is associated with the provisioning certificate (i.e amtdomain.com)",
+    "cert_file_label": "Provisioning 证书 文件 (.pfx)",
+    "cert_upload_button": "上传 file",
+    "cert_password_label": "Provisioning 证书 密码",
+    "deployment_sync_title": "Deployment sync options",
+    "deployment_sync_tip": "Default values set here will be available to choose as an option for edge environment creation",
+    "check_in_intervals_section": "Check-in Intervals",
+    "async_check_in_section": "Async Check-in Intervals",
+    "auto_env_success": "成功fully updated 自动matic 环境 创建 settings",
+    "auto_env_generating": "generating...",
+    "enable_waiting_room_label": "启用 Edge 环境 Waiting Room",
+    "disable_waiting_room_title": "禁用 Edge 环境 Waiting Room",
+    "disable_waiting_room_message": "By disabling the waiting room feature, all devices requesting association will be automatically associated and could pose a security risk. 确定吗？",
+    "internal_auth_info_section": "信息",
+    "internal_auth_info_text": "When using internal authentication, 端口ainer will encrypt user passwords and store credentials locally.",
+    "password_rules_section": "密码 rules",
+    "password_rules_text": "Define minimum length for user-generated passwords.",
+    "allow_weak_passwords_title": "Allow weak passwords?",
+    "allow_weak_passwords_message": "You have set an insecure minimum password length. This could leave your system vulnerable to attack, are you sure?",
+    "actions_section": "操作",
+    "title": "设置",
+    "breadcrumbs": "设置",
+    "edge_ping_label": "Edge agent default ping frequency",
+    "edge_ping_tooltip": "Interval used by default by each Edge agent to ping the 端口ainer instance. Affects Edge environment management and Edge compute features.",
+    "edge_snapshot_label": "Edge agent default snapshot frequency",
+    "edge_snapshot_tooltip": "Interval used by default by each Edge agent to snapshot the agent state.",
+    "edge_command_label": "Edge agent default command frequency",
+    "edge_command_tooltip": "Interval used by default by each Edge agent to execute commands.",
+    "edge_poll_label": "Edge agent default poll frequency",
+    "edge_poll_tooltip": "Interval used by default by each Edge agent to check in with the 端口ainer instance. Affects Edge environment management and Edge compute features.",
+    "deployment_sync_success": "设置 updated 已成功",
+    "edge_portainer_url_tooltip": "URL of this 端口ainer instance that will be used by Edge agents to initiate the communications.",
+    "cert_file_tooltip": "Supported CAs are Comodo, DigiCert, Entrust and GoDaddy.<br>The certificate must contain the private key.<br>On AMT 15 based devices you need to use SHA2.",
+    "authentication": {
+      "header": "认证",
+      "configuration": "Session authentication settings",
+      "session_lifetime": "Session lifetime",
+      "session_lifetime_tooltip": "The time before an inactive user session is automatically expired.",
+      "session_warning": "注意: The session lifetime cannot be changed for OAuth users. OAuth users will always have to log in again after 8 hours.",
+      "authentication_method": "认证 method",
+      "title": "认证",
+      "breadcrumb": "认证",
+      "session_options": {
+        "30m": "30 minutes",
+        "1h": "1 hour",
+        "4h": "4 hours",
+        "8h": "8 hours",
+        "24h": "24 hours",
+        "1w": "1 week",
+        "1mo": "1 month",
+        "6mo": "6 months",
+        "1y": "1 year"
+      },
+      "ldap_connect_success": "Connection to LDAP successful",
+      "ldap_connect_failed": "Connection to LDAP failed",
+      "update_success": "认证 settings updated",
+      "update_error": "无法 update authentication settings",
+      "retrieve_error": "无法 retrieve application settings"
+    },
+    "edge": {
+      "title": "Edge Compute",
+      "breadcrumb": "Edge Compute",
+      "automatic_env_creation": "自动matic Edge 环境 创建",
+      "update_success": "设置 updated",
+      "update_error": "无法 update settings",
+      "openamt_success_enabled": "OpenAMT 已成功 enabled",
+      "openamt_success_disabled": "OpenAMT 已成功 disabled",
+      "openamt_error": "Failed applying changes",
+      "retrieve_error": "无法 retrieve application settings"
+    },
+    "app": {
+      "snapshot_interval": "Snapshot interval",
+      "edge_poll_frequency": "Edge agent default poll frequency",
+      "saving": "正在保存...",
+      "save_settings": "保存 application settings",
+      "custom_logo": "Use custom logo",
+      "logo_description": "You can specify the URL to your logo here. For an optimal display, logo dimensions should be 155px by 55px.",
+      "url": "URL",
+      "login_banner": "Login screen banner",
+      "banner_description": "You can set a custom banner that will be shown to all users during login.",
+      "details": "详情",
+      "banner_details": "Banner details"
+    },
+    "helm": {
+      "title": "证书 Authority file for Kubernetes Helm repositories",
+      "updated": "Helm certificate updated",
+      "description": "Provide an additional CA file containing certificate(s) for HTTPS connections to Helm repositories."
+    },
+    "app_settings": "应用 settings",
+    "app_settings_updated": "应用 settings updated",
+    "ssl_certificate": "SSL certificate",
+    "save_ssl": "保存 SSL settings",
+    "save_kube": "保存 Kubernetes settings"
+  },
+  "azure_dashboard": {
+    "home": "首页",
+    "dashboard_breadcrumb": "仪表盘",
+    "subscription_type": "Subscription",
+    "resource_group_type": "资源 group",
+    "container_list_title": "容器 list",
+    "container_instances_breadcrumb": "容器 instances"
+  },
+  "wizard_env": {
+    "quick_setup": "Quick Setup",
+    "environment_wizard": "环境 Wizard",
+    "deprecated_feature": "Deprecated Feature",
+    "deprecated_message": "Provisioning a KaaS environment from 端口ainer is deprecated and will be removed in a future release. You will still be able to use any Kubernetes clusters provisioned using this method but will no longer have access to any of the KaaS-specific management functionality.",
+    "previous": "Previous",
+    "next": "Next",
+    "close": "关闭",
+    "connecting": "Connecting environment...",
+    "creating": "Creating environment...",
+    "connect": "Connect",
+    "create": "创建",
+    "env_created": "环境 created",
+    "add_another": "添加 another environment",
+    "more_settings": "More settings",
+    "check_in_intervals": "Check-in Intervals",
+    "url_prefix": "URL: ",
+    "type_prefix": "类型: ",
+    "docker": {
+      "edge_agent_standard": "Edge Agent Standard",
+      "edge_agent_async": "Edge Agent Async",
+      "agent": "Agent",
+      "api": "API",
+      "socket": "Socket",
+      "cluster_note": "Only do this **once** for your environment, regardless of how many nodes are in the cluster. You do **not** need to add each node as an individual environment in 端口ainer. 添加ing just one node (we recommend the manager node) will allow 端口ainer to manage the entire cluster.",
+      "api_url": "Docker API URL",
+      "api_url_tooltip": "URL or IP address of a Docker host. The Docker API must be exposed over a TCP port. 请 refer to the Docker documentation to configure it.",
+      "api_url_placeholder": "e.g. 10.0.0.10:2375 or mydocker.mydomain.com:2375",
+      "override_socket_path": "Override default socket path",
+      "socket_path": "Socket 路径",
+      "socket_path_tooltip": "路径 to the Docker socket. Remember to bind-mount the socket, see the important notice above for more information.",
+      "socket_path_placeholder": "e.g. /var/run/docker.sock (on Linux) or //./pipe/docker_engine (on Windows)"
+    },
+    "kubernetes": {
+      "agent": "Agent",
+      "edge_agent_standard": "Edge Agent Standard",
+      "edge_agent_async": "Edge Agent Async",
+      "import": "Import",
+      "import_description": "Import an existing Kubernetes config"
+    },
+    "azure": {
+      "application_id": "应用 ID",
+      "application_id_placeholder": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "tenant_id": "Tenant ID",
+      "auth_key": "认证 密钥",
+      "auth_key_placeholder": "cOrXoK/1D35w8YQ8nH1/8ZGwzz45JIYD5jxHKXEQknk=",
+      "api": "API",
+      "application_id_required": "应用 ID is 必填",
+      "tenant_id_required": "Tenant ID is 必填",
+      "auth_key_required": "认证 密钥 is 必填"
+    },
+    "copy_command": "复制 command",
+    "information": "信息",
+    "podman": {
+      "edge_agent_standard": "Edge Agent Standard",
+      "edge_agent_async": "Edge Agent Async",
+      "agent": "Agent",
+      "socket": "Socket",
+      "notice": "Currently, 端口ainer only supports <b>Podman 5</b> running in rootful (privileged) mode on <b>CentOS 9</b> Linux environments. Rootless mode and other Linux distros may work, but aren't officially supported.",
+      "socket_tab_notice": "To connect via socket, 端口ainer server must be running in a Podman container.",
+      "override_socket_path": "Override default socket path",
+      "socket_path": "Socket 路径",
+      "socket_path_tooltip": "路径 to the Podman socket. Remember to bind-mount the socket, see the important notice above for more information.",
+      "socket_path_placeholder": "e.g. /run/podman/podman.sock (on Linux)",
+      "socket_path_required": "Socket 路径 is 必填 when override path is enabled",
+      "linux_centos": "Linux (CentOS)"
+    }
+  },
+  "wizard_docker_scripts": {
+    "linux_wsl": "Linux & Windows WSL",
+    "windows_wcs": "Windows WCS",
+    "linux": "Linux",
+    "windows": "Windows",
+    "socket_flag_notice": "When using the socket, ensure that you have started the 端口ainer container with the following Docker flag:"
+  },
+  "wizard_kube_scripts": {
+    "via_load_balancer": "Kubernetes via load balancer",
+    "via_node_port": "Kubernetes via node port",
+    "information": "信息",
+    "deploy_agent_info": "Ensure that you have deployed the 端口ainer agent in your cluster first. Refer to the platform related command below to deploy it.",
+    "agent_secret_note": "注意 that the environment variable AGENT_SECRET will need to be set to",
+    "update_manifest": "请 update the manifest that will be downloaded from the following script.",
+    "kube_config_details": "环境 details",
+    "kube_config_import_file": "Import the kubeconfig file",
+    "kube_config_desc": "of an existing Kubernetes cluster located on-premise or on a cloud platform. This will create a corresponding environment in 端口ainer and install the agent on the cluster. 请 ensure:",
+    "kube_config_req1": "You have a load balancer enabled in your cluster",
+    "kube_config_req2": "You specify current-context in your kubeconfig",
+    "kube_config_req3": "The kubeconfig is self-contained - including any 必填 credentials.",
+    "kube_config_cloud_note": "注意: Officially supported cloud providers are Civo, Akamai Connected Cloud, DigitalOcean and Microsoft Azure (others are not guaranteed to work at present)",
+    "name_label": "名称",
+    "name_placeholder": "e.g. docker-prod01 / kubernetes-cluster01",
+    "kubeconfig_file": "Kubeconfig file",
+    "select_file": "选择文件",
+    "ingress_controllers_title": "Ingress Controllers",
+    "disallow_selected": "Disallow 已选择",
+    "allow_selected": "Allow 已选择",
+    "unsaved_changes": "Unsaved changes.",
+    "disallow_confirm_title": "Disallow in-use ingress controllers?",
+    "disallow_confirm_message": "There are ingress controllers you want to disallow that are in use:",
+    "disallow_confirm_note": "否 new ingress rules can be created for the disallowed controllers.",
+    "disallow_button": "Disallow"
+  },
+  "access_control_form": {
+    "enable_label": "启用 access control",
+    "enable_description": "When enabled, you can restrict the access and management of this resource.",
+    "select_users_teams": "Select user(s) and/or team(s)",
+    "no_users_teams": "否 users or teams available.",
+    "select_users_teams_placeholder": "Select one or more users and/or teams",
+    "teams_selector_placeholder": "Select one or more teams",
+    "users_selector_placeholder": "Select one or more users",
+    "ownership_public_label": "公开",
+    "ownership_public_desc": "I want any user with access to this environment to be able to manage this resource",
+    "ownership_admin_label": "管理员s",
+    "ownership_admin_desc": "I want to restrict the management of this resource to administrators only",
+    "ownership_restricted_label": "Restricted",
+    "ownership_restricted_desc": "I want to restrict the management of this resource to a set of users and/or teams",
+    "ownership_private_label": "私有",
+    "ownership_private_desc": "I want to restrict this resource to be manageable by myself only",
+    "ownership_team_desc": "I want any member of my team ({{teamName}}) to be able to manage this resource",
+    "title": "访问控制"
+  },
+  "azure_containers": {
+    "create_title": "创建 container instance",
+    "container_instances": "容器 instances",
+    "add_container": "添加 container",
+    "azure_settings": "Azure settings",
+    "subscription": "Subscription",
+    "resource_group": "资源 group",
+    "location": "Location",
+    "container_config": "容器 configuration",
+    "name": "名称",
+    "name_placeholder": "e.g. my容器",
+    "image_placeholder": "e.g. nginx:alpine",
+    "os": "OS",
+    "linux": "Linux",
+    "windows": "Windows",
+    "resources": "容器 资源",
+    "cpu": "CPU",
+    "memory": "内存",
+    "public_ip_deploy_notice": "This will automatically deploy a container with a public IP address",
+    "deploying": "Deployment in progress...",
+    "deploy_button": "Deploy the container",
+    "create_success": "容器 已成功 created",
+    "create_error": "无法 create container",
+    "container_instance_title": "容器 Instance",
+    "public_ip": "公开 IP",
+    "env_vars": "环境 Variables",
+    "env_vars_label": "环境 variables",
+    "containers_title": "容器",
+    "delete_confirm": "确定要 delete the 已选择 containers?",
+    "published_ports": "Published 端口"
+  },
+  "password_check": {
+    "admin_changed_requirements": "An administrator has changed your password requirements, ",
+    "min_length": "The password must be at least {{minPasswordLength}} characters long.",
+    "weak": "Weak password",
+    "good": "Good password",
+    "strong": "Strong password",
+    "very_strong": "Very strong password",
+    "chars": "{{value}} characters"
+  },
+  "edge_groups": {
+    "field_label": "分组s",
+    "field_desc": "更新s are done based on groups, allowing you to choose multiple devices at the same time and the ability to roll out progressively across all environments by scheduling them for different days.",
+    "field_placeholder": "Select one or multiple group(s)",
+    "field_title": "Select groups of Edge environments to update",
+    "edge_groups_label": "Edge 分组s",
+    "selector_placeholder": "Select one or multiple group(s)",
+    "no_groups_available": "否 Edge groups are available. Head over to the",
+    "edge_groups_view_link": "Edge groups view",
+    "to_create_one": "to create one."
+  },
+  "teams_name_col": {
+    "name": "名称",
+    "add": "添加",
+    "user_added": "User added to team"
+  },
+  "registries": {
+    "hide_for_all_users": "Hide for all users",
+    "show_for_all_users": "Show for all users",
+    "success": "成功",
+    "default_registry_updated": "Default registry 设置 updated 已成功",
+    "hide_tooltip": "This hides the option in any registry dropdown prompts but does not prevent a user from deploying anonymously from Docker Hub directly via YAML. 注意: Docker Hub (anonymous) will continue to show as the ONLY option if there are NO other registries available to the user.",
+    "show_tooltip": "This reveals the option in any registry dropdown prompts. (but note that the Docker Hub (anonymous) option only shows if there is no credentialled Docker Hub option available to the user).",
+    "docker_hub_anonymous": "Docker Hub (anonymous)",
+    "title": "镜像仓库",
+    "breadcrumbs": "镜像仓库",
+    "information_title": "信息",
+    "information_message": "Manage your Docker registries and configure the default registry that users will use by default when deploying with Docker.",
+    "env": {
+      "title": "环境 registries",
+      "breadcrumbs": "镜像仓库 management"
+    },
+    "registries_title": "镜像仓库",
+    "add_registry": "添加 registry",
+    "col_name": "名称",
+    "col_url": "URL",
+    "col_actions": "操作",
+    "browse": "浏览",
+    "removed": "镜像仓库 removed",
+    "remove_warning": "This registry might be used by applications. Do you want to continue?"
+  },
+  "theme": {
+    "light": "Light Theme",
+    "dark": "Dark Theme",
+    "high_contrast": "High Contrast",
+    "auto": "System Theme"
+  },
+  "fdo": {
+    "deviceProfiles": "Device Profiles",
+    "noProfilesFound": "否 profiles found",
+    "addProfile": "添加 Profile",
+    "duplicate": "Duplicate",
+    "remove": "移除",
+    "duplicateConfirm": {
+      "title": "确定吗？",
+      "message": "This action will duplicate the 已选择 profile. Continue?",
+      "label": "确认"
+    },
+    "deleteConfirm": {
+      "title": "确定吗？",
+      "message": "This action will remove the 已选择 profile(s). Continue?",
+      "label": "删除"
+    },
+    "profileDuplicatedSuccess": "Profile 已成功 duplicated",
+    "profileRemovedSuccess": "Profile 已成功 removed",
+    "unableToDuplicateProfile": "无法 duplicate profile",
+    "unableToRemoveProfile": "无法 remove profile",
+    "enableFDOManagementService": "启用 FDO Management 服务",
+    "enableDescription": "When enabled, this will allow 端口ainer to interact with FDO services.",
+    "ownerServiceServer": "所有者 服务 Server",
+    "ownerServiceUsername": "所有者 服务 用户名",
+    "ownerServicePassword": "所有者 服务 密码",
+    "savingSettings": "Saving settings...",
+    "saveSettings": "保存 settings",
+    "deviceProfilesDescription": "添加, edit and manage the list of available device profiles used during FDO device setup.",
+    "columns": {
+      "name": "名称",
+      "created": "创建时间"
+    }
+  },
+  "edge_devices": {
+    "title": "Edge Devices",
+    "noDevicesFound": "否 devices found",
+    "kvmTip_prefix": "For the KVM function to work you need to have the MPS server added to your trusted site list, browse to this",
+    "kvmTip_link": "site",
+    "kvmTip_suffix": "and add to your trusted site list",
+    "remove": "移除",
+    "addDevice": "添加 Device",
+    "associateWithOpenAMT": "Associate with OpenAMT",
+    "waitingRoom": "Waiting Room",
+    "deleteConfirm": {
+      "title": "确定吗？",
+      "message": "This action will delete all configurations associated with your environment(s). Continue?",
+      "label": "删除"
+    },
+    "environmentRemovedSuccess": "环境 已成功 removed",
+    "unableToDeleteEnvironment": "无法 delete environment",
+    "addDevicePromptTitle": "How would you like to add an Edge Device?",
+    "deployManually": "Deploy agent manually",
+    "confirmLabel": "确认",
+    "associateOpenAMTTitle": "Associate with OpenAMT",
+    "associateOpenAMTMessage": "Associate {{name}} with OpenAMT",
+    "cancelLabel": "取消",
+    "activatingAMT": "Activating Active Management Technology on the 已选择 device...",
+    "amtFunctions": "AMT Functions",
+    "powerOn": "Power ON",
+    "powerOff": "Power OFF",
+    "restart": "重启",
+    "confirmAction": "确认 action",
+    "confirmActionMessage": "确定要 perform the {{action}} action on the device?",
+    "actionSentSuccess": "{{action}} action sent 已成功",
+    "failedToPerformAction": "Failed to {{action}} the device",
+    "hostname": "主机name",
+    "mpsStatus": "MPS 状态",
+    "powerState": "Power 状态",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "columns": {
+      "name": "名称"
+    }
+  },
+  "portainer_url_field": {
+    "label": "端口ainer API server URL",
+    "tooltip": "URL of the 端口ainer instance that the agent will use to initiate the communications.",
+    "placeholder": "https://portainer.mydomain.tld"
+  },
+  "environments": {
+    "metadata": {
+      "group_label": "分组",
+      "title": "Metadata"
+    },
+    "name_field": {
+      "label": "名称",
+      "placeholder": "e.g. docker-prod01 / kubernetes-cluster01"
+    },
+    "title": "环境",
+    "add": "添加 environment",
+    "auto_onboarding": "自动 onboarding",
+    "remove": "移除",
+    "breadcrumbs": "环境",
+    "remove_confirm": "确定要 remove the 已选择 environment(s)?",
+    "remove_success": "环境(s) removed 已成功"
+  },
+  "tls": {
+    "label": "TLS",
+    "skip_verification": "Skip Certification Verification",
+    "ca_certificate": "TLS CA certificate",
+    "certificate": "TLS certificate",
+    "key": "TLS key"
+  },
+  "environment_url_field": {
+    "label_agent": "环境 address",
+    "label_url": "环境 URL",
+    "tooltip_agent": "The address for the 端口ainer agent in the format <HOST>:<PORT> or <IP>:<PORT>",
+    "tooltip_url": "URL or IP address of a Docker host. The Docker API must be exposed over a TCP port. 请 refer to the Docker documentation to configure it.",
+    "placeholder": "e.g. 10.0.0.10:{{port}} or tasks.portainer_agent:{{port}}"
+  },
+  "wizard_env_types": {
+    "docker_standalone_label": "Docker Standalone",
+    "docker_standalone_description": "Connect to Docker Standalone via URL/IP, API or Socket",
+    "docker_swarm_label": "Docker Swarm",
+    "docker_swarm_description": "Connect to Docker Swarm via URL/IP, API or Socket",
+    "podman_label": "Podman",
+    "podman_description": "Connect to Podman via URL/IP or Socket",
+    "kubernetes_label": "Kubernetes",
+    "kubernetes_description": "Connect to a Kubernetes environment via URL/IP",
+    "aci_label": "ACI",
+    "aci_description": "Connect to ACI environment via API",
+    "kaas_label": "Provision KaaS 集群 (Deprecated)",
+    "kaas_description": "Provision a Kubernetes cluster via a cloud provider's Kubernetes as a 服务",
+    "k8s_install_label": "创建 Kubernetes cluster",
+    "k8s_install_description": "创建 a Kubernetes cluster on existing infrastructure",
+    "form_title_docker_standalone": "Connect to your Docker Standalone environment",
+    "form_title_docker_swarm": "Connect to your Docker Swarm environment",
+    "form_title_podman": "Connect to your Podman environment",
+    "form_title_kubernetes": "Connect to your Kubernetes environment",
+    "form_title_aci": "Connect to your ACI environment",
+    "form_title_kaas": "Provision a KaaS environment",
+    "form_title_k8s_install": "创建 a Kubernetes cluster",
+    "select_environments": "Select your environment(s)",
+    "select_environments_description": "You can onboard different types of environments, select all that apply.",
+    "connect_existing": "Connect to existing environments",
+    "setup_new": "Set up new environments",
+    "start_wizard": "启动 Wizard"
+  },
+  "ingress_form": {
+    "title": "Ingress",
+    "namespace": "命名空间",
+    "loading_namespaces": "Loading namespaces...",
+    "select_namespace": "Select a namespace",
+    "no_namespaces": "否 namespaces available",
+    "ingress_name": "Ingress name",
+    "ingress_class": "Ingress class",
+    "loading_ingress_classes": "Loading ingress classes...",
+    "select_ingress_class": "Select an ingress class",
+    "no_ingress_classes": "否 ingress classes available",
+    "annotations": "Annotations",
+    "add_annotation": "添加 annotation",
+    "add_annotation_tooltip": "Use annotations to configure options for an ingress. Review Nginx or Traefik documentation to find the annotations supported by your choice of ingress type.",
+    "add_rewrite_annotation": "添加 rewrite annotation",
+    "rewrite_annotation_tooltip": "When the exposed URLs for your applications differ from the specified paths in the ingress, use the rewrite target annotation to denote the path to redirect to.",
+    "add_regex_annotation": "添加 regular expression annotation",
+    "regex_annotation_tooltip": "启用 use of regular expressions in ingress paths (set in the ingress details of an application). Use this along with rewrite-target to specify the regex capturing group to be replaced, e.g. path regex of ^/foo/(,*) and rewrite-target of /bar/ rewrites example.com/foo/account to example.com/bar/account.",
+    "add_ingress_class_annotation": "添加 kubernetes.io/ingress.class annotation",
+    "rules": "Rules",
+    "rule": "Rule",
+    "fallback_rule": "Fallback rule",
+    "remove_rule": "移除 rule",
+    "hostname": "主机name",
+    "tls_secret": "TLS secret",
+    "no_tls": "否 TLS",
+    "select_tls_secret": "Select a TLS secret",
+    "no_tls_secrets": "否 TLS secrets available",
+    "create_secret_tip_prefix": "You may also use the",
+    "create_secret_link": "创建 secret",
+    "create_secret_tip_suffix": "function, and reload the dropdown.",
+    "fallback_rule_description": "A fallback rule has no host specified. This rule only applies when an inbound request has a hostname that does not match with any of your other rules.",
+    "paths": "路径s",
+    "no_paths_tip": "You may save the ingress without a path and it will then be an ingress default that a user may select via the hostname dropdown in 创建/编辑 application.",
+    "service": "服务",
+    "select_service": "Select a service",
+    "no_services": "否 services available",
+    "service_port": "服务 port",
+    "select_port": "Select a port",
+    "no_ports": "否 ports available",
+    "path_type": "路径 type",
+    "select_path_type": "Select a path type",
+    "no_path_types": "否 path types available",
+    "path": "路径",
+    "add_path": "添加 path",
+    "add_new_host": "添加 new host",
+    "add_fallback_rule": "添加 fallback rule",
+    "fallback_rule_tooltip": "A fallback rule will be applied to all requests that do not match any of the defined hosts."
+  },
+  "validation": {
+    "name_required": "名称 is 必填.",
+    "image_required": "镜像 is 必填.",
+    "subscription_required": "Subscription is 必填.",
+    "resource_group_required": "资源 group is 必填.",
+    "location_required": "Location is 必填.",
+    "env_var_name_required": "环境 variable name is 必填.",
+    "env_var_value_required": "环境 variable value is 必填.",
+    "env_var_already_defined": "This environment variable is already defined",
+    "must_specify_team_or_user": "You must specify at least one team or user.",
+    "must_specify_team": "You must specify at least one team.",
+    "field_required": "This field is 必填.",
+    "env_address_format": "环境 address must be of the form <IP>:<PORT> or <HOST>:<PORT>.",
+    "socket_path_required_override": "Socket 路径 is 必填 when override path is enabled",
+    "team_already_exists": "This team already exists.",
+    "allowedCharsAlphaNumericDotDashUnderscore": "Allowed Chars Alpha Numeric Dot Dash Underscore",
+    "contentRequired": "Content Required",
+    "fileRequired": "File Required",
+    "invalidFormat": "Invalid Format",
+    "nameMustBeUnique": "Name Must Be Unique",
+    "nameRequired": "Name Required",
+    "required": "必填"
+  },
+  "groups": {
+    "title": "分组s",
+    "breadcrumbs": "分组s"
+  },
+  "logs": {
+    "activity_title": "活动日志",
+    "activity_breadcrumbs": "活动日志",
+    "authentication": "认证日志",
+    "columns": {
+      "time": "Time",
+      "origin": "Origin",
+      "context": "认证 method",
+      "user": "User",
+      "result": "Result"
+    },
+    "context": {
+      "internal": "Internal",
+      "ldap": "LDAP",
+      "oauth": "OAuth"
+    },
+    "result": {
+      "success": "成功",
+      "failure": "失败",
+      "logout": "Logout"
+    },
+    "authentication_title": "认证日志",
+    "authentication_breadcrumbs": "认证日志",
+    "date_range": "Date range",
+    "retention_message": "Auth logs data is retained for 7 days.",
+    "export_csv": "Export as CSV",
+    "load_error": "Failed loading auth activity logs"
+  },
+  "tags": {
+    "title": "标签",
+    "breadcrumbs": "标签",
+    "add_new_tag": "添加 a new tag",
+    "name": "名称",
+    "name_placeholder": "e.g. development",
+    "name_required": "This field is 必填.",
+    "name_exists": "A tag with this name already exists.",
+    "create_tag": "创建 tag",
+    "creating_tag": "Creating tag...",
+    "create_success": "标签 已成功 created",
+    "create_error": "无法 create tag",
+    "remove_success": "标签 已成功 removed",
+    "remove_error": "无法 remove tag",
+    "retrieve_error": "无法 retrieve tags",
+    "tags_title": "标签",
+    "remove_confirm_tags": "确定要 remove the 已选择 tag(s)?"
+  },
+  "docker_features": {
+    "title": "Docker features configuration",
+    "breadcrumb": "Docker configuration",
+    "host_filesystem": "主机 and filesystem",
+    "agent_info_prefix": "The environment must be",
+    "agent_info_link": "running the 端口ainer Agent",
+    "agent_info_mid": "to use this functionality, and the root of the host must be bind-mounted to",
+    "agent_info_mid2": "in the agent deployment. Check",
+    "agent_info_doc_link": "our documentation",
+    "agent_info_suffix": "for more information.",
+    "enable_host_management": "启用 host management features",
+    "enable_host_management_tooltip": "启用 host management features: host system browsing and advanced host details.",
+    "enable_volume_management": "启用 volume management for non-administrators",
+    "enable_volume_management_tooltip": "When enabled, regular users will be able to use 端口ainer volume management features.",
+    "change_window_section": "Change window setting",
+    "enable_change_window": "启用 Change Window",
+    "change_window_tooltip": "Specify a time-frame during which GitOps updates can occur in this environment.",
+    "security_section": "Docker security settings",
+    "hide_bind_mounts": "Hide bind mounts for non-administrators",
+    "hide_bind_mounts_tooltip": "When enabled, regular users will not be able to use bind mounts when creating containers.",
+    "hide_privileged_mode": "Hide privileged mode for non-administrators",
+    "hide_privileged_mode_tooltip": "When enabled, regular users will not be able to use privileged mode when creating containers.",
+    "hide_host_pid": "Hide the use of host PID 1 for non-administrators",
+    "hide_host_pid_tooltip": "Prevent users from accessing the host filesystem through the host PID namespace.",
+    "hide_stacks": "Hide the use of Stack for non-administrators",
+    "hide_device_mappings": "Hide device mappings for non-administrators",
+    "hide_container_capabilities": "Hide container capabilities for non-administrators",
+    "hide_sysctl": "Hide sysctl settings for non-administrators",
+    "recreate_note": "注意: The recreate/duplicate/edit feature is currently hidden (for non-admin users) by one or more security settings.",
+    "other_section": "Other",
+    "gpu_standalone_tip": "Showing GPU in the UI is currently only available with Docker Standalone and is limited to NVIDIA graphics cards.",
+    "show_gpu": "Show GPU in the UI",
+    "show_gpu_tooltip": "This allows managing of GPUs for container/stack hardware acceleration via the 端口ainer UI.",
+    "gpu_nvidia_tip": "GPU support is currently limited to NVIDIA graphics cards only.",
+    "show_image_indicators": "Show image up to date indicators for Stack, 服务 and 容器",
+    "actions_section": "操作",
+    "save_configuration": "保存 configuration",
+    "saving": "正在保存..."
+  },
+  "docker_host": {
+    "browser_title": "主机 浏览r",
+    "breadcrumb_browse": "browse",
+    "overview_title": "主机 overview",
+    "pci_devices": "PCI Devices",
+    "vendor": "Vendor",
+    "failed_load_devices": "Failed to load devices.",
+    "no_device_available": "否 device available.",
+    "physical_disks": "Physical Disks",
+    "size": "Size",
+    "failed_load_disks": "Failed to load disks.",
+    "no_disks_available": "否 disks available.",
+    "engine_details": "Engine 详情",
+    "version": "Version",
+    "root_directory": "Root directory",
+    "storage_driver": "Storage Driver",
+    "logging_driver": "Logging Driver",
+    "volume_plugins": "卷 Plugins",
+    "network_plugins": "网络 Plugins",
+    "engine_labels": "Engine 标签",
+    "host_details": "主机 详情",
+    "hostname": "主机name",
+    "os_information": "OS 信息",
+    "kernel_version": "Kernel Version",
+    "total_cpu": "Total CPU",
+    "total_memory": "Total memory",
+    "browse": "浏览"
+  },
+  "docker_images": {
+    "build_title": "Build image",
+    "build_breadcrumb": "Build image",
+    "builder_tab": "Builder",
+    "naming_section": "Naming",
+    "multiple_names_hint": "You can specify multiple names to your image.",
+    "names_label": "名称s",
+    "add_name": "add additional name",
+    "name_required": "You must specify at least one name for the image.",
+    "name_format_hint": "A name must be specified in one of the following formats:",
+    "name_format_hint_suffix": "format. If you omit the tag the default",
+    "name_format_hint_suffix2": "value is assumed.",
+    "name_not_unique": "The image name must be unique",
+    "name_invalid": "The image name must consist of between 2 and 255 lowercase alphanumeric characters, '.', '_', or '-' (e.g. 'my-name', or 'abc-123').",
+    "build_method_section": "Build method",
+    "web_editor_section": "Web editor",
+    "dockerfile_info_prefix": "You can get more information about Dockerfile format in the",
+    "dockerfile_info_link": "official documentation",
+    "dockerfile_editor_tip": "Define or paste the content of your Dockerfile here",
+    "upload_section": "上传",
+    "upload_files_hint": "You can upload files from your local computer for referencing in your Dockerfile (using ADD filename) so they are included in your built image.",
+    "select_files": "Select files",
+    "upload_tar_hint": "You can upload a Dockerfile or a tar archive containing a Dockerfile from your computer. When using a tarball, the root folder will be used as the build context.",
+    "select_file": "Select file",
+    "tar_path_hint": "Indicate the path to the Dockerfile within the tarball.",
+    "dockerfile_path": "Dockerfile path",
+    "url_section": "URL",
+    "url_hint_prefix": "Specify the URL to a Dockerfile, a tarball or a public Git repository (suffixed by",
+    "url_hint_suffix": "). When using a Git repository URL, build contexts can be specified as in the",
+    "url_hint_link": "Docker documentation.",
+    "url_label": "URL",
+    "url_path_hint": "Indicate the path to the Dockerfile within the tarball/repository (ignored when using a Dockerfile).",
+    "deployment_section": "Deployment",
+    "build_the_image": "Build the image",
+    "building_in_progress": "镜像 building in progress...",
+    "output_tab": "Output",
+    "no_build_output": "否 build output available.",
+    "image_details_title": "镜像 details",
+    "image_tags_header": "镜像 tags",
+    "push_to_registry": "Push to registry",
+    "pull_from_registry": "Pull from registry",
+    "remove_tag": "移除 tag",
+    "tag_icons_note": "注意: you can click on the upload icon",
+    "tag_icons_note_push": "to push an image or on the download icon",
+    "tag_icons_note_pull": "to pull an image or on the trash icon",
+    "tag_icons_note_delete": "to delete a tag.",
+    "download_in_progress": "下载 in progress...",
+    "upload_in_progress": "上传 in progress...",
+    "tag_the_image": "标签 the image",
+    "tag_note_prefix": "注意: if you don't specify the tag in the image name,",
+    "tag_note_suffix": "will be used.",
+    "tag_button": "标签",
+    "delete_this_image": "删除 this image",
+    "export_this_image": "Export this image",
+    "export_in_progress": "Export in progress...",
+    "parent": "Parent",
+    "size": "Size",
+    "build": "Build",
+    "labels": "标签",
+    "author": "Author",
+    "image_layers_header": "镜像 layers",
+    "order": "Order",
+    "layer": "Layer",
+    "import_title": "Import image",
+    "import_breadcrumb": "Import image",
+    "import_upload_hint": "You can upload a tar archive containing your images.",
+    "upload_button": "上传",
+    "upload_images_in_progress": "镜像 uploading in progress...",
+    "rate_limit_free_user": "You are currently using a free account to pull images from DockerHub and will be limited to 200 pulls every 6 hours. Remaining pulls:",
+    "rate_limit_anonymous_admin": "You are currently using an anonymous account to pull images from DockerHub and will be limited to 100 pulls every 6 hours. You can configure DockerHub authentication in the",
+    "registries_view": "镜像仓库 View",
+    "remaining_pulls": "Remaining pulls:",
+    "rate_limit_anonymous_user": "You are currently using an anonymous account to pull images from DockerHub and will be limited to 100 pulls every 6 hours. Contact your administrator to configure DockerHub authentication. Remaining pulls:",
+    "rate_limit_exceeded_free": "Your authorized pull count quota as a free user is now exceeded.",
+    "rate_limit_exceeded_anonymous": "Your authorized pull count quota as an anonymous user is now exceeded.",
+    "rate_limit_no_pull": "You will not be able to pull any image from the DockerHub registry.",
+    "registry": "镜像仓库",
+    "search": "搜索",
+    "advanced_mode_notice": "When using advanced mode, image and repository must be publicly available.",
+    "image_name_required": "镜像 name is 必填.",
+    "tag_must_be_specified": "标签 must be specified otherwise 端口ainer will pull all tags associated to the image.",
+    "simple_mode": "Simple mode",
+    "advanced_mode": "高级 mode"
+  },
+  "docker_services": {
+    "details_title": "服务 details",
+    "update_alert": "This service is being updated. 编辑ing this service is currently disabled.",
+    "update_alert_refresh": "刷新 to see if this service has finished updated.",
+    "details_header": "服务 details",
+    "name": "名称",
+    "id": "ID",
+    "created_at": "创建时间 at",
+    "last_updated_at": "Last updated at",
+    "version": "Version",
+    "scheduling_mode": "Scheduling mode",
+    "replicas": "Replicas",
+    "service_webhook": "服务 webhook",
+    "webhook_tooltip": "Webhook (or callback URI) used to automate the update of this service. Sending a POST request to this callback URI (without requiring any authentication) will pull the most up-to-date version of the associated image and re-deploy this service.",
+    "copy_link": "复制 link",
+    "rollback_note": "注意: you can only rollback one level of changes. Clicking the rollback button without making a new change will undo your previous rollback",
+    "service_logs": "服务 logs",
+    "update_the_service": "更新 the service",
+    "update_in_progress": "更新 in progress...",
+    "rollback_the_service": "Rollback the service",
+    "rollback_in_progress": "Rollback in progress...",
+    "delete_the_service": "删除 the service",
+    "deletion_in_progress": "Deletion in progress...",
+    "docker_doc_help_prefix": "Do you need help? View the Docker 服务 documentation",
+    "docker_doc_help_link": "here",
+    "apply_changes": "应用 changes",
+    "reset_changes": "Reset changes",
+    "reset_all_changes": "Reset all changes",
+    "quick_navigation": "Quick navigation",
+    "nav_env_variables": "环境 variables",
+    "nav_container_image": "容器 image",
+    "nav_container_labels": "容器 labels",
+    "nav_mounts": "Mounts",
+    "nav_network_ports": "网络 & published ports",
+    "nav_resource_limits": "资源 limits & reservations",
+    "nav_placement_constraints": "Placement constraints",
+    "nav_placement_preferences": "Placement preferences",
+    "nav_restart_policy": "重启 policy",
+    "nav_update_config": "更新 configuration",
+    "nav_logging": "Logging",
+    "nav_service_labels": "服务 labels",
+    "nav_configs": "Configs",
+    "nav_secrets": "Secret",
+    "nav_tasks": "Tasks",
+    "container_spec_heading": "容器 specification",
+    "networks_ports_heading": "网络 & ports",
+    "service_spec_heading": "服务 specification",
+    "networks_header": "网络",
+    "add_network": "network",
+    "no_networks": "This service is not connected to any networks.",
+    "select_a_network": "Select a network",
+    "ip_address": "IP address",
+    "unable_delete_webhook": "无法 delete webhook",
+    "unable_create_webhook": "无法 create webhook",
+    "unable_update_webhook": "无法 update webhook",
+    "service_rolled_back": "服务 已成功 rolled back",
+    "no_previous_config": "否 previous config to rollback to.",
+    "unable_rollback_service": "无法 rollback service",
+    "rollback_service_title": "Rollback service",
+    "rollback_confirm_message": "确定要 rollback?",
+    "service_updated": "服务 已成功 updated",
+    "service_updated_detail": "服务 updated",
+    "unable_update_service": "无法 update service",
+    "remove_service_confirm": "Do you want to remove this service? All the containers associated to this service will be removed too.",
+    "service_deleted": "服务 已成功 deleted",
+    "unable_remove_service": "无法 remove service",
+    "force_update_confirm": "Do you want to force an update of the service? All the tasks associated to the service will be recreated.",
+    "unable_force_update_service": "无法 force update service",
+    "unable_retrieve_details": "无法 retrieve service details"
+  },
+  "docker_volumes": {
+    "list_title": "卷 list",
+    "browse_title": "卷 browser",
+    "browse_breadcrumb": "browse",
+    "create_title": "创建 volume",
+    "add_volume_breadcrumb": "添加 volume",
+    "driver_config_section": "Driver configuration",
+    "driver_label": "Driver",
+    "select_a_driver": "Select a driver",
+    "driver_options": "Driver options",
+    "driver_options_tooltip": "Driver options are specific to the 已选择 driver. 请 refer to the 已选择 driver documentation.",
+    "add_driver_option": "add driver option",
+    "use_nfs_volume": "Use NFS volume",
+    "nfs_utils_hint": "Ensure",
+    "nfs_utils_hint_suffix": "are installed on your hosts.",
+    "use_cifs_volume": "Use CIFS volume",
+    "deployment_section": "Deployment",
+    "actions_section": "操作",
+    "create_the_volume": "创建 the volume",
+    "creating_volume": "Creating volume...",
+    "details_title": "卷 details",
+    "details_header": "卷 details",
+    "browse_button": "浏览",
+    "remove_this_volume": "移除 this volume",
+    "mount_path": "Mount path",
+    "options_header": "卷 options",
+    "containers_using_header": "容器 using volume",
+    "container_name": "容器 名称",
+    "mounted_at": "Mounted At",
+    "read_only": "Read-only",
+    "cifs_settings": "CIFS 设置",
+    "address": "添加ress",
+    "share": "Share",
+    "cifs_version": "CIFS Version",
+    "username": "用户名",
+    "password": "密码",
+    "nfs_settings": "NFS 设置",
+    "nfs_version": "NFS Version",
+    "nfs_mount_point": "Mount point",
+    "options": "Options",
+    "options_tooltip": "Comma separated list of options",
+    "title": "卷"
+  },
+  "docker_log_viewer": {
+    "settings_title": "Log viewer settings",
+    "auto_refresh_logs": "自动-refresh logs",
+    "auto_refresh_tooltip": "Disabling this option allows you to pause the log collection process and the auto-scrolling.",
+    "wrap_lines": "Wrap lines",
+    "display_timestamps": "Display timestamps",
+    "fetch": "Fetch",
+    "all_logs": "All logs",
+    "search": "搜索",
+    "lines": "Lines",
+    "enter_lines": "Enter no of lines...",
+    "download_logs": "下载 logs",
+    "copy": "复制",
+    "copy_selected_lines": "复制 已选择 lines",
+    "unselect": "Unselect",
+    "no_matching_filter": "否 log line matching the '{{search}}' filter",
+    "no_logs_available": "否 logs available"
+  },
+  "k8s_config": {
+    "configmaps_secrets": "ConfigMap & Secret",
+    "search_placeholder": "搜索 for configmaps & secrets...",
+    "remove": "移除",
+    "add_with_form": "添加 with form",
+    "create_from_file": "创建 from file",
+    "show_system_resources": "Show system resources",
+    "close": "关闭",
+    "system_resources_hidden": "System resources are hidden, this can be changed in the table settings.",
+    "name": "名称",
+    "namespace": "命名空间",
+    "kind": "Kind",
+    "created": "创建时间",
+    "no_configs_available": "否 ConfigMap or Secret available.",
+    "items_selected": "item(s) 已选择",
+    "data": "Data",
+    "advanced_mode": "高级 mode",
+    "simple_mode": "Simple mode",
+    "switch_advanced_hint": "Switch to advanced mode to copy and paste multiple key/values",
+    "configmap_yaml_hint": "Generate a ConfigMap entry per line, use YAML format",
+    "secret_yaml_hint": "Generate a Secret entry per line, use YAML format"
+  },
+  "k8s_resources": {
+    "resource_reservation": "资源 reservation",
+    "memory_reservation": "内存 reservation",
+    "memory_used": "内存 used",
+    "cpu_reservation": "CPU reservation",
+    "cpu_used": "CPU used"
+  },
+  "k8s_registries": {
+    "registry_access": "镜像仓库 access",
+    "access_management": "Access management",
+    "create_access": "创建 access",
+    "select_namespaces": "Select namespaces",
+    "no_namespaces": "否 namespaces available.",
+    "credentials_warning": "添加ing this registry will expose the registry credentials to all users of this namespace.",
+    "creating_access": "Creating access..."
+  },
+  "k8s_applications": {
+    "create_title": "创建 application",
+    "create_breadcrumb": "创建 an application",
+    "edit_title": "编辑 application",
+    "view_title": "View application",
+    "edit": "编辑",
+    "view": "View",
+    "namespaces": "命名空间",
+    "applications": "应用",
+    "namespace": "命名空间",
+    "deploy_application": "Deploy application",
+    "deployment_in_progress": "Deployment in progress...",
+    "update_application": "更新 application",
+    "update_in_progress": "更新 in progress...",
+    "cancel": "取消",
+    "stats_title": "应用 stats",
+    "unable_retrieve_metrics": "无法 retrieve container metrics",
+    "metrics_unavailable": "端口ainer was unable to retrieve any metrics associated to that container. 请 contact your administrator to ensure that the Kubernetes metrics feature is properly configured.",
+    "stats_realtime": "This view displays real-time statistics about the container {{name}}.",
+    "node_stats": "节点 stats",
+    "unable_retrieve_node_metrics": "无法 retrieve node metrics",
+    "node_metrics_unavailable": "端口ainer was unable to retrieve any metrics associated to that node. 请 contact your administrator to ensure that the Kubernetes metrics feature is properly configured.",
+    "node_stats_realtime": "This view displays real-time statistics about the node {{name}}."
+  },
+  "k8s_logs": {
+    "application_logs": "应用 logs",
+    "pods": "Pods",
+    "containers": "容器",
+    "logs": "日志",
+    "auto_refresh_tooltip_5s": "自动matically refresh logs every 5 seconds",
+    "auto_refresh_tooltip_30s": "自动matically refresh logs every 30 seconds",
+    "stacks_logs": "Stack logs",
+    "stacks": "Stack"
+  },
+  "k8s_volumes": {
+    "volume_details": "卷 details",
+    "volume": "卷",
+    "storage_class": "Storage Class",
+    "access_modes": "Access Modes",
+    "provisioner": "Provisioner",
+    "creation_date": "创建 date"
+  },
+  "portainer": {
+    "settings": {
+      "backup": {
+        "s3": {
+          "schedule_automatic_backups": "Schedule automatic backups",
+          "cron_rule": "Cron rule",
+          "access_key_id": "Access key ID",
+          "secret_access_key": "Secret access key",
+          "region": "Region",
+          "region_placeholder": "default region is us-east-1 if left empty",
+          "bucket_name": "Bucket name",
+          "s3_compatible_host": "S3 compatible host",
+          "s3_compatible_host_tooltip": "主机name of a S3 service",
+          "s3_host_placeholder": "leave empty for AWS S3",
+          "exporting": "Exporting...",
+          "export_backup": "Export backup",
+          "saving_settings": "Saving settings...",
+          "save_backup_settings": "保存 backup settings",
+          "export_success": "Exported backup to S3 已成功",
+          "save_success": "S3 backup settings saved 已成功"
+        }
+      }
+    },
+    "schedules": {
+      "update_rollback_title": "更新 & Rollback",
+      "update_rollback_breadcrumb": "更新 and rollback",
+      "beta_message": "Beta feature - currently limited to standalone Linux edge devices.",
+      "update_rollback_datatable": "更新 & rollback",
+      "remove_confirm": "确定要 remove these schedules?",
+      "add_schedule": "添加 update & rollback schedule",
+      "remove_success": "Schedules 已成功 removed"
+    },
+    "templates": {
+      "custom": {
+        "title": "Custom Templates",
+        "breadcrumb": "Custom Templates",
+        "delete_confirm": "确定要 delete this template?",
+        "delete_success": "Template deleted"
+      },
+      "deploy": {
+        "cannot_deploy": "This template type cannot be deployed on this environment.",
+        "configuration": "配置",
+        "deploying": "Deployment in progress...",
+        "deploy_the_stack": "Deploy the stack",
+        "hide": "Hide",
+        "stack_created": "Stack created"
+      }
+    }
+  },
+  "portainer_be": {},
+  "portainer_access": {
+    "access_control": "访问控制",
+    "enable_access_control": "启用 access control",
+    "enable_access_control_tooltip": "When enabled, you can restrict the access and management of this resource.",
+    "authorized_teams": "Authorized teams",
+    "teams_tooltip_admin": "You can select which teams(s) will be able to manage this resource.",
+    "teams_tooltip_user": "As you are a member of multiple teams, you can select which teams(s) will be able to manage this resource.",
+    "no_teams_created": "You have not yet created any teams. Head over to the 团队 view to manage teams.",
+    "authorized_users": "Authorized users",
+    "users_tooltip_admin": "You can select which user(s) will be able to manage this resource.",
+    "no_users_created": "You have not yet created any users. Head over to the 用户 view to manage users.",
+    "create_access": "创建 access",
+    "user_access_warning": "添加ing user access will require the affected user(s) to logout and login for the changes to be taken into account.",
+    "role": "角色",
+    "creating_access": "Creating access...",
+    "must_specify_team_or_user": "You must specify at least one team or user.",
+    "must_specify_team": "You must specify at least a team."
+  },
+  "portainer_templates": {
+    "template": "Template",
+    "select_custom_template": "Select a Custom Template",
+    "template_load_failed_admin": "Custom template could not be loaded, please",
+    "click_here_config": "click here",
+    "for_configuration": "for configuration.",
+    "template_load_failed_user": "Custom template could not be loaded, please contact your administrator.",
+    "no_custom_templates_available": "否 custom templates are available. Head over to the",
+    "custom_template_view_link": "custom template view",
+    "to_create_one": "to create one."
+  },
+  "portainer_security": {
+    "select_file": "Select file",
+    "tls_mode": "TLS mode",
+    "required_tls_files": "必填 TLS files"
+  },
+  "portainer_editor": {
+    "web_editor": "Web editor"
+  },
+  "portainer_groups": {
+    "description": "描述",
+    "metadata": "Metadata"
+  },
+  "portainer_git": {
+    "redeploy_from_git": "Redeploy from git repository",
+    "pull_latest_manifest": "Pull the latest manifest from git and redeploy the application.",
+    "hide": "Hide",
+    "advanced": "高级",
+    "configuration": "configuration",
+    "pull_and_update": "Pull and update application",
+    "save_settings": "保存 settings"
+  },
+  "portainer_registries": {
+    "important_notice": "Important notice",
+    "in_progress": "In progress...",
+    "name_already_exists": "A registry with the same name already exists.",
+    "ecr_connection_details": "ECR connection details",
+    "azure_registry_details": "Azure registry details",
+    "custom_registry_details": "Custom registry details",
+    "gitlab_connection_details": "GitLab registry connection details",
+    "retrieve_projects": "Retrieve projects",
+    "gitlab_projects": "GitLab projects",
+    "create_registries": "创建 registries",
+    "proget_registry_details": "ProGet registry details",
+    "quay_account_details": "Quay account details",
+    "dockerhub_anonymous": "Docker Hub (anonymous)"
+  },
+  "portainer_theme": {
+    "user_theme": "User theme",
+    "success": "成功",
+    "failure": "失败",
+    "theme_updated": "User theme settings 已成功 updated",
+    "unable_update_theme": "无法 update user theme settings",
+    "unable_get_user_details": "无法 get user details"
+  },
+  "portainer_oauth": {
+    "single_sign_on": "Single Sign-On",
+    "use_sso": "Use SSO",
+    "use_sso_tooltip": "When using SSO the OAuth provider is not forced to prompt for credentials.",
+    "team_membership": "Team membership"
+  },
+  "portainer_ldap": {
+    "select_groups": "Select 分组(s)",
+    "fetch_admin_groups": "Fetch Admin 分组(s)",
+    "ldap_configuration": "LDAP configuration",
+    "starttls_tooltip": "启用 this option if want to use 启动TLS to secure the connection to the server. Ignored if Use TLS is 已选择.",
+    "tls_tooltip": "启用 this option if you need to specify TLS certificates to connect to the LDAP server.",
+    "skip_verify_tooltip": "Skip the verification of the server TLS certificate. 否t recommended on unsecured networks."
+  },
+  "auth": {
+    "or": "or",
+    "login_title": "Log in to 端口ainer",
+    "welcome_message": "Welcome back!",
+    "login_with_microsoft": "Login with Microsoft",
+    "login_with_google": "Login with Google",
+    "login_with_github": "Login with GitHub",
+    "login_with_oauth": "Login with OAuth",
+    "use_internal_auth": "Use internal authentication",
+    "username": "用户名",
+    "password": "密码",
+    "show_password": "Show password",
+    "hide_password": "Hide password",
+    "login": "Log in",
+    "login_in_progress": "Logging in...",
+    "authentication_in_progress": "认证 in progress...",
+    "failure": "认证 failure",
+    "unable_to_login": "无法 login"
+  },
+  "portainer_endpoints": {
+    "environment_details": "环境 details",
+    "environments": "环境",
+    "checkin_intervals": "Check-in Intervals",
+    "group": "分组",
+    "open_amt_title": "Open Active Management Technology",
+    "amt_version": "AMT Version",
+    "uuid": "UUID",
+    "build_number": "Build Number",
+    "control_mode": "Control Mode",
+    "dns_suffix": "DNS Suffix",
+    "update_environment": "更新 environment",
+    "updating_environment": "Updating environment...",
+    "cancel": "取消"
+  },
+  "portainer_stacks": {
+    "stacks_list": "Stack list",
+    "stacks": "Stack"
+  },
+  "portainer_users": {
+    "user_details": "User details",
+    "users": "用户",
+    "username": "用户名",
+    "delete_user": "删除 this user",
+    "change_password": "修改用户密码",
+    "new_password": "新密码",
+    "confirm_password": "确认密码",
+    "update_password": "更新密码",
+    "unable_retrieve_teams": "无法 retrieve teams",
+    "unable_retrieve_team_details": "无法 retrieve team details",
+    "unable_create_team": "无法 create team",
+    "unable_retrieve_memberships": "无法 retrieve user memberships for the team",
+    "delete_confirm_message": "Do you want to remove this user? This user will not be able to login into 端口ainer anymore.",
+    "rename_confirm_title": "确定吗？",
+    "rename_confirm_message": "确定要 rename the user {{oldUsername}} to {{username}}?",
+    "update_button": "更新",
+    "user_updated": "User 已成功 updated",
+    "unable_update_permissions": "无法 update user permissions",
+    "password_updated": "密码 已成功 updated",
+    "unable_update_password": "无法 update user password",
+    "user_deleted": "User 已成功 deleted",
+    "unable_remove_user": "无法 remove user",
+    "unable_retrieve_user_info": "无法 retrieve user information"
+  },
+  "roles": {
+    "env_admin": "环境 administrator",
+    "env_admin_desc": "Full control of all resources in an environment",
+    "operator": "Operator",
+    "operator_desc": "Operational Control of all existing resources in an environment",
+    "helpdesk": "Helpdesk",
+    "helpdesk_desc": "Read-only access of all resources in an environment",
+    "read_only": "Read-only user",
+    "read_only_desc": "Read-only access of assigned resources in an environment",
+    "standard": "标准用户",
+    "standard_desc": "Full control of assigned resources in an environment",
+    "roles": "角色s",
+    "default": "Default",
+    "access": "Access",
+    "environment": "环境",
+    "access_origin": "Access Origin",
+    "user_access_all_environments": "User access all environments",
+    "manage_access": "Manage access",
+    "access_defined_on": "access defined on",
+    "user_prefix": "User",
+    "team_prefix": "Team",
+    "no_access_to_environments": "The 已选择 user does not have access to any environments.",
+    "effective_role_description": "Effective role for each environment will be displayed for the 已选择 user.",
+    "effective_access_viewer": "Effective access viewer",
+    "user": "User",
+    "no_user_available": "否 user available",
+    "unable_retrieve_accesses": "无法 retrieve accesses",
+    "title": "角色s",
+    "breadcrumbs": "角色s",
+    "unable_to_retrieve": "无法 retrieve roles"
+  },
+  "portainer_account": {
+    "application_settings": "应用 settings",
+    "cache_warning": "Enabling front-end data caching can mean that changes to Kubernetes clusters made by other users or outside of 端口ainer may take up to five minutes to show in your session. This caching only applies to Kubernetes environments.",
+    "enable_cache_label": "启用 front-end data caching for Kubernetes environments",
+    "saving": "正在保存...",
+    "save": "保存",
+    "settings_updated": "成功fully updated application settings.",
+    "unable_update_settings": "无法 update application settings"
+  },
+  "account": {
+    "title": "My account",
+    "breadcrumbs": "My account",
+    "change_password": "Change password",
+    "current_password": "当前密码",
+    "new_password": "新密码",
+    "confirm_password": "确认密码",
+    "update_password": "更新密码",
+    "remind_me_later": "稍后提醒我",
+    "ldap_warning": "You cannot change your password when using LDAP authentication.",
+    "oauth_warning": "You cannot change your password when using OAuth authentication.",
+    "password_success": "密码 已成功 updated",
+    "unable_retrieve_settings": "无法 retrieve application settings",
+    "force_change_message": "请 update your password to a stronger password to continue using 端口ainer",
+    "success": "成功",
+    "failure": "失败",
+    "min_password_hint_prefix": "Minimum password length is set",
+    "min_password_hint_link": "here.",
+    "language": {
+      "title": "语言",
+      "field": {
+        "label": "界面语言",
+        "description": "选择此浏览器使用的语言。保存后页面会重新加载以刷新所有文本。"
+      },
+      "notifications": {
+        "success": "语言已成功更新",
+        "failure": "无法更新语言设置"
+      }
+    }
+  },
+  "templates": {
+    "title": "应用 templates list",
+    "breadcrumbs": "Templates"
+  },
+  "language_settings": {
+    "title": "语言",
+    "success": "成功",
+    "language_updated": "语言已成功更新",
+    "unable_update_language": "无法更新语言设置"
+  },
+  "access_tokens": {
+    "title": "Access tokens",
+    "add": "添加 access token",
+    "remove_confirm": "Do you want to remove the 已选择 access token(s)? Any script or application using these tokens will no longer be able to invoke the 端口ainer API.",
+    "remove_success": "Access token(s) removed",
+    "remove_error": "Failed to delete access tokens",
+    "remove_single_error": "无法 delete access token",
+    "col_description": "描述",
+    "col_prefix": "Prefix",
+    "col_created": "创建时间",
+    "col_last_used": "Last Used"
+  },
+  "helm_repos": {
+    "title": "Helm repositories",
+    "add": "添加 Helm repository",
+    "manage_hint": "To manage your helm repositories globally, navigate to",
+    "manage_link": "设置 > 常规",
+    "create_error": "无法 create Helm repository",
+    "retrieve_error": "无法 retrieve Helm repositories",
+    "delete_error": "无法 delete Helm repository",
+    "delete_multi_error": "无法 delete Helm repositories",
+    "delete_success": "Helm repository deleted 已成功",
+    "create_success": "Helm repository created 已成功"
+  },
+  "env_groups": {
+    "title": "环境 分组s",
+    "add": "添加 group",
+    "remove_confirm": "确定要 remove the 已选择 environment group(s)?",
+    "removed": "环境 分组(s) removed",
+    "col_actions": "操作",
+    "manage_access": "Manage access"
+  },
+  "common.remove": "移除",
+  "common.removing": "Removing",
+  "common.are_you_sure": "确定吗？",
+  "common.actions": "操作",
+  "common.save": "保存",
+  "common.saving": "Saving",
+  "common.yes": "是",
+  "common.change": "Change",
+  "common.update": "更新",
+  "common.templates": "Templates",
+  "common.inspect": "inspect",
+  "common.export_csv": "Export as CSV",
+  "common.date_range": "Date range",
+  "confirm.unsaved_editor": "You currently have unsaved changes in the editor. 确定要 leave?",
+  "confirm.unsaved_generic": "You currently have unsaved changes. 确定要 leave?",
+  "confirm.remove_image": "移除 the image",
+  "confirm.change_password": "You will be logged out after the password change. Do you want to change your password?",
+  "activity_logs.title": "活动日志",
+  "activity_logs.time": "Time",
+  "activity_logs.user": "User",
+  "activity_logs.environment": "环境",
+  "activity_logs.action": "操作",
+  "activity_logs.payload": "Payload",
+  "activity_logs.retention_note": "端口ainer user activity logs have a maximum retention of 7 days.",
+  "users.username": "用户名",
+  "users.username_placeholder": "e.g. jdoe",
+  "users.username_ldap_tooltip": "用户名 must exactly match username defined in external LDAP source.",
+  "users.username_required": "用户名 is 必填",
+  "users.username_taken": "用户名 is already taken",
+  "users.password": "密码",
+  "users.password_required": "密码 is 必填",
+  "users.password_min_length": "The password must be at least {{min}} characters long. ({{current}}/{{min}})",
+  "users.passwords_must_match": "密码s must match",
+  "users.confirm_password": "确认密码",
+  "users.administrator": "管理员",
+  "users.administrator_tooltip": "管理员s have access to 端口ainer settings management as well as full control over all defined environments and their resources.",
+  "users.add_to_teams": "添加 to team(s)",
+  "users.no_teams_message": "You don't seem to have any teams to add users into. Head over to the 团队 view to create some.",
+  "users.team_sync_message": "The team leader feature is disabled as external authentication is currently enabled with team sync.",
+  "users.no_team_note": "注意: non-administrator users who aren't in a team don't have access to any environments by default. Head over to the 环境 view to manage their accesses.",
+  "users.create_user": "创建 user",
+  "users.creating_user": "Creating user...",
+  "environments.col_name": "名称",
+  "environments.col_type": "类型",
+  "environments.col_url": "URL",
+  "environments.col_group": "分组 名称",
+  "environments.col_actions": "操作",
+  "environments.manage_access": "Manage access",
+  "environments.dismiss_error": "Dismiss error (still visible in logs)",
+  "environments.success": "成功",
+  "environments.error_dismissed": "错误 dismissed 已成功",
+  "tags.col_name": "名称",
+  "settings.app_templates": "App Templates",
+  "settings.app_templates_desc": "You can specify the URL to your own template definitions file here. See <1>端口ainer documentation</1> for more details.",
+  "settings.app_templates_default": "The default value is",
+  "settings.url": "URL",
+  "settings.kube_title": "Kubernetes settings",
+  "settings.kube_saving": "Saving",
+  "settings.kube_save": "保存 Kubernetes settings",
+  "settings.kube_updated": "Kubernetes settings updated",
+  "settings.helm_repo_title": "Helm repository",
+  "settings.helm_repo_desc": "You can specify the URL to your own <1>Helm repository</1> here.",
+  "settings.kubeconfig_title": "Kubeconfig",
+  "settings.kubeconfig_expiry": "Kubeconfig expiry",
+  "settings.kubeconfig_1day": "1 day",
+  "settings.kubeconfig_7days": "7 days",
+  "settings.kubeconfig_30days": "30 days",
+  "settings.kubeconfig_1year": "1 year",
+  "settings.kubeconfig_no_expiry": "否 expiry",
+  "settings.deploy_title": "Deployment options",
+  "settings.deploy_enforce": "Enforce code-based deployment",
+  "settings.deploy_enforce_tooltip": "Hides the '添加 with form' buttons and prevents adding/editing of resources via forms",
+  "settings.deploy_allow_editor": "Allow web editor and custom template use",
+  "settings.deploy_allow_url": "Allow specifying of a manifest via a URL",
+  "settings.deploy_allow_override": "Allow per environment override",
+  "settings.deploy_override_tooltip": "Allows overriding of deployment options in the 集群 setup screen of each environment",
+  "settings.deploy_allow_stacks": "Allow stacks functionality with Kubernetes environments",
+  "settings.deploy_stacks_tooltip": "This allows you to group your applications/workloads into a single 'stack', and then view or delete an entire stack. If disabled, stacks functionality will not show in the UI.",
+  "settings.deploy_require_note": "Require a note on applications",
+  "settings.deploy_note_tooltip_be": "Using this will enforce entry of a note in 添加/编辑 application (and prevent complete clearing of it in 应用 details).",
+  "settings.deploy_note_tooltip_ce": "BE allows entry of notes in 添加/编辑 application. Using this will enforce entry of a note in 添加/编辑 application (and prevent complete clearing of it in 应用 details).",
+  "settings.deploy_note_min": "Minimum number of characters note must have",
+  "settings.ssl_title": "SSL certificate",
+  "settings.ssl_https_warning": "Forcing HTTPs only will cause 端口ainer to stop listening on the HTTP port. Any edge agent environment that is using HTTP will no longer be available.",
+  "settings.ssl_force_https": "Force HTTPS only",
+  "settings.ssl_replace_desc": "Provide a new SSL 证书 to replace the existing one that is used for HTTPS connections.",
+  "settings.ssl_cert": "SSL/TLS certificate",
+  "settings.ssl_cert_tooltip": "Select an X.509 certificate file, commonly a crt, cer or pem file.",
+  "settings.ssl_key": "SSL/TLS private key",
+  "settings.ssl_key_tooltip": "Select a private key file, commonly a key, or pem file.",
+  "settings.ssl_reloading": "Reloading",
+  "settings.ssl_save": "保存 SSL settings",
+  "settings.helm_ca_file": "CA file",
+  "settings.helm_ca_tooltip": "Select a CA file containing your X.509 certificate(s), commonly a crt, cer or pem file.",
+  "settings.helm_apply": "应用 changes",
+  "settings.helm_saving": "Saving in progress...",
+  "settings.hidden_title": "Hidden containers",
+  "settings.hidden_desc": "You can hide containers with specific labels from 端口ainer UI. You need to specify the label name and value.",
+  "settings.hidden_name": "名称",
+  "settings.hidden_value": "值",
+  "settings.hidden_no_filter": "否 filter available.",
+  "settings.hidden_add_filter": "添加 filter",
+  "settings.hidden_name_required": "名称 is 必填",
+  "settings.hidden_updated": "Hidden container settings updated",
+  "settings.backup_title": "Back up 端口ainer",
+  "settings.backup_config": "Backup configuration",
+  "settings.backup_desc": "This will back up your 端口ainer server configuration and does not include containers.",
+  "settings.backup_download_option": "下载 backup file",
+  "settings.backup_s3_option": "Store in S3",
+  "settings.backup_s3_desc": "Define a cron schedule",
+  "settings.backup_downloading": "下载ing settings...",
+  "settings.backup_download": "下载 backup",
+  "settings.backup_success": "下载ed backup 已成功",
+  "settings.security_title": "安全 settings",
+  "settings.security_password_protect": "密码 Protect",
+  "basic": "基础",
+  "editor": "编辑器",
+  "time": {
+    "oneDay": "One Day",
+    "oneHour": "One Hour",
+    "oneMinute": "One Minute",
+    "oneWeek": "One Week"
+  },
+  "unique": "Unique"
+}

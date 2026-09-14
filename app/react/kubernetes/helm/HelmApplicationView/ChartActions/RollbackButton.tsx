@@ -1,5 +1,6 @@
 import { RotateCcw } from 'lucide-react';
 import { useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import { notifySuccess } from '@/portainer/services/notifications';
@@ -26,6 +27,7 @@ export function RollbackButton({
   releaseName,
   namespace,
 }: Props) {
+  const { t } = useTranslation();
   // when the latest revision is selected, rollback to the previous revision
   // otherwise, rollback to the selected revision
   const rollbackRevision =
@@ -37,7 +39,7 @@ export function RollbackButton({
     <LoadingButton
       onClick={handleClick}
       isLoading={rollbackMutation.isLoading}
-      loadingText="Rolling back..."
+      loadingText={t('kubernetes.helm.release.actions.rollingBack')}
       data-cy="rollback-button"
       icon={RotateCcw}
       color="default"
@@ -49,10 +51,10 @@ export function RollbackButton({
 
   async function handleClick() {
     const confirmed = await confirm({
-      title: 'Are you sure?',
+      title: t('kubernetes.common.areYouSure'),
       modalType: ModalType.Warn,
-      confirmButton: buildConfirmButton('Rollback'),
-      message: `Rolling back will restore the application to revision #${rollbackRevision}, which could cause service interruption. Do you wish to continue?`,
+      confirmButton: buildConfirmButton(t('kubernetes.helm.release.actions.rollback')),
+      message: t('kubernetes.helm.release.confirm.rollback', { revision: rollbackRevision.toString() }),
     });
     if (!confirmed) {
       return;
@@ -66,8 +68,8 @@ export function RollbackButton({
       {
         onSuccess: () => {
           notifySuccess(
-            'Success',
-            `Application rolled back to revision #${rollbackRevision} successfully.`
+            t('kubernetes.common.success'),
+            t('kubernetes.helm.release.notifications.rollbackSuccess', { revision: rollbackRevision.toString() })
           );
           // set the revision url param to undefined to refresh the page at the latest revision
           router.stateService.go('kubernetes.helm', {

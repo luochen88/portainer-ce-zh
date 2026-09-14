@@ -1,6 +1,7 @@
 import { RotateCw } from 'lucide-react';
 import { Pod } from 'kubernetes-types/core/v1';
 import { useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { EnvironmentId } from '@/react/portainer/environments/types';
 import { notifySuccess, notifyError } from '@/portainer/services/notifications';
@@ -32,6 +33,7 @@ export function RedeployApplicationButton({
   appName,
   app,
 }: Props) {
+  const { t } = useTranslation();
   const router = useRouter();
   const redeployAppMutation = useRedeployApplicationMutation(
     environmentId,
@@ -51,7 +53,7 @@ export function RedeployApplicationButton({
         data-cy="k8sAppDetail-redeployButton"
       >
         <Icon icon={RotateCw} className="mr-1" />
-        Redeploy
+        {t('kubernetes.applications.details.actions.redeploy.label')}
       </Button>
     </Authorized>
   );
@@ -64,21 +66,20 @@ export function RedeployApplicationButton({
     try {
       if (!app?.spec?.selector?.matchLabels) {
         throw new Error(
-          `Application has no 'matchLabels' selector to redeploy pods.`
+          t('kubernetes.applications.details.actions.redeploy.errors.noMatchLabels')
         );
       }
     } catch (error) {
-      notifyError('Failure', error as Error);
+      notifyError(t('kubernetes.common.notifications.failure'), error as Error);
       return;
     }
 
     // confirm the action
     const confirmed = await confirm({
-      title: 'Are you sure?',
+      title: t('kubernetes.common.confirm.areYouSure'),
       modalType: ModalType.Warn,
-      confirmButton: buildConfirmButton('Redeploy'),
-      message:
-        'Redeploying terminates and restarts the application, which will cause service interruption. Do you wish to continue?',
+      confirmButton: buildConfirmButton(t('kubernetes.applications.details.actions.redeploy.confirmButton')),
+      message: t('kubernetes.applications.details.actions.redeploy.confirmMessage'),
     });
     if (!confirmed) {
       return;
@@ -92,7 +93,10 @@ export function RedeployApplicationButton({
       { labelSelector },
       {
         onSuccess: () => {
-          notifySuccess('Success', 'Application successfully redeployed');
+          notifySuccess(
+            t('kubernetes.common.notifications.success'),
+            t('kubernetes.applications.details.actions.redeploy.notifications.success')
+          );
           router.stateService.reload();
         },
       }

@@ -1,3 +1,5 @@
+import i18n from '@/i18n';
+
 import { createColumnHelper } from '@tanstack/react-table';
 
 import { isoDateFromTimestamp } from '@/portainer/filters/filters';
@@ -11,10 +13,10 @@ const columnHelper = createColumnHelper<EdgeJob>();
 export const columns = [
   buildNameColumn<EdgeJob>('Name', '.job', 'edge-job-name'),
   columnHelper.accessor('CronExpression', {
-    header: 'Cron Expression',
+    header: i18n.t('edge.jobs.columns.cronExpression'),
   }),
   columnHelper.accessor('Created', {
-    header: 'Created',
+    header: i18n.t('common.created'),
     cell: ({ getValue }) => isoDateFromTimestamp(getValue()),
   }),
 ];

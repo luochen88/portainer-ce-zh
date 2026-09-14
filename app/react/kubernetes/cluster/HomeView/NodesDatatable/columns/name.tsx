@@ -1,4 +1,5 @@
 import { CellContext } from '@tanstack/react-table';
+import { useTranslation } from 'react-i18next';
 
 import { Authorized } from '@/react/hooks/useUser';
 
@@ -19,6 +20,7 @@ function NameCell({
   row: { original: node },
 }: CellContext<NodeRowData, string>) {
   const nodeName = node.metadata?.name;
+  const { t } = useTranslation();
   return (
     <div className="flex gap-2 whitespace-nowrap">
       <Authorized
@@ -36,8 +38,8 @@ function NameCell({
       </Authorized>
 
       <div className="ml-auto flex gap-2">
-        {node.isApi && <Badge type="info">api</Badge>}
-        {node.isPublishedNode && <Badge type="success">environment IP</Badge>}
+        {node.isApi && <Badge type="info">{t('kubernetes.cluster.nodes.badges.api')}</Badge>}
+        {node.isPublishedNode && <Badge type="success">{t('kubernetes.cluster.nodes.badges.environmentIp')}</Badge>}
       </div>
     </div>
   );

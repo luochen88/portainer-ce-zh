@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { InfoIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { Widget, WidgetBody, WidgetTitle } from '@@/Widget';
 import { RefreshRateSelect } from '@@/RefreshRateSelect';
@@ -21,9 +22,10 @@ export function MetricsAboutPanel({
   onRefreshRateChange,
   dataCy,
 }: Props) {
+  const { t } = useTranslation();
   return (
     <Widget>
-      <WidgetTitle icon={InfoIcon} title="About statistics" />
+      <WidgetTitle icon={InfoIcon} title={t('kubernetes.metrics.about.title')} />
       <WidgetBody>
         <form className="form-horizontal">
           <div className="form-group">

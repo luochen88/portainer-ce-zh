@@ -1,3 +1,6 @@
+import { useTranslation } from 'react-i18next';
+
+import i18n from '@/i18n';
 import { notifySuccess } from '@/portainer/services/notifications';
 import { EnvironmentId } from '@/react/portainer/environments/types';
 
@@ -17,6 +20,7 @@ export function ToggleSystemNamespaceButton({
   environmentId: EnvironmentId;
   namespaceName: string;
 }) {
+  const { t } = useTranslation();
   const toggleSystemNamespaceMutation = useToggleSystemNamespaceMutation(
     environmentId,
     namespaceName
@@ -33,11 +37,15 @@ export function ToggleSystemNamespaceButton({
       color="default"
       type="button"
       loadingText={
-        isSystemNamespace ? 'Unmarking as system' : 'Marking as system'
+        isSystemNamespace
+          ? t('kubernetes.namespaces.form.system.unmarking')
+          : t('kubernetes.namespaces.form.system.marking')
       }
       isLoading={toggleSystemNamespaceMutation.isLoading}
     >
-      {isSystemNamespace ? 'Unmark as system' : 'Mark as system'}
+      {isSystemNamespace
+        ? t('kubernetes.namespaces.form.system.unmark')
+        : t('kubernetes.namespaces.form.system.mark')}
     </LoadingButton>
   );
 
@@ -46,7 +54,10 @@ export function ToggleSystemNamespaceButton({
     if (confirmed) {
       toggleSystemNamespaceMutation.mutate(!isSystemNamespace, {
         onSuccess: () => {
-          notifySuccess('Success', 'Namespace updated');
+          notifySuccess(
+            t('kubernetes.common.notifications.success'),
+            t('kubernetes.namespaces.notifications.updatedGeneric')
+          );
         },
       });
     }
@@ -55,8 +66,8 @@ export function ToggleSystemNamespaceButton({
 
 async function confirmMarkUnmarkAsSystem(isSystemNamespace: boolean) {
   const message = isSystemNamespace
-    ? 'Unmarking this namespace as system will allow non administrator users to manage it and the resources in contains depending on the access control settings. Are you sure?'
-    : 'Marking this namespace as a system namespace will prevent non administrator users from managing it and the resources it contains. Are you sure?';
+    ? i18n.t('kubernetes.namespaces.form.system.unmarkConfirm')
+    : i18n.t('kubernetes.namespaces.form.system.markConfirm');
 
   return new Promise((resolve) => {
     confirmUpdate(message, resolve);

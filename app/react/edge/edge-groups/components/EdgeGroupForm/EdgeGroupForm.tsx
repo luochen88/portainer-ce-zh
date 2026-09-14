@@ -1,4 +1,5 @@
 import { Form, Formik, useFormikContext } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import { FormSection } from '@@/form-components/FormSection';
 import { BoxSelector } from '@@/BoxSelector';
@@ -60,6 +61,7 @@ function InnerForm({
   isLoading: boolean;
   isCreate: boolean;
 }) {
+  const { t } = useTranslation();
   const { values, setFieldValue, isValid, errors } =
     useFormikContext<FormValues>();
 
@@ -67,7 +69,7 @@ function InnerForm({
     <Form className="form-horizontal">
       <NameField errors={errors.name} />
 
-      <FormSection title="Group type">
+      <FormSection title={t('edge.groups.form.groupType')}>
         <BoxSelector
           slim
           value={values.dynamic}
@@ -80,11 +82,11 @@ function InnerForm({
       {values.dynamic ? <DynamicGroupFieldset /> : <StaticGroupFieldset />}
 
       <FormActions
-        submitLabel={isCreate ? 'Add edge group' : 'Save edge group'}
+        submitLabel={isCreate ? t('edge.groups.add') : t('edge.groups.save')}
         isLoading={isLoading}
         isValid={isValid}
         data-cy="edgeGroupCreate-addGroupButton"
-        loadingText="In progress..."
+        loadingText={t('common.inProgress')}
         errors={errors}
       />
     </Form>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AlertTriangle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { useDebouncedValue } from '@/react/hooks/useDebouncedValue';
 import { EnvironmentId } from '@/react/portainer/environments/types';
@@ -32,6 +33,7 @@ export function ManifestPreviewFormSection({
   title,
   environmentId,
 }: Props) {
+  const { t } = useTranslation();
   const debouncedPayload = useDebouncedValue(payload, 500);
   const manifestPreviewQuery = useHelmDryRun(environmentId, debouncedPayload);
   const [isFolded, setIsFolded] = useState(true);
@@ -50,7 +52,7 @@ export function ManifestPreviewFormSection({
 
   // only show loading state or the error to keep the view simple (omitting the preview section because there is nothing to preview)
   if (manifestPreviewQuery.isInitialLoading) {
-    return <InlineLoader>Generating manifest preview...</InlineLoader>;
+    return <InlineLoader>{t('kubernetes.helm.manifestPreview.generating')}</InlineLoader>;
   }
 
   return (
@@ -74,10 +76,10 @@ export function ManifestPreviewFormSection({
       setIsDefaultFolded={setIsFolded}
     >
       {manifestPreviewQuery.isError ? (
-        <Alert color="error" title="Error with Helm chart configuration">
+        <Alert color="error" title={t('kubernetes.helm.manifestPreview.configurationError')}>
           <ExpandableMessageByLines>
             {manifestPreviewQuery.error?.message ||
-              'Error generating manifest preview'}
+              t('kubernetes.helm.manifestPreview.generationError')}
           </ExpandableMessageByLines>
         </Alert>
       ) : (
@@ -97,8 +99,9 @@ function ManifestPreview({
   currentManifest?: string;
   newManifest: string;
 }) {
+  const { t } = useTranslation();
   if (!newManifest) {
-    return <TextTip color="blue">No manifest preview available</TextTip>;
+    return <TextTip color="blue">{t('kubernetes.helm.manifestPreview.empty')}</TextTip>;
   }
 
   if (currentManifest) {

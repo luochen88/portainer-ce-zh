@@ -1,4 +1,5 @@
 import { useCurrentStateAndParams } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { useHelmRelease } from '@/react/kubernetes/helm/helmReleaseQueries/useHelmRelease';
@@ -32,6 +33,7 @@ export function createStore(storageKey: string) {
 const settingsStore = createStore('helm-resources');
 
 export function ResourcesTable() {
+  const { t } = useTranslation();
   const environmentId = useEnvironmentId();
   const { params } = useCurrentStateAndParams();
   const { name, namespace, revision } = params;
@@ -55,10 +57,10 @@ export function ResourcesTable() {
         columns={columns}
         includeSearch
         settingsManager={tableState}
-        emptyContentLabel="No resources found"
+        emptyContentLabel={t('kubernetes.helm.resources.empty')}
         title={
           <TextTip inline color="blue" className="!text-xs">
-            Only resources currently in the cluster will be displayed.
+            {t('kubernetes.helm.resources.onlyClusterResourcesDisplayed')}
           </TextTip>
         }
         disableSelect

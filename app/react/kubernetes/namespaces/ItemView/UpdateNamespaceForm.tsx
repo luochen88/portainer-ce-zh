@@ -1,5 +1,6 @@
 import { Formik } from 'formik';
 import { useCurrentStateAndParams, useRouter } from '@uirouter/react';
+import { useTranslation } from 'react-i18next';
 
 import { useEnvironmentId } from '@/react/hooks/useEnvironmentId';
 import { notifySuccess } from '@/portainer/services/notifications';
@@ -30,6 +31,7 @@ import {
 } from './updateNamespaceWarnings';
 
 export function UpdateNamespaceForm() {
+  const { t } = useTranslation();
   const {
     params: { id: namespaceName },
   } = useCurrentStateAndParams();
@@ -95,16 +97,16 @@ export function UpdateNamespaceForm() {
 
   if (isQueryError) {
     return (
-      <Alert color="error" title="Error">
-        Error loading namespace
+      <Alert color="error" title={t('kubernetes.common.notifications.error')}>
+        {t('kubernetes.namespaces.item.loadingError')}
       </Alert>
     );
   }
 
   if (!initialValues) {
     return (
-      <Alert color="warn" title="Warning">
-        No data found for namespace
+      <Alert color="warn" title={t('kubernetes.common.notifications.warning')}>
+        {t('kubernetes.namespaces.item.noData')}
       </Alert>
     );
   }
@@ -186,8 +188,8 @@ export function UpdateNamespaceForm() {
       {
         onSuccess: () => {
           notifySuccess(
-            'Success',
-            `Namespace '${values.name}' updated successfully`
+            t('kubernetes.common.notifications.success'),
+            t('kubernetes.namespaces.notifications.updated', { name: values.name })
           );
           router.stateService.reload();
         },
